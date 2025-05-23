@@ -7,7 +7,7 @@ set -e
 HOSTNAME=$(hostname)
 
 # cd to your config dir
-pushd ~/.dotfiles >/dev/null
+pushd ~/.nix-config >/dev/null
 
 man="\
 rebuild --<\e[1;33moperations\e[0m> --\e[1;31mforce\e[0m = nixos-rebuild <\e[1;33moperations\e[0m> --flake .#$HOSTNAME

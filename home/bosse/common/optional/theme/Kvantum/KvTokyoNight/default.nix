@@ -1,7 +1,6 @@
 {...}: {
   home.file.".config/Kvantum/KvTokyoNight/KvTokyoNight.svg" = {
     source = ./KvTokyoNight.svg;
-    # source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/bosse/common/optional/theme/Kvantum/KvTokyoNight/KvTokyoNight.svg";
   };
 
   home.file.".config/Kvantum/KvTokyoNight/KvTokyoNight.kvconfig" = {

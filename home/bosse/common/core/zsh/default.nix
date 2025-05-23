@@ -110,10 +110,10 @@
       test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
       # my custom scripts
       rb() {
-        ~/.dotfiles/scripts/rebuild.sh "$@"
+        ~/.nix-config/scripts/rebuild.sh "$@"
       }
       hm() {
-        ~/.dotfiles/scripts/homemanager.sh "$@"
+        ~/.nix-config/scripts/homemanager.sh "$@"
       }
 
       # yazi with sudo

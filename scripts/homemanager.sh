@@ -7,7 +7,7 @@ HOSTNAME=$(hostname)
 USERNAME=$(whoami)
 
 # Change to config directory
-pushd ~/.dotfiles >/dev/null
+pushd ~/.nix-config >/dev/null
 
 man="\
 hm --<\e[1;33moperations\e[0m> = home-manager <\e[1;33moperations\e[0m> --flake .#$HOSTNAME@$USERNAME

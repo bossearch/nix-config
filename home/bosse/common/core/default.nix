@@ -25,7 +25,7 @@
       TERMINAL = "kitty";
     };
     activation.drunScan = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      ${config.home.homeDirectory}/.dotfiles/scripts/drun-scan.sh
+      ${config.home.homeDirectory}/.nix-config/scripts/drun-scan.sh
     '';
   };
 

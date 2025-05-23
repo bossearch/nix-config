@@ -29,7 +29,7 @@
       --ok-label='Allow' --cancel-label='Block'")
 
     if [ $? -eq 0 ]; then
-      /run/wrappers/bin/pkexec /home/bosse/.dotfiles/scripts/automate-usbguard.sh -t
+      /run/wrappers/bin/pkexec /home/bosse/.nix-config/scripts/automate-usbguard.sh -t
     else
       :
     fi

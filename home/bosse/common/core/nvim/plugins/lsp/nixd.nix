@@ -7,7 +7,7 @@
   settings = let
     host = config.spec.hostName;
     user = config.spec.userName;
-    flake = ''(builtins.getFlake "github:bossearch/.dotfiles)""'';
+    flake = ''(builtins.getFlake "github:bossearch/nix-config)""'';
   in {
     formatting.command = ["${lib.getExe pkgs.alejandra}"];
     nixpkgs.expr = "import <nixpkgs> {}";

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Automated script to install my dotfiles credit, to `https://github.com/librephoenix/nixos-config`
+# Automated script to install my nix-config credit, to `https://github.com/librephoenix/nixos-config`
 # If you new to nixos i highly recommend to watch his yt channel.
 
 set -e
@@ -22,18 +22,18 @@ if [[ "$USERNAME" != "bosse" ]] || [[ "$HOSTNAME" != "pc" && "$HOSTNAME" != "vm"
   exit 1
 fi
 
-# Set dotfiles directory
-DOTFILES=~/.nix-config
+# Set flake directory
+FLAKE=~/.nix-config
 
 # Generate hardware config for new system
-sudo cp /etc/nixos/hardware-configuration.nix $DOTFILES/hosts/$HOSTNAME/hardware-configuration.nix
+sudo cp /etc/nixos/hardware-configuration.nix $FLAKE/hosts/$HOSTNAME/hardware-configuration.nix
 
 # Rebuild system
-sudo nixos-rebuild switch --flake $DOTFILES#$HOSTNAME
+sudo nixos-rebuild switch --flake $FLAKE#$HOSTNAME
 
 # Install and build home-manager configuration
-nix run home-manager --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake $DOTFILES#$USERNAME@$HOSTNAME
+nix run home-manager --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake $FLAKE#$USERNAME@$HOSTNAME
 
-PAGER=cat home-manager news --flake $DOTFILES#$USERNAME@$HOSTNAME
+PAGER=cat home-manager news --flake $FLAKE#$USERNAME@$HOSTNAME
 
 echo -e "${GREEN}Installation complete. It is recommended to reboot your system now.${NC}"
