@@ -1,0 +1,19 @@
+{...}:
+{
+  imports = [
+    ./lib/coreutils-compat.nix
+    ./lib/netspeed.nix
+    ./src/battery-widget.nix
+    ./src/cmus-tmux-statusbar.nix
+    ./src/custom-number.nix
+    ./src/datetime-widget.nix
+    ./src/git-status.nix
+    ./src/hostname-widget.nix
+    ./src/music-tmux-statusbar.nix
+    ./src/netspeed.nix
+    ./src/path-widget.nix
+    ./src/themes.nix
+    ./src/wb-git-status.nix
+    ./theme.nix
+  ];
+}

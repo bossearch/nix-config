@@ -1,0 +1,39 @@
+diff --git a/lua/nui/utils/init.lua b/lua/nui/utils/init.lua
+index bd7504cc..2c916f98 100644
+--- a/lua/nui/utils/init.lua
++++ b/lua/nui/utils/init.lua
+@@ -39,12 +39,14 @@ end
+ ---@param type_name "'nil'" | "'number'" | "'string'" | "'boolean'" | "'table'" | "'function'" | "'thread'" | "'userdata'" | "'list'" | '"map"'
+ ---@return boolean
+ function utils.is_type(type_name, v)
++  -- `vim.tbl_islist` will be removed in the future
++  local islist = vim.islist or vim.tbl_islist
+   if type_name == "list" then
+-    return vim.tbl_islist(v)
++    return islist(v)
+   end
+
+   if type_name == "map" then
+-    return type(v) == "table" and not vim.tbl_islist(v)
++    return type(v) == "table" and not islist(v)
+   end
+
+   return type(v) == type_name
+diff --git a/tests/helpers/init.lua b/tests/helpers/init.lua
+index 420634e1..e8a23fd6 100644
+--- a/tests/helpers/init.lua
++++ b/tests/helpers/init.lua
+@@ -224,9 +224,11 @@ end
+
+ function popup.assert_border_lines(options, border_bufnr)
+   local size = { width = options.size.width, height = options.size.height }
++  -- `vim.tbl_islist` will be removed in the future
++  local islist = vim.islist or vim.tbl_islist
+
+   local style = vim.deepcopy(options.border.style)
+-  if vim.tbl_islist(style) then
++  if islist(style) then
+     style = {
+       top_left = style[1],
+       top = style[2],
+

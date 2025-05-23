@@ -1,0 +1,93 @@
+{
+  description = "A very basic flake";
+
+  inputs = {
+    # Nix ecosystem
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Third party programs, packaged with nix
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix/24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nyaa = {
+      url = "github:Beastwick18/nyaa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    systems,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
+  in {
+    inherit lib;
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+
+    overlays = import ./overlays {inherit inputs outputs;};
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+
+    nixosConfigurations = {
+      # Main Desktop
+      pc = lib.nixosSystem {
+        modules = [./hosts/pc];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      # Virtual Machine
+      vm = lib.nixosSystem {
+        modules = [./hosts/vm];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+    };
+
+    homeConfigurations = {
+      # Main Desktop
+      "bosse@pc" = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/bosse/pc.nix];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+
+      # Virtual Machine
+      "bosse@vm" = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/bosse/vm.nix];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+    };
+  };
+}

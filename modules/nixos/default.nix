@@ -1,0 +1,3 @@
+{
+  ports = import ./ports.nix;
+}

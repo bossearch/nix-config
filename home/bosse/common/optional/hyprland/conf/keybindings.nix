@@ -1,0 +1,114 @@
+{...}: {
+  wayland.windowManager.hyprland.extraConfig = ''
+    ###################
+    ### KEYBINDINGS ###
+    ###################
+
+    # See https://wiki.hyprland.org/Configuring/Keywords/
+    $mainMod = SUPER
+    $secMod = CONTROL
+    $meh = CONTROL ALT SHIFT
+    $hyper = CONTROL SUPER ALT SHIFT
+    $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec zsh"
+    $fileManager = nautilus
+    $browser = firefox
+    $mpv = ~/.config/hypr/scripts/assets/mpv.sh
+    $drun = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/drun.sh"
+    $run = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/run.sh"
+    $emoji = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
+    $clipboard = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
+    $cheatsheet = ~/.config/qmk/cheatsheet-wrapper.sh
+
+    bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
+    bind = $hyper, code:49, exit # "`"
+    bind = $mainMod, RETURN, exec, $terminal
+    bind = $mainMod, code:61, exec, $browser # "/"
+    bindr = $mainMod, code:48, exec, pkill $fileManager || $fileManager # "'"
+    bind = $mainMod, M, exec, $mpv
+    bindr = $mainMod, SPACE, exec, pkill fzf || $drun
+    bindr = $secMod, SPACE, exec, pkill fzf || $run
+    bindr = $mainMod, code:60, exec, pkill fzf || $emoji # "."
+    bindr = $mainMod, V, exec, pkill fzf || $clipboard
+    bind = $mainMod, code:59, exec, $cheatsheet # ","
+    bind = $mainMod, T, exec, ~/.config/hypr/scripts/word-lookup.sh
+    bind = $mainMod, R, exec, ~/.config/hypr/scripts/deepl-terjemah.sh
+    bind = $mainMod, E, exec, ~/.config/hypr/scripts/deepl-translate.sh
+    bind = $mainMod, L, exec, ~/.config/hypr/scripts/hyprlock.sh
+
+    # Screenshot, Screenrecord, and OCR
+    bind = $meh, Q, exec, ~/.config/waybar/scripts/screenshot/ssmonitor.sh
+    bind = $hyper, Q, exec, ~/.config/waybar/scripts/screenrecord/recmonitor.sh
+    bind = $meh, W, exec, ~/.config/waybar/scripts/screenshot/sswindow.sh
+    bind = $hyper, W, exec, ~/.config/waybar/scripts/screenrecord/recwindow.sh
+    bind = $meh, E, exec, ~/.config/waybar/scripts/screenshot/ssarea.sh
+    bind = $hyper, E, exec, ~/.config/waybar/scripts/screenrecord/recarea.sh
+    bind = $meh, R, exec, ~/.config/waybar/scripts/screenshot/ocr.sh
+    bind = $meh, V, exec, ~/.config/waybar/scripts/pavucontrol/cycle-output.sh
+    bind = $meh, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-output.sh
+    bind = $hyper, V, exec, ~/.config/waybar/scripts/pavucontrol/cycle-input.sh
+    bind = $hyper, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-input.sh
+
+
+    # Move focus with mainMod + arrow keys
+    bind = $meh, SPACE, cyclenext
+    bind = $meh, ESCAPE, swapnext
+
+    # Switch workspaces with mainMod + [0-9]
+    bind = $meh, H, workspace, 1
+    bind = $meh, J, workspace, 2
+    bind = $meh, K, workspace, 3
+    bind = $meh, L, workspace, 4
+    bind = $meh, N, workspace, 5
+    bind = $meh, M, workspace, 6
+    # Move active window to a workspace with mainMod + SHIFT + [0-9]
+    bind = $hyper, H, movetoworkspace, 1
+    bind = $hyper, J, movetoworkspace, 2
+    bind = $hyper, K, movetoworkspace, 3
+    bind = $hyper, L, movetoworkspace, 4
+    bind = $hyper, N, movetoworkspace, 5
+    bind = $hyper, M, movetoworkspace, 6
+
+    # Special workspace
+    bind = $meh, RETURN, togglespecialworkspace, scratchpad
+    bind = $hyper, RETURN, movetoworkspace, special:scratchpad
+    bind = $meh, G, exec, ~/.config/hypr/scripts/game-mode.sh
+    bind = $hyper, G, exec, rm -rf ~/.cache/gamemode
+    bind = $meh, T, togglespecialworkspace, gamespace
+    bind = $hyper, T, movetoworkspace, special:gamespace
+    bind = $meh, P, togglespecialworkspace, anonymous
+
+    # Scroll through existing workspaces with $meh + scroll
+    bind = $meh, mouse_down, workspace, e+1
+    bind = $meh, mouse_up, workspace, e-1
+
+    # Toggle Float
+    bind = $meh, F, togglefloating
+
+    # Move/resize windows with mainMod + LMB/RMB and dragging
+    bindm = $meh, mouse:272, movewindow
+    bindm = $meh, mouse:273, resizewindow
+
+    # Media key
+    bindel = , XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindel = , XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindl = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
+    # Requires playerctl
+    bindl = , XF86AudioPlay, exec, playerctl -p spotify play-pause
+    # hyprland v 0.46.0 ++
+    # bindo = , XF86AudioPrev, exec, playerctl previous
+    #bindl = , XF86AudioPrev, exec, playerctl position $(($(playerctl position | cut -d '.' -f 1) - 5))
+    # bindo = , XF86AudioNext, exec, playerctl next
+    #bindl = , XF86AudioNext, exec, playerctl position $(($(playerctl position | cut -d '.' -f 1) + 5))
+
+    # bindl = , XF86AudioPrev, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) - 5))
+    # bindl = , XF86AudioNext, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) + 5))
+    bindl = , XF86AudioPrev, exec, playerctl --player=spotify previous
+    bindl = , XF86AudioNext, exec, playerctl --player=spotify next
+
+    # Zoom
+    #bind = SUPER, mouse_down, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current + 0.5"|bc)
+    #bind = SUPER, mouse_up, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current - 0.5"|bc)
+    #bind = $mainMod $secMod, mouse_down, exec, hyprctl keyword cursor:zoom_factor 2
+    #bind = $mainMod $secMod, mouse_up, exec, hyprctl keyword cursor:zoom_factor 1
+  '';
+}
