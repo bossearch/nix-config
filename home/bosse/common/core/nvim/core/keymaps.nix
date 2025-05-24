@@ -80,16 +80,6 @@
       }
       {
         key = "<A-j>";
-        action = "<esc><cmd>m .+1<cr>==gi";
-        mode = "i";
-      }
-      {
-        key = "<A-k>";
-        action = "<esc><cmd>m .-2<cr>==gi";
-        mode = "i";
-      }
-      {
-        key = "<A-j>";
         action = ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv";
         mode = "v";
       }
@@ -108,6 +98,40 @@
         key = ">";
         action = ">gv";
         mode = "v";
+      }
+      # insert(i) auto indent
+      {
+        key = "i";
+        action.__raw = ''
+          function()
+            if #vim.fn.getline(".") == 0 then
+              return [["_cc]]
+            else
+              return "i"
+            end
+          end
+        '';
+        mode = "n";
+        options = {
+          expr = true;
+        };
+      }
+      # dd dont yank blank line to registers
+      {
+        key = "dd";
+        action.__raw = ''
+          function()
+            if vim.api.nvim_get_current_line():match("^%s*$") then
+              return '"_dd'
+            else
+              return "dd"
+            end
+          end
+        '';
+        mode = "n";
+        options = {
+          expr = true;
+        };
       }
       # sessions
       {
