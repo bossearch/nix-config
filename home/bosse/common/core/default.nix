@@ -23,6 +23,7 @@
       PAGER = "less";
       BROWSER = "firefox";
       TERMINAL = "kitty";
+      MANPAGER= "nvim +Man!";
     };
     activation.drunScan = lib.hm.dag.entryAfter ["writeBoundary"] ''
       ${config.home.homeDirectory}/.nix-config/scripts/drun-scan.sh
