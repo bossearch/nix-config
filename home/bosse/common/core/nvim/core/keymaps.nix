@@ -80,6 +80,16 @@
       }
       {
         key = "<A-j>";
+        action = "<esc><cmd>m .+1<cr>==gi";
+        mode = "i";
+      }
+      {
+        key = "<A-k>";
+        action = "<esc><cmd>m .-2<cr>==gi";
+        mode = "i";
+      }
+      {
+        key = "<A-j>";
         action = ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv";
         mode = "v";
       }
