@@ -68,9 +68,6 @@
           "Use `:q` to quit Neovim",
           "Use `:r` followed by a filename to insert the contents of a file at the current cursor position",
           "Use `:read` followed by a shell command to insert the output of a command at the current cursor position",
-          "Use `:redir @* | silent echo &option | redir END` to copy the value of an option to the clipboard",
-          "Use `:redir @* | silent set option? | redir END` to copy the output of `:set option?` to the clipboard",
-          "Use `:redir @* | silent verbose set option? | redir END` to copy the verbose output of `:set option?` to the clipboard",
           "Use `:registers` followed by a register name to display the contents of a specific register",
           "Use `:registers` to display the contents of all registers",
           "Use `:resize +/-n` to adjust the height of the current split",
@@ -115,10 +112,7 @@
           "q: opens the recent command history",
           "use `gv` to re-select the previous visual selection",
           'Use "_ to yank into the black hole register',
-          'Use `"*p` to paste from the system clipboard',
-          'Use `"*y` to yank text into the system clipboard',
-          'Use `"+p` to paste from the system clipboard',
-          'Use `"+yy` to yank a line into the system clipboard',
+          'Use `ZZ` in normal mode to quit nvim'
         }
       '';
     };
