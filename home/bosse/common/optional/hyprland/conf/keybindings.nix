@@ -94,21 +94,16 @@
     bindl = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
     # Requires playerctl
     bindl = , XF86AudioPlay, exec, playerctl -p spotify play-pause
-    # hyprland v 0.46.0 ++
-    # bindo = , XF86AudioPrev, exec, playerctl previous
-    #bindl = , XF86AudioPrev, exec, playerctl position $(($(playerctl position | cut -d '.' -f 1) - 5))
-    # bindo = , XF86AudioNext, exec, playerctl next
-    #bindl = , XF86AudioNext, exec, playerctl position $(($(playerctl position | cut -d '.' -f 1) + 5))
 
-    # bindl = , XF86AudioPrev, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) - 5))
-    # bindl = , XF86AudioNext, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) + 5))
-    bindl = , XF86AudioPrev, exec, playerctl --player=spotify previous
-    bindl = , XF86AudioNext, exec, playerctl --player=spotify next
+    bind = , XF86AudioPrev, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) - 5))
+    bind = , XF86AudioNext, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) + 5))
+    bindo = , XF86AudioPrev, exec, playerctl --player=spotify previous
+    bindo = , XF86AudioNext, exec, playerctl --player=spotify next
 
     # Zoom
-    #bind = SUPER, mouse_down, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current + 0.5"|bc)
-    #bind = SUPER, mouse_up, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current - 0.5"|bc)
-    #bind = $mainMod $secMod, mouse_down, exec, hyprctl keyword cursor:zoom_factor 2
-    #bind = $mainMod $secMod, mouse_up, exec, hyprctl keyword cursor:zoom_factor 1
+    bind = $hyper, mouse_down, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current + 0.5"|bc)
+    bind = $hyper, mouse_up, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current - 0.5"|bc)
+    bind = $hyper, mouse:272, exec, hyprctl keyword cursor:zoom_factor 2
+    bind = $hyper, mouse:273, exec, hyprctl keyword cursor:zoom_factor 1
   '';
 }
