@@ -6,27 +6,30 @@
       id = 0;
       isDefault = true;
       search = {
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
         engines = {
-          "Bing".metaData.hidden = true;
-          "Google".metaData.hidden = true;
-          "Wikipedia (en)".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "google".metaData.hidden = true;
+          "wikipedia".metaData.hidden = true;
         };
         force = true;
       };
-      extensions = with pkgs.inputs.firefox-addons; [
-        cookie-autodelete
-        darkreader
-        new-tab-override
-        onetab
-        proton-pass
-        side-view
-        sponsorblock
-        tweaks-for-youtube
-        # ublock-origin
-        vimium
-      ];
+      extensions = {
+        force = true;
+        packages = with pkgs.inputs.firefox-addons; [
+          cookie-autodelete
+          darkreader
+          new-tab-override
+          onetab
+          proton-pass
+          side-view
+          sponsorblock
+          tweaks-for-youtube
+          ublock-origin
+          vimium
+        ];
+      };
     };
     nativeMessagingHosts = [pkgs.bukubrow];
   };

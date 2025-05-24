@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["Meslo" "CommitMono"];})
+      nerd-fonts.meslo-lg
+      nerd-fonts.commit-mono
       noto-fonts
       noto-fonts-lgc-plus
       noto-fonts-cjk-sans
