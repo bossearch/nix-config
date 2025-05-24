@@ -14,14 +14,14 @@
   }
   {
     __unkeyed = "<leader><space>f";
-    __unkeyed-1 = "<cmd>lua Snacks.picker.files()<cr>";
+    __unkeyed-1 = "<cmd>lua Snacks.picker.files({hidden=true,follow=true,ignored=true})<cr>";
     desc = "Find Files In CWD";
     mode = "n";
   }
   {
     __unkeyed = "<leader><space>p";
     __unkeyed-1 = "<cmd>lua Snacks.picker.projects()<cr>";
-    desc = "Find Todos";
+    desc = "Find Projects";
     mode = "n";
   }
   {
@@ -115,6 +115,12 @@
     mode = "n";
   }
   {
+    __unkeyed = "<leader><space>v";
+    __unkeyed-1 = "<cmd>lua Snacks.picker.cliphist()<cr>";
+    desc = "Find Cliphist";
+    mode = "n";
+  }
+  {
     __unkeyed = "<leader><space>j";
     __unkeyed-1 = "<cmd>lua Snacks.picker.jumps()<cr>";
     desc = "Find Jumps";
@@ -124,6 +130,18 @@
     __unkeyed = "<leader><space>u";
     __unkeyed-1 = "<cmd>lua Snacks.picker.undo()<cr>";
     desc = "Find Undo";
+    mode = "n";
+  }
+  {
+    __unkeyed = "<leader><space>s";
+    __unkeyed-1 = "<cmd>lua Snacks.picker.spelling()<cr>";
+    desc = "Find Spelling";
+    mode = "n";
+  }
+  {
+    __unkeyed = "<leader><space>z";
+    __unkeyed-1 = "<cmd>lua Snacks.picker.zoxide()<cr>";
+    desc = "Find Zoxide";
     mode = "n";
   }
   # picker.git
