@@ -15,6 +15,8 @@
       triggers.__raw = ''
         {
           { "<leader>", mode = { "n", "v" } },
+          { "[", mode = { "n", "v" } },
+          { "]", mode = { "n", "v" } },
         }
       '';
       spec =
