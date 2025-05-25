@@ -1,6 +1,5 @@
 # TODO: plugin to consider trouble, substitute, comment, typr
 # TODO: Add markdown plugin suite
-# TODO: Learn more about treesitter textobjects
 {lib, ...}: let
   inherit (builtins) readDir;
   inherit (lib.attrsets) foldlAttrs;
