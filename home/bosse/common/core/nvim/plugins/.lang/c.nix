@@ -24,11 +24,11 @@
 
   lint = {
     lintersByFt = {
-      c = ["clang_tidy"];
-      cpp = ["clang_tidy"];
+      c = ["clangtidy"];
+      cpp = ["clangtidy"];
     };
     linters = {
-      clang_tidy = {
+      clangtidy = {
         cmd = lib.getExe' pkgs.clang-tools "clang-tidy";
       };
     };
