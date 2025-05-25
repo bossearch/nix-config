@@ -6,7 +6,6 @@
     icon = " ";
     mode = "n";
   }
-  # TODO: make this to make file as the same buffer location
   {
     __unkeyed = "<leader>nf";
     __unkeyed-1 = "<cmd>enew<cr>";
