@@ -12,7 +12,7 @@
       ai = {};
       icons = {};
       surround = {};
-      jump = import ./jump.nix;
+      # jump = import ./jump.nix;
       jump2d = import ./jump2d.nix;
       pairs = import ./pairs.nix;
       sessions = import ./sessions.nix;
