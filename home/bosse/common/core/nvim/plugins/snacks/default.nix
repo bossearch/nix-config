@@ -1,12 +1,12 @@
 {
   programs.nixvim.plugins.snacks = {
     enable = true;
-    lazyLoad = {
-      settings = {
-        cmd = "Snacks";
-        event = "VimEnter";
-      };
-    };
+    # lazyLoad = {
+    #   settings = {
+    #     cmd = "Snacks";
+    #     event = "VimEnter";
+    #   };
+    # };
     settings = {
       dashboard = import ./dashboard.nix;
       indent = import ./indent.nix;
