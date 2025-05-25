@@ -7,11 +7,8 @@
       };
     };
     settings = {
-      auto_insall = true;
       highlight.enable = true;
-      incremental_selection = { enable = true; };
       indent.enable = true;
-      textobjects.enable = true;
     };
   };
 }

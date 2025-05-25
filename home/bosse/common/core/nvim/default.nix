@@ -25,6 +25,7 @@
           "copilot.lua"
           "blink.cmp"
           "colorful-winsep"
+          "nvim-treesitter"
         ];
       };
     };
