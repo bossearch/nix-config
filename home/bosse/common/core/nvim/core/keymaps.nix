@@ -143,6 +143,12 @@
           expr = true;
         };
       }
+      # go to parent directory
+      {
+        key = "..";
+        action = "<cmd>cd ..<cr>";
+        mode = "n";
+      }
       # sessions
       {
         key = "<C-s>";
