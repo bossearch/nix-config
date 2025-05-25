@@ -35,14 +35,24 @@
             {
               "branch"
             },
-            { require("lib.util").get_cwd, icon = "󰝰", color = { fg = "#7aa2f7", bg = "#16161e" },separator= {right="│"} },
+            {
+              require("lib.util").get_cwd,
+              icon = "󰝰",
+              color = {
+                fg = "#7aa2f7",
+                bg = "#16161e"
+              },
+              separator= {
+                right="│"
+              }
+            },
           }
         '';
         lualine_c.__raw = ''
           {
             {
               "buffers",
-              show_filename_only = false,
+              show_filename_only = true,
               hide_filename_extension = true,
               -- max_length = vim.o.columns * 4 / 3,
               max_length = vim.o.columns * 2 / 3,
@@ -99,7 +109,6 @@
           }
         '';
         lualine_y = ["%l/%L:%c│%p%%"];
-        # lualine_z = ["lsp_status"];
         lualine_z.__raw = ''
           { { require("lib.util").lsp_status, icon = "" } }
         '';
