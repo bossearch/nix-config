@@ -68,6 +68,21 @@
           '';
         };
       };
+      LocalDir = {
+        command = {
+          __raw = ''
+            function()
+              local bufname = vim.fn.expand('%:p')
+              if vim.fn.filereadable(bufname) == 0 then
+                return
+              end
+
+              local file_dir = vim.fn.fnamemodify(bufname, ':h')
+              vim.cmd("lcd " .. vim.fn.fnameescape(file_dir))
+            end, {}
+          '';
+        };
+      };
     };
   };
 }
