@@ -19,8 +19,8 @@
           ["K"] = { "preview_scroll_up", mode = { "i", "n" } };
           ["H"] = { "preview_scroll_left", mode = { "i", "n" } };
           ["L"] = { "preview_scroll_right", mode = { "i", "n" } };
-          ["-"] = { "edit_split", mode = { "i", "n" } },
-          ["|"] = { "edit_vsplit", mode = { "i", "n" } },
+          ["-"] = { "edit_split", mode = "n" },
+          ["|"] = { "edit_vsplit", mode = "n" },
         }
       '';
     };
