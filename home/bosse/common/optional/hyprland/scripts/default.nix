@@ -6,6 +6,7 @@
     ./game-mode.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./playerctl
     ./quit.nix
     ./startup-value.nix
     ./word-lookup.nix

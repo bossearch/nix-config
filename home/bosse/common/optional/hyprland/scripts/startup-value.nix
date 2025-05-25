@@ -27,7 +27,10 @@
         touch "$SCREENRECORD_TOOLTIP"
       fi
 
-      rm -f /tmp/nvim-startup.log
+      PLAYERCTL_FILE="$HOME/.cache/bosse/player"
+      echo "spotify" >"$PLAYERCTL_FILE"
+
+      # rm -f /tmp/nvim-startup.log
     '';
   };
 }

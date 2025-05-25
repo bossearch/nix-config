@@ -92,13 +92,14 @@
     bindel = , XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
     bindel = , XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
     bindl = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
-    # Requires playerctl
-    bindl = , XF86AudioPlay, exec, playerctl -p spotify play-pause
 
-    bind = , XF86AudioPrev, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) - 5))
-    bind = , XF86AudioNext, exec, playerctl --player=spotify position $(($(playerctl --player=spotify position | cut -d '.' -f 1) + 5))
-    bindo = , XF86AudioPrev, exec, playerctl --player=spotify previous
-    bindo = , XF86AudioNext, exec, playerctl --player=spotify next
+    # Requires playerctl
+    bind = , XF86AudioPlay, exec, ~/.config/hypr/scripts/playerctl/player-toggle.sh
+    bind = $secMod, XF86AudioPlay, exec, ~/.config/hypr/scripts/playerctl/playerctl.sh
+    bind = , XF86AudioPrev, exec, ~/.config/hypr/scripts/playerctl/player-seek.sh -5
+    bind = , XF86AudioNext, exec, ~/.config/hypr/scripts/playerctl/player-seek.sh +5
+    bindo = , XF86AudioPrev, exec, ~/.config/hypr/scripts/playerctl/player-skip.sh previous
+    bindo = , XF86AudioNext, exec, ~/.config/hypr/scripts/playerctl/player-skip.sh next
 
     # Zoom
     bind = $hyper, mouse_down, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current + 0.5"|bc)
