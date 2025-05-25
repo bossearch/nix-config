@@ -54,7 +54,7 @@ in{
       # only enable this source when filetype is gitcommit, markdown, or 'octo'
       enabled.__raw = ''
         function()
-          return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
+          return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
         end
       '';
       async = true;
@@ -73,7 +73,7 @@ in{
       # only enable this source when filetype is gitcommit, markdown, or 'octo'
       enabled.__raw = ''
         function()
-          return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
+          return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
         end
       '';
       async = true;
@@ -89,7 +89,7 @@ in{
       name = "lsp";
       module = "blink.cmp.sources.lsp";
       enabled = true;
-      async = false;
+      async = true;
       max_items = null;
       min_keyword_length = 0;
       score_offset = lsp_score;
