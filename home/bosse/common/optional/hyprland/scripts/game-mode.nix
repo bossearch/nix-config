@@ -5,15 +5,13 @@
       #!/usr/bin/env bash
 
       current_workspace=$(hyprctl activewindow | grep "workspace: " | sed -E 's/.*workspace: .*\((.*)\)/\1/')
-      game_on="${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/state_running.svg"
-      game_off="${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/state_paused.svg"
 
       if [ -f ~/.cache/gamemode ]; then
         hyprctl --batch "\
           dispatch togglespecialworkspace gamespace;\
           reload"
         rm ~/.cache/gamemode
-        notify-send -a game-off "Game Mode" "Deactivated" -i "$game_off"
+        notify-send -a game_off "Game Mode" "Deactivated"
       else
         if [ "$current_workspace" = "special:gamespace" ]; then
           hyprctl --batch "\
@@ -25,7 +23,7 @@
             keyword decoration:inactive_opacity 1;\
             keyword decoration:rounding 0"
           touch ~/.cache/gamemode
-          notify-send -a game-on "Game Mode" "Activated" -i "$game_on"
+          notify-send -a game_on "Game Mode" "Activated"
         else
           hyprctl --batch "\
             dispatch togglespecialworkspace gamespace;\
@@ -37,7 +35,7 @@
             keyword decoration:inactive_opacity 1;\
             keyword decoration:rounding 0"
           touch ~/.cache/gamemode
-          notify-send -a game-on "Game Mode" "Activated" -i "$game_on"
+          notify-send -a game_on "Game Mode" "Activated"
         fi
       fi
     '';

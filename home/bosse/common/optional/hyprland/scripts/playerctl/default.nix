@@ -17,14 +17,14 @@
 
       # Handle no players
       if [ "''${#AVAILABLE_PLAYERS[@]}" -eq 0 ]; then
-          notify-send "Playerctl" "No media players found"
+          notify-send -a playerctl -i "$ICON" "Playerctl" "No media players found"
           exit 0
       fi
 
       # Handle single player
       if [ "''${#AVAILABLE_PLAYERS[@]}" -lt 2 ]; then
           echo "''${AVAILABLE_PLAYERS[0]}" > "$STATE_FILE"
-          notify-send "Playerctl" "''${AVAILABLE_PLAYERS[0]}"
+          notify-send -a playerctl -i "$ICON" "Playerctl" "''${AVAILABLE_PLAYERS[0]}"
           exit 0
       fi
 
@@ -47,7 +47,7 @@
 
       # Save and report
       echo "$NEXT_PLAYER" > "$STATE_FILE"
-      notify-send "Playerctl" "$NEXT_PLAYER $(playerctl)"
+      notify-send -a playerctl -i "$ICON" "Playerctl" "$NEXT_PLAYER $(playerctl)"
     '';
   };
 }

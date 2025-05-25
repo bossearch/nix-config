@@ -15,10 +15,12 @@
         paplay ~/.config/dunst/sound/camera-shutter.mp3 --volume=$CURRENT_VOLUME
       elif [ "$DUNST_APP_NAME" = "nchat" ]; then
         paplay ~/.config/dunst/sound/Livechat.mp3 --volume=$CURRENT_VOLUME
-      elif [ "$DUNST_APP_NAME" = "game-on" ]; then
+      elif [ "$DUNST_APP_NAME" = "game_on" ]; then
         paplay ~/.config/dunst/sound/Mario-power-up.mp3 --volume=$CURRENT_VOLUME
-      elif [ "$DUNST_APP_NAME" = "game-off" ]; then
+      elif [ "$DUNST_APP_NAME" = "game_off" ]; then
         paplay ~/.config/dunst/sound/Mario-power-down.mp3 --volume=$CURRENT_VOLUME
+      elif [ "$DUNST_APP_NAME" = "playerctl" ]; then
+        paplay ~/.config/dunst/sound/Hello.mp3 --volume=$CURRENT_VOLUME
       else
         paplay ~/.config/dunst/sound/Chord.mp3 --volume=$CURRENT_VOLUME
       fi

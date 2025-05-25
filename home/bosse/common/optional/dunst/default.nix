@@ -96,7 +96,28 @@
       };
       nchat = {
         appname = "nchat";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/panel/google-chat-badge.svg";
+        # new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/panel/google-chat-badge.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/internet_chat.svg";
+      };
+      game_on = {
+        appname = "game_on";
+        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_running.svg";
+      };
+      game_off = {
+        appname = "game_off";
+        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_paused.svg";
+      };
+      playerctl = {
+        appname = "playerctl";
+        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/xt7-player-mpv.svg";
+      };
+      screenshot = {
+        appname = "screenshot";
+        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-photo.svg";
+      };
+      screenrecord = {
+        appname = "screenrecord";
+        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-video.svg";
       };
     };
   };
