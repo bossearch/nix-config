@@ -1,15 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  iface =
-    if config.spec.hostName == "pc"
-    then "enp5s0"
-    else "enp1s0";
-in {
+{pkgs, ...}: {
   imports = [
-    ./theme
+    ./mythemux.nix
   ];
   programs.tmux = {
     enable = true;
@@ -32,24 +23,6 @@ in {
       set -g status-interval 1
       set -g status-keys vi
       set -g focus-events on
-
-      # Theme
-      # Date and Time
-      set -g @tokyo-night-tmux_show_datetime 0
-      set -g @tokyo-night-tmux_date_format MYD
-      set -g @tokyo-night-tmux_time_format 12H
-      # Path
-      set -g @tokyo-night-tmux_show_path 0
-      set -g @tokyo-night-tmux_path_format relative # 'relative' or 'full'
-      # Music
-      set -g @tokyo-night-tmux_show_music 0
-      # Net
-      set -g @tokyo-night-tmux_show_netspeed 1
-      set -g @tokyo-night-tmux_netspeed_iface "${iface}" # Detected via default route
-      set -g @tokyo-night-tmux_netspeed_showip 0
-      set -g @tokyo-night-tmux_netspeed_refresh 1     # Update interval in seconds (default 1)
-      # Hostname
-      set -g @tokyo-night-tmux_show_hostname 1
 
       # bindkey
       unbind Up
@@ -86,7 +59,7 @@ in {
       bind o popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci furl"
       bind Enter popup -E -w100 -h50 -xC -yC
 
-      run-shell ~/.config/tmux/plugins/theme/theme.tmux
+      run-shell ~/.config/tmux/plugins/mythemux/mythemux.tmux
     '';
     plugins = with pkgs; [
       {
