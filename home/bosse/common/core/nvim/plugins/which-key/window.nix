@@ -43,16 +43,6 @@
     mode = "n";
   }
   {
-    __unkeyed = "<leader>wz";
-    __unkeyed-1.__raw = ''
-      function()
-        require("snacks").zen()
-      end
-    '';
-    desc = "Toggle Zen Mode";
-    mode = "n";
-  }
-  {
     __unkeyed = "<leader>wm";
     __unkeyed-1.__raw = ''
       function()

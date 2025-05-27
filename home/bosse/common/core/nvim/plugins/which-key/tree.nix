@@ -26,10 +26,4 @@
     desc = "Treesitter join";
     mode = "n";
   }
-  {
-    __unkeyed = "<leader>tc";
-    __unkeyed-1 = "<cmd>TSContextToggle<cr>";
-    desc = "Toggle Treesitter Context";
-    mode = "n";
-  }
 ]

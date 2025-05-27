@@ -50,12 +50,6 @@
     mode = "n";
   }
   {
-    __unkeyed = "<leader>gt";
-    __unkeyed-1 = "<cmd>Gitsigns prev_hunk()<cr>";
-    desc = "Toggle Deleted";
-    mode = "n";
-  }
-  {
     __unkeyed = "<leader>gn";
     __unkeyed-1 = "<cmd>Gitsigns next_hunk<cr>";
     desc = "Next Hunk";

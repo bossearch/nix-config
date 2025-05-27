@@ -1,3 +1,4 @@
+# TODO: Try adding all key to keymaps except groups
 {
   programs.nixvim.plugins.which-key = {
     enable = true;
@@ -23,6 +24,7 @@
         (import ./file.nix)
         ++ (import ./gitsigns.nix)
         ++ (import ./lsp.nix)
+        ++ (import ./markdown.nix)
         ++ (import ./neo.nix)
         ++ (import ./other.nix)
         ++ (import ./picker.nix)
