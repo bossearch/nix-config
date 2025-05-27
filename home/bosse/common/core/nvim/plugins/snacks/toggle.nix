@@ -15,6 +15,18 @@
         Snacks.toggle.inlay_hints():map("<leader>th")
       end
 
+      -- conform
+      Snacks.toggle({
+        name = "Autoformat on Save",
+        get = function()
+          return not vim.g.disable_autoformat
+        end,
+        set = function(state)
+          vim.g.disable_autoformat = not state
+          vim.b.disable_autoformat = not state
+        end,
+      }):map("<leader>tf")
+
       -- render markdown
       Snacks.toggle({
         name = "Render Markdown",
