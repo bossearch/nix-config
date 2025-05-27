@@ -26,12 +26,10 @@
         ++ (import ./lsp.nix)
         ++ (import ./markdown.nix)
         ++ (import ./neo.nix)
-        ++ (import ./other.nix)
         ++ (import ./picker.nix)
         ++ (import ./quickfix.nix)
-        ++ (import ./split.nix)
         ++ (import ./terminal.nix)
-        ++ (import ./tree.nix)
+        ++ (import ./toggle.nix)
         ++ (import ./window.nix);
     };
   };

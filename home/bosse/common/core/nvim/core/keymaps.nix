@@ -143,6 +143,17 @@
           expr = true;
         };
       }
+      # split
+      {
+        key = "-";
+        action = "<C-W>s";
+        mode = "n";
+      }
+      {
+        key = "|";
+        action = "<C-W>v";
+        mode = "n";
+      }
       # go to parent directory
       {
         key = "..";
