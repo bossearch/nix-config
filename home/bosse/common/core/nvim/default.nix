@@ -20,15 +20,17 @@
       };
       combinePlugins = {
         enable = true;
-        # extraPlugins needs to add to this list
         standalonePlugins = [
           "copilot.lua"
           "blink.cmp"
-          "colorful-winsep"
           "nvim-treesitter"
+          "colorful-winsep"
         ];
       };
     };
-    extraPlugins = [pkgs.vimPlugins.colorful-winsep];
+    extraPlugins = with pkgs; [
+      vimPlugins.colorful-winsep
+      vimPlugins.outline-nvim
+    ];
   };
 }

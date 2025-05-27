@@ -36,4 +36,10 @@
     desc = "Open LazyGit";
     mode = "n";
   }
+  {
+    __unkeyed = "<leader>no";
+    __unkeyed-1 = "<cmd>Outline<cr>";
+    desc = "Open LazyGit";
+    mode = "n";
+  }
 ]
