@@ -7,7 +7,7 @@ let
   path_score = 80;
   ripgrep_score = 40;
   snippets_score = 100;
-in{
+in {
   default = [
     "buffer"
     "cmdline"
@@ -73,7 +73,7 @@ in{
       # only enable this source when filetype is gitcommit, markdown, or 'octo'
       enabled.__raw = ''
         function()
-          return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
+          return vim.tbl_contains({ 'gitcommit' }, vim.bo.filetype)
         end
       '';
       async = true;
