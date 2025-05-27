@@ -1,4 +1,3 @@
-# TODO: Try adding all key to keymaps except groups
 {
   programs.nixvim.plugins.which-key = {
     enable = true;

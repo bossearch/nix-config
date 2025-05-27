@@ -1,5 +1,3 @@
-# TODO: plugin to consider trouble, substitute, comment, typr
-# TODO: Add markdown plugin suite
 {lib, ...}: let
   inherit (builtins) readDir;
   inherit (lib.attrsets) foldlAttrs;
