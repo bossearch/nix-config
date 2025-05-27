@@ -1,11 +1,22 @@
 {
   programs.nixvim = {
     extraConfigLua = ''
-      -- zen mode
-      require("snacks").toggle.zen():map("<leader>wz")
+      local Snacks = require("snacks")
+      -- snacks
+      Snacks.toggle.zen():map("<leader>tz")
+      Snacks.toggle.zoom():map("<leader>tm")
+      Snacks.toggle.dim():map("<leader>tD")
+      Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")
+      Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+      Snacks.toggle.diagnostics():map("<leader>td")
+      Snacks.toggle.indent():map("<leader>ti")
+
+      if vim.lsp.inlay_hint then
+        Snacks.toggle.inlay_hints():map("<leader>th")
+      end
 
       -- render markdown
-      require("snacks").toggle({
+      Snacks.toggle({
         name = "Render Markdown",
         get = function()
           return require("render-markdown.state").enabled
@@ -21,7 +32,7 @@
       }):map("<leader>mr")
 
       -- treesitter-context
-      require("snacks").toggle({
+      Snacks.toggle({
         name = "Treesitter Context",
         get = require("treesitter-context").enabled,
         set = function(state)
@@ -33,8 +44,30 @@
         end,
       }):map("<leader>tc")
 
+      -- mini.pairs
+      Snacks.toggle({
+        name = "Mini Pairs",
+        get = function()
+          return not vim.g.minipairs_disable
+        end,
+        set = function(state)
+          vim.g.minipairs_disable = not state
+        end,
+      }):map("<leader>tp")
+
+      -- mini.splitjoin
+      Snacks.toggle({
+        name = "Split/Join",
+        get = function()
+          return false -- always false, no state
+        end,
+        set = function(_)
+          require("mini.splitjoin").toggle()
+        end,
+      }):map("<leader>tj")
+
       -- gitsigns
-      require("snacks").toggle({
+      Snacks.toggle({
         name = "Git Gutter",
         get = function()
           return require("gitsigns.config").config.signcolumn
@@ -44,7 +77,7 @@
         end,
       }):map("<leader>gg")
 
-      require("snacks").toggle({
+      Snacks.toggle({
         name = "Git Deleted",
         get = function()
           return require("gitsigns.config").config.signs.show_deleted

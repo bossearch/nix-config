@@ -42,14 +42,4 @@
     desc = "Quit Buffer";
     mode = "n";
   }
-  {
-    __unkeyed = "<leader>wm";
-    __unkeyed-1.__raw = ''
-      function()
-        require("snacks").zen.zoom()
-      end
-    '';
-    desc = "Maximize Window";
-    mode = "n";
-  }
 ]

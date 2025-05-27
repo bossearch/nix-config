@@ -30,4 +30,10 @@
     desc = "Hide Notification";
     mode = "n";
   }
+  {
+    __unkeyed = "<leader>nl";
+    __unkeyed-1 = "<cmd>lua Snacks.lazygit()<cr>";
+    desc = "Open LazyGit";
+    mode = "n";
+  }
 ]
