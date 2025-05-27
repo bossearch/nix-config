@@ -18,7 +18,7 @@
             m.disable()
           end
         end,
-      }):map("<leader>mt")
+      }):map("<leader>mr")
 
       -- treesitter-context
       require("snacks").toggle({
