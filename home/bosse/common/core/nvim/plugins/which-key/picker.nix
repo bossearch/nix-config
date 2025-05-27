@@ -195,6 +195,12 @@
     mode = "n";
   }
   {
+    __unkeyed = "<leader><space>lc";
+    __unkeyed-1 = "<cmd>lua Snacks.picker.lsp_config()<cr>";
+    desc = "Find LSP Configs";
+    mode = "n";
+  }
+  {
     __unkeyed = "<leader><space>ld";
     __unkeyed-1 = "<cmd>lua Snacks.picker.lsp_definitions()<cr>";
     desc = "Find LSP Definitions";
