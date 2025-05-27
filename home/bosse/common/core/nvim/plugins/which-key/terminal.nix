@@ -22,8 +22,8 @@
       function()
         require("snacks").terminal.toggle("zsh", {
           win = {
-            width = 0.5,         -- Width of the terminal
-            height = 0.5,        -- Height of the terminal
+            width = 0.9,         -- Width of the terminal
+            height = 0.9,        -- Height of the terminal
             border = "rounded",  -- Sharp border style (use "double" if preferred)
           },
           cwd = vim.fn.getcwd(), -- Set the current working directory
