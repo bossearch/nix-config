@@ -9,10 +9,10 @@
     };
     mockDevIcons = true;
     modules = {
-      ai = {};
+      extra = {};
       icons = {};
       surround = {};
-      # jump = import ./jump.nix;
+      ai = import ./ai.nix;
       jump2d = import ./jump2d.nix;
       pairs = import ./pairs.nix;
       sessions = import ./sessions.nix;
