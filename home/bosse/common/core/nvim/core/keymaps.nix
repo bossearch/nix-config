@@ -160,6 +160,37 @@
         action = "<cmd>cd ..<cr>";
         mode = "n";
       }
+      # disable s motions
+      {
+        key = "s";
+        action = "<Nop>";
+        mode = ["n" "v"];
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+      # References
+      {
+        key = "]]";
+        action.__raw = ''
+          function() Snacks.words.jump(vim.v.count1) end
+        '';
+        mode = "n";
+        options = {
+          desc = "Next References";
+        };
+      }
+      {
+        key = "[[";
+        action.__raw = ''
+          function() Snacks.words.jump(-vim.v.count1) end
+        '';
+        mode = "n";
+        options = {
+          desc = "Prev References";
+        };
+      }
       # sessions
       {
         key = "<C-s>";
