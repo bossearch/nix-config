@@ -1,8 +1,10 @@
-{
+{pkgs, ...}: {
   home.file."mythemux" = {
-    source = builtins.fetchGit {
-      url = "https://github.com/bossearch/mythemux";
-      rev = "0b26335e17bb405b754cb3d22ca12f070c23fd20";
+    source = pkgs.fetchFromGitHub {
+      owner = "bossearch";
+      repo = "mythemux";
+      rev = "57ab6a50a3c77458ad1c8b59061fcabdeab7bab3";
+      sha256 = "sha256-pKFy0+5NoBC9MvVD+5G/xzUGlk1+63qV3osHITASp3U=";
     };
     target = ".config/tmux/plugins/mythemux";
   };

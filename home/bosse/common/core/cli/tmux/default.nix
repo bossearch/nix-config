@@ -16,8 +16,7 @@
       # Tmux config
       set -s set-clipboard on
       set -g set-titles on
-      set -gq allow-passthrough on
-      set -g visual-activity off
+      set -g allow-passthrough on
       set-option -g status-position top
 
       # Tmux sensible
