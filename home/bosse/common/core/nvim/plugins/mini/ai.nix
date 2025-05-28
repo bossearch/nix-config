@@ -13,7 +13,7 @@
         { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
         "^().*()$",
       },
-      b = require("mini.extra").gen_ai_spec.buffer(),
+      B = require("mini.extra").gen_ai_spec.buffer(),
       u = require("mini.ai").gen_spec.function_call(), -- u for "Usage"
       U = require("mini.ai").gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
       s = require("mini.ai").gen_spec.treesitter({ -- assignment
