@@ -4,6 +4,7 @@
     enable = true;
     settings = {
       dashboard = import ./dashboard.nix;
+      image = import ./image.nix;
       indent = import ./indent.nix;
       lazygit = import ./lazygit.nix;
       picker = import ./picker.nix;
