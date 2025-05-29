@@ -13,7 +13,7 @@
         return vim.fn.expand("~/Pictures")
       end
 
-      local repo_name = vim.fn.vim.fnamemodify(root, ":t")
+      local repo_name = vim.fn.fnamemodify(root, ":t")
 
       local repo_paths = {
         [".dotfiles"] = root .. "/configs/nvim/lua/core/img",
@@ -113,8 +113,41 @@
 
     -- Keybinding to trigger
     vim.keymap.set("n", "<leader>mi", process_image, { desc = "Insert Image" })
+    -- add markdown toc macro
     vim.keymap.set("n", "<leader>mt", function()
       vim.api.nvim_put({ "<!-- toc -->" }, "l", true, true)
     end, { desc = "Insert Markdown TOC" })
+    -- remove image file undercursor
+    vim.keymap.set("n", "<leader>id", function()
+      local function get_image_path()
+        local line = vim.api.nvim_get_current_line()
+        local image_pattern = "%[.-%]%((.-)%)"
+        local _, _, image_path = string.find(line, image_pattern)
+        return image_path
+      end
+
+      local image_path = get_image_path()
+      if not image_path then
+        vim.notify("No image found under the cursor", vim.log.levels.WARN)
+        return
+      end
+
+      if vim.fn.filereadable(image_path) == 0 then
+        vim.notify("Image file does not exist:\n" .. image_path, vim.log.levels.ERROR)
+        return
+      end
+
+      local success, _ = pcall(function()
+        vim.fn.system({ "rm", vim.fn.fnameescape(image_path) })
+      end)
+
+      if success and vim.fn.filereadable(image_path) == 0 then
+        vim.notify("Image file deleted:\n" .. image_path, vim.log.levels.INFO)
+        vim.cmd("edit!")          -- Reload buffer to reflect deletion
+        vim.cmd("normal! dd")     -- Delete the current line (Markdown image reference)
+      else
+        vim.notify("Failed to delete image file:\n" .. image_path, vim.log.levels.ERROR)
+      end
+    end, { desc = "Delete Image" })
   '';
 }
