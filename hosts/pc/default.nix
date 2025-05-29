@@ -20,8 +20,18 @@
 
   port = {
     TCPPorts = [80 443 53317];
-    TCPPortsRanges = [{ from = 1714; to = 1764; }];
-    UDPPortsRanges = [{ from = 1714; to = 1764; }];
+    TCPPortsRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    UDPPortsRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
   };
 
   networking = {

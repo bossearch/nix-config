@@ -78,7 +78,6 @@
         tags = ["Linux" "News"];
         url = "https://distrowatch.com/news/dw.xml !";
       }
-
     ];
     queries = {
       Reddit = "tags =~ \"Reddit\"";

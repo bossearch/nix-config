@@ -1,4 +1,4 @@
-  {
+{
   programs.nixvim = {
     extraFiles = {
       "lua/lib/tips.lua".text = ''

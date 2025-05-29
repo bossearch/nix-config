@@ -1,5 +1,4 @@
-{...}:
-{
+{...}: {
   imports = [
     ./animations.nix
     ./autostart.nix

@@ -56,7 +56,7 @@
 
   # Make sure to load dnscrypt-proxy2 after network
   systemd.services.dnscrypt-proxy2 = {
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
   };
 }

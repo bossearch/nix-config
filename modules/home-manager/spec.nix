@@ -1,8 +1,5 @@
 # TODO: add font type options
-{
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption types;
 in {
   options.spec = mkOption {

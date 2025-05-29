@@ -15,14 +15,14 @@
         open_file_in_horizontal_split = "-";
       };
       hooks.__raw = ''
-      {
-        yazi_closed_successfully = function(chosen_file, config, state)
-          if chosen_file == nil and state.last_directory.filename then
-            vim.notify("Changing directory to " .. state.last_directory.filename)
-            vim.fn.chdir(state.last_directory.filename)
+        {
+          yazi_closed_successfully = function(chosen_file, config, state)
+            if chosen_file == nil and state.last_directory.filename then
+              vim.notify("Changing directory to " .. state.last_directory.filename)
+              vim.fn.chdir(state.last_directory.filename)
+            end
           end
-        end
-      }
+        }
       '';
     };
   };

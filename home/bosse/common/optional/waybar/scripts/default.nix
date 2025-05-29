@@ -1,5 +1,4 @@
-{...}:
-{
+{...}: {
   imports = [
     ./dunst/dunsticon.nix
 

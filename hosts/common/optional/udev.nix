@@ -40,7 +40,7 @@
 in {
   services.udev = {
     enable = true;
-    packages = [ pkgs.unstable.qmk-udev-rules ];
+    packages = [pkgs.unstable.qmk-udev-rules];
     # mouse, keyboard, hub, monitor hub.
     extraRules = ''
       ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", \

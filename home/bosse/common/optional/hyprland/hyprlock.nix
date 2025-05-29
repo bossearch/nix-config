@@ -22,7 +22,7 @@
 
       input-field = [
         {
-        monitor = "";
+          monitor = "";
           size = "300, 60";
           outline_thickness = 4;
           dots_size = 0.2;
@@ -56,7 +56,7 @@
           halign = "center";
           valign = "center";
         }
-      # TIME
+        # TIME
         {
           monitor = "";
           text = "$TIME";

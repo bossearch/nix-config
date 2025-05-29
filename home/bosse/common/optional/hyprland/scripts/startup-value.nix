@@ -30,7 +30,8 @@
       PLAYERCTL_FILE="$HOME/.cache/bosse/player"
       echo "spotify" >"$PLAYERCTL_FILE"
 
-      # rm -f /tmp/nvim-startup.log
+      rm -f /tmp/nvim-startup.log
+      nvim --headless +q --startuptime /tmp/nvim-startup.log
     '';
   };
 }

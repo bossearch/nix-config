@@ -1,4 +1,4 @@
-{pkgs,...}: {
+{pkgs, ...}: {
   home.file.".config/hypr/scripts/game-mode.sh" = {
     executable = true;
     text = ''

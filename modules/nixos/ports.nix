@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkOption types;
 
   p = config.port;
@@ -30,8 +32,8 @@ in {
           TCPPortsRanges = mkOption {
             type = types.listOf (types.submodule {
               options = {
-                from = mkOption { type = types.port; };
-                to = mkOption { type = types.port; };
+                from = mkOption {type = types.port;};
+                to = mkOption {type = types.port;};
               };
             });
             default = [];
@@ -41,8 +43,8 @@ in {
           UDPPortsRanges = mkOption {
             type = types.listOf (types.submodule {
               options = {
-                from = mkOption { type = types.port; };
-                to = mkOption { type = types.port; };
+                from = mkOption {type = types.port;};
+                to = mkOption {type = types.port;};
               };
             });
             default = [];

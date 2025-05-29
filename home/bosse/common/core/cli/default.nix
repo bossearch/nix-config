@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./bat
     ./btop
@@ -14,26 +11,25 @@
     # ./uair
     ./yazi
   ];
-  home.packages = with pkgs;
-    [
-      bc
-      curl
-      eza
-      fd
-      ffmpeg
-      # fzf
-      imagemagick
-      jq
-      killall
-      ouch
-      poppler
-      ripgrep
-      toipe
-      unzip
-      wget
-      moreutils
-      mediainfo
-    ];
+  home.packages = with pkgs; [
+    bc
+    curl
+    eza
+    fd
+    ffmpeg
+    # fzf
+    imagemagick
+    jq
+    killall
+    ouch
+    poppler
+    ripgrep
+    toipe
+    unzip
+    wget
+    moreutils
+    mediainfo
+  ];
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;

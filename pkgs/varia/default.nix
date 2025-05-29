@@ -11,7 +11,7 @@
   pkg-config,
   python3Packages,
   wrapGAppsHook4,
-yt-dlp,
+  yt-dlp,
 }:
 python3Packages.buildPythonApplication rec {
   pname = "varia";

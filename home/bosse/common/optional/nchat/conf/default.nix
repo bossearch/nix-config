@@ -1,4 +1,4 @@
-{...}:{
+{...}: {
   imports = [
     ./app.nix
     ./color.nix

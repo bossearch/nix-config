@@ -54,10 +54,10 @@
       }
     ];
     shellAliases = {
-      v="nvim --startuptime /tmp/nvim-startup.log";
-      vi="nvim --startuptime /tmp/nvim-startup.log";
-      vim="nvim --startuptime /tmp/nvim-startup.log";
-      nvim="nvim --startuptime /tmp/nvim-startup.log";
+      v = "nvim --startuptime /tmp/nvim-startup.log";
+      vi = "nvim --startuptime /tmp/nvim-startup.log";
+      vim = "nvim --startuptime /tmp/nvim-startup.log";
+      nvim = "nvim --startuptime /tmp/nvim-startup.log";
       l = "eza --color=always";
       la = "eza -a --color=always";
       ll = "eza -al --color=always --no-user --no-permissions --no-filesize --no-time";
@@ -69,7 +69,7 @@
       c = "clear";
       cat = "bat";
       cat-og = "\cat";
-      gh-create="gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
+      gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
       ".." = "cd ..";
     };
     envExtra = ''

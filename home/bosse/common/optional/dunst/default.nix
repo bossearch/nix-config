@@ -101,23 +101,23 @@
       };
       game_on = {
         appname = "game_on";
-        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_running.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_running.svg";
       };
       game_off = {
         appname = "game_off";
-        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_paused.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/status/state_paused.svg";
       };
       playerctl = {
         appname = "playerctl";
-        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/xt7-player-mpv.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/xt7-player-mpv.svg";
       };
       screenshot = {
         appname = "screenshot";
-        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-photo.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-photo.svg";
       };
       screenrecord = {
         appname = "screenrecord";
-        new_icon="${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-video.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/devices/camera-video.svg";
       };
     };
   };
