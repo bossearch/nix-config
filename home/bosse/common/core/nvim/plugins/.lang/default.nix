@@ -4,6 +4,7 @@
   lib,
 }: let
   langs = [
+    (import ./md {inherit pkgs lib;})
     (import ./bash.nix {inherit pkgs lib;})
     (import ./c.nix {inherit pkgs lib;})
     (import ./lua.nix {inherit pkgs lib;})

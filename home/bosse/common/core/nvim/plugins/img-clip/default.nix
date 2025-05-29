@@ -113,5 +113,8 @@
 
     -- Keybinding to trigger
     vim.keymap.set("n", "<leader>mi", process_image, { desc = "Insert Image" })
+    vim.keymap.set("n", "<leader>mt", function()
+      vim.api.nvim_put({ "<!-- toc -->" }, "l", true, true)
+    end, { desc = "Insert Markdown TOC" })
   '';
 }
