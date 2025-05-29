@@ -2,6 +2,11 @@
   imports = [./toggle.nix];
   programs.nixvim.plugins.snacks = {
     enable = true;
+    lazyLoad = {
+      settings = {
+        lazy = false;
+      };
+    };
     settings = {
       dashboard = import ./dashboard.nix;
       image = import ./image.nix;

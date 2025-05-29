@@ -21,10 +21,10 @@
       combinePlugins = {
         enable = true;
         standalonePlugins = [
-          "copilot.lua"
-          "blink.cmp"
-          "nvim-treesitter"
-          "colorful-winsep"
+          # "copilot.lua"
+          # "blink.cmp"
+          # "colorful-winsep"
+          # "nvim-treesitter"
         ];
       };
     };
