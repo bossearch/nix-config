@@ -102,6 +102,47 @@
           end
         end,
       }):map("<leader>gD")
+
+      -- outline
+      Snacks.toggle({
+        name = "Symbols Outline",
+        get = function()
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[buf].filetype == "Outline" and vim.api.nvim_buf_is_loaded(buf) then
+              return true
+            end
+          end
+          return false
+        end,
+        set = function(state)
+          if state then
+            require("outline").open()
+          else
+            require("outline").close()
+          end
+        end,
+      }):map("<leader>to")
+
+      -- notify
+      Snacks.toggle({
+        notify = false,
+        name = "Notification History",
+        get = function()
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[buf].filetype == "snacks_notif_history" and vim.api.nvim_buf_is_loaded(buf) then
+              return true
+            end
+          end
+          return false
+        end,
+        set = function(state)
+          if state then
+            require("snacks").notifier.show_history()
+          else
+            require("snacks").notifier.show_history()
+          end
+        end,
+      }):map("<leader>tn")
     '';
   };
 }

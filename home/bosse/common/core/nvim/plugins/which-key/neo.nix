@@ -15,30 +15,24 @@
   {
     __unkeyed = "<leader>nr";
     __unkeyed-1 = "<cmd>RootDir<cr>";
-    desc = "Open Root Directory";
+    desc = "Go To Root Directory";
+    mode = "n";
+  }
+  {
+    __unkeyed = "<leader>n.";
+    __unkeyed-1 = "<cmd>LocalDir<cr>";
+    desc = "Go To Local Directory";
     mode = "n";
   }
   {
     __unkeyed = "<leader>nn";
-    __unkeyed-1 = "<cmd>lua Snacks.notifier.show_history()<cr>";
-    desc = "Show Notification History";
+    __unkeyed-1 = "<cmd>cd ~/.nix-config<cr>";
+    desc = "Go To Nix-config";
     mode = "n";
   }
   {
-    __unkeyed = "<leader>nh";
-    __unkeyed-1 = "<cmd>lua Snacks.notifier.hide()<cr>";
-    desc = "Hide Notification";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>nl";
+    __unkeyed = "<leader>ng";
     __unkeyed-1 = "<cmd>lua Snacks.lazygit()<cr>";
-    desc = "Open LazyGit";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>no";
-    __unkeyed-1 = "<cmd>Outline<cr>";
     desc = "Open LazyGit";
     mode = "n";
   }
