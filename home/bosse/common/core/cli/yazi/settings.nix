@@ -54,31 +54,13 @@
     plugin = {
       prepend_preloaders = [
         {
-          mime = "{audio,video,image}/*";
+          mime = "{audio,video}/*";
           run = "mediainfo";
         }
-        # try comment setting above & uncomment settings below if mediainfo not work on avif
-        # { mime = "image/avif"; run = "mediainfo"; }
-        # {
-        #   mime = "{audio,video}/*";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/jpeg";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/png";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/gif";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/webp";
-        #   run = "mediainfo";
-        # }
+        {
+          mime = "image/{png,jpg,jpeg,gif,bmp,webp,tiff,heic}";
+          run = "mediainfo";
+        }
         {
           mime = "application/subrip";
           run = "mediainfo";
@@ -86,33 +68,12 @@
       ];
       prepend_previewers = [
         {
-          mime = "{audio,video,image}/*";
+          mime = "{audio,video}/*";
           run = "mediainfo";
         }
-        # { mime = "image/avif"; run = "mediainfo"; }
-        # {
-        #   mime = "{audio,video}/*";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/jpeg";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/png";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/gif";
-        #   run = "mediainfo";
-        # }
-        # {
-        #   mime = "image/webp";
-        #   run = "mediainfo";
-        # }
         {
-          mime = "image/avif";
-          run = "magick";
+          mime = "image/{png,jpg,jpeg,gif,bmp,webp,tiff,heic,avif}";
+          run = "mediainfo";
         }
         {
           mime = "application/subrip";
