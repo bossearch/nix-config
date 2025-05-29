@@ -5,6 +5,11 @@
     ];
     plugins.render-markdown = {
       enable = true;
+      lazyLoad = {
+        settings = {
+          ft = ["markdown"];
+        };
+      };
       settings = {
         enabled = false;
         file_types = ["markdown"];
