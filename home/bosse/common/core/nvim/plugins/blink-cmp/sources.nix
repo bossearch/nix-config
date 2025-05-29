@@ -51,7 +51,6 @@ in {
     dictionary = {
       name = "dict";
       module = "blink-cmp-dictionary";
-      # only enable this source when filetype is gitcommit, markdown, or 'octo'
       enabled.__raw = ''
         function()
           return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
@@ -70,7 +69,6 @@ in {
     git = {
       name = "git";
       module = "blink-cmp-git";
-      # only enable this source when filetype is gitcommit, markdown, or 'octo'
       enabled.__raw = ''
         function()
           return vim.tbl_contains({ 'gitcommit' }, vim.bo.filetype)
