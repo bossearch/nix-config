@@ -30,7 +30,7 @@
         util.get_cwd = function()
           local cwd = vim.fn.getcwd()
           local folder_name = vim.fn.fnamemodify(cwd, ":t")
-          return "%#None#" .. folder_name
+          return folder_name
         end
 
         -- lualine --

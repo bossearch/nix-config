@@ -7,14 +7,6 @@
       };
     };
     settings = {
-      inactive_sections = {
-        # lualine_a = null;
-        # lualine_b = null;
-        lualine_c = ["filename"];
-        lualine_x = ["location"];
-        # lualine_y = null;
-        # lualine_z = null;
-      };
       options = {
         theme = "auto";
         globalstatus = true;
@@ -32,20 +24,7 @@
         lualine_a = ["mode"];
         lualine_b.__raw = ''
           {
-            {
-              "branch"
-            },
-            {
-              require("lib.util").get_cwd,
-              icon = "󰝰",
-              color = {
-                fg = "#7aa2f7",
-                bg = "#16161e"
-              },
-              separator= {
-                right="│"
-              }
-            },
+            "branch", {require("lib.util").get_cwd, icon = "󰝰"},
           }
         '';
         lualine_c.__raw = ''
@@ -54,20 +33,20 @@
               "buffers",
               show_filename_only = true,
               hide_filename_extension = true,
-              -- max_length = vim.o.columns * 4 / 3,
               max_length = vim.o.columns * 2 / 3,
             },
             {
-              "diagnostics",
-              sources = { "nvim_diagnostic" },
-              symbols = {
-                error = " ",
-                warn = " ",
-                info = " ",
-                hint = "󰠠 ",
-              },
-              colored = true,
-              update_in_insert = false,
+              "diff",
+              source = function()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                  return {
+                    added = gitsigns.added,
+                    modified = gitsigns.changed,
+                    removed = gitsigns.removed,
+                  }
+                end
+              end,
             },
           }
         '';
@@ -83,20 +62,6 @@
               cond = require("noice").api.status.mode.has,
               color = { fg = "#bb9af7" },
             },
-            {
-              "diff",
-              symbols = { added = " ", modified = " ", removed = " " },
-              source = function()
-                local gitsigns = vim.b.gitsigns_status_dict
-                if gitsigns then
-                  return {
-                    added = gitsigns.added,
-                    modified = gitsigns.changed,
-                    removed = gitsigns.removed,
-                  }
-                end
-              end,
-            },
             -- {
             --   function()
             --     return " " .. require("dap").status()
@@ -108,9 +73,24 @@
             -- },
           }
         '';
-        lualine_y = ["%l/%L:%c│%p%%"];
+        lualine_y = ["%l/%L:%c:%p%%" "filesize"];
         lualine_z.__raw = ''
-          { { require("lib.util").lsp_status, icon = "" } }
+          {
+            {
+              "diagnostics",
+              sources = { "nvim_diagnostic" },
+              symbols = {
+                error = " ",
+                warn = " ",
+                info = " ",
+                hint = "󰠠 ",
+              },
+              -- color = "lualine_c_normal",
+              colored = false,
+              update_in_insert = false,
+            },
+            { require("lib.util").lsp_status, icon = "" }
+          }
         '';
       };
     };

@@ -10,7 +10,10 @@
       signs = {
         add = {text = "+";};
         change = {text = "~";};
-        delete = {text = "-";};
+        delete = {
+          text = "-";
+          show_count = true;
+        };
         topdelete = {text = "‾";};
         changedelete = {text = "≃";};
         untracked = {text = "?";};
