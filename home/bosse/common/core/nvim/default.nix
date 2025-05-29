@@ -31,6 +31,7 @@
     extraPlugins = with pkgs; [
       vimPlugins.colorful-winsep
       vimPlugins.outline-nvim
+      vimPlugins.img-clip-nvim
     ];
   };
 }
