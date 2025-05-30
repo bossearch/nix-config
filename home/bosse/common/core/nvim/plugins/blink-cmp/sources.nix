@@ -6,7 +6,7 @@ let
   lsp_score = 70;
   path_score = 80;
   ripgrep_score = 40;
-  snippets_score = 100;
+  snippets_score = 95;
 in {
   default = [
     "buffer"
@@ -19,7 +19,6 @@ in {
     "ripgrep"
     "snippets"
   ];
-
   providers = {
     buffer = {
       name = "buffer";
@@ -136,11 +135,15 @@ in {
     snippets = {
       name = "snippets";
       module = "blink.cmp.sources.snippets";
-      enabled = false;
-      async = true;
-      max_items = 15;
+      enabled = true;
+      async = false;
+      max_items = 5;
       min_keyword_length = 2;
       score_offset = snippets_score;
+      opts = {
+        use_show_condition = true;
+        show_autosnippets = true;
+      };
     };
   };
 }

@@ -18,6 +18,13 @@
       };
       combinePlugins = {
         enable = true;
+        standalonePlugins = [
+          "friendly-snippets" # needed for blink to access friendly-snippets
+          # "copilot.lua"
+          # "blink.cmp"
+          # "colorful-winsep"
+          # "nvim-treesitter"
+        ];
       };
     };
   };
