@@ -1,4 +1,4 @@
-# Image paste handler
+# Image paste and delete image file
 # Inspired by: https://github.com/linkarzu/dotfiles-latest
 # Author of reference: @linkarzu
 # Adapted and customized by me.
@@ -120,7 +120,7 @@
         vim.api.nvim_put({ "<!-- toc -->" }, "l", true, true)
       end, { desc = "Insert Markdown TOC" })
       -- remove image file undercursor
-      vim.keymap.set("n", "<leader>id", function()
+      vim.keymap.set("n", "<leader>mD", function()
         local function get_image_path()
           local line = vim.api.nvim_get_current_line()
           local image_pattern = "%[.-%]%((.-)%)"
