@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./core
@@ -28,10 +24,5 @@
         ];
       };
     };
-    extraPlugins = with pkgs; [
-      vimPlugins.colorful-winsep
-      vimPlugins.outline-nvim
-      vimPlugins.img-clip-nvim
-    ];
   };
 }
