@@ -1,4 +1,3 @@
-# TODO: add mini.snippets and compare it with luasnip
 {
   programs.nixvim.plugins.mini = {
     enable = true;
@@ -8,6 +7,7 @@
       };
     };
     mockDevIcons = true;
+    luaConfig = import ./post.nix;
     modules = {
       extra = {};
       icons = {};
