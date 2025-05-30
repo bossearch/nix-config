@@ -21,6 +21,8 @@ in {
             event = ["BufReadPre" "BufNewFile"];
           };
         };
+        # Be aware that you also will need to properly configure your LSP server to
+        # provide the inlay hints.
         inlayHints = false;
         luaConfig.post = ''
           local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }

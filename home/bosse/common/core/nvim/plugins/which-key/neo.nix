@@ -36,4 +36,14 @@
     desc = "Open LazyGit";
     mode = "n";
   }
+  {
+    __unkeyed = "<leader>nR";
+    __unkeyed-1.__raw = ''
+      function()
+        Snacks.rename.rename_file()
+      end
+    '';
+    desc = "Rename File";
+    mode = "n";
+  }
 ]

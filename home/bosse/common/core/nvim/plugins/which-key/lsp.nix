@@ -55,31 +55,9 @@
     mode = "n";
   }
   {
-    __unkeyed = "<leader>ll";
-    __unkeyed-1 = "<cmd>lua vim.lsp.codelens.run()<cr>";
-    desc = "Codelens Run";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>lL";
-    __unkeyed-1 = "<cmd>lua vim.lsp.codelens.refresh()<cr>";
-    desc = "Codelens Refresh";
-    mode = "n";
-  }
-  {
     __unkeyed = "<leader>lR";
     __unkeyed-1 = "<cmd>lua vim.lsp.buf.rename()<cr>";
     desc = "Rename";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>ln";
-    __unkeyed-1.__raw = ''
-      function()
-        Snacks.rename.rename_file()
-      end
-    '';
-    desc = "Rename File";
     mode = "n";
   }
 ]
