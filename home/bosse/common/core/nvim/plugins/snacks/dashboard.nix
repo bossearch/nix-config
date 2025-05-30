@@ -1,5 +1,41 @@
 {
   enabled = true;
+  formats = {
+    file.__raw = ''
+      function(item, ctx)
+        local path = vim.fn.fnamemodify(item.file, ":~")
+        local width = (ctx.width or 80) - 4
+
+        if #path <= width then
+          local dir = vim.fn.fnamemodify(path, ":h")
+          local file = vim.fn.fnamemodify(path, ":t")
+          return { { dir .. "/", hl = "dir" }, { file, hl = "file" } }
+        end
+
+        local filename = vim.fn.fnamemodify(path, ":t")
+        local parent = vim.fn.fnamemodify(vim.fn.fnamemodify(path, ":h"), ":t")
+        local base = vim.fn.fnamemodify(path, ":h:h")
+        local parts = vim.split(base, "/")
+
+        table.insert(parts, parent)
+        table.insert(parts, filename)
+
+        for i = 2, #parts - 2 do
+          for j = 2, i do
+            parts[j] = parts[j]:sub(1, 1)
+          end
+          local trial = table.concat(parts, "/")
+          if #trial <= width then
+            local dir = table.concat(vim.list_slice(parts, 1, #parts - 1), "/")
+            return { { dir .. "/", hl = "dir" }, { parts[#parts], hl = "file" } }
+          end
+        end
+
+        local short = "…" .. filename:sub(-math.max(1, width - #parent - 3))
+        return { { parent .. "/", hl = "dir" }, { short, hl = "file" } }
+      end
+    '';
+  };
   sections = [
     {
       pane = 1;
