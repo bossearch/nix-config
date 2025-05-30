@@ -10,18 +10,14 @@
     performance = {
       byteCompileLua = {
         enable = true;
-        nvimRuntime = true;
         configs = true;
+        initLua = true;
+        luaLib = true;
+        nvimRuntime = true;
         plugins = true;
       };
       combinePlugins = {
         enable = true;
-        standalonePlugins = [
-          # "copilot.lua"
-          # "blink.cmp"
-          # "colorful-winsep"
-          # "nvim-treesitter"
-        ];
       };
     };
   };
