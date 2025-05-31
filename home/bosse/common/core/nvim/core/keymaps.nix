@@ -160,9 +160,18 @@
         action = "<cmd>cd ..<cr>";
         mode = "n";
       }
-      # disable s motions
+      # disable s and S motions
       {
         key = "s";
+        action = "<Nop>";
+        mode = ["n" "v"];
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+      {
+        key = "S";
         action = "<Nop>";
         mode = ["n" "v"];
         options = {

@@ -11,9 +11,8 @@
     modules = {
       extra = {};
       icons = {};
-      surround = {};
+      surround = import ./surround.nix;
       ai = import ./ai.nix;
-      jump2d = import ./jump2d.nix;
       pairs = import ./pairs.nix;
       sessions = import ./sessions.nix;
       splitjoin = import ./splitjoin.nix;
