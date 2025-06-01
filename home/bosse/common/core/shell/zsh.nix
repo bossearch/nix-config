@@ -15,44 +15,6 @@
       extended = false;
     };
     enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    historySubstringSearch = {
-      enable = true;
-      searchUpKey = "$terminfo[kcuu1]";
-      searchDownKey = "$terminfo[kcud1]";
-    };
-    plugins = [
-      {
-        name = "fzf-tab";
-        src = pkgs.fetchFromGitHub {
-          owner = "Aloxaf";
-          repo = "fzf-tab";
-          rev = "v1.2.0";
-          sha256 = "sha256-q26XVS/LcyZPRqDNwKKA9exgBByE0muyuNb0Bbar2lY=";
-        };
-      }
-      {
-        name = "zsh-auto-notify";
-        file = "auto-notify.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "MichaelAquilina";
-          repo = "zsh-auto-notify";
-          rev = "cac2c193d9f227c99178ca7cf9e25152a36dd4ac";
-          sha256 = "sha256-8r5RsyldJIzlWr9+G8lrkHvJ8KxTVO859M//wDnYOUY=";
-        };
-      }
-      {
-        name = "zsh-nix-shell";
-        file = "nix-shell.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "chisui";
-          repo = "zsh-nix-shell";
-          rev = "v0.8.0";
-          sha256 = "sha256-Z6EYQdasvpl1P78poj9efnnLj7QQg13Me8x1Ryyw+dM=";
-        };
-      }
-    ];
     shellAliases = {
       v = "nvim --startuptime /tmp/nvim-startup.log";
       vi = "nvim --startuptime /tmp/nvim-startup.log";
@@ -65,12 +27,10 @@
       mv = "mv -i";
       rm = "rm -i";
       cp = "cp -i";
-      editzsh = "nvim ~/.config/zsh/.zshrc";
       c = "clear";
       cat = "bat";
-      cat-og = "\cat";
-      gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
       ".." = "cd ..";
+      gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
     };
     envExtra = ''
       export EDITOR="nvim"
@@ -79,7 +39,7 @@
       export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/.fzfrc
       export FZF_{CTRL_T,ALT_C}_OPTS="--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       export KEYTIMEOUT=1
-      export AUTO_NOTIFY_THRESHOLD=30 # Set threshold to 30 seconds
+      export AUTO_NOTIFY_THRESHOLD=5 # Set threshold to 30 seconds
       export AUTO_NOTIFY_IGNORE=(
         "nyaa"
         "rb" "hm" "nix-shell"
@@ -89,9 +49,31 @@
         "lazygit" "newsboat" "toipe" "neomutt"
       )
     '';
-    initExtraFirst = ''
-    '';
     initContent = ''
+      autoload -Uz ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer
+      zsh-defer source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      zsh-defer source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      zsh-defer source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+      zsh-defer source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+      zsh-defer source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      zsh-defer source ${pkgs.zsh-auto-notify}/share/zsh-auto-notify/zsh-auto-notify.plugin.zsh
+      ZSH_AUTOSUGGEST_STRATEGY=(history)
+      bindkey "$terminfo[kcuu1]" history-substring-search-up
+      bindkey "$terminfo[kcud1]" history-substring-search-down
+
+      # fzf-tab settings for preview and completion
+      # custom fzf flags
+      zstyle ':fzf-tab:*' fzf-flags --height=50% --min-height=20
+      zstyle ':fzf-tab:complete:*' fzf-preview \
+      '[[ -d $realpath ]] && eza -1 --tree --level=2 --all --icons=always --color=always $realpath || \
+      ([[ -f $realpath ]] && bat --color=always $realpath || \
+      echo "Cannot preview")'
+      setopt glob_dots
+
+      # zsh-completions matcher settings
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      _comp_options+=(globdots)
+
       # Don't save wrong command to history
       zshaddhistory() { whence ''${''${(z)1}[1]} >| /dev/null || return 1 }
 
@@ -105,9 +87,9 @@
         source ~/.config/fzf/extra/tmux
       fi
 
-      # powerlevel10k
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
+
       # my custom scripts
       rb() {
         ~/.nix-config/scripts/rebuild.sh "$@"
@@ -164,21 +146,6 @@
       }
       zle -N vi-paste-xclip
       bindkey -M vicmd 'p' vi-paste-xclip
-
-      # fzf-tab settings for preview and completion
-      # custom fzf flags
-      zstyle ':fzf-tab:*' fzf-flags --height=50% --min-height=20
-      zstyle ':fzf-tab:complete:*' fzf-preview \
-      '[[ -d $realpath ]] && eza -1 --tree --level=2 --all --icons=always --color=always $realpath || \
-      ([[ -f $realpath ]] && bat --color=always $realpath || \
-      echo "Cannot preview")'
-      setopt glob_dots
-
-      # zsh-completions matcher settings
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-      _comp_options+=(globdots)
-    '';
-    initExtraBeforeCompInit = ''
     '';
   };
 }
