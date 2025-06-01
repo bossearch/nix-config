@@ -72,6 +72,15 @@
         margin-top: 0 !important;
       }
 
+      /* Remove margins when #browser is in fullscreen */
+      :root[inFullscreen] #browser {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 0 !important;
+      }
+
       /* Ensure everything is visible while customizing */
       :root[customizing] #navigator-toolbox,
       :root[customizing] #urlbar {
