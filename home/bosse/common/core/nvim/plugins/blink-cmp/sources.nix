@@ -32,7 +32,7 @@ in {
     copilot = {
       name = "copilot";
       module = "blink-copilot";
-      enabled = true;
+      enabled = false;
       async = true;
       min_keyword_length = 4;
       score_offset = copilot_score;
