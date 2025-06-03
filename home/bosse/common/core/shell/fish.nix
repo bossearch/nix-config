@@ -17,6 +17,11 @@
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       fish_vi_key_bindings
       bind -M insert \t '__fzf_complete'
+      bind -M insert ! __fish_expand_bang
+      bind -M insert . __fish_expand_dots
+      bind -M insert '$' __fish_expand_args
+      bind -M default --erase ! . '$'
+
       set -gx fish_color_autosuggestion      brblack
       set -gx fish_color_cancel              -r
       set -gx fish_color_command             green

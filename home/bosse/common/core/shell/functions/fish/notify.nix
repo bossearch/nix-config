@@ -4,13 +4,13 @@
     body = ''
       # List of commands to exclude
       set -l exclude_cmds \
-        "nyaa" \
-        "rb" "hm" "nix-shell" \
-        "fh" "fkill" "fif" "fzf" "fsys" "fgrep" \
-        "yy" "sy" "yazi" \
-        "v" "vi" "vim" "nvim" \
-        "man" "tmux" "tm" "fg" \
-        "lazygit" "newsboat" "toipe" "neomutt"
+          nyaa \
+          rb hm nix-shell \
+          fh fkill fif fzf fsys fgrep \
+          yy sy yazi \
+          v vi vim nvim \
+          man tmux tm fg \
+          lazygit newsboat toipe neomutt
 
       # Exit code and duration
       set -l exit_code $status

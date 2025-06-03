@@ -2,24 +2,24 @@
   fsys = ''
     function _help
         echo "
-            Usage: fsys [options]
-            Utility for using systemctl interactively via fzf.
-            If no options are given, fully interactive mode is launched with system service units being used.
-                -u          : work with --user services
-                --start     : systemctl start <unit>
-                --stop      : systemctl stop <unit>
-                --restart   : systemctl restart <unit>
-                --status    : systemctl status <unit>
-                --edit      : systemctl edit --full <unit>
-                --enable    : systemctl enable --now <unit>
-                --disable   : systemctl disable --now <unit>
-                --journal   : systemctl journal <unit>
-                --help      : print this message and exit
+        Usage: fsys [options]
+        Utility for using systemctl interactively via fzf.
+        If no options are given, fully interactive mode is launched with system service units being used.
+            -u          : work with --user services
+            --start     : systemctl start <unit>
+            --stop      : systemctl stop <unit>
+            --restart   : systemctl restart <unit>
+            --status    : systemctl status <unit>
+            --edit      : systemctl edit --full <unit>
+            --enable    : systemctl enable --now <unit>
+            --disable   : systemctl disable --now <unit>
+            --journal   : systemctl journal <unit>
+            --help      : print this message and exit
 
-            Examples:
-                fsys -u --edit    : edit a user service
-                fsys --start      : start a system service
-            "
+        Examples:
+            fsys -u --edit    : edit a user service
+            fsys --start      : start a system service
+        "
     end
 
     function preview_service --argument mode
@@ -29,9 +29,9 @@
     function _sudo
         set -l mode $argv[1]
         set -e argv[1]
-        if test "$mode" = "--system"
+        if test "$mode" = --system
             command sudo $argv
-        else if test "$mode" = "--user"
+        else if test "$mode" = --user
             command $argv
         end
     end
@@ -135,7 +135,7 @@
 
     # Parse options
     set -g mode --system
-    argparse 'u' 'start' 'stop' 'restart' 'status' 'edit' 'enable' 'disable' 'journal' 'h/help' -- $argv
+    argparse u start stop restart status edit enable disable journal h/help -- $argv
     or begin
         _help
         return 1
