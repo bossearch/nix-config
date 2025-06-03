@@ -6,30 +6,71 @@
     enableTransience = true;
     settings = {
       format = lib.concatStrings [
-        "$all"
+        "$directory"
+        "$git_branch"
+        "$git_status"
+        "$git_commit"
+        "$git_state"
         "$fill"
         "$cmd_duration"
+        "$nix_shell"
         "$line_break"
         "$character"
       ];
-      character = {
-        success_symbol = "[❯](green)";
-        error_symbol = "[❯](red)";
-        vimcmd_symbol = "[❮](blue)";
-        vimcmd_visual_symbol = "[❮](purple)";
-      };
       fill = {
         symbol = " ";
+      };
+      directory = {
+        style = "blue";
+        home_symbol = "~";
+        format = "[$path ]($style)";
+        truncation_symbol = "…/";
+        truncation_length = 0;
+        truncate_to_repo = false;
+        read_only = " 󰌾";
+      };
+      git_branch = {
+        symbol = "";
+        format = "[$symbol $branch ]($style)";
+        style = "purple";
+      };
+      git_status = {
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](red) ($ahead_behind $stashed)]($style)";
+        style = "cyan";
+        conflicted = "​";
+        untracked = "​";
+        modified = "​";
+        staged = "​";
+        renamed = "​";
+        deleted = "​";
+        stashed = "≡";
+      };
+      git_state = {
+        format = ''([\($state ($progress_current/$progress_total)\)]($style)) '';
+        style = "red";
+      };
+      git_commit = {
+        format = ''([\($hash$tag\)]($style)) '';
+        style = "green";
+        commit_hash_length = 8;
+        only_detached = true;
+        tag_disabled = true;
       };
       cmd_duration = {
         style = "yellow";
         format = "took [$duration]($style)";
       };
-      directory = {
-        style = "blue";
-        home_symbol = "~";
-        use_os_path_sep = true;
-        read_only = " 󰌾";
+      nix_shell = {
+        format = ''[  $state(\(nix-$name\))](242)'';
+        impure_msg = "impure";
+        pure_msg = "pure";
+        unknown_msg = "";
+      };
+      character = {
+        success_symbol = "[❯](green)";
+        error_symbol = "[❯](red)";
+        vimcmd_symbol = "[❮](blue)";
+        vimcmd_visual_symbol = "[❮](purple)";
       };
     };
   };
