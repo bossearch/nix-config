@@ -17,7 +17,7 @@
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       fish_vi_key_bindings
       bind -M insert \t '__fzf_complete'
-      set -gx fish_color_autosuggestion      black
+      set -gx fish_color_autosuggestion      brblack
       set -gx fish_color_cancel              -r
       set -gx fish_color_command             green
       set -gx fish_color_comment             magenta
