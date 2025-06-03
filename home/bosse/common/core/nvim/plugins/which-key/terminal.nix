@@ -20,7 +20,7 @@
     __unkeyed = "<leader><CR>f";
     __unkeyed-1.__raw = ''
       function()
-        require("snacks").terminal.toggle("zsh", {
+        require("snacks").terminal.toggle("fish", {
           win = {
             width = 0.9,         -- Width of the terminal
             height = 0.9,        -- Height of the terminal

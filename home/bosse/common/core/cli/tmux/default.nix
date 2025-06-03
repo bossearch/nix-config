@@ -57,7 +57,7 @@
       bind Escape popup -E -B -w80 -h10 -xC -y38.5  "fish -c panekill"
       bind Tab popup -E -B -w80 -h10 -xC -y38.5  "fish -c tm"
       bind q popup -E -B -w80 -h10 -xC -y38.5  "fish -c tmkill"
-      bind o popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci furl"
+      bind o popup -E -B -w80 -h10 -xC -y38.5  "fish -c furl"
       bind Enter popup -E -w100 -h50 -xC -yC
 
       run-shell ~/.config/tmux/plugins/mythemux/mythemux.tmux

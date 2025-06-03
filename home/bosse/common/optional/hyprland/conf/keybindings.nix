@@ -9,14 +9,14 @@
     $secMod = CONTROL
     $meh = CONTROL ALT SHIFT
     $hyper = CONTROL SUPER ALT SHIFT
-    $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec zsh"
+    $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
     $fileManager = nautilus
     $browser = firefox
     $mpv = ~/.config/hypr/scripts/assets/mpv.sh
-    $drun = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/drun.sh"
-    $run = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/run.sh"
-    $emoji = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
-    $clipboard = kitty -T fzf -o cursor_trail=0 zsh -l -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
+    $drun = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/drun.sh"
+    $run = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/run.sh"
+    $emoji = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
+    $clipboard = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
     $cheatsheet = ~/.config/qmk/cheatsheet-wrapper.sh
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
