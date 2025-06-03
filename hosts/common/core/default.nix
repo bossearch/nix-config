@@ -13,8 +13,8 @@
       ./network.nix
       ./nix.nix
       # ./proxy.nix
+      ./shell.nix
       ./ssh.nix
-      ./zsh.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

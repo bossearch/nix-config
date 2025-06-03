@@ -18,6 +18,7 @@
       set -g set-titles on
       set -g allow-passthrough on
       set-option -g status-position top
+      set-option -g renumber-windows on
 
       # Tmux sensible
       set -g status-interval 1
@@ -52,10 +53,10 @@
       # Fzf
       unbind Space
       unbind q
-      bind Space popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci ftpane"
-      bind Tab popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci tm"
-      bind Escape popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci ftpanekill"
-      bind q popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci tmuxkill"
+      bind Space popup -E -B -w80 -h10 -xC -y38.5  "fish -c pane"
+      bind Escape popup -E -B -w80 -h10 -xC -y38.5  "fish -c panekill"
+      bind Tab popup -E -B -w80 -h10 -xC -y38.5  "fish -c tm"
+      bind q popup -E -B -w80 -h10 -xC -y38.5  "fish -c tmkill"
       bind o popup -E -B -w80 -h10 -xC -y38.5  "zsh -ci furl"
       bind Enter popup -E -w100 -h50 -xC -yC
 

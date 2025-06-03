@@ -41,7 +41,6 @@ in {
     environment = {
       "TERM" = "xterm-256color";
     };
-    shellIntegration.enableZshIntegration = true;
     extraConfig = ''
       # BEGIN_KITTY_FONTS
       font_family family='CommitMono Nerd Font Mono' style=Regular features='+ss01 +ss02 +ss03 +ss04 +ss05 cv02=1 cv05=1'

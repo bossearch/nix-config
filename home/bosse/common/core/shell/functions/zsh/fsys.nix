@@ -1,5 +1,5 @@
 {...}: {
-  home.file.".config/fzf/extra/fsys" = {
+  home.file.".config/zsh/functions/fsys" = {
     text = ''
       fsys() {
       help() {

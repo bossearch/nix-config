@@ -1,5 +1,5 @@
 {...}: {
-  home.file.".config/fzf/extra/furl" = {
+  home.file.".config/zsh/functions/furl" = {
     text = ''
       furl() {
           local content urls wwws ips gits gh all_urls selected

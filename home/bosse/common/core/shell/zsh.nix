@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./.p10k.nix
+    ./functions/zsh
   ];
   programs.zsh = {
     enable = true;
@@ -35,8 +36,8 @@
     envExtra = ''
       export EDITOR="nvim"
       export BAT_THEME="tokyonight_night"
-      export FZF_DEFAULT_OPTS="$(< ~/.config/fzf/.fzfrc)"
-      export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/.fzfrc
+      # export FZF_DEFAULT_OPTS="$(< ~/.config/fzf/.fzfrc)"
+      # export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/.fzfrc
       export FZF_{CTRL_T,ALT_C}_OPTS="--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       export KEYTIMEOUT=1
       export AUTO_NOTIFY_THRESHOLD=5 # Set threshold to 30 seconds
@@ -78,14 +79,10 @@
       zshaddhistory() { whence ''${''${(z)1}[1]} >| /dev/null || return 1 }
 
       # Source additional fzf files
-      source ~/.config/fzf/extra/other
-      source ~/.config/fzf/extra/fsys
-      source ~/.config/fzf/extra/furl
-
-      # Check if tmux is installed and load fzf scripts
-      if command -v tmux >/dev/null 2>&1; then
-        source ~/.config/fzf/extra/tmux
-      fi
+      source ~/.config/zsh/functions/other
+      source ~/.config/zsh/functions/fsys
+      source ~/.config/zsh/functions/furl
+      source ~/.config/zsh/functions/tmux
 
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
@@ -148,4 +145,9 @@
       bindkey -M vicmd 'p' vi-paste-xclip
     '';
   };
+  programs.kitty.shellIntegration = {
+    enableZshIntegration = true;
+  };
+  programs.zoxide.enableZshIntegration = true;
+  programs.fzf.enableZshIntegration = true;
 }

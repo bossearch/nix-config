@@ -1,5 +1,5 @@
 {...}: {
-  home.file.".config/fzf/extra/other" = {
+  home.file.".config/zsh/functions/other" = {
     text = ''
       # fh - repeat history
       fh() {

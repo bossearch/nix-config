@@ -17,22 +17,20 @@
     eza
     fd
     ffmpeg
-    # fzf
     imagemagick
     jq
     killall
+    mediainfo
+    moreutils
     ouch
     poppler
     ripgrep
     toipe
     unzip
     wget
-    moreutils
-    mediainfo
   ];
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
     options = [
       "--cmd cd"
     ];

@@ -1,5 +1,5 @@
 {...}: {
-  home.file.".config/fzf/extra/tmux" = {
+  home.file.".config/zsh/functions/tmux" = {
     text = ''
       # zsh; needs setopt re_match_pcre. You can, of course, adapt it to your own shell easily.
       tmuxkill () {
