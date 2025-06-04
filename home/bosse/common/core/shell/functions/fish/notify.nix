@@ -16,7 +16,7 @@
       set -l exit_code $status
       set -l duration_ms $CMD_DURATION
 
-      if test "$duration_ms" -lt 5000
+      if test "$duration_ms" -lt 30000
           return
       end
 
@@ -28,15 +28,32 @@
           return
       end
 
+      # Calculate duration in minutes and seconds
+      set -l duration_sec (math -s0 "$duration_ms / 1000")
+      set -l minutes (math -s0 "$duration_sec / 60")
+      set -l seconds (math -s0 "$duration_sec % 60")
+      set -l readable_duration ""
+
+      if test $minutes -gt 0
+          set readable_duration "$minutes"m
+      end
+      set readable_duration "$readable_duration$seconds"s
+
       set -l urgency normal
+      set -l message "Took $readable_duration"
+
       if test "$exit_code" -ne 0
           set urgency critical
+          set message "Exit: $exit_code · Took $readable_duration"
       end
 
-      set -l title "$cmd"
-      set -l message "Exit: $exit_code"
-
-      notify-send -u $urgency "$title" "$message" --icon=utilities-terminal --app-name=fish
+      notify-send -u $urgency "$cmd" "$message" --icon=utilities-terminal --app-name=fish
+    '';
+  };
+  savecmd = {
+    onEvent = "fish_preexec";
+    body = ''
+      set -g __last_cmd $argv
     '';
   };
 }

@@ -15,6 +15,8 @@
     interactiveShellInit = ''
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       fish_vi_key_bindings
+      functions --query notify
+      functions --query savecmd
       bind -M insert \t '__fzf_complete'
       bind -M insert ! __fish_expand_bang
       bind -M insert . __fish_expand_dots
