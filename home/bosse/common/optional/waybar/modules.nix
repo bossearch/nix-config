@@ -34,6 +34,7 @@
         "icon" = true;
         "icon-size" = 16;
         "on-click" = "~/.config/hypr/scripts/quit.sh";
+        "on-click-right" = "hyprctl dispatch setprop active opaque toggle";
         "on-click-middle" = "hyprctl dispatch togglespecialworkspace anonymous";
         "on-scroll-up" = "hyprctl dispatch togglespecialworkspace gamespace";
         "on-scroll-down" = "hyprctl dispatch togglespecialworkspace scratchpad";
@@ -43,10 +44,8 @@
         "orientation" = "inherit";
         "modules" = [
           "cpu"
-          # "temperature";
           "custom/cputemp"
           "custom/gpu"
-          # "temperature#gpu";
           "custom/gputemp"
           "memory"
         ];
@@ -127,11 +126,6 @@
             "tooltip" = true;
             "tooltip-icon-size" = 24;
           }
-          # {
-          #   "type"= "audio-out";
-          #   "tooltip"= true;
-          #   "tooltip-icon-size"= 24
-          # };
           {
             "type" = "audio-in";
             "tooltip" = true;
@@ -172,13 +166,6 @@
         "on-click" = "kitty -T btop btop";
       };
 
-      # "temperature"= {
-      #   "hwmon-path"= "/sys/class/hwmon/hwmon2/temp1_input";
-      #   "interval"= 5;
-      #   "format"= "{temperatureC}°C";
-      #   "on-click"= "kitty -T btop btop";
-      # };
-
       "custom/cputemp" = {
         "exec" = "echo $(cat $(for i in /sys/class/hwmon/hwmon*/temp3_input; do name=$(cat $(dirname \"$i\")/name 2>/dev/null); [ \"$name\" = \"k10temp\" ] && echo \"$i\" && break; done) | awk '{printf \"%d\", $1/1000}')";
         "interval" = 5;
@@ -193,14 +180,6 @@
         "max-length" = 15;
         "on-click" = "kitty -T btop btop";
       };
-
-      # "temperature#gpu"= {
-      #   "hwmon-path-abs"= "/sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/";
-      #   "input-filename"= "temp1_input";
-      #   "interval"= 5;
-      #   "format"= "{temperatureC}°C";
-      #   "on-click"= "kitty -T btop btop";
-      # };
 
       "custom/gputemp" = {
         "exec" = "echo $(cat $(for i in /sys/class/hwmon/hwmon*/temp1_input; do name=$(cat $(dirname \"$i\")/name 2>/dev/null); [ \"$name\" = \"amdgpu\" ] && echo \"$i\" && break; done) | awk '{printf \"%d\", $1/1000}')";
@@ -333,7 +312,6 @@
       };
 
       "custom/wiz" = {
-        # "format"= " {icon}{percentage}% ";//
         "format" = "{icon} ";
         "format-icons" = ["󰌶" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
         "return-type" = "json";

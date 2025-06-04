@@ -47,7 +47,14 @@
     bind = $meh, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-output.sh
     bind = $hyper, V, exec, ~/.config/waybar/scripts/pavucontrol/cycle-input.sh
     bind = $hyper, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-input.sh
-
+    bind = $meh, Y, exec, ~/.config/waybar/scripts/utility/virtualkeyboard.sh
+    bind = $hyper, Y, exec, pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard
+    bind = $meh, U, exec, hyprpicker -a
+    bind = $hyper, U, exec, ~/.config/waybar/scripts/hyprsunset/scroll-down.sh
+    bind = $meh, I, exec, ~/.config/waybar/scripts/dunst/dunsticon.sh
+    bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
+    bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
+    bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
