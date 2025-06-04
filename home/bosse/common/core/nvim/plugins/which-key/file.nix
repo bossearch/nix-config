@@ -42,7 +42,7 @@
         if detail then
           require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
         else
-          require("oil").set_columns({ "icon" })
+          require("oil").set_columns({})
         end
       end
     '';

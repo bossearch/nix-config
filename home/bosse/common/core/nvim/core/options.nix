@@ -56,7 +56,7 @@
       undofile = true; # Automatically save and restore undo history
       virtualedit = "block"; # Allow cursor to move where there is no text in visual block mode
       winminwidth = 5; # Minimum window width
-      wrap = true; # line wrap
+      wrap = false; # line wrap
     };
   };
 }
