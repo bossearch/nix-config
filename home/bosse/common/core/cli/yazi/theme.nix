@@ -1,9 +1,6 @@
 {...}: {
   programs.yazi.theme = {
     manager = {
-      # NOTE: can be combined with tmTheme (sublime color scheme file) for preview code highlight
-      highlight = ".config/bat/themes/tokyonight_night.tmTheme";
-
       cwd = {
         fg = "#a9b1d6";
         italic = true;

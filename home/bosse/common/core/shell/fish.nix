@@ -7,10 +7,9 @@
   programs.fish = {
     enable = true;
     shellInit = ''
-      set -gx BAT_THEME tokyonight_night
       set -gx FZF_CTRL_T_OPTS "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       set -gx FZF_ALT_C_OPTS  "--preview='~/.config/fzf/extra/fzf-preview.sh {}'";
-      set -gx FZF_PREVIEW_FILE_CMD "bat --color=always"
+      set -gx FZF_PREVIEW_FILE_CMD "bat --color=always --style=plain --theme=ansi"
       set -gx FZF_PREVIEW_DIR_CMD "eza -1 --tree --level=2 --all --icons=always --color=always"
     '';
     interactiveShellInit = ''
@@ -63,7 +62,7 @@
       rm = "rm -i";
       cp = "cp -i";
       c = "clear";
-      cat = "bat";
+      cat = "bat --style=plain --theme=ansi";
       ".." = "cd ..";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
     };
