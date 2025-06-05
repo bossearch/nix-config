@@ -43,6 +43,26 @@ in {
     # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
     # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
 
+    #alacritty
+    windowrule = workspace 1, initialTitle:(Alacritty)
+
+    #blueman
+    windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+    windowrule = float, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+    windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+
+    #btop
+    windowrule = float, class:(kitty),title:(btop)
+    windowrule = size ${size."3/4"}, class:(kitty),title:(btop)
+
+    #crkbd
+    windowrule = float, class:(kitty),title:(crkbd)
+    windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
+
+    #fastfetch
+    windowrule = float, class:(kitty),title:(fastfetch)
+    windowrule = size ${size.about}, class:(kitty),title:(fastfetch)
+
     #firefox
     windowrule = float, class:(firefox),title:(Library)
     windowrule = size ${size."1/2"}, class:(firefox),title:(Save Image)
@@ -52,42 +72,29 @@ in {
     windowrule = opaque, class:(firefox),title:^(.*Twitch.*)$
     windowrule = size ${size."1/2"}, class:(firefox),title:(File Upload)
 
-    #blueman
-    windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-    windowrule = float, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-    windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-
+    #fzf
+    windowrule = float, class:(kitty),title:(mousefzf)
+    windowrule = size ${size."1/2"}, class:(kitty),title:(mousefzf)
+    windowrule = float, class:(kitty),title:(fzf)
+    windowrule = size ${size."1/4"}, class:(kitty),title:(fzf)
     #obsidian
     windowrule = workspace 5, initialClass:(obsidian)
-
-    #vesktop
-    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
-
-    #spotify
-    windowrule = workspace 6, class:(spotify),title:(Spotify Premium)
-    windowrule = workspace 6, class:(spotify),title:(Spotify Free)
-
-    #pavucontrol
-    windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
-    windowrule = float, initialClass:^(org.pulseaudio.pavucontrol)$
-    windowrule = size ${size."1/2"}, initialClass:^(org.pulseaudio.pavucontrol)$
-
-    #mpv
-    windowrule = workspace 3, initialClass:(mpv)
-    windowrule = opaque, initialClass:(mpv)
-
-    #alacritty
-    windowrule = workspace 1, initialTitle:(Alacritty)
 
     #kitty
     windowrule = workspace 1, initialTitle:(kitty)
 
-    #btop
-    windowrule = float, class:(kitty),title:(btop)
-    windowrule = size ${size."3/4"}, class:(kitty),title:(btop)
+    #localsend
+    windowrule = float, class:(localsend_app),title:(Open File)
+    windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
+    windowrule = center, class:(localsend_app),title:(Open File)
 
-    #nchat
-    windowrule = workspace 6, class:(kitty),title:(nchat)
+    #mainpicker
+    windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
+    windowrule = size ${size."1/4"}, initialTitle:(MainPicker),title:(MainPicker)
+
+    #mpv
+    windowrule = workspace 3, initialClass:(mpv)
+    windowrule = opaque, initialClass:(mpv)
 
     #nautilus
     windowrule = workspace 3, initialClass:^org\.gnome\.Nautilus$,initialTitle:^Loading…$
@@ -95,24 +102,33 @@ in {
     windowrule = opaque, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
     windowrule = size ${size."1/2"}, title:^(Rename .* Files)$
 
+    #nchat
+    windowrule = workspace 6, class:(kitty),title:(nchat)
+
     #nmtui
     windowrule = workspace 4, class:(kitty),title:(nmtui)
     windowrule = float, class:(kitty),title:(nmtui)
     windowrule = size ${size."1/2-1:1"}, class:(kitty),title:(nmtui)
 
-    #fzf
-    windowrule = float, class:(kitty),title:(mousefzf)
-    windowrule = size ${size."1/2"}, class:(kitty),title:(mousefzf)
-    windowrule = float, class:(kitty),title:(fzf)
-    windowrule = size ${size."1/4"}, class:(kitty),title:(fzf)
+    #pavucontrol
+    windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
+    windowrule = float, initialClass:^(org.pulseaudio.pavucontrol)$
+    windowrule = size ${size."1/2"}, initialClass:^(org.pulseaudio.pavucontrol)$
 
-    #fastfetch
-    windowrule = float, class:(kitty),title:(fastfetch)
-    windowrule = size ${size.about}, class:(kitty),title:(fastfetch)
+    #prismlauncher
+    windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
+    windowrule = workspace special:gamespace, class:^(Minecraft\* )$, title:^(Minecraft\* )$
+    #waydroid
+    windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
 
-    #crkbd
-    windowrule = float, class:(kitty),title:(crkbd)
-    windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
+    #spotify
+    windowrule = workspace 6, class:(spotify),title:(Spotify Premium)
+    windowrule = workspace 6, class:(spotify),title:(Spotify Free)
+
+    #steam
+    windowrule = workspace special:gamespace, class:(steam)
+    windowrule = workspace special:gamespace, class:(dota2)
+    windowrule = float, class:(dota2),title:(Dota 2)
 
     #transmission
     windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
@@ -126,16 +142,10 @@ in {
     windowrule = float, class:(uget-gtk),title:(uGet - New Download)
     windowrule = center, class:(uget-gtk),title:(uGet - New Download)
 
-    #steam
-    windowrule = workspace special:gamespace, class:(steam)
-    windowrule = workspace special:gamespace, class:(dota2)
-    windowrule = float, class:(dota2),title:(Dota 2)
-
-    #prismlauncher
-    windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
-    windowrule = workspace special:gamespace, class:^(Minecraft\* )$, title:^(Minecraft\* )$
-    #waydroid
-    windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
+    #vaults
+    windowrule = workspace 3, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
+    windowrule = float, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
+    windowrule = size ${size."1/3-3:2"}, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
 
     #virt-manager
     windowrule = workspace special:gamespace, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
@@ -144,23 +154,12 @@ in {
     windowrule = maximize, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = opaque, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
 
-    #Vaults
-    windowrule = workspace 3, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
-    windowrule = float, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
-    windowrule = size ${size."1/3-3:2"}, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
+    #vesktop
+    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
 
     #zenity
     windowrule = rounding 14,class:zenity
     windowrule = float,class:zenity
-
-    #mainpicker
-    windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
-    windowrule = size ${size."1/4"}, initialTitle:(MainPicker),title:(MainPicker)
-
-    #localsend
-    windowrule = float, class:(localsend_app),title:(Open File)
-    windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
-    windowrule = center, class:(localsend_app),title:(Open File)
 
     #misc
     windowrule = suppressevent maximize, class:.* # You'll probably like this.
