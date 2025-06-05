@@ -75,7 +75,12 @@
       }
       {
         plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = ''
+          resurrect_dir="$HOME/.local/state/tmux/resurrect"
+          set -g @resurrect-dir $resurrect_dir
+          set -g @resurrect-hook-post-save-all "sed -i -E 's|:[^[:space:]]*/nvim[[:space:]].*|:nvim|' \$resurrect_dir/last"
+          set -g @resurrect-processes '~nvim ~yazi ~lazygit'
+        '';
       }
     ];
   };
