@@ -2,6 +2,7 @@
   imports = [
     ./common/core
     ./common/optional/dunst
+    # ./common/optional/feh.nix
     ./common/optional/firefox
     ./common/optional/gowall.nix
     ./common/optional/hyprland

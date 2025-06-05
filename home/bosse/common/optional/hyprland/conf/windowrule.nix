@@ -63,6 +63,10 @@ in {
     windowrule = float, class:(kitty),title:(fastfetch)
     windowrule = size ${size.about}, class:(kitty),title:(fastfetch)
 
+    #feh
+    windowrule = float, class:(feh)
+    windowrule = center 1, class:(feh)
+
     #firefox
     windowrule = float, class:(firefox),title:(Library)
     windowrule = size ${size."1/2"}, class:(firefox),title:(Save Image)
@@ -86,7 +90,7 @@ in {
     #localsend
     windowrule = float, class:(localsend_app),title:(Open File)
     windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
-    windowrule = center, class:(localsend_app),title:(Open File)
+    windowrule = center 1, class:(localsend_app),title:(Open File)
 
     #mainpicker
     windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
@@ -132,7 +136,7 @@ in {
 
     #transmission
     windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
-    windowrule = center, class:(transmission-gtk),title:(Open a Torrent)
+    windowrule = center 1, class:(transmission-gtk),title:(Open a Torrent)
     windowrule = workspace 4, class:(transmission-gtk),title:(Transmission)
 
     #uget
@@ -140,7 +144,7 @@ in {
     windowrule = workspace 4, class:(uget-gtk),title:(uGet)
     windowrule = workspace 1, class:(uget-gtk),title:(uGet - New Download)
     windowrule = float, class:(uget-gtk),title:(uGet - New Download)
-    windowrule = center, class:(uget-gtk),title:(uGet - New Download)
+    windowrule = center 1, class:(uget-gtk),title:(uGet - New Download)
 
     #vaults
     windowrule = workspace 3, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
@@ -151,7 +155,7 @@ in {
     windowrule = workspace special:gamespace, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
     windowrule = float, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = maximize, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
+    windowrule = center 1, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = opaque, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
 
     #vesktop
