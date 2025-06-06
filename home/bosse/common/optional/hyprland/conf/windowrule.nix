@@ -53,18 +53,22 @@ in {
     #blueman
     windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = float, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+    windowrule = center 1, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
 
     #btop
     windowrule = float, class:(kitty),title:(btop)
+    windowrule = center 1, class:(kitty),title:(btop)
     windowrule = size ${size."3/4"}, class:(kitty),title:(btop)
 
     #crkbd
     windowrule = float, class:(kitty),title:(crkbd)
+    windowrule = center 1, class:(kitty),title:(crkbd)
     windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
 
     #fastfetch
     windowrule = float, class:(kitty),title:(fastfetch)
+    windowrule = center 1, class:(kitty),title:(fastfetch)
     windowrule = size ${size.about}, class:(kitty),title:(fastfetch)
 
     #feh
@@ -73,6 +77,7 @@ in {
 
     #firefox
     windowrule = float, class:(firefox),title:(Library)
+    windowrule = center 1, class:(firefox),title:(Library)
     windowrule = size ${size."1/2"}, class:(firefox),title:(Save Image)
     windowrule = focusonactivate on, InitialClass:(firefox),initialTitle:(Mozilla Firefox)
     windowrule = opaque, class:(firefox),title:^(.*YouTube.*)$
@@ -81,10 +86,13 @@ in {
     windowrule = size ${size."1/2"}, class:(firefox),title:(File Upload)
 
     #fzf
-    windowrule = float, class:(kitty),title:(mousefzf)
-    windowrule = size ${size."1/2"}, class:(kitty),title:(mousefzf)
     windowrule = float, class:(kitty),title:(fzf)
+    windowrule = center 1, class:(kitty),title:(fzf)
     windowrule = size ${size."1/4"}, class:(kitty),title:(fzf)
+    windowrule = float, class:(kitty),title:(mousefzf)
+    windowrule = center 1, class:(kitty),title:(mousefzf)
+    windowrule = size ${size."1/2"}, class:(kitty),title:(mousefzf)
+
     #obsidian
     windowrule = workspace 5, initialClass:(obsidian)
 
@@ -93,11 +101,12 @@ in {
 
     #localsend
     windowrule = float, class:(localsend_app),title:(Open File)
-    windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
     windowrule = center 1, class:(localsend_app),title:(Open File)
+    windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
 
     #mainpicker
     windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
+    windowrule = center 1, initialTitle:(MainPicker),title:(MainPicker)
     windowrule = size ${size."1/4"}, initialTitle:(MainPicker),title:(MainPicker)
 
     #mpv
@@ -107,6 +116,7 @@ in {
     #nautilus
     windowrule = workspace 3, initialClass:^org\.gnome\.Nautilus$,initialTitle:^Loading…$
     windowrule = float, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
+    windowrule = center 1, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
     windowrule = opaque, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
     windowrule = size ${size."1/2"}, title:^(Rename .* Files)$
 
@@ -116,11 +126,13 @@ in {
     #nmtui
     windowrule = workspace 4, class:(kitty),title:(nmtui)
     windowrule = float, class:(kitty),title:(nmtui)
+    windowrule = center 1, class:(kitty),title:(nmtui)
     windowrule = size ${size."1/2-1:1"}, class:(kitty),title:(nmtui)
 
     #pavucontrol
     windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
     windowrule = float, initialClass:^(org.pulseaudio.pavucontrol)$
+    windowrule = center 1, initialClass:^(org.pulseaudio.pavucontrol)$
     windowrule = size ${size."1/2"}, initialClass:^(org.pulseaudio.pavucontrol)$
 
     #prismlauncher
@@ -137,29 +149,31 @@ in {
     windowrule = workspace special:gamespace, class:(steam)
     windowrule = workspace special:gamespace, class:(dota2)
     windowrule = float, class:(dota2),title:(Dota 2)
+    windowrule = center 1, class:(dota2),title:(Dota 2)
 
     #transmission
-    windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
-    windowrule = center 1, class:(transmission-gtk),title:(Open a Torrent)
     windowrule = workspace 4, class:(transmission-gtk),title:(Transmission)
+    windowrule = float, class:(transmission-gtk),title:(Open a Torrent)
+    windowrule = center 1, class:(transmission-gtk),title:(Open a Torrent)
+    windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
 
     #uget
-    #windowrule = float, class:(uget-gtk),title:(uGet)
-    windowrule = workspace 4, class:(uget-gtk),title:(uGet)
     windowrule = workspace 1, class:(uget-gtk),title:(uGet - New Download)
+    windowrule = workspace 4, class:(uget-gtk),title:(uGet)
     windowrule = float, class:(uget-gtk),title:(uGet - New Download)
     windowrule = center 1, class:(uget-gtk),title:(uGet - New Download)
 
     #vaults
     windowrule = workspace 3, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
     windowrule = float, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
+    windowrule = center 1, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
     windowrule = size ${size."1/3-3:2"}, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
 
     #virt-manager
     windowrule = workspace special:gamespace, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
     windowrule = float, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = center 1, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
+    windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = opaque, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
 
     #vesktop
@@ -171,8 +185,9 @@ in {
     windowrule = size ${size.zathura},class:(org.pwmt.zathura)
 
     #zenity
-    windowrule = rounding 14,class:(zenity)
     windowrule = float,class:(zenity)
+    windowrule = center 1,class:(zenity)
+    windowrule = rounding 14,class:(zenity)
 
     #misc
     windowrule = suppressevent maximize, class:.* # You'll probably like this.

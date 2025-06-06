@@ -90,6 +90,7 @@
 
     # Toggle Float
     bind = $meh, F, togglefloating
+    bind = $meh, F, centerwindow, 1
 
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = $meh, mouse:272, movewindow
