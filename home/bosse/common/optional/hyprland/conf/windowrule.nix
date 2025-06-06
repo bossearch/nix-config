@@ -29,6 +29,10 @@
       if mymonitor
       then "1310 1080"
       else "1310 920";
+    zathura =
+      if mymonitor
+      then "982 1387"
+      else "728 1027";
     about =
       if mymonitor
       then "920 520"
@@ -161,9 +165,14 @@ in {
     #vesktop
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
 
+    #zathura
+    windowrule = float,class:(org.pwmt.zathura)
+    windowrule = center 1,class:(org.pwmt.zathura)
+    windowrule = size ${size.zathura},class:(org.pwmt.zathura)
+
     #zenity
-    windowrule = rounding 14,class:zenity
-    windowrule = float,class:zenity
+    windowrule = rounding 14,class:(zenity)
+    windowrule = float,class:(zenity)
 
     #misc
     windowrule = suppressevent maximize, class:.* # You'll probably like this.
