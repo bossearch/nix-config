@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  import = [./conf];
+  imports = [./conf];
 
   home.packages = [
     pkgs.unstable.nchat

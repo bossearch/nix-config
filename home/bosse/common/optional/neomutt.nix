@@ -1,7 +1,7 @@
-{pkgs-unstable, ...}: {
+{pkgs, ...}: {
   programs.neomutt = {
     enable = true;
-    package = pkgs-unstable.neomutt;
+    package = pkgs.unstable.neomutt;
     vimKeys = true;
   };
 }
