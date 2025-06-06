@@ -19,6 +19,7 @@ in {
       zoom_in = ["k" "plus"];
       zoom_out = ["j" "minus"];
       toggle_fullscreen = "f";
+      orient_1 = "R";
       quit = "q";
     };
   };
@@ -27,7 +28,7 @@ in {
     name = "feh";
     genericName = "Image Viewer";
     icon = "feh";
-    exec = "feh --geometry ${size."3/4"} --auto-zoom --scale-down --image-bg black --start-at %u";
+    exec = "feh --geometry ${size."3/4"} --auto-zoom --scale-down --start-at %u";
     comment = "Image viewer and cataloguer";
     terminal = false;
     noDisplay = true;
