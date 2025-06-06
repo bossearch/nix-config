@@ -33,6 +33,10 @@
       if mymonitor
       then "982 1387"
       else "728 1027";
+    gapsout =
+      if mymonitor
+      then "200"
+      else "150";
     about =
       if mymonitor
       then "920 520"
@@ -193,8 +197,8 @@ in {
     windowrule = suppressevent maximize, class:.* # You'll probably like this.
 
     # Workspaces
-    workspace = special:scratchpad, gapsout:200, on-created-empty: kitty -T scratchpad
-    workspace = special:gamespace, gapsout:8, gapsin:4, on-created-empty: ~/.config/hypr/scripts/zenity-run.sh
+    workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: kitty -T scratchpad
+    workspace = special:gamespace, on-created-empty: ~/.config/hypr/scripts/zenity-run.sh
     workspace = special:anonymous, on-created-empty: nix-shell -p tor-browser --run tor-browser
     workspace = 1, on-created-empty: kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'
     workspace = 2, on-created-empty: firefox
