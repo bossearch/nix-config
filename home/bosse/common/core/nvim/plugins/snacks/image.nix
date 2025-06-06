@@ -6,4 +6,7 @@
     max_width = 60;
     max_height = 30;
   };
+  math = {
+    enabled = false;
+  };
 }
