@@ -164,10 +164,10 @@ in {
     windowrule = center 1, class:(uget-gtk),title:(uGet - New Download)
 
     #vaults
-    windowrule = workspace 3, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
-    windowrule = float, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
-    windowrule = center 1, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
-    windowrule = size ${size."1/3-3:2"}, InitialClass:(io.github.mpobaschnig.Vaults),class:(Vaults)
+    windowrule = workspace 3, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
+    windowrule = float, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
+    windowrule = center 1, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
+    windowrule = size ${size."1/3-3:2"}, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
 
     #virt-manager
     windowrule = workspace special:gamespace, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
