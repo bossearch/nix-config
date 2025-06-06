@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/KrigBilateral.glsl" = {
     text = ''
       // KrigBilateral by Shiandow

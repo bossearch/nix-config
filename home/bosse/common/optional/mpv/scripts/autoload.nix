@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/autoload.lua" = {
     text = ''
       -- This script automatically loads playlist entries before and after the

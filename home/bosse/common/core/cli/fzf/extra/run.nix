@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/fzf/extra/run.sh" = {
     executable = true;
     text = ''

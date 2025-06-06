@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/profile-indicator.lua" = {
     text = ''
       local ov = mp.create_osd_overlay("ass-events")

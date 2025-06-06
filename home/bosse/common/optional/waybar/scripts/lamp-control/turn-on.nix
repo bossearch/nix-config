@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/lamp-control/turn-on.sh" = {
     executable = true;
     text = ''

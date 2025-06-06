@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenrecord/recmonitor.sh" = {
     executable = true;
     text = ''

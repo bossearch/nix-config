@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.mpv = {
     extraInput = ''
       MBTN_LEFT_DBL cycle pause; script-binding uosc/flash-pause-indicator

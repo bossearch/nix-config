@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/auto-next.lua" = {
     text = ''
       -- next_on_end.lua

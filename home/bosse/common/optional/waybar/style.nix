@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.waybar.style = ''
     * {
       font-family: CommitMono Nerd Font;

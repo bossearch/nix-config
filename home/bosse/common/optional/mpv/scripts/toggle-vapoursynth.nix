@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/toggle-vapoursynth.lua" = {
     text = ''
       local mp = require("mp")

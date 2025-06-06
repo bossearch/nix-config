@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/FSRCNNX_x2_16-0-4-1_enhance.glsl" = {
     text = ''
       //!HOOK LUMA

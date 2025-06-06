@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/pavucontrol/toggle-output.sh" = {
     executable = true;
     text = ''

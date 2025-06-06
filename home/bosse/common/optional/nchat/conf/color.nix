@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/nchat/app.conf" = {
     text = ''
       default_color_bg=0x1a1b26

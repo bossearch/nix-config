@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./cheatsheet-layout.nix
     ./cheatsheet-wrapper.nix

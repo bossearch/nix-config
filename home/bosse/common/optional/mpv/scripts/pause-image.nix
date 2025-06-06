@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/pause-image.lua" = {
     text = ''
       -- auto-pause-on-image.lua

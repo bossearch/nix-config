@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/hyprpaper.sh" = {
     executable = true;
     text = ''

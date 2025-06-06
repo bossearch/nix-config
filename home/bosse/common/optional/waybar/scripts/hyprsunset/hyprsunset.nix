@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/hyprsunset/hyprsunset.sh" = {
     executable = true;
     text = ''

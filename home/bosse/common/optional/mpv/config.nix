@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.mpv = {
     config = {
       # general

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/utility/reboot.sh" = {
     executable = true;
     text = ''

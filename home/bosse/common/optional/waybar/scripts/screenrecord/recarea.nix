@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenrecord/recarea.sh" = {
     executable = true;
     text = ''

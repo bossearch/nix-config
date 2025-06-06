@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/lamp-control/toggle-temp.sh" = {
     executable = true;
     text = ''

@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.yazi.keymap = {
     manager.prepend_keymap = [
       {

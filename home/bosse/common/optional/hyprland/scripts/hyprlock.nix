@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/hyprlock.sh" = {
     executable = true;
     text = ''

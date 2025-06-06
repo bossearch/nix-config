@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/gallery-thumbgen.lua" = {
     text = ''
       --[[

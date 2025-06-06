@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-colors.css" = {
     text = ''
       :root {

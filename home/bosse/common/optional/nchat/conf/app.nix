@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/nchat/app.conf" = {
     text = ''
       attachment_prefetch=1

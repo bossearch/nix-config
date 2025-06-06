@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/command-palette.lua" = {
     text = ''
       -- https://github.com/stax76/mpv-scripts

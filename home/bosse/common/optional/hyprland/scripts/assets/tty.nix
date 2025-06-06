@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/assets/tty.sh" = {
     executable = true;
     text = ''

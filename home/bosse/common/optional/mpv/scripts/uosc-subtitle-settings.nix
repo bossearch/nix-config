@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/uosc-subtitle-settings.lua" = {
     text = ''
       local options = {

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/startup-value.sh" = {
     executable = true;
     text = ''

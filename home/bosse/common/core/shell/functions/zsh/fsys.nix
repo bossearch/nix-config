@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/zsh/functions/fsys" = {
     text = ''
       fsys() {

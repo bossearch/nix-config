@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [./KvTokyoNight];
 
   home.file.".config/Kvantum/kvantum.kvconfig" = {

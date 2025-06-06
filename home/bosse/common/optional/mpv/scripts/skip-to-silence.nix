@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/skip-to-silence.lua" = {
     text = ''
       MAX_SPEED = 100

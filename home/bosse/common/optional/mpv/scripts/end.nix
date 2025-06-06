@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/end.lua" = {
     text = ''
       mp.add_key_binding("b", "end", function()

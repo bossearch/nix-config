@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/FSR.glsl" = {
     text = ''
       // Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.

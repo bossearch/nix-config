@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/memo.lua" = {
     text = ''
       -- memo.lua

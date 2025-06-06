@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/fzf/extra/drun.sh" = {
     executable = true;
     text = ''

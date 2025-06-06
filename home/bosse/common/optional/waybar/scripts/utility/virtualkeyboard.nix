@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/utility/virtualkeyboard.sh" = {
     executable = true;
     text = ''

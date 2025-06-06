@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.yazi.theme = {
     manager = {
       cwd = {

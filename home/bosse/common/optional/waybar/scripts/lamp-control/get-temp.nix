@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/lamp-control/get-temp.py" = {
     text = ''
       import socket

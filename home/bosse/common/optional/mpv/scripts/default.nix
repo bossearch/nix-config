@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./script-modules.nix
     ./script-opts.nix

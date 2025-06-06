@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-tabbar.css" = {
     text = ''
       :root {

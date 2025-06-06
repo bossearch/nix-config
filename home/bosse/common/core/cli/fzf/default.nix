@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [./extra];
   programs.fzf = {
     enable = true;

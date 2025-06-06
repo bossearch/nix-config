@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/assets" = {
     source = ./assets;
   };

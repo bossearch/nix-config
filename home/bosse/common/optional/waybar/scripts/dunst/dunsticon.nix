@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/dunst/dunsticon.sh" = {
     executable = true;
     text = ''

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-button.css" = {
     text = ''
       /* Removes the annoying rainbow thing from the hamburger  */

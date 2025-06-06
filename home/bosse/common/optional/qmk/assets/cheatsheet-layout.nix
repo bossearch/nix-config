@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/qmk/cheatsheet-layout.sh" = {
     text = ''
       qwr="

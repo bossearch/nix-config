@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/qmk/crkbd-cheatsheet.sh" = {
     executable = true;
     text = ''

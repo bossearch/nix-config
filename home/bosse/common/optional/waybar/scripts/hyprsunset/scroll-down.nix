@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/hyprsunset/scroll-down.sh" = {
     executable = true;
     text = ''

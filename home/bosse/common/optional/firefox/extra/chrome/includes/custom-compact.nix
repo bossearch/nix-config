@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-compact.css" = {
     text = ''
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/compact_extensions_panel.css made available under Mozilla Public License v. 2.0

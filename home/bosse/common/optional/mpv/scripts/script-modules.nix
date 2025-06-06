@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/script-modules/extended-menu.lua" = {
     text = ''
       local mp = require("mp")

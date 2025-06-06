@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [./includes];
   home.file.".mozilla/firefox/bosse/chrome/userChrome.css" = {
     text = ''

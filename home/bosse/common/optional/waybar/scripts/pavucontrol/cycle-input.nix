@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/pavucontrol/cycle-input.sh" = {
     executable = true;
     text = ''

@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./clipboard.nix
     ./drun.nix

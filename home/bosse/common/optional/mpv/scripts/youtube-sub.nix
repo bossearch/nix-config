@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/youtube-sub.lua" = {
     text = ''
       -- optionally import module, from SO

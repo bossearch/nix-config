@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./assets
     ./deepl-terjemah.nix

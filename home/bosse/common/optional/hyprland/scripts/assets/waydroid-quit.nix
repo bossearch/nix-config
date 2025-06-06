@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/assets/waydroid-quit.sh" = {
     executable = true;
     text = ''

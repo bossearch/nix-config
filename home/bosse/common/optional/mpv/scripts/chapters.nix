@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/chapters.lua" = {
     text = ''
       --[[

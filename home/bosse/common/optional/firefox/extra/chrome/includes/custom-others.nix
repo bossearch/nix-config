@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-others.css" = {
     text = ''
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/overlay_sidebar_header.css made available under Mozilla Public License v. 2.0

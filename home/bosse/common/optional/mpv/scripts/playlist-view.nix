@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/playlist-view.lua" = {
     text = ''
       --[[

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/assets/mpv.sh" = {
     executable = true;
     text = ''

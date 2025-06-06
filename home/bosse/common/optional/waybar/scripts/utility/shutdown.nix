@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/utility/shutdown.sh" = {
     executable = true;
     text = ''

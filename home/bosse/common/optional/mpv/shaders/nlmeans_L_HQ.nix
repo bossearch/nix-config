@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/nlmeans_L_HQ.glsl" = {
     text = ''
             * Based on vf_nlmeans.c from FFmpeg.
@@ -166,7 +166,7 @@
             /* textureGather applicable configurations:
             *
             * - PS={0,3,7,8}:P=3:RI={0,1,3,7}:RFI={0,1,2}
-            * - PS={0,8}:P=3:RI={0,1,3,7}:RFI={0,1,2}
+            * - PS=P=3:RI={0,1,3,7}:RFI={0,1,2}
             * - PS=4:P=3:PST=0:RI=0:RFI=0
             * - PS=6:RI=0:RFI=0
             *   - Currently the only scalable variant
@@ -1512,7 +1512,7 @@
             /* textureGather applicable configurations:
             *
             * - PS={0,3,7,8}:P=3:RI={0,1,3,7}:RFI={0,1,2}
-            * - PS={0,8}:P=3:RI={0,1,3,7}:RFI={0,1,2}
+            * - PS=P=3:RI={0,1,3,7}:RFI={0,1,2}
             * - PS=4:P=3:PST=0:RI=0:RFI=0
             * - PS=6:RI=0:RFI=0
             *   - Currently the only scalable variant

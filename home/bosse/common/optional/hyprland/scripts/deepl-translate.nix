@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/deepl-translate.sh" = {
     executable = true;
     text = ''

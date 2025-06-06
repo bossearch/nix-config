@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/lamp-control/decrease-brightness.sh" = {
     executable = true;
     text = ''

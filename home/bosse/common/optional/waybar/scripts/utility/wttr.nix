@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/utility/wttr.py" = {
     text = ''
       #!/usr/bin/env python

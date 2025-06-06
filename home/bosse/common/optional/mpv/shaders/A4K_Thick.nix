@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/A4K_Thick.glsl" = {
     text = ''
       // MIT License

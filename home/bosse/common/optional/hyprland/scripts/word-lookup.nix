@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/word-lookup.sh" = {
     executable = true;
     text = ''

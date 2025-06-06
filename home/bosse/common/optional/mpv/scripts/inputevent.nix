@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/inputevent.lua" = {
     text = ''
       -- InputEvent

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/pavucontrol/mic-status.sh" = {
     executable = true;
     text = ''

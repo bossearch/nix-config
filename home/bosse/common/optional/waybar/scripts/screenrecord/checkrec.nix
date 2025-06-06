@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenrecord/checkrec.sh" = {
     executable = true;
     text = ''

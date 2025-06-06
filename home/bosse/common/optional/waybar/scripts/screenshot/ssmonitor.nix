@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenshot/ssmonitor.sh" = {
     executable = true;
     text = ''

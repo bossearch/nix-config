@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/sub-translate.lua" = {
     text = ''
       local mp = require("mp")

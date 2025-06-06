@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/shaders/SSimSuperRes.glsl" = {
     text = ''
       // SSimSuperRes by Shiandow

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenshot/ocr.sh" = {
     executable = true;
     text = ''

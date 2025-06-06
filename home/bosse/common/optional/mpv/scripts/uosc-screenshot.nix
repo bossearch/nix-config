@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/uosc-screenshot.lua" = {
     text = ''
       local options = {

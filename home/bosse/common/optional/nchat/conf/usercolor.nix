@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/nchat/app.conf" = {
     text = ''
       0xf7768e

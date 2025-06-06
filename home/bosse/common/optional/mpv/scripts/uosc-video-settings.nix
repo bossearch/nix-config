@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/uosc-video-settings.lua" = {
     text = ''
       local options = {

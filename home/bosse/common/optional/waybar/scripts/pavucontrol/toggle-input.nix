@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/pavucontrol/toggle-input.sh" = {
     executable = true;
     text = ''

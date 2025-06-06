@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/utility/ddcutil.sh" = {
     executable = true;
     text = ''

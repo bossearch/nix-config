@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenshot/ssarea.sh" = {
     executable = true;
     text = ''

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/fzf/extra/emoji.sh" = {
     executable = true;
     text = ''

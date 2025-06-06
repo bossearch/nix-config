@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/hypr/scripts/quit.sh" = {
     executable = true;
     text = ''

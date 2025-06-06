@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/vesktop/themes/theme.css" = {
     text = ''
       /**

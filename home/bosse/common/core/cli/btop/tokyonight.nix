@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/btop/themes/tokyonight.theme" = {
     text = ''
       # Theme: tokyo-night

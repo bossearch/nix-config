@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/fzf/extra/fzf-preview.sh" = {
     executable = true;
     text = ''

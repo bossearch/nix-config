@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/waybar/scripts/screenshot/sswindow.sh" = {
     executable = true;
     text = ''

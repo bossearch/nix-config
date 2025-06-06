@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/fzf/extra/clipboard.sh" = {
     executable = true;
     text = ''

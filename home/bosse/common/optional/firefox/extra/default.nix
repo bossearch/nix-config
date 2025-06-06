@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./chrome
     ./extension-settings.nix

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/mpv/scripts/quality-menu.lua" = {
     text = ''
       -- quality-menu 4.2.0 - 2024-Oct-04

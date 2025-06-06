@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./A4K_Thick.nix
     ./A4K_Thin.nix

@@ -1,4 +1,4 @@
-{...}: {
+{
   home.file.".config/dunst/dunstsound.sh" = {
     executable = true;
     text = ''
