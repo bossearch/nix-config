@@ -50,7 +50,7 @@
       color: #e0af68;
       padding: 0 5px;
     }
-    #memory {
+    #custom-memory {
       color: #9ece6a;
       padding: 0 5px;
     }
@@ -121,7 +121,7 @@
     #custom-hyprpicker {
       padding: 0px 0px 0px 4px;
     }
-    #custom-wiz {
+    #custom-lamp {
       padding: 0px 0px 0px 8px;
     }
 

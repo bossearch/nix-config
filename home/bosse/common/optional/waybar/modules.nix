@@ -47,7 +47,7 @@
           "custom/cputemp"
           "custom/gpu"
           "custom/gputemp"
-          "memory"
+          "custom/memory"
         ];
       };
 
@@ -69,7 +69,7 @@
           "custom/virtualkeyboard"
           "custom/magnifier"
           "custom/hyprpicker"
-          "custom/wiz"
+          "custom/lamp"
         ];
       };
 
@@ -171,6 +171,7 @@
         "interval" = 5;
         "format" = "{}°C";
         "on-click" = "kitty -T btop btop";
+        "tooltip" = false;
       };
 
       "custom/gpu" = {
@@ -179,6 +180,7 @@
         "format" = " {}%";
         "max-length" = 15;
         "on-click" = "kitty -T btop btop";
+        "tooltip" = false;
       };
 
       "custom/gputemp" = {
@@ -186,13 +188,15 @@
         "interval" = 5;
         "format" = "{}°C";
         "on-click" = "kitty -T btop btop";
+        "tooltip" = false;
       };
 
-      "memory" = {
+      "custom/memory" = {
         "interval" = 5;
-        "format" = " {used}GiB";
-        "max-length" = 15;
+        "format" = " {}";
         "on-click" = "kitty -T btop btop";
+        "return-type" = "json";
+        "exec" = "~/.config/waybar/scripts/utility/memhog.sh";
       };
 
       "backlight" = {
@@ -311,7 +315,7 @@
         "tooltip" = false;
       };
 
-      "custom/wiz" = {
+      "custom/lamp" = {
         "format" = "{icon} ";
         "format-icons" = ["󰌶" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
         "return-type" = "json";

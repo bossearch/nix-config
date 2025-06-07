@@ -35,6 +35,7 @@
     ./screenshot/sswindow.nix
 
     ./utility/ddcutil.nix
+    ./utility/memhog.nix
     ./utility/reboot.nix
     ./utility/shutdown.nix
     ./utility/virtualkeyboard.nix

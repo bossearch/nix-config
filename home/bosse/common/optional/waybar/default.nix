@@ -16,6 +16,7 @@
     waybar
     wl-screenrec
     sysboard
+    (python312.withPackages (ps: with ps; [requests]))
   ];
 
   programs.waybar = {
