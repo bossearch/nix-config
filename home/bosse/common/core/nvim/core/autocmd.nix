@@ -25,6 +25,7 @@
       }
 
       # Close some filetypes with <q>
+      # FIXME: sometime this autocmd prevent me to use wqa or qa command
       {
         event = ["FileType"];
         pattern = [
@@ -44,7 +45,7 @@
         callback.__raw = ''
           function(event)
             vim.bo[event.buf].buflisted = false
-            vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+            vim.keymap.set("n", "q", "<cmd>q!<cr>", { buffer = event.buf, silent = true })
           end
         '';
         desc = "Close certain filetypes with <q>";
