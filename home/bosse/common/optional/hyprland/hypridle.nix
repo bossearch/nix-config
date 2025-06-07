@@ -1,11 +1,11 @@
 {config, ...}: let
-  timeout =
-    if config.spec.hostName == "vm"
-    then 86400
-    else 3600;
+  enabled =
+    if config.spec.hostName == "pc"
+    then true
+    else false;
 in {
   services.hypridle = {
-    enable = true;
+    enable = enabled;
     settings = {
       listener = [
         # HYPRLOCK TIMEOUT
@@ -21,7 +21,7 @@ in {
         }
         # SUSPEND TIMEOUT
         {
-          timeout = timeout;
+          timeout = 3600;
           on-timeout = "(playerctl -a status | grep -q 'Playing' || systemctl suspend)";
         }
       ];
