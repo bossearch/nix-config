@@ -6,7 +6,7 @@
 in {
   programs.kitty = {
     enable = true;
-    themeFile = "tokyo_night_night";
+    # themeFile = "tokyo_night_night";
     settings = {
       confirm_os_window_close = 0;
       enable_audio_bell = false;

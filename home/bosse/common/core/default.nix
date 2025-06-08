@@ -12,6 +12,7 @@
       ./nixpkgs.nix
       ./nvim
       ./shell
+      ./stylix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
