@@ -44,13 +44,6 @@
       };
       listen_addresses = ["127.0.0.1:53" "[::1]:53"];
       server_names = ["cloudflare-security" "cloudflare-security-ipv6"];
-      # anonymized_dns = {
-      #   routes = [
-      #     { server_name = "dnscry.pt-jakarta-ipv4"; via = [ "dnscry.pt-anon-jakarta-ipv4" ]; }
-      #     { server_name = "dnscry.pt-jakarta-ipv6"; via = [ "dnscry.pt-anon-jakarta-ipv6" ]; }
-      #   ];
-      #   skip_incompatible = true;
-      # };
     };
   };
 
