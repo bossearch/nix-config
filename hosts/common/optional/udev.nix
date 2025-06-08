@@ -23,13 +23,17 @@
       DEVICE_NAME="$DEVICE_PATH"
     fi
 
+    blocked=($(${pkgs.usbguard}/bin/usbguard list-devices | grep block | grep -oP 'id \K[0-9a-f]{4}:[0-9a-f]{4}' | tail -1))
+
     # Show Zenity dialog
     choice=$(/run/wrappers/bin/su bosse -c "${pkgs.zenity}/bin/zenity --question \
       --text='Do you trust the $DEVICE_VENDOR $DEVICE_NAME device?' --title='New Device Detected' \
       --ok-label='Allow' --cancel-label='Block'")
 
+
     if [ $? -eq 0 ]; then
-      /run/wrappers/bin/pkexec /home/bosse/.nix-config/scripts/automate-usbguard.sh -t
+      ${pkgs.usbguard}/bin/usbguard allow-device $blocked
+      #echo "Allowed device $blocked" >> /home/bosse/.allowed
     else
       :
     fi
@@ -44,7 +48,6 @@ in {
     # mouse, keyboard, hub, monitor hub.
     extraRules = ''
       ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", \
-      ENV{ID_VENDOR_ID}!="1b1c", ENV{ID_MODEL_ID}!="1b3e", \
       ENV{ID_VENDOR_ID}!="4653", ENV{ID_MODEL_ID}!="0001", \
       ENV{ID_VENDOR_ID}!="2109", ENV{ID_MODEL_ID}!="2815", \
       ENV{ID_VENDOR_ID}!="05e3", ENV{ID_MODEL_ID}!="0610", \
