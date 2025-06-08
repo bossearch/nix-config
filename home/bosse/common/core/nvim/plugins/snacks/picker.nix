@@ -8,9 +8,6 @@
   matcher = {
     frecency = true;
   };
-  layout = {
-    preset = "custom";
-  };
   win = {
     input = {
       keys.__raw = ''
@@ -41,7 +38,6 @@
         list = {
           keys.__raw = ''
             {
-              ["<leader>/"] = { "close", mode = { "i", "n" } },
               ["-"] = { "edit_split", mode = { "i", "n" } },
               ["|"] = { "edit_vsplit", mode = { "i", "n" } },
             }

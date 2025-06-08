@@ -1,30 +1,12 @@
 [
-  # File
   {
-    __unkeyed = "<leader>/";
-    group = "File";
-    icon = "󱧶 ";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>//";
+    __unkeyed = "<cr>/";
     __unkeyed-1 = "<cmd>lua Snacks.explorer()<cr>";
     desc = "Open Explorer";
     mode = "n";
   }
   {
-    __unkeyed = "<leader>/o";
-    __unkeyed-1.__raw = ''
-      function()
-        vim.g.oil_open_in_buffer = true
-        require("oil").open()
-      end
-    '';
-    desc = "Open Oil";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>/f";
+    __unkeyed = "<cr>f";
     __unkeyed-1.__raw = ''
       function()
         vim.g.oil_open_in_buffer = false
@@ -35,7 +17,7 @@
     mode = "n";
   }
   {
-    __unkeyed = "<leader>/d";
+    __unkeyed = "<cr>d";
     __unkeyed-1.__raw = ''
       function()
         detail = not detail
@@ -48,5 +30,22 @@
     '';
     desc = "Open Oil On Detail View";
     mode = "n";
+  }
+  {
+    __unkeyed = "<cr><cr>";
+    __unkeyed-1.__raw = ''
+      function()
+        require("snacks").terminal.toggle("fish", {
+          win = {
+            width = 0.8,         -- Width of the terminal
+            height = 0.8,        -- Height of the terminal
+            border = "rounded",  -- Sharp border style (use "double" if preferred)
+          },
+          cwd = vim.fn.getcwd(), -- Set the current working directory
+        })
+      end
+    '';
+    desc = "Toggle Terminal On Float";
+    mode = ["n" "t"];
   }
 ]

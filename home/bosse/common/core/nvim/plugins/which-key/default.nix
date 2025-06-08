@@ -11,7 +11,7 @@
       delay = 200;
       expand = 1;
       notify = true;
-      preset = "classic"; # classic, modern, or helix
+      preset = "helix"; # classic, modern, or helix
       triggers.__raw = ''
         {
           { "<leader>", mode = { "n", "v" } },
@@ -20,14 +20,13 @@
         }
       '';
       spec =
-        (import ./file.nix)
+        (import ./siuu.nix)
         ++ (import ./gitsigns.nix)
         ++ (import ./lsp.nix)
         ++ (import ./markdown.nix)
         ++ (import ./neo.nix)
         ++ (import ./picker.nix)
         ++ (import ./quickfix.nix)
-        ++ (import ./terminal.nix)
         ++ (import ./toggle.nix)
         ++ (import ./window.nix);
     };

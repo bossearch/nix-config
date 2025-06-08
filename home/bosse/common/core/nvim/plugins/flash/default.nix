@@ -17,7 +17,7 @@
       };
     };
     luaConfig.post = ''
-      vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', function()
+      vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
         require('flash').jump()
       end, { desc = 'Flash jump forward' })
     '';

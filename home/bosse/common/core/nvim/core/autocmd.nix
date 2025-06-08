@@ -25,7 +25,6 @@
       }
 
       # Close some filetypes with <q>
-      # FIXME: sometime this autocmd prevent me to use wqa or qa command
       {
         event = ["FileType"];
         pattern = [

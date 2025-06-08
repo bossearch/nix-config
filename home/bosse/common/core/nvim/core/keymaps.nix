@@ -170,15 +170,6 @@
           noremap = true;
         };
       }
-      {
-        key = "S";
-        action = "<Nop>";
-        mode = ["n" "v"];
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
       # References
       {
         key = "]]";
