@@ -1,18 +1,16 @@
-{
+{config, ...}: {
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-colors.css" = {
     text = ''
       :root {
-        --foreground-alpha: #16161ecc;
-        --foreground: #16161e;
-        --background: #1a1b26;
-        --bbackground: #292a34;
-        --red: #f7768e;
-        --white: #c0caf5;
-        --cyan: #27a1b9;
-        --favicon-img: url('assets/tab-favicon-f7768e.png');
+        --foreground-alpha: ${config.lib.stylix.colors.withHashtag.base01}cc;
+        --foreground: ${config.lib.stylix.colors.withHashtag.base01};
+        --background: ${config.lib.stylix.colors.withHashtag.base00};
+        --bbackground: ${config.lib.stylix.colors.withHashtag.base02};
+        --red: ${config.lib.stylix.colors.withHashtag.base08};
+        --white: ${config.lib.stylix.colors.withHashtag.base07};
+        --cyan: ${config.lib.stylix.colors.withHashtag.base0F};
         &[privatebrowsingmode=temporary] {
-          --red: #bb9af7;
-          --favicon-img: url('assets/tab-favicon-bb9af7.png');
+          --red: ${config.lib.stylix.colors.withHashtag.base0E};
         }
       }
 
@@ -20,16 +18,6 @@
       .tabbrowser-tab[visuallyselected],
       .tabbrowser-tab[multiselected] {
         color: var(--red) !important;
-      }
-
-      /* Replace favicon for inactive tab, only for 'tab' label */
-      .tabbrowser-tab[label="tab"]:not([visuallyselected]) .tab-icon-image {
-        content: url('assets/tab-favicon-c0caf5.png') !important;
-      }
-
-      /* Replace favicon for active tab, only for 'tab' label */
-      .tabbrowser-tab[label="tab"][visuallyselected] .tab-icon-image {
-        content: var(--favicon-img) !important;
       }
 
       :root {
