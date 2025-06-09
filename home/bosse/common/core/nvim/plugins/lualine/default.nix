@@ -6,9 +6,40 @@
         event = ["BufReadPre" "BufNewFile"];
       };
     };
+    luaConfig.pre = ''
+      local palette = require("lib.util").get_stylix_palette()
+      local custom_lualine_theme = {
+        normal = {
+          a = { fg = palette.base00, bg = palette.base0D, gui = 'bold' },
+          b = { fg = palette.base0D, bg = palette.base02 },
+          c = { fg = palette.base05, bg = palette.base01 },
+        },
+        insert = {
+          a = { fg = palette.base00, bg = palette.base0B, gui = 'bold' },
+          b = { fg = palette.base0B, bg = palette.base02 },
+        },
+        visual = {
+          a = { fg = palette.base00, bg = palette.base0E, gui = 'bold' },
+          b = { fg = palette.base0E, bg = palette.base02 },
+        },
+        replace = {
+          a = { fg = palette.base00, bg = palette.base08, gui = 'bold' },
+          b = { fg = palette.base08, bg = palette.base02 },
+        },
+        command = {
+          a = { fg = palette.base00, bg = palette.base0A, gui = 'bold' },
+          b = { fg = palette.base0A, bg = palette.base02 },
+        },
+        inactive = {
+          a = { fg = palette.base03, bg = palette.base00 },
+          b = { fg = palette.base03, bg = palette.base00 },
+          c = { fg = palette.base03, bg = palette.base01 },
+        },
+      }
+    '';
     settings = {
       options = {
-        theme = "auto";
+        theme.__raw = ''custom_lualine_theme'';
         globalstatus = true;
         disabled_filetypes = {statusline = ["dashboard" "alpha"];};
         section_separators = {
@@ -55,12 +86,12 @@
             {
               require("noice").api.status.command.get,
               cond = require("noice").api.status.command.has,
-              color = { fg = "#ff9e64" },
+              color = { fg = palette.base09 },
             },
             {
               require("noice").api.status.mode.get,
               cond = require("noice").api.status.mode.has,
-              color = { fg = "#bb9af7" },
+              color = { fg = palette.base0E },
             },
             -- {
             --   function()
@@ -69,7 +100,7 @@
             --   cond = function()
             --     return package.loaded["dap"] and require("dap").status() ~= ""
             --   end,
-            --   color = { fg = "#f7768e" },
+            --   color = { fg = palette.base08 },
             -- },
           }
         '';

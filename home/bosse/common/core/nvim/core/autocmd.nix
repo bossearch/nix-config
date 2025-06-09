@@ -105,6 +105,28 @@
         '';
         desc = "Set colorcolumn for git commit messages";
       }
+
+      # Set custom hl for mini.base16
+      {
+        event = ["VimEnter"];
+        callback.__raw = ''
+          function()
+            local p = require("lib.util").get_stylix_palette()
+            vim.api.nvim_set_hl(0, "Normal", { fg = p.base05, bg = p.base00 })
+            vim.api.nvim_set_hl(0, "NormalFloat", { fg = p.base05, bg = p.base01 })
+            vim.api.nvim_set_hl(0, "NormalNC", { fg = p.base05, bg = p.base00 })
+            vim.api.nvim_set_hl(0, "FloatBorder", {fg = p.base0F,  bg = p.base01 })
+            vim.api.nvim_set_hl(0, "WarningMsg", { fg = p.base0A })
+            vim.api.nvim_set_hl(0, "WinSeparator", { fg = p.base01, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = p.base0A })
+            vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = p.base0A })
+            vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = p.base0A })
+            vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = p.base0F, bg = p.base01 })
+            vim.api.nvim_set_hl(0, "GitSignsChange", { fg = p.base0D, bg = p.base01 })
+            vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = p.base0F, bg = p.base01 })
+          end
+        '';
+      }
     ];
   };
 }

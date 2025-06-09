@@ -1,7 +1,7 @@
 {
   programs.nixvim.colorschemes = {
     tokyonight = {
-      enable = true;
+      enable = false;
       settings = {
         style = "night";
       };
