@@ -34,6 +34,8 @@
       # Send the new dimming level to the lamp
       echo "Setting dimming level to $new_dimming" # Debugging info
       echo -n "{\"method\":\"setPilot\",\"params\":{\"dimming\":$new_dimming}}" | socat - UDP:$lamp_ip:$port
+
+      pkill -SIGRTMIN+15 waybar
     '';
   };
 }

@@ -9,6 +9,9 @@
       # Ensure the screenshots directory exists
       mkdir -p ~/Videos//Screenrecords
 
+      # For sourcing looper.sh
+      SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
       # Define the filename with the current date and time
       FILENAME="$HOME/Videos/Screenrecords/Area-$(date +%F_%T).mp4"
 
@@ -32,7 +35,7 @@
       sleep 3
 
       # Start recording the entire monitor
-      wl-screenrec --audio --low-power=off --no-damage -g "$GEOMETRY" -f "$FILENAME"
+      wl-screenrec --audio --low-power=off --no-damage -g "$GEOMETRY" -f "$FILENAME" & "$SCRIPT_DIR/looper.sh"
 
       # When the script finishes (e.g., with CTRL+C), notify the user
       trap 'dunstify "Screenrecord saved to $FILENAME" -t 3000' EXIT

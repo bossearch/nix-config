@@ -9,6 +9,9 @@
       # Ensure the screenshots directory exists
       mkdir -p ~/Videos//Screenrecords
 
+      # For sourcing looper.sh
+      SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
       # Define tooltip file location
       SCREENRECORD_TOOLTIP="$HOME/.cache/bosse/screenrecord-tooltip"
 
@@ -40,7 +43,7 @@
       sleep 3
 
       # Start recording the active window
-      wl-screenrec --audio --low-power=off --no-damage -g "$GEOMETRY" -f "$FILENAME"
+      wl-screenrec --audio --low-power=off --no-damage -g "$GEOMETRY" -f "$FILENAME" & "$SCRIPT_DIR/looper.sh"
 
       # When the script finishes (e.g., with CTRL+C), notify the user
       trap 'dunstify "Screenrecord saved to $FILENAME" -t 3000' EXIT

@@ -325,7 +325,7 @@
         "on-click" = "~/.config/waybar/scripts/lamp-control/turn-on.sh";
         "on-click-right" = "~/.config/waybar/scripts/lamp-control/turn-off.sh";
         "on-click-middle" = "~/.config/waybar/scripts/lamp-control/toggle-temp.sh";
-        "interval" = 1;
+        "signal" = 15;
         "tooltip" = false;
       };
 
@@ -352,10 +352,10 @@
 
       "custom/stoprec" = {
         "format" = " {}";
-        "interval" = 1;
         "return-type" = "json";
         "exec" = "~/.config/waybar/scripts/screenrecord/checkrec.sh";
         "on-click" = "~/.config/waybar/scripts/screenrecord/stoprec.sh";
+        "signal" = 11;
       };
 
       "custom/ocr" = {

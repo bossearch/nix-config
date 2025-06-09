@@ -35,6 +35,8 @@
       echo "Setting dimming level to $new_dimming"
       # echo -n "{\"method\":\"setPilot\",\"params\":{\"dimming\":$new_dimming}}" | ncat -u -w 1 $lamp_ip $port
       echo -n "{\"method\":\"setPilot\",\"params\":{\"dimming\":$new_dimming}}" | socat - UDP:$lamp_ip:$port
+
+      pkill -SIGRTMIN+15 waybar
     '';
   };
 }

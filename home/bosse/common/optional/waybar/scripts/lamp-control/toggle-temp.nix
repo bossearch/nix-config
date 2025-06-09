@@ -22,6 +22,8 @@
       else
         echo "Failed to get or parse temperature."
       fi
+
+      pkill -SIGRTMIN+15 waybar
     '';
   };
 }
