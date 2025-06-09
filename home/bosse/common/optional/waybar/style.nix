@@ -1,5 +1,19 @@
-{
+{config, ...}: let
+  palette = config.lib.stylix.colors;
+in {
   programs.waybar.style = ''
+    @define-color bg rgba(${palette.base00-rgb-r}, ${palette.base00-rgb-g}, ${palette.base00-rgb-b}, 0.8);
+    @define-color fg rgba(${palette.base01-rgb-r}, ${palette.base01-rgb-g}, ${palette.base01-rgb-b}, 0.8);
+    @define-color bblack ${config.lib.stylix.colors.withHashtag.base03};
+    @define-color gray ${config.lib.stylix.colors.withHashtag.base04};
+    @define-color nwhite ${config.lib.stylix.colors.withHashtag.base06};
+    @define-color bwhite ${config.lib.stylix.colors.withHashtag.base07};
+    @define-color red ${config.lib.stylix.colors.withHashtag.base08};
+    @define-color yellow ${config.lib.stylix.colors.withHashtag.base0A};
+    @define-color green ${config.lib.stylix.colors.withHashtag.base0B};
+    @define-color cyan ${config.lib.stylix.colors.withHashtag.base0C};
+    @define-color blue ${config.lib.stylix.colors.withHashtag.base0D};
+    @define-color magenta ${config.lib.stylix.colors.withHashtag.base0E};
     * {
       font-family: CommitMono Nerd Font;
       font-size: 16px;
@@ -7,19 +21,19 @@
     }
 
     window#waybar {
-      background-color: rgba(26, 27, 38, 0.8);
+      background-color: @bg;
       border-radius: 8px;
     }
 
     #launcher {
       /*group for launcher*/
-      color: #414868;
-      background-color: rgba(22, 22, 30, 0.8);
+      color: @bblack;
+      background-color: @fg;
       border-radius: 8px;
       padding: 0px 5px 0px 0px;
     }
     #custom-launcher {
-      color: #7dcfff;
+      color: @cyan;
       padding: 0px 10px 0px 10px;
     }
     #custom-lock {
@@ -34,63 +48,63 @@
 
     #task {
       /*group for cpu, gpu and memory*/
-      background-color: rgba(22, 22, 30, 0.8);
+      background-color: @fg;
       border-radius: 8px;
       padding: 0 5px;
     }
     #cpu,
     #temperature,
     #custom-cputemp {
-      color: #f7768e;
+      color: @red;
       padding: 0 5px;
     }
     #custom-gpu,
     #temperature.gpu,
     #custom-gputemp {
-      color: #e0af68;
+      color: @yellow;
       padding: 0 5px;
     }
     #custom-memory {
-      color: #9ece6a;
+      color: @green;
       padding: 0 5px;
     }
 
     #custom-weather {
-      color: #c0caf5;
-      background-color: rgba(22, 22, 30, 0.8);
+      color: @bwhite;
+      background-color: @fg;
       padding: 0 10px;
     }
 
     #workspaces {
       border-radius: 8px;
-      background-color: rgba(22, 22, 30, 0.8);
+      background-color: @fg;
     }
 
     #workspaces button {
       padding: 0 5px;
-      color: #7984a4;
+      color: @gray;
       background-color: transparent;
     }
 
     #workspaces button.urgent {
       font-weight: bold;
-      color: #ebcb8b;
+      color: @yellow;
     }
 
     #workspaces button.active {
       background: alpha(@active, 0.4);
-      color: #cccccc;
+      color: @nwhite;
       border-radius: 8px;
     }
 
     #window {
-      color: #c0caf5;
+      color: @bwhite;
     }
 
     #customtray {
       /*group for stoprec and tray*/
-      color: #ffffff;
-      background-color: rgba(22, 22, 30, 0.8);
+      color: @nwhite;
+      background-color: @fg;
     }
     #privacy {
       padding: 0px 0px 0px 10px;
@@ -106,13 +120,13 @@
     }
     #tray > .needs-attention {
       -gtk-icon-effect: highlight;
-      background-color: #9ece6a;
+      background-color: @green;
     }
 
     #utility {
       /*group for screenshot, virtualkeyboard,hyprpicker, and wiz*/
-      background-color: rgba(22, 22, 30, 0.8);
-      color: #c0caf5;
+      background-color: @fg;
+      color: @bwhite;
       border-radius: 8px;
     }
     #custom-virtualkeyboard {
@@ -127,13 +141,13 @@
 
     #monitor {
       /*group for ddcutil, pulseaudio, and internet*/
-      background-color: rgba(22, 22, 30, 0.8);
-      color: #7aa2f7;
+      background-color: @fg;
+      color: @blue;
       border-radius: 8px;
     }
 
     #network {
-      color: #bb9af7;
+      color: @magenta;
       padding: 0 10px;
     }
     #network.disconnected {
@@ -141,15 +155,15 @@
     }
 
     #clock {
-      color: #c0caf5;
-      background-color: rgba(22, 22, 30, 0.8);
+      color: @bwhite;
+      background-color: @fg;
       border-radius: 8px;
       padding: 0 10px;
     }
 
     #custom-notification {
-      color: #c0caf5;
-      background-color: rgba(22, 22, 30, 0.8);
+      color: @bwhite;
+      background-color: @fg;
       border-radius: 8px;
       padding: 0px 4.5px 0px 0px;
     }
@@ -160,41 +174,5 @@
     .modules-right > widget:last-child > #workspaces {
       margin-right: 0;
     }
-
-    /*
-    #backlight {
-      color: #8fbcbb;
-    }
-
-    #battery {
-      color: #c0caf5;
-    }
-
-    #battery.charging,
-    #battery.full,
-    #battery.plugged {
-      color: #26a65b;
-    }
-
-    @keyframes blink {
-      to {
-        background-color: rgba(30, 34, 42, 0.5);
-        color: #abb2bf;
-      }
-    }
-
-    #battery.critical:not(.charging) {
-      color: #f53c3c;
-      animation-name: blink;
-      animation-duration: 0.5s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-
-    #disk {
-      background-color: #964b00;
-    }
-    }*/
   '';
 }
