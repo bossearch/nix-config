@@ -9,7 +9,7 @@
     # ./common/optional/kdeconnect.nix
     ./common/optional/kitty.nix
     # ./common/optional/minecraft.nix
-    ./common/optional/mpv
+    # ./common/optional/mpv
     ./common/optional/nautilus.nix
     # ./common/optional/nchat
     # ./common/optional/neomutt.nix
@@ -19,7 +19,7 @@
     # ./common/optional/qmk
     # ./common/optional/spotify.nix
     ./common/optional/theme
-    ./common/optional/vaults.nix
+    # ./common/optional/vaults.nix
     # ./common/optional/vesktop
     ./common/optional/waybar
     # ./common/optional/zathura.nix

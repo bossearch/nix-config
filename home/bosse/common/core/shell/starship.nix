@@ -6,6 +6,7 @@
     enableTransience = true;
     settings = {
       format = lib.concatStrings [
+        "$hostname"
         "$directory"
         "$git_branch"
         "$git_status"
@@ -20,10 +21,15 @@
       fill = {
         symbol = " ";
       };
+      hostname = {
+        ssh_only = true;
+        ssh_symbol = " ";
+        format = "[$ssh_symbol]($style)";
+        style = "yellow";
+      };
       directory = {
         style = "blue";
         home_symbol = "~";
-        format = "[$path ]($style)";
         truncation_symbol = "…/";
         truncation_length = 0;
         truncate_to_repo = false;
@@ -35,14 +41,15 @@
         style = "purple";
       };
       git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](red) ($ahead_behind $stashed)]($style)";
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](red)($ahead_behind $stashed)]($style)";
         style = "cyan";
-        conflicted = "​";
-        untracked = "​";
-        modified = "​";
-        staged = "​";
-        renamed = "​";
-        deleted = "​";
+        # use U+00A0 instead <200b>
+        conflicted = " ";
+        untracked = " ";
+        modified = " ";
+        staged = " ";
+        renamed = " ";
+        deleted = " ";
         stashed = "≡";
       };
       git_state = {

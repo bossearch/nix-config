@@ -47,7 +47,7 @@
           set message "Exit: $exit_code · Took $readable_duration"
       end
 
-      notify-send -u $urgency "$cmd" "$message" --icon=utilities-terminal --app-name=fish
+      notify-send -u $urgency "$cmd" "$message"
     '';
   };
   savecmd = {

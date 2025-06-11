@@ -1,172 +1,189 @@
-{
+{config, ...}: let
+  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
+  base01 = "${config.lib.stylix.colors.withHashtag.base01}";
+  base02 = "${config.lib.stylix.colors.withHashtag.base02}";
+  base03 = "${config.lib.stylix.colors.withHashtag.base03}";
+  base04 = "${config.lib.stylix.colors.withHashtag.base04}";
+  base05 = "${config.lib.stylix.colors.withHashtag.base05}";
+  base06 = "${config.lib.stylix.colors.withHashtag.base06}";
+  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
+  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
+  base09 = "${config.lib.stylix.colors.withHashtag.base09}";
+  base0A = "${config.lib.stylix.colors.withHashtag.base0A}";
+  base0B = "${config.lib.stylix.colors.withHashtag.base0B}";
+  base0C = "${config.lib.stylix.colors.withHashtag.base0C}";
+  base0D = "${config.lib.stylix.colors.withHashtag.base0D}";
+  base0E = "${config.lib.stylix.colors.withHashtag.base0E}";
+  base0F = "${config.lib.stylix.colors.withHashtag.base0F}";
+in {
   programs.yazi.theme = {
     manager = {
       cwd = {
-        fg = "#a9b1d6";
+        fg = base05;
         italic = true;
       };
 
       # Hovered
-      hovered = {bg = "#292e42";};
-      preview_hovered = {bg = "#292e42";};
+      hovered = {bg = base03;};
+      preview_hovered = {bg = base03;};
 
       # Find
       find_keyword = {
-        fg = "#16161e";
-        bg = "#ff9e64";
+        fg = base01;
+        bg = base09;
         bold = true;
       };
       find_position = {
-        fg = "#0db9d7";
-        bg = "#192b38";
+        fg = base0F;
+        bg = base06;
         bold = true;
       };
 
       # Marker
       marker_copied = {
-        fg = "#73daca";
-        bg = "#73daca";
+        fg = base0B;
+        bg = base0B;
       };
       marker_cut = {
-        fg = "#f7768e";
-        bg = "#f7768e";
+        fg = base08;
+        bg = base08;
       };
       marker_marked = {
-        fg = "#bb9af7";
-        bg = "#bb9af7";
+        fg = base0E;
+        bg = base0E;
       };
       marker_selected = {
-        fg = "#7aa2f7";
-        bg = "#7aa2f7";
+        fg = base0D;
+        bg = base0D;
       };
 
       # Tab
       tab_active = {
-        fg = "#c0caf5";
-        bg = "#292e42";
+        fg = base07;
+        bg = base02;
       };
       tab_inactive = {
-        fg = "#3b4261";
-        bg = "#1a1b26";
+        fg = base02;
+        bg = base00;
       };
       tab_width = 1;
 
       # Count
       count_copied = {
-        fg = "#c0caf5";
-        bg = "#41a6b5";
+        fg = base07;
+        bg = base0B;
       };
       count_cut = {
-        fg = "#c0caf5";
-        bg = "#db4b4b";
+        fg = base07;
+        bg = base08;
       };
       count_selected = {
-        fg = "#c0caf5";
-        bg = "#3d59a1";
+        fg = base07;
+        bg = base0D;
       };
 
       # Border
       border_symbol = "│";
-      border_style = {fg = "#27a1b9";};
+      border_style = {fg = base0F;};
     };
 
     status = {
       separator_open = "";
       separator_close = "";
       separator_style = {
-        fg = "#3b4261";
-        bg = "#3b4261";
+        fg = base02;
+        bg = base02;
       };
 
       # Mode
       mode_normal = {
-        fg = "#16161e";
-        bg = "#7aa2f7";
+        fg = base01;
+        bg = base0D;
         bold = true;
       };
       mode_select = {
-        fg = "#16161e";
-        bg = "#bb9af7";
+        fg = base01;
+        bg = base0E;
         bold = true;
       };
       mode_unset = {
-        fg = "#16161e";
-        bg = "#9d7cd8";
+        fg = base01;
+        bg = base0E;
         bold = true;
       };
 
       # Progress
       progress_label = {
-        fg = "#a9b1d6";
+        fg = base05;
         bold = true;
       };
-      progress_normal = {fg = "#1a1b26";};
-      progress_error = {fg = "#f7768e";};
+      progress_normal = {fg = base00;};
+      progress_error = {fg = base08;};
 
       # Permissions
-      permissions_t = {fg = "#7aa2f7";};
-      permissions_r = {fg = "#e0af68";};
-      permissions_w = {fg = "#f7768e";};
-      permissions_x = {fg = "#9ece6a";};
-      permissions_s = {fg = "#414868";};
+      permissions_t = {fg = base0D;};
+      permissions_r = {fg = base0A;};
+      permissions_w = {fg = base08;};
+      permissions_x = {fg = base0B;};
+      permissions_s = {fg = base03;};
     };
 
     select = {
-      border = {fg = "#27a1b9";};
+      border = {fg = base0F;};
       active = {
-        fg = "#c0caf5";
-        bg = "#283457";
+        fg = base07;
+        bg = base02;
       };
-      inactive = {fg = "#c0caf5";};
+      inactive = {fg = base07;};
     };
 
     input = {
-      border = {fg = "#0db9d7";};
+      border = {fg = base0F;};
       title = {};
-      value = {fg = "#9d7cd8";};
-      selected = {bg = "#283457";};
+      value = {fg = base0E;};
+      selected = {bg = base02;};
     };
 
     completion = {
-      border = {fg = "#0db9d7";};
+      border = {fg = base0F;};
       active = {
-        fg = "#c0caf5";
-        bg = "#283457";
+        fg = base07;
+        bg = base02;
       };
-      inactive = {fg = "#c0caf5";};
+      inactive = {fg = base07;};
     };
 
     tasks = {
-      border = {fg = "#27a1b9";};
+      border = {fg = base0F;};
       title = {};
       hovered = {
-        fg = "#c0caf5";
-        bg = "#283457";
+        fg = base07;
+        bg = base02;
       };
     };
 
     which = {
       cols = 3;
-      mask = {bg = "#16161e";};
-      cand = {fg = "#7dcfff";};
-      rest = {fg = "#7aa2f7";};
-      desc = {fg = "#bb9af7";};
+      mask = {bg = base01;};
+      cand = {fg = base0C;};
+      rest = {fg = base0D;};
+      desc = {fg = base0E;};
       separator = "  ";
-      separator_style = {fg = "#565f89";};
+      separator_style = {fg = base04;};
     };
 
     notify = {
-      title_info = {fg = "#0db9d7";};
-      title_warn = {fg = "#e0af68";};
-      title_error = {fg = "#f7768e";};
+      title_info = {fg = base0F;};
+      title_warn = {fg = base0A;};
+      title_error = {fg = base08;};
     };
 
     help = {
-      on = {fg = "#9ece6a";};
-      run = {fg = "#bb9af7";};
-      hovered = {bg = "#283457";};
+      on = {fg = base0B;};
+      run = {fg = base0E;};
+      hovered = {bg = base02;};
       footer = {
-        fg = "#c0caf5";
+        fg = base07;
         bg = "#1a1b26";
       };
     };
@@ -176,50 +193,50 @@
         # Images
         {
           mime = "image/*";
-          fg = "#e0af68";
+          fg = base0A;
         }
 
         # Media
         {
           mime = "{audio,video};/*";
-          fg = "#bb9af7";
+          fg = base0E;
         }
 
         # Archives
         {
           mime = "application/*zip";
-          fg = "#f7768e";
+          fg = base08;
         }
         {
           mime = "application/x-{tar,bzip*,7z-compressed,xz,rar};";
-          fg = "#f7768e";
+          fg = base08;
         }
 
         # Documents
         {
           mime = "application/{pdf,doc,rtf,vnd.*};";
-          fg = "#7dcfff";
+          fg = base0C;
         }
 
         # Empty files
-        # { mime = "inode/x-empty"; fg = "#f7768e"; };
+        # { mime = "inode/x-empty"; fg = base08; };
 
         # Special files
         {
           name = "*";
           is = "orphan";
-          bg = "#f7768e";
+          bg = base08;
         }
         {
           name = "*";
           is = "exec";
-          fg = "#9ece6a";
+          fg = base0B;
         }
 
         # Fallback
         {
           name = "*/";
-          fg = "#7aa2f7";
+          fg = base0D;
         }
       ];
     };

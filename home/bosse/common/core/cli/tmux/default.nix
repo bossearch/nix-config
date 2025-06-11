@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./mythemux.nix
+    ./theme.nix
   ];
   programs.tmux = {
     enable = true;
