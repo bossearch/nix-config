@@ -1,10 +1,10 @@
 {config, ...}: let
-  base00 = config.lib.stylix.colors.withHashtag.base00;
-  base01 = config.lib.stylix.colors.withHashtag.base01;
-  base02 = config.lib.stylix.colors.withHashtag.base02;
-  base05 = config.lib.stylix.colors.withHashtag.base05;
-  base0D = config.lib.stylix.colors.withHashtag.base0D;
-  base0E = config.lib.stylix.colors.withHashtag.base0E;
+  base00 = config.colorScheme.palette.base00;
+  base01 = config.colorScheme.palette.base01;
+  base02 = config.colorScheme.palette.base02;
+  base05 = config.colorScheme.palette.base05;
+  base0D = config.colorScheme.palette.base0D;
+  base0E = config.colorScheme.palette.base0E;
 in {
   home.file.".config/nchat/app.conf" = {
     text = ''

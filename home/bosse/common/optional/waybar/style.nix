@@ -1,19 +1,26 @@
-{config, ...}: let
-  palette = config.lib.stylix.colors;
+{
+  config,
+  inputs,
+  ...
+}: let
+  nix-colors = inputs.nix-colors;
+  toRGBString = nix-colors.lib.conversions.hexToRGBString ",";
+  base00-rgba = "rgba(${toRGBString config.colorScheme.palette.base00}, 0.8)";
+  base01-rgba = "rgba(${toRGBString config.colorScheme.palette.base01}, 0.8)";
 in {
   programs.waybar.style = ''
-    @define-color bg rgba(${palette.base00-rgb-r}, ${palette.base00-rgb-g}, ${palette.base00-rgb-b}, 0.8);
-    @define-color fg rgba(${palette.base01-rgb-r}, ${palette.base01-rgb-g}, ${palette.base01-rgb-b}, 0.8);
-    @define-color bblack ${config.lib.stylix.colors.withHashtag.base03};
-    @define-color gray ${config.lib.stylix.colors.withHashtag.base04};
-    @define-color nwhite ${config.lib.stylix.colors.withHashtag.base06};
-    @define-color bwhite ${config.lib.stylix.colors.withHashtag.base07};
-    @define-color red ${config.lib.stylix.colors.withHashtag.base08};
-    @define-color yellow ${config.lib.stylix.colors.withHashtag.base0A};
-    @define-color green ${config.lib.stylix.colors.withHashtag.base0B};
-    @define-color cyan ${config.lib.stylix.colors.withHashtag.base0C};
-    @define-color blue ${config.lib.stylix.colors.withHashtag.base0D};
-    @define-color magenta ${config.lib.stylix.colors.withHashtag.base0E};
+    @define-color bg ${base00-rgba};
+    @define-color fg ${base01-rgba};
+    @define-color bblack #${config.colorScheme.palette.base03};
+    @define-color gray #${config.colorScheme.palette.base04};
+    @define-color nwhite #${config.colorScheme.palette.base06};
+    @define-color bwhite #${config.colorScheme.palette.base07};
+    @define-color red #${config.colorScheme.palette.base08};
+    @define-color yellow #${config.colorScheme.palette.base0A};
+    @define-color green #${config.colorScheme.palette.base0B};
+    @define-color cyan #${config.colorScheme.palette.base0C};
+    @define-color blue #${config.colorScheme.palette.base0D};
+    @define-color magenta #${config.colorScheme.palette.base0E};
     * {
       font-family: CommitMono Nerd Font;
       font-size: 16px;

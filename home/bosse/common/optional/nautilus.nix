@@ -8,8 +8,9 @@
 in {
   home.packages = with pkgs; [
     nautilus
+    dconf
     sushi
-    varia
+    # varia
   ];
 
   dconf.settings = {

@@ -1,16 +1,14 @@
 {pkgs, ...}: {
   imports = [
-    ./Kvantum
+    ./gtk
+    ./qt
   ];
   home.packages = with pkgs; [
-    dconf
-    papirus-icon-theme
-    tokyonight-gtk-theme
+    adw-gtk3
   ];
   home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
+    name = "macOS";
+    package = pkgs.apple-cursor;
   };
 
   xdg.enable = true;
@@ -18,12 +16,10 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Tokyonight-Dark";
-      package = pkgs.tokyonight-gtk-theme;
+      name = "adw-gtk3";
     };
     cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "macOS";
     };
     iconTheme = {
       name = "Papirus-Dark";

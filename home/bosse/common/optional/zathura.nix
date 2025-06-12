@@ -1,15 +1,20 @@
-{config, ...}: let
-  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
-  base01 = "${config.lib.stylix.colors.withHashtag.base01}";
-  base02 = "${config.lib.stylix.colors.withHashtag.base02}";
-  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
-  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
-  base0A = "${config.lib.stylix.colors.withHashtag.base0A}";
-  base0B = "${config.lib.stylix.colors.withHashtag.base0B}";
-  base0D = "${config.lib.stylix.colors.withHashtag.base0D}";
-  palette = config.lib.stylix.colors;
-  base0A-rgba = "rgba(${palette.base0A-rgb-r}, ${palette.base0A-rgb-g}, ${palette.base0A-rgb-b}, 0.5)";
-  base0D-rgba = "rgba(${palette.base0D-rgb-r}, ${palette.base0D-rgb-g}, ${palette.base0D-rgb-b}, 0.5)";
+{
+  config,
+  inputs,
+  ...
+}: let
+  nix-colors = inputs.nix-colors;
+  toRGBString = nix-colors.lib.conversions.hexToRGBString ",";
+  base0A-rgba = "rgba(${toRGBString config.colorScheme.palette.base0A}, 0.5)";
+  base0D-rgba = "rgba(${toRGBString config.colorScheme.palette.base0D}, 0.5)";
+  base00 = "#${config.colorScheme.palette.base00}";
+  base01 = "#${config.colorScheme.palette.base01}";
+  base02 = "#${config.colorScheme.palette.base02}";
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
+  base0A = "#${config.colorScheme.palette.base0A}";
+  base0B = "#${config.colorScheme.palette.base0B}";
+  base0D = "#${config.colorScheme.palette.base0D}";
 in {
   programs.zathura = {
     enable = true;

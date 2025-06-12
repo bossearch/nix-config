@@ -1,6 +1,6 @@
 {config, ...}: let
-  base01 = config.lib.stylix.colors.base01;
-  base03 = config.lib.stylix.colors.base03;
+  base01 = config.colorScheme.palette.base01;
+  base03 = config.colorScheme.palette.base03;
 in {
   wayland.windowManager.hyprland.extraConfig = ''
     ###############

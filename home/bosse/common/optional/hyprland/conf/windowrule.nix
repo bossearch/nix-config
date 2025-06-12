@@ -191,7 +191,7 @@ in {
     #zenity
     windowrule = float,class:(zenity)
     windowrule = center 1,class:(zenity)
-    windowrule = rounding 14,class:(zenity)
+    windowrule = rounding 18,class:(zenity)
 
     #misc
     windowrule = suppressevent maximize, class:.* # You'll probably like this.

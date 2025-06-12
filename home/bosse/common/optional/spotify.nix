@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: let
-  base00 = config.lib.stylix.colors.base00;
-  base02 = config.lib.stylix.colors.base02;
-  base05 = config.lib.stylix.colors.base05;
-  base07 = config.lib.stylix.colors.base07;
-  base08 = config.lib.stylix.colors.base08;
-  base0B = config.lib.stylix.colors.base0B;
-  base0D = config.lib.stylix.colors.base0D;
+  base00 = config.colorScheme.palette.base00;
+  base02 = config.colorScheme.palette.base02;
+  base05 = config.colorScheme.palette.base05;
+  base07 = config.colorScheme.palette.base07;
+  base08 = config.colorScheme.palette.base08;
+  base0B = config.colorScheme.palette.base0B;
+  base0D = config.colorScheme.palette.base0D;
 in {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default

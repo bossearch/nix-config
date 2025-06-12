@@ -1,16 +1,16 @@
 {config, ...}: let
-  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
-  base01 = "${config.lib.stylix.colors.withHashtag.base01}";
-  base03 = "${config.lib.stylix.colors.withHashtag.base03}";
-  base05 = "${config.lib.stylix.colors.withHashtag.base05}";
-  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
-  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
-  base0A = "${config.lib.stylix.colors.withHashtag.base0A}";
-  base0B = "${config.lib.stylix.colors.withHashtag.base0B}";
-  base0C = "${config.lib.stylix.colors.withHashtag.base0C}";
-  base0D = "${config.lib.stylix.colors.withHashtag.base0D}";
-  base0E = "${config.lib.stylix.colors.withHashtag.base0E}";
-  base0F = "${config.lib.stylix.colors.withHashtag.base0F}";
+  base00 = "#${config.colorScheme.palette.base00}";
+  base01 = "#${config.colorScheme.palette.base01}";
+  base03 = "#${config.colorScheme.palette.base03}";
+  base05 = "#${config.colorScheme.palette.base05}";
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
+  base0A = "#${config.colorScheme.palette.base0A}";
+  base0B = "#${config.colorScheme.palette.base0B}";
+  base0C = "#${config.colorScheme.palette.base0C}";
+  base0D = "#${config.colorScheme.palette.base0D}";
+  base0E = "#${config.colorScheme.palette.base0E}";
+  base0F = "#${config.colorScheme.palette.base0F}";
 in {
   programs.alacritty = {
     enable = true;

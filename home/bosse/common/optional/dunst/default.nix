@@ -3,11 +3,10 @@
   pkgs,
   ...
 }: let
-  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
-  base01 = "${config.lib.stylix.colors.withHashtag.base01}";
-  base02 = "${config.lib.stylix.colors.withHashtag.base02}";
-  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
-  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
+  base00 = "#${config.colorScheme.palette.base00}";
+  base01 = "#${config.colorScheme.palette.base01}";
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
 in {
   imports = [
     ./dunstsound.nix
@@ -21,8 +20,8 @@ in {
     };
     settings = {
       global = {
-        background = base01;
-        foreground = base00;
+        background = base00;
+        foreground = base07;
         monitor = 0;
         follow = "mouse";
         width = "(0,600)";
@@ -38,10 +37,10 @@ in {
         separator_height = 2;
         padding = 10;
         horizontal_padding = 10;
-        frame_width = 0;
+        frame_width = 4;
         sort = "update";
         idle_threshold = 0;
-        font = "CommitMono Nerd Font 13";
+        font = "CommitMono Nerd Font 14";
         line_height = 2;
         markup = "full";
         origin = "top-right";
@@ -78,23 +77,23 @@ in {
         timeout = 2;
         background = base00;
         foreground = base07;
-        frame_color = base07;
+        frame_color = base01;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_normal = {
         timeout = 3;
-        background = base01;
+        background = base00;
         foreground = base07;
-        frame_color = base07;
+        frame_color = base01;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_critical = {
         timeout = 4;
-        background = base02;
+        background = base00;
         foreground = base08;
-        frame_color = base08;
+        frame_color = base01;
         icon = "dialog-warning";
         script = "~/.config/dunst/dunstsound.sh";
       };

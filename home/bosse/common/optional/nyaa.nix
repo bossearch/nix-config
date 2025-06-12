@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: let
-  base09 = "${config.lib.stylix.colors.withHashtag.base09}";
-  base0F = "${config.lib.stylix.colors.withHashtag.base0F}";
+  base09 = "#${config.colorScheme.palette.base09}";
+  base0F = "#${config.colorScheme.palette.base0F}";
 in {
   imports = [
     inputs.nyaa.homeManagerModule

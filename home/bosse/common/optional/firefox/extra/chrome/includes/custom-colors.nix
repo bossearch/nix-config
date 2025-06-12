@@ -2,15 +2,15 @@
   home.file.".mozilla/firefox/bosse/chrome/includes/custom-colors.css" = {
     text = ''
       :root {
-        --foreground-alpha: ${config.lib.stylix.colors.withHashtag.base01}cc;
-        --foreground: ${config.lib.stylix.colors.withHashtag.base01};
-        --background: ${config.lib.stylix.colors.withHashtag.base00};
-        --bbackground: ${config.lib.stylix.colors.withHashtag.base02};
-        --red: ${config.lib.stylix.colors.withHashtag.base08};
-        --white: ${config.lib.stylix.colors.withHashtag.base07};
-        --cyan: ${config.lib.stylix.colors.withHashtag.base0F};
+        --foreground-alpha: #${config.colorScheme.palette.base01}cc;
+        --foreground: #${config.colorScheme.palette.base01};
+        --background: #${config.colorScheme.palette.base00};
+        --bbackground: #${config.colorScheme.palette.base02};
+        --red: #${config.colorScheme.palette.base08};
+        --white: #${config.colorScheme.palette.base07};
+        --cyan: #${config.colorScheme.palette.base0F};
         &[privatebrowsingmode=temporary] {
-          --red: ${config.lib.stylix.colors.withHashtag.base0E};
+          --red: #${config.colorScheme.palette.base0E};
         }
       }
 
