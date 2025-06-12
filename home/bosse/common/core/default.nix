@@ -6,13 +6,13 @@
 }: {
   imports =
     [
+      ./colors.nix
       ./cli
       ./mime.nix
       ./git.nix
       ./nixpkgs.nix
       ./nvim
       ./shell
-      ./stylix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

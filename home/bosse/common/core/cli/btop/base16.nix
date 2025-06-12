@@ -1,12 +1,12 @@
 {config, ...}: let
-  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
-  base03 = "${config.lib.stylix.colors.withHashtag.base03}";
-  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
-  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
-  base0A = "${config.lib.stylix.colors.withHashtag.base0A}";
-  base0B = "${config.lib.stylix.colors.withHashtag.base0B}";
-  base0C = "${config.lib.stylix.colors.withHashtag.base0C}";
-  base0F = "${config.lib.stylix.colors.withHashtag.base0F}";
+  base00 = "#${config.colorScheme.palette.base00}";
+  base03 = "#${config.colorScheme.palette.base03}";
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
+  base0A = "#${config.colorScheme.palette.base0A}";
+  base0B = "#${config.colorScheme.palette.base0B}";
+  base0C = "#${config.colorScheme.palette.base0C}";
+  base0F = "#${config.colorScheme.palette.base0F}";
 in {
   home.file.".config/btop/themes/base16.theme" = {
     text = ''

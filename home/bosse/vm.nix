@@ -22,7 +22,7 @@
     # ./common/optional/vaults.nix
     ./common/optional/vesktop
     ./common/optional/waybar
-    # ./common/optional/zathura.nix
+    ./common/optional/zathura.nix
   ];
 
   monitors = [

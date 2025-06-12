@@ -77,9 +77,10 @@ if [[ "$FORCE_UPDATE" == false ]]; then
   echo ""
   git status --short '*.nix'
 
-  # Stage all changes
-  git add .
 fi
+
+# Stage all changes
+git add .
 
 echo ""
 trap 'tput cnorm; git reset -q; echo -e "\nAborted by user."; exit 1' SIGINT

@@ -1,21 +1,30 @@
-{
+{config, ...}: let
+  base02 = "#${config.colorScheme.palette.base02}";
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
+  base09 = "#${config.colorScheme.palette.base09}";
+  base0A = "#${config.colorScheme.palette.base0A}";
+  base0D = "#${config.colorScheme.palette.base0D}";
+  base0F = "#${config.colorScheme.palette.base0F}";
+  base0E = "#${config.colorScheme.palette.base0E}";
+in {
   programs.lazygit = {
     enable = true;
     settings = {
       gui = {
         nerdFontsVersion = "3";
         theme = {
-          activeBorderColor = ["#ff9e64" "bold"];
-          inactiveBorderColor = ["#27a1b9"];
-          searchingActiveBorderColor = ["#ff9e64" "bold"];
-          optionsTextColor = ["#7aa2f7"];
-          selectedLineBgColor = ["#283457"];
-          cherryPickedCommitFgColor = ["#7aa2f7"];
-          cherryPickedCommitBgColor = ["#bb9af7"];
-          markedBaseCommitFgColor = ["#7aa2f7"];
-          markedBaseCommitBgColor = ["#e0af68"];
-          unstagedChangesColor = ["#db4b4b"];
-          defaultFgColor = ["#c0caf5"];
+          activeBorderColor = ["${base09}" "bold"];
+          inactiveBorderColor = ["${base0F}"];
+          searchingActiveBorderColor = ["${base09}" "bold"];
+          optionsTextColor = ["${base0D}"];
+          selectedLineBgColor = ["${base02}"];
+          cherryPickedCommitFgColor = ["${base0D}"];
+          cherryPickedCommitBgColor = ["${base0E}"];
+          markedBaseCommitFgColor = ["${base0D}"];
+          markedBaseCommitBgColor = ["${base0A}"];
+          unstagedChangesColor = ["${base08}"];
+          defaultFgColor = ["${base07}"];
         };
       };
     };

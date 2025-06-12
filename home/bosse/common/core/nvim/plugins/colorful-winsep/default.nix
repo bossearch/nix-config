@@ -1,14 +1,10 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.nixvim = {
     extraPlugins = [pkgs.vimPlugins.colorful-winsep];
     extraConfigLua = ''
       require("colorful-winsep").setup({
         hi = {
-          fg = "${config.lib.stylix.colors.withHashtag.base0F}",
+          fg = require("lib.util").get_colorScheme().base0F
         },
         -- This plugin will not be activated for filetype in the following table.
         no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },

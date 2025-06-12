@@ -1,6 +1,6 @@
 {
   pre = ''
-    local colors = require("lib.util").get_base16_colors()
+    local palette = require("lib.util").get_colorScheme()
   '';
   post = ''
     local pairs = require("mini.pairs")
