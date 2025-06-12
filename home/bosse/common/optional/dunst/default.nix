@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  base00 = "${config.lib.stylix.colors.withHashtag.base00}";
+  base01 = "${config.lib.stylix.colors.withHashtag.base01}";
+  base02 = "${config.lib.stylix.colors.withHashtag.base02}";
+  base07 = "${config.lib.stylix.colors.withHashtag.base07}";
+  base08 = "${config.lib.stylix.colors.withHashtag.base08}";
+in {
   imports = [
     ./dunstsound.nix
     ./sound.nix
@@ -11,8 +21,8 @@
     };
     settings = {
       global = {
-        background = "#16161e";
-        foreground = "#1a1b26";
+        background = base01;
+        foreground = base00;
         monitor = 0;
         follow = "mouse";
         width = "(0,600)";
@@ -22,7 +32,6 @@
         progress_bar_frame_width = 3;
         progress_bar_min_width = 460;
         progress_bar_max_width = 480;
-        highlight = "#79dcaa";
         indicate_hidden = true;
         shrink = true;
         transparency = 5;
@@ -30,7 +39,6 @@
         padding = 10;
         horizontal_padding = 10;
         frame_width = 0;
-        frame_color = "#ebdbb2";
         sort = "update";
         idle_threshold = 0;
         font = "CommitMono Nerd Font 13";
@@ -49,7 +57,7 @@
         icon_position = "left";
         max_icon_size = 86;
         min_icon_size = 32;
-        icon_theme = "Papirus,papirus";
+        icon_theme = "Papirus";
         enable_recursive_icon_lookup = true;
         sticky_history = true;
         history_length = 20;
@@ -68,35 +76,38 @@
       };
       urgency_low = {
         timeout = 2;
-        background = "#1a1b26";
-        foreground = "#c0caf5";
-        frame_color = "#c0caf5";
+        background = base00;
+        foreground = base07;
+        frame_color = base07;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_normal = {
         timeout = 3;
-        background = "#16161e";
-        foreground = "#c0caf5";
-        frame_color = "#c0caf5";
+        background = base01;
+        foreground = base07;
+        frame_color = base07;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_critical = {
         timeout = 4;
-        background = "#292e42";
-        foreground = "#db4b4b";
-        frame_color = "#db4b4b";
+        background = base02;
+        foreground = base08;
+        frame_color = base08;
         icon = "dialog-warning";
         script = "~/.config/dunst/dunstsound.sh";
       };
       zsh = {
         appname = "zsh";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/kitty.svg";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/utilities-terminal.svg";
+      };
+      fish = {
+        appname = "fish";
+        new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/utilities-terminal.svg";
       };
       nchat = {
         appname = "nchat";
-        # new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/panel/google-chat-badge.svg";
         new_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/internet_chat.svg";
       };
       game_on = {

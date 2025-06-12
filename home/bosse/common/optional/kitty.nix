@@ -3,10 +3,25 @@
     if builtins.all (m: m.height == 1080) config.monitors
     then "100%"
     else "115%";
+  base00 = config.lib.stylix.colors.withHashtag.base00;
+  base01 = config.lib.stylix.colors.withHashtag.base01;
+  base02 = config.lib.stylix.colors.withHashtag.base02;
+  base03 = config.lib.stylix.colors.withHashtag.base03;
+  base04 = config.lib.stylix.colors.withHashtag.base04;
+  base05 = config.lib.stylix.colors.withHashtag.base05;
+  base06 = config.lib.stylix.colors.withHashtag.base06;
+  base07 = config.lib.stylix.colors.withHashtag.base07;
+  base08 = config.lib.stylix.colors.withHashtag.base08;
+  base09 = config.lib.stylix.colors.withHashtag.base09;
+  base0A = config.lib.stylix.colors.withHashtag.base0A;
+  base0B = config.lib.stylix.colors.withHashtag.base0B;
+  base0C = config.lib.stylix.colors.withHashtag.base0C;
+  base0D = config.lib.stylix.colors.withHashtag.base0D;
+  base0E = config.lib.stylix.colors.withHashtag.base0E;
+  base0F = config.lib.stylix.colors.withHashtag.base0F;
 in {
   programs.kitty = {
     enable = true;
-    # themeFile = "tokyo_night_night";
     settings = {
       confirm_os_window_close = 0;
       enable_audio_bell = false;
@@ -64,6 +79,50 @@ in {
       # Mouse
       mouse_map left click ungrabbed mouse_handle_click selection link prompt
       mouse_map middle release ungrabbed paste_from_selection
+      # vim:ft=kitty
+
+      background ${base00}
+      foreground ${base07}
+      selection_background ${base02}
+      selection_foreground ${base07}
+      url_color ${base0F}
+      cursor ${base07}
+      cursor_text_color ${base00}
+
+      # Tabs
+      active_tab_background ${base0D}
+      active_tab_foreground ${base01}
+      inactive_tab_background ${base03}
+      inactive_tab_foreground ${base04}
+      #tab_bar_background ${base01}
+
+      # Windows
+      active_border_color ${base0D}
+      inactive_border_color ${base03}
+
+      # normal
+      color0 ${base01}
+      color1 ${base08}
+      color2 ${base0B}
+      color3 ${base0A}
+      color4 ${base0D}
+      color5 ${base0E}
+      color6 ${base0C}
+      color7 ${base05}
+
+      # bright
+      color8 ${base03}
+      color9 ${base08}
+      color10 ${base0B}
+      color11 ${base0A}
+      color12 ${base0D}
+      color13 ${base0E}
+      color14 ${base0C}
+      color15 ${base07}
+
+      # extended colors
+      color16 ${base09}
+      color17 ${base06}
     '';
   };
 }

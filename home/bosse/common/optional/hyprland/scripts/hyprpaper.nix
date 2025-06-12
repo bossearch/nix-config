@@ -17,7 +17,6 @@
 
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''\${DATE}.*" -printf "%f\n" | head -n 1)
       OUTPUT_WALL="/tmp/hyprpaper.png"
-      THEME="tokyo-dark"
 
       if [ -f "$OUTPUT_WALL" ]; then
         rm -f /tmp/{hyprlock.png,hyprpaper.png}
@@ -39,7 +38,7 @@
 
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''\${DATE}.*" -printf "%f\n" | head -n 1)
       if [ ! -f "$OUTPUT_WALL" ]; then
-        gowall convert "$INPUT_WALL" -t "$THEME" --output "$OUTPUT_WALL"
+        gowall convert "$INPUT_WALL" -t palette --output "$OUTPUT_WALL"
         cp "$OUTPUT_WALL" /tmp/hyprlock.png
       fi
 

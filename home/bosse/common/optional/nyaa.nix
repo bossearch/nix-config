@@ -1,8 +1,12 @@
 {
-  pkgs,
+  config,
   inputs,
+  pkgs,
   ...
-}: {
+}: let
+  base09 = "${config.lib.stylix.colors.withHashtag.base09}";
+  base0F = "${config.lib.stylix.colors.withHashtag.base0F}";
+in {
   imports = [
     inputs.nyaa.homeManagerModule
   ];
@@ -33,14 +37,14 @@
     bg = "Reset"
     fg = "White"
     border = "Rounded"
-    border_color = "Blue"
-    border_focused_color = "Cyan"
-    hl_bg = "#292e42"
+    border_color = ${base0F}
+    border_focused_color = ${base09}
+    hl_bg = "Gray"
     solid_bg = "White"
     solid_fg = "Black"
     success = "Green"
     error = "Red"
-    info = "Green"
+    info = "Blue"
     warning = "Yellow"
   '';
 }

@@ -17,10 +17,10 @@
     # ./common/optional/nyaa.nix
     # ./common/optional/obsidian.nix
     # ./common/optional/qmk
-    # ./common/optional/spotify.nix
+    ./common/optional/spotify.nix
     ./common/optional/theme
     # ./common/optional/vaults.nix
-    # ./common/optional/vesktop
+    ./common/optional/vesktop
     ./common/optional/waybar
     # ./common/optional/zathura.nix
   ];

@@ -1,4 +1,46 @@
 {
+  config,
+  lib,
+  ...
+}: let
+  palette = config.lib.stylix.colors;
+  toFloat = builtins.fromJSON;
+  floatMod = a: b: a - b * (builtins.floor (a / b));
+  # RGB → Hue only
+  rgbToHue = r: g: b: let
+    rf = r / 255.0;
+    gf = g / 255.0;
+    bf = b / 255.0;
+    max = lib.max rf (lib.max gf bf);
+    min = lib.min rf (lib.min gf bf);
+    delta = max - min;
+
+    h' =
+      if delta == 0
+      then 0
+      else if max == rf
+      then floatMod ((gf - bf) / delta) 6.0
+      else if max == gf
+      then ((bf - rf) / delta) + 2.0
+      else ((rf - gf) / delta) + 4.0;
+
+    hue = builtins.floor ((60.0 * h') + 0.5);
+  in
+    if hue < 0
+    then hue + 360
+    else hue;
+
+  hue-red = rgbToHue (toFloat palette.base08-rgb-r) (toFloat palette.base08-rgb-g) (toFloat palette.base08-rgb-b);
+  hue-yellow = rgbToHue (toFloat palette.base0A-rgb-r) (toFloat palette.base0A-rgb-g) (toFloat palette.base0A-rgb-b);
+  hue-green = rgbToHue (toFloat palette.base0B-rgb-r) (toFloat palette.base0B-rgb-g) (toFloat palette.base0B-rgb-b);
+  hue-blue = rgbToHue (toFloat palette.base0D-rgb-r) (toFloat palette.base0D-rgb-g) (toFloat palette.base0D-rgb-b);
+  hue-purple = rgbToHue (toFloat palette.base0E-rgb-r) (toFloat palette.base0E-rgb-g) (toFloat palette.base0E-rgb-b);
+  base00 = config.lib.stylix.colors.withHashtag.base00;
+  base01 = config.lib.stylix.colors.withHashtag.base01;
+  base03 = config.lib.stylix.colors.withHashtag.base03;
+  base05 = config.lib.stylix.colors.withHashtag.base05;
+  base07 = config.lib.stylix.colors.withHashtag.base07;
+in {
   home.file.".config/vesktop/themes/theme.css" = {
     text = ''
       /**
@@ -90,21 +132,21 @@
 
           /* text colors */
           --text-0: var(--bg-3); /* text on colored elements */
-          --text-1: hsl(229, 73%, 95%); /* other normally white text */
-          --text-2: #c0caf5; /* headings and important text */
-          --text-3: #a9b1d6; /* normal text */
-          --text-4: hsl(229, 21%, 54%); /* icon buttons and channels */
-          --text-5: #414868; /* muted channels/chats and timestamps */
+          --text-1: hsl(${toString hue-blue}, 73%, 95%); /* other normally white text */
+          --text-2: ${base07}; /* headings and important text */
+          --text-3: ${base05}; /* normal text */
+          --text-4: hsl(${toString hue-blue}, 21%, 54%); /* icon buttons and channels */
+          --text-5: ${base03}; /* muted channels/chats and timestamps */
 
           /* background and dark colors */
-          --bg-1: hsl(230, 22%, 25%); /* dark buttons when clicked */
-          --bg-2: hsl(230, 21%, 19%); /* dark buttons */
-          --bg-3: #16161d; /* spacing, secondary elements */
-          --bg-4: #1a1b26; /* main background color */
-          --hover: hsla(225, 22%, 41%, 0.125); /* channels and buttons when hovered */
-          --active: hsla(225, 22%, 41%, 0.267); /* channels and buttons when clicked or selected */
-          --active-2: hsla(225, 22%, 41%, 0.333); /* extra state for transparent buttons */
-          --message-hover: hsla(225, 0%, 0%, 0.1); /* messages when hovered */
+          --bg-1: hsl(${toString hue-blue}, 22%, 25%); /* dark buttons when clicked */
+          --bg-2: hsl(${toString hue-blue}, 21%, 19%); /* dark buttons */
+          --bg-3: ${base01}; /* spacing, secondary elements */
+          --bg-4: ${base00}; /* main background color */
+          --hover: hsla(${toString hue-blue}, 22%, 41%, 0.125); /* channels and buttons when hovered */
+          --active: hsla(${toString hue-blue}, 22%, 41%, 0.267); /* channels and buttons when clicked or selected */
+          --active-2: hsla(${toString hue-blue}, 22%, 41%, 0.333); /* extra state for transparent buttons */
+          --message-hover: hsla(${toString hue-blue}, 0%, 0%, 0.1); /* messages when hovered */
 
           /* accent colors */
           --accent-1: var(--blue-1); /* links and other accent text */
@@ -119,48 +161,48 @@
           --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
 
           /* status indicator colors */
-          --online: var(--green-2); /* change to #43a25a for default */
-          --dnd: var(--red-2); /* change to #d83a42 for default */
-          --idle: var(--yellow-2); /* change to #ca9654 for default */
-          --streaming: var(--purple-2); /* change to #593695 for default */
-          --offline: var(--text-4); /* change to #83838b for default offline color */
+          --online: var(--green-2);
+          --dnd: var(--red-2);
+          --idle: var(--yellow-2);
+          --streaming: var(--purple-2);
+          --offline: var(--text-4);
 
           /* border colors */
-          --border-light: var(--hover); /* general light border color */
-          --border: var(--active); /* general normal border color */
-          --border-hover: var(--accent-2); /* border color of panels when hovered */
-          --button-border: hsl(225, 0%, 0%, 0); /* neutral border color of buttons */
+          --border-light: var(--hover);
+          --border: var(--active);
+          --border-hover: var(--accent-2);
+          --button-border: hsl(${toString hue-blue}, 0%, 0%, 0);
 
           /* base colors */
-          --red-1: hsl(349, 99%, 78%);
-          --red-2: hsl(349, 89%, 72%);
-          --red-3: hsl(349, 79%, 66%);
-          --red-4: hsl(349, 69%, 60%);
-          --red-5: hsl(349, 59%, 54%);
+          --red-1: hsl(${toString hue-red}, 99%, 78%);
+          --red-2: hsl(${toString hue-red}, 89%, 72%);
+          --red-3: hsl(${toString hue-red}, 79%, 66%);
+          --red-4: hsl(${toString hue-red}, 69%, 60%);
+          --red-5: hsl(${toString hue-red}, 59%, 54%);
 
-          --green-1: hsl(89, 56%, 67%);
-          --green-2: hsl(89, 51%, 61%);
-          --green-3: hsl(89, 46%, 56%);
-          --green-4: hsl(89, 41%, 51%);
-          --green-5: hsl(89, 36%, 46%);
+          --green-1: hsl(${toString hue-green}, 56%, 67%);
+          --green-2: hsl(${toString hue-green}, 51%, 61%);
+          --green-3: hsl(${toString hue-green}, 46%, 56%);
+          --green-4: hsl(${toString hue-green}, 41%, 51%);
+          --green-5: hsl(${toString hue-green}, 36%, 46%);
 
-          --blue-1: hsl(221, 99%, 78%);
-          --blue-2: hsl(221, 89%, 72%);
-          --blue-3: hsl(221, 79%, 66%);
-          --blue-4: hsl(221, 69%, 60%);
-          --blue-5: hsl(221, 59%, 54%);
+          --blue-1: hsl(${toString hue-blue}, 99%, 78%);
+          --blue-2: hsl(${toString hue-blue}, 89%, 72%);
+          --blue-3: hsl(${toString hue-blue}, 79%, 66%);
+          --blue-4: hsl(${toString hue-blue}, 69%, 60%);
+          --blue-5: hsl(${toString hue-blue}, 59%, 54%);
 
-          --yellow-1: hsl(36, 71%, 72%);
-          --yellow-2: hsl(36, 66%, 64%);
-          --yellow-3: hsl(36, 61%, 59%);
-          --yellow-4: hsl(36, 56%, 54%);
-          --yellow-5: hsl(36, 51%, 49%);
+          --yellow-1: hsl(${toString hue-yellow}, 71%, 72%);
+          --yellow-2: hsl(${toString hue-yellow}, 66%, 64%);
+          --yellow-3: hsl(${toString hue-yellow}, 61%, 59%);
+          --yellow-4: hsl(${toString hue-yellow}, 56%, 54%);
+          --yellow-5: hsl(${toString hue-yellow}, 51%, 49%);
 
-          --purple-1: hsl(261, 95%, 85%);
-          --purple-2: hsl(261, 85%, 79%);
-          --purple-3: hsl(261, 75%, 73%);
-          --purple-4: hsl(261, 65%, 67%);
-          --purple-5: hsl(261, 55%, 61%);
+          --purple-1: hsl(${toString hue-purple}, 95%, 85%);
+          --purple-2: hsl(${toString hue-purple}, 85%, 79%);
+          --purple-3: hsl(${toString hue-purple}, 75%, 73%);
+          --purple-4: hsl(${toString hue-purple}, 65%, 67%);
+          --purple-5: hsl(${toString hue-purple}, 55%, 61%);
       }
     '';
   };

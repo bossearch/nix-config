@@ -1,7 +1,4 @@
 {
-  home.file.".mozilla/firefox/bosse/chrome/includes/assets" = {
-    source = ./assets;
-  };
   imports = [
     ./custom-button.nix
     ./custom-colors.nix

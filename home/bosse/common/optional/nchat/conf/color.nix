@@ -1,35 +1,42 @@
-{
+{config, ...}: let
+  base00 = config.lib.stylix.colors.withHashtag.base00;
+  base01 = config.lib.stylix.colors.withHashtag.base01;
+  base02 = config.lib.stylix.colors.withHashtag.base02;
+  base05 = config.lib.stylix.colors.withHashtag.base05;
+  base0D = config.lib.stylix.colors.withHashtag.base0D;
+  base0E = config.lib.stylix.colors.withHashtag.base0E;
+in {
   home.file.".config/nchat/app.conf" = {
     text = ''
-      default_color_bg=0x1a1b26
-      default_color_fg=0xc0caf5
+      default_color_bg=0x${base00}
+      default_color_fg=0x${base01}
       dialog_attr=
       dialog_attr_selected=reverse
       dialog_color_bg=
-      dialog_color_fg=0xa9b1d6
+      dialog_color_fg=0x${base05}
       dialog_shaded_color_bg=
       dialog_shaded_color_fg=gray
       entry_attr=
       entry_color_bg=
       entry_color_fg=
       help_attr=
-      help_color_bg=0x33467c
-      help_color_fg=0xa9b1d6
+      help_color_bg=0x${base02}
+      help_color_fg=0x${base05}
       history_name_attr=bold
       history_name_attr_selected=reverse
       history_name_recv_color_bg=
-      history_name_recv_color_fg=0x7aa2f7
+      history_name_recv_color_fg=0x${base0D}
       history_name_recv_group_color_bg=
       history_name_recv_group_color_fg=usercolor
       history_name_sent_color_bg=
-      history_name_sent_color_fg=0xbb9af7
+      history_name_sent_color_fg=0x${base0E}
       history_text_attachment_color_bg=
-      history_text_attachment_color_fg=0xa9b1d6
+      history_text_attachment_color_fg=0x${base05}
       history_text_attr=
       history_text_attr_selected=reverse
       history_text_quoted_color_bg=
-      history_text_quoted_color_fg=0xa9b1d6
-      history_text_reaction_color_bg=0x2a2b46
+      history_text_quoted_color_fg=0x${base05}
+      history_text_reaction_color_bg=0x${base01}
       history_text_reaction_color_fg=gray
       history_text_recv_color_bg=
       history_text_recv_color_fg=
@@ -40,16 +47,16 @@
       list_attr=
       list_attr_selected=reverse
       list_color_bg=
-      list_color_fg=0xa9b1d6
+      list_color_fg=0x${base05}
       listborder_attr=
       listborder_color_bg=
-      listborder_color_fg=0xa9b1d6
+      listborder_color_fg=0x${base05}
       status_attr=
-      status_color_bg=0x33467c
-      status_color_fg=0x7aa2f7
+      status_color_bg=0x${base02}
+      status_color_fg=0x${base0D}
       top_attr=
-      top_color_bg=0x33467c
-      top_color_fg=0xa9b1d6
+      top_color_bg=0x${base02}
+      top_color_fg=0x${base05}
     '';
   };
 }
