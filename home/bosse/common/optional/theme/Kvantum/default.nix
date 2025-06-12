@@ -1,10 +1,10 @@
 {
-  imports = [./KvTokyoNight];
+  imports = [./KvMyColors];
 
   home.file.".config/Kvantum/kvantum.kvconfig" = {
     text = ''
       [General]
-      theme=KvTokyoNight
+      theme=KvMyColors
     '';
   };
 }

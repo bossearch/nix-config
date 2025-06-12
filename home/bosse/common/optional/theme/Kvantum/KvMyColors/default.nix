@@ -1,9 +1,16 @@
-{
-  home.file.".config/Kvantum/KvTokyoNight/KvTokyoNight.svg" = {
-    source = ./KvTokyoNight.svg;
-  };
-
-  home.file.".config/Kvantum/KvTokyoNight/KvTokyoNight.kvconfig" = {
+{config, ...}: let
+  base00 = config.lib.stylix.colors.withHashtag.base00;
+  base01 = config.lib.stylix.colors.withHashtag.base01;
+  base02 = config.lib.stylix.colors.withHashtag.base02;
+  base03 = config.lib.stylix.colors.withHashtag.base03;
+  base04 = config.lib.stylix.colors.withHashtag.base04;
+  base07 = config.lib.stylix.colors.withHashtag.base07;
+  base09 = config.lib.stylix.colors.withHashtag.base09;
+  base0D = config.lib.stylix.colors.withHashtag.base0D;
+  base0F = config.lib.stylix.colors.withHashtag.base0F;
+in {
+  imports = [./KvMyColors.nix];
+  home.file.".config/Kvantum/KvMyColors/KvMyColors.kvconfig" = {
     text = ''
       [%General]
       author=Tsu Jan (Modified by ObsidianChickenz)
@@ -82,25 +89,25 @@
       tooltip_blur_radius=0
 
       [GeneralColors]
-      window.color=#16161e
-      base.color=#1a1b26
-      alt.base.color=#1a1b26
-      button.color=#1d1f2b
-      light.color=#3e415c
-      mid.light.color=#313131
+      window.color=${base01}
+      base.color=${base00}
+      alt.base.color=${base00}
+      button.color=${base02}
+      light.color=${base03}
+      mid.light.color=${base04}
       dark.color=black
-      mid.color=#191919
-      highlight.color=#7aa2f7
-      inactive.highlight.color=#7aa2f7
-      text.color=#c0caf5
-      window.text.color=#c0caf5
-      button.text.color=#c0caf5
-      disabled.text.color=#c0caf5
-      tooltip.text.color=#c0caf5
+      mid.color=${base02}
+      highlight.color=${base0D}
+      inactive.highlight.color=${base0D}
+      text.color=${base07}
+      window.text.color=${base07}
+      button.text.color=${base07}
+      disabled.text.color=${base07}
+      tooltip.text.color=${base07}
       highlight.text.color=#1a1b26
-      link.color=#d8e4fd
-      link.visited.color=#a8c2fa
-      progress.indicator.text.color=#c0caf5
+      link.color=${base0F}
+      link.visited.color=${base09}
+      progress.indicator.text.color=${base07}
 
       [Hacks]
       transparent_ktitle_label=true
@@ -136,10 +143,10 @@
       interior=true
       interior.element=button
       indicator.size=9
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
-      text.press.color=#c0caf5
-      text.toggle.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
+      text.press.color=${base07}
+      text.toggle.color=${base07}
       text.shadow=0
       text.margin=1
       text.iconspacing=4
@@ -163,14 +170,14 @@
       frame.bottom=1
       frame.left=1
       frame.right=1
-      text.normal.color=#c0caf5
+      text.normal.color=${base07}
 
       [DockTitle]
       inherits=PanelButtonCommand
       frame=false
       interior=false
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       text.bold=true
 
       [IndicatorSpinBox]
@@ -180,21 +187,21 @@
       frame.left=1
       indicator.element=spin
       indicator.size=10
-      text.normal.color=#c0caf5
+      text.normal.color=${base07}
 
       [RadioButton]
       inherits=PanelButtonCommand
       frame=false
       interior.element=radio
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
 
       [CheckBox]
       inherits=PanelButtonCommand
       frame=false
       interior.element=checkbox
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
 
       [Focus]
       inherits=PanelButtonCommand
@@ -234,9 +241,9 @@
 
       [ToolboxTab]
       inherits=PanelButtonCommand
-      text.normal.color=#c0caf5
-      text.press.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.press.color=${base07}
+      text.focus.color=${base07}
 
       [Tab]
       inherits=PanelButtonCommand
@@ -251,9 +258,9 @@
       frame.bottom=4
       frame.left=4
       frame.right=4
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
-      text.toggle.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
+      text.toggle.color=${base07}
       frame.expansion=0
 
       [TabFrame]
@@ -279,9 +286,9 @@
       frame.left=1
       frame.right=1
       text.bold=true
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
-      text.toggle.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
+      text.toggle.color=${base07}
       frame.expansion=0
 
       [SizeGrip]
@@ -295,8 +302,8 @@
       frame=false
       interior.element=menubar
       frame.element=menubar
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       frame.bottom=0
       frame.expansion=0
 
@@ -319,10 +326,10 @@
       frame.element=progress
       interior.element=progress
       text.margin=0
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
-      text.press.color=#c0caf5
-      text.toggle.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
+      text.press.color=${base07}
+      text.toggle.color=${base07}
       text.bold=false
       frame.expansion=8
 
@@ -345,10 +352,10 @@
       text.margin.bottom=2
       text.margin.left=4
       text.margin.right=4
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
-      text.press.color=#c0caf5
-      text.toggle.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
+      text.press.color=${base07}
+      text.toggle.color=${base07}
       frame.expansion=0
 
       [Splitter]
@@ -382,8 +389,8 @@
       frame.element=menuitem
       interior.element=menuitem
       indicator.element=menuitem
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       text.margin.top=1
       text.margin.bottom=1
       text.margin.left=15
@@ -414,8 +421,8 @@
       text.margin.right=4
       text.margin.top=0
       text.margin.bottom=0
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       frame.expansion=0
 
       [TitleBar]
@@ -424,8 +431,8 @@
       interior.element=titlebar
       indicator.size=12
       indicator.element=mdi
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       text.bold=true
       text.italic=true
       frame.expansion=0
@@ -434,7 +441,7 @@
       inherits=PanelButtonCommand
       interior.element=combo
       frame.element=combo
-      text.press.color=#c0caf5
+      text.press.color=${base07}
       indicator.element=carrow
 
       [Menu]
@@ -445,7 +452,7 @@
       frame.right=1
       frame.element=menu
       interior.element=menu
-      text.normal.color=#c0caf5
+      text.normal.color=${base07}
       text.shadow=false
       frame.expansion=0
 
@@ -454,8 +461,8 @@
       frame=false
       text.shadow=0
       text.margin=0
-      text.normal.color=#c0caf5
-      text.focus.color=#c0caf5
+      text.normal.color=${base07}
+      text.focus.color=${base07}
       text.bold=true
       frame.expansion=0
 
