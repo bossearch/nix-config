@@ -20,9 +20,9 @@
     ./common/optional/spotify.nix
     ./common/optional/theme
     # ./common/optional/vaults.nix
-    ./common/optional/vesktop
+    # ./common/optional/vesktop
     ./common/optional/waybar
-    ./common/optional/zathura.nix
+    # ./common/optional/zathura.nix
   ];
 
   monitors = [
@@ -38,6 +38,7 @@
   spec = {
     hostName = "vm";
     userName = "bosse";
+    theme = "tokyo-night-dark";
   };
 
   # Do not change these future me !

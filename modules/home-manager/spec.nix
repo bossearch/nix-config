@@ -6,12 +6,19 @@ in {
     type = types.submodule {
       options = {
         hostName = mkOption {
+          default = lib.mkDefault "pc";
           type = types.str;
-          example = "pc";
         };
         userName = mkOption {
+          default = lib.mkDefault "bosse";
           type = types.str;
-          example = "bosse";
+        };
+        theme = mkOption {
+          default = lib.mkDefault "tokyo-night-dark";
+          type = lib.types.enum [
+            "catppuccin-mocha"
+            "tokyo-night-dark"
+          ];
         };
       };
     };

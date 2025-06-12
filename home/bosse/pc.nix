@@ -38,6 +38,7 @@
   spec = {
     hostName = "pc";
     userName = "bosse";
+    theme = "tokyo-night-dark";
   };
 
   # Do not change these future me !

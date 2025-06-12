@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  config,
+  inputs,
+  ...
+}: let
   nix-colors = inputs.nix-colors;
 in {
   imports = [
@@ -7,6 +11,6 @@ in {
 
   colorScheme =
     nix-colors.lib.schemeFromYAML
-    "tokyo-night-terminal-dark"
-    (builtins.readFile ../../../../modules/themes/tokyo-night-dark.yaml);
+    "${config.spec.theme}"
+    (builtins.readFile ../../../../modules/themes/${config.spec.theme}.yaml);
 }
