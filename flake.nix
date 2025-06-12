@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Third party programs, packaged with nix
+    nix-colors.url = "github:misterio77/nix-colors";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -26,11 +27,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
