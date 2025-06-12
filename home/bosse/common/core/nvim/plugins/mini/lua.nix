@@ -1,4 +1,7 @@
 {
+  pre = ''
+    local colors = require("lib.util").get_base16_colors()
+  '';
   post = ''
     local pairs = require("mini.pairs")
     local opts = pairs.config or {}

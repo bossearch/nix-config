@@ -7,33 +7,33 @@
       };
     };
     luaConfig.pre = ''
-      local palette = require("lib.util").get_stylix_palette()
+      local colors = require("lib.util").get_base16_colors()
       local custom_lualine_theme = {
         normal = {
-          a = { fg = palette.base00, bg = palette.base0D, gui = 'bold' },
-          b = { fg = palette.base0D, bg = palette.base02 },
-          c = { fg = palette.base05, bg = palette.base01 },
+          a = { fg = colors.base00, bg = colors.base0D, gui = 'bold' },
+          b = { fg = colors.base0D, bg = colors.base02 },
+          c = { fg = colors.base05, bg = colors.base01 },
         },
         insert = {
-          a = { fg = palette.base00, bg = palette.base0B, gui = 'bold' },
-          b = { fg = palette.base0B, bg = palette.base02 },
+          a = { fg = colors.base00, bg = colors.base0B, gui = 'bold' },
+          b = { fg = colors.base0B, bg = colors.base02 },
         },
         visual = {
-          a = { fg = palette.base00, bg = palette.base0E, gui = 'bold' },
-          b = { fg = palette.base0E, bg = palette.base02 },
+          a = { fg = colors.base00, bg = colors.base0E, gui = 'bold' },
+          b = { fg = colors.base0E, bg = colors.base02 },
         },
         replace = {
-          a = { fg = palette.base00, bg = palette.base08, gui = 'bold' },
-          b = { fg = palette.base08, bg = palette.base02 },
+          a = { fg = colors.base00, bg = colors.base08, gui = 'bold' },
+          b = { fg = colors.base08, bg = colors.base02 },
         },
         command = {
-          a = { fg = palette.base00, bg = palette.base0A, gui = 'bold' },
-          b = { fg = palette.base0A, bg = palette.base02 },
+          a = { fg = colors.base00, bg = colors.base0A, gui = 'bold' },
+          b = { fg = colors.base0A, bg = colors.base02 },
         },
         inactive = {
-          a = { fg = palette.base03, bg = palette.base00 },
-          b = { fg = palette.base03, bg = palette.base00 },
-          c = { fg = palette.base03, bg = palette.base01 },
+          a = { fg = colors.base03, bg = colors.base00 },
+          b = { fg = colors.base03, bg = colors.base00 },
+          c = { fg = colors.base03, bg = colors.base01 },
         },
       }
     '';
@@ -86,12 +86,12 @@
             {
               require("noice").api.status.command.get,
               cond = require("noice").api.status.command.has,
-              color = { fg = palette.base09 },
+              color = { fg = colors.base09 },
             },
             {
               require("noice").api.status.mode.get,
               cond = require("noice").api.status.mode.has,
-              color = { fg = palette.base0E },
+              color = { fg = colors.base0E },
             },
             -- {
             --   function()
@@ -100,7 +100,7 @@
             --   cond = function()
             --     return package.loaded["dap"] and require("dap").status() ~= ""
             --   end,
-            --   color = { fg = palette.base08 },
+            --   color = { fg = colors.base08 },
             -- },
           }
         '';

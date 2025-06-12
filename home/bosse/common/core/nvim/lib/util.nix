@@ -158,7 +158,7 @@
         end
 
         -- palette --
-        util.get_stylix_palette = function()
+        util.get_base16_colors = function()
           return{
             base00 = "${config.lib.stylix.colors.withHashtag.base00}",
             base01 = "${config.lib.stylix.colors.withHashtag.base01}",

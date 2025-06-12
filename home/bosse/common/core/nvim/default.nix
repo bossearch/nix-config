@@ -28,15 +28,4 @@
       };
     };
   };
-  stylix.targets = {
-    nixvim = {
-      enable = true;
-      plugin = "mini.base16";
-      transparentBackground = {
-        main = false;
-        numberLine = false;
-        signColumn = false;
-      };
-    };
-  };
 }
