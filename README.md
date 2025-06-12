@@ -1,11 +1,16 @@
 # Bossearch's Nix-Config
+
 NixOS and Home Manager config files using [Nix flakes](https://nixos.wiki/wiki/Flakes).
 
 ## Features
+
 - Fully declarative NixOS configuration using Flakes
 - Home Manager integration
 - Modular system and user configuration
-- Using **Nixvim** to fully configure Neovim
+- Using [Nixvim](https://github.com/nix-community/nixvim) to fully configure Neovim
+- Declarative global themes with [nix-colors](https://github.com/Misterio77/nix-colors)
+- Auto generate daily wallpaper with [gowall](https://github.com/Achno/gowall)
+
 ## Getting Started
 
 > [!IMPORTANT]
@@ -16,7 +21,9 @@ Clone and install:
 ```bash
 nix-shell -p git --run "git clone https://github.com/bossearch/nix-config ~/.nix-config && ~/.nix-config/scripts/install.sh"
 ```
+
 ## References
+
 Key inspirations along this journey:
 
 - [Misterio77](https://github.com/Misterio77/nix-config) – Reference and structure
