@@ -5,8 +5,8 @@
 }: let
   nix-colors = inputs.nix-colors;
   toRGBString = nix-colors.lib.conversions.hexToRGBString ",";
-  base00-rgba = "rgba(${toRGBString config.colorScheme.palette.base00}, 0.8)";
-  base01-rgba = "rgba(${toRGBString config.colorScheme.palette.base01}, 0.8)";
+  base00-rgba = "rgba(${toRGBString config.colorScheme.palette.base00}, 0.7)";
+  base01-rgba = "rgba(${toRGBString config.colorScheme.palette.base01}, 0.5)";
 in {
   programs.waybar.style = ''
     @define-color bg ${base00-rgba};

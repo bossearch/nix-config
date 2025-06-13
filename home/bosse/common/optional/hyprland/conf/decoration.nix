@@ -14,7 +14,7 @@
         blur {
             enabled = true
             size= 6 # minimum 1
-            passes= 3 # minimum 1, more passes = more resource intensive.
+            passes= 4 # minimum 1, more passes = more resource intensive.
             new_optimizations = true
 
             # Your blur "amount" is size * passes, but high size (over around 5-ish)
@@ -24,7 +24,10 @@
         }
     }
 
-    layerrule = blur, waybar # Add blur to waybar
-    layerrule = ignorealpha 1, waybar # Remove weird excess layer
+    layerrule = blur, waybar
+    layerrule = blurpopups, waybar
+    layerrule = ignorezero, waybar
+    # layerrule = ignorealpha 1, waybar
+    # layerrule = abovelock true, waybar
   '';
 }
