@@ -112,6 +112,7 @@
         callback.__raw = ''
           function()
             local p = require("lib.util").get_colorScheme()
+            vim.api.nvim_set_hl(0, "CursorLineNr", {fg = p.base09, bg = p.base01 })
             vim.api.nvim_set_hl(0, "Normal", { fg = p.base05, bg = p.base00 })
             vim.api.nvim_set_hl(0, "NormalFloat", { fg = p.base05, bg = p.base01 })
             vim.api.nvim_set_hl(0, "NormalNC", { fg = p.base05, bg = p.base00 })

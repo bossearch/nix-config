@@ -8,7 +8,7 @@
       };
     };
     settings = {
-      delay = 200;
+      delay = 100;
       expand = 1;
       notify = true;
       preset = "helix"; # classic, modern, or helix
