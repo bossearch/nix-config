@@ -58,7 +58,7 @@ in {
     };
     extraConfig = ''
       # BEGIN_KITTY_FONTS
-      font_family family='CommitMono Nerd Font Mono' style=Regular features='+ss01 +ss02 +ss03 +ss04 +ss05 cv02=1 cv05=1'
+      font_family family='CommitMono Nerd Font Mono' style=Regular features='+ss03 +ss04 +ss05 cv02=1 cv05=1'
       bold_font auto
       italic_font auto
       bold_italic_font auto
