@@ -1,4 +1,10 @@
-{
+{config, ...}: let
+  base07 = "#${config.colorScheme.palette.base07}";
+  base08 = "#${config.colorScheme.palette.base08}";
+  base0A = "#${config.colorScheme.palette.base0A}";
+  base0B = "#${config.colorScheme.palette.base0B}";
+  base0D = "#${config.colorScheme.palette.base0D}";
+in {
   programs.waybar.settings = {
     mainBar = {
       "hyprland/workspaces" = {
@@ -375,8 +381,8 @@
 
       "clock" = {
         "interval" = 1;
-        "format" = "<span color='#f7768e'> </span>{:%H:%M:%S}";
-        "format-alt" = "<span color='#f7768e'> </span>{:%a %d/%b/%y}";
+        "format" = "<span color='${base08}'> </span>{:%H:%M:%S}";
+        "format-alt" = "<span color='${base08}'> </span>{:%a %d/%b/%y}";
         "tooltip-format" = "\n<span size='12pt'>{calendar}</span>";
         "calendar" = {
           "mode" = "year";
@@ -384,11 +390,11 @@
           "weeks-pos" = "right";
           "on-scroll" = 1;
           "format" = {
-            "months" = "<span color='#e0af68'>{}</span>";
-            "days" = "<span color='#c0caf5'>{}</span>";
-            "weeks" = "<span color='#7aa2f7'>W{}</span>";
-            "weekdays" = "<span color='#9ece6a'>{}</span>";
-            "today" = "<span color='#f7768e'><b><u>{}</u></b></span>";
+            "months" = "<span color='${base0A}'>{}</span>";
+            "days" = "<span color='${base07}'>{}</span>";
+            "weeks" = "<span color='${base0D}'>W{}</span>";
+            "weekdays" = "<span color='${base0B}'>{}</span>";
+            "today" = "<span color='${base08}'><b><u>{}</u></b></span>";
           };
         };
         "actions" = {

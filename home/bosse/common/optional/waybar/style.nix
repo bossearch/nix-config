@@ -158,7 +158,7 @@ in {
       padding: 0 10px;
     }
     #network.disconnected {
-      color: #f53c3c;
+      color: @red;
     }
 
     #clock {
@@ -180,6 +180,10 @@ in {
 
     .modules-right > widget:last-child > #workspaces {
       margin-right: 0;
+    }
+    tooltip {
+      background: @bg;
+      border: 1px solid @fg;
     }
   '';
 }
