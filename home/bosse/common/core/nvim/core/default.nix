@@ -1,7 +1,7 @@
 {
   imports = [
     ./autocmd.nix
-    ./filetype.nix
+    ./ftplugin
     ./keymaps.nix
     ./options.nix
     ./usercmd.nix
