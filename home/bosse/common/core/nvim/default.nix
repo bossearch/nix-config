@@ -11,7 +11,7 @@
       byteCompileLua = {
         enable = true;
         configs = true;
-        initLua = true;
+        initLua = false;
         luaLib = true;
         nvimRuntime = true;
         plugins = true;
