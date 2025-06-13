@@ -10,7 +10,7 @@ HOSTNAME=$(hostname)
 pushd ~/.nix-config >/dev/null
 
 man="\
-rebuild --<\e[1;33moperations\e[0m> --\e[1;31mforce\e[0m = nixos-rebuild <\e[1;33moperations\e[0m> --flake .#$HOSTNAME
+rebuild --<\e[1;33moperations\e[0m> = nixos-rebuild <\e[1;33moperations\e[0m> --flake .#$HOSTNAME
 
 \e[1;33mswitch\e[0m  Build and activate the new configuration, and make it the boot default.
 
@@ -29,60 +29,44 @@ rebuild --<\e[1;33moperations\e[0m> --\e[1;31mforce\e[0m = nixos-rebuild <\e[1;3
 
 \e[1;33mdelete\e[0m  Is an alias of 'nix-collect-garbage --delete-old'. That is, it deletes all unreachable
         store objects ⟨@docroot@/store/store-object.md⟩ in the Nix store to clean up your system.
-
-\e[1;31mforce\e[0m   An options for \e[1;33mswitch\e[0m, \e[1;33mboot\e[0m, and \e[1;33mtest\e[0m operations to override if there is no changes detected.
 "
 
-# Check for arguments
-if [[ "$1" == "--switch" ]]; then
-  REBUILD_CMD="switch"
-elif [[ "$1" == "--boot" ]]; then
-  REBUILD_CMD="boot"
-elif [[ "$1" == "--test" ]]; then
-  REBUILD_CMD="test"
-elif [[ "$1" == "--list" ]]; then
+# Default OPTIONS (Prevent empty execution)
+OPTIONS=""
+
+case "$1" in
+"switch") OPTIONS="switch" ;;
+"boot") OPTIONS="boot" ;;
+"test") OPTIONS="test" ;;
+"list")
   nixos-rebuild list-generations
   exit 0
-elif [[ "$1" == "--update" ]]; then
+  ;;
+"update")
   nix flake update
   exit 0
-elif [[ "$1" == "--delete" ]]; then
+  ;;
+"delete")
   sudo nix-collect-garbage -d
   exit 0
-else
+  ;;
+*)
   printf "$man"
   exit 0
-fi
+  ;;
+esac
 
-# Check for -force argument
-FORCE_UPDATE=false
-if [[ "$2" == "--force" ]]; then
-  FORCE_UPDATE=true
-fi
-
-# Skip "no changes detected" check if -force is provided
-if [[ "$FORCE_UPDATE" == false ]]; then
-  # Early return if no changes were detected (thanks @singiamtel!)
-  if git diff --quiet '*.nix'; then
-    echo "No changes detected, exiting."
-    popd >/dev/null
-    exit 0
-  fi
-  # Show your changes
-  git diff -U0 --no-prefix '*.nix' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
-    -e 's/^(diff --git .*)/\n\x1b[1m\1\x1b[0m/' \
-    -e 's/^(\+)(.*)/\x1b[32m+\2\x1b[0m/' \
-    -e 's/^(-)(.*)/\x1b[31m-\2\x1b[0m/'
-
-  echo ""
-  git status --short '*.nix'
-
-fi
+# Show your changes
+git diff -U0 --no-prefix '*.nix' ':!home/*' ':!modules/home-manager/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
+  -e 's/^(diff --git .*)/\n\x1b[1m\1\x1b[0m/' \
+  -e 's/^(\+)(.*)/\x1b[32m+\2\x1b[0m/' \
+  -e 's/^(-)(.*)/\x1b[31m-\2\x1b[0m/'
+echo ""
+git status --short '*.nix' ':!home/*' ':!modules/home-manager/*'
 
 # Stage all changes
-git add .
+git add '*.*' ':!home/*' ':!modules/home-manager/*'
 
-echo ""
 trap 'tput cnorm; git reset -q; echo -e "\nAborted by user."; exit 1' SIGINT
 read -p "Are you sure you want to proceed? (y/N): " confirm
 confirm="${confirm:-y}"
@@ -94,7 +78,7 @@ if [[ ! "$confirm" =~ ^[yY]$ ]]; then
 fi
 
 echo ""
-echo -e "NixOS Rebuilding for host: \e[1m$HOSTNAME\e[0m (mode: \e[33m$REBUILD_CMD\e[0m)"
+echo -e "NixOS Rebuilding for \e[1m$HOSTNAME\e[0m (mode: \e[33m$OPTIONS\e[0m)"
 
 # Ensure sudo doesn't ask for a password mid-way
 sudo -v
@@ -119,7 +103,7 @@ spinner() {
 }
 
 # Run nixos-rebuild in the background
-sudo nixos-rebuild "$REBUILD_CMD" --flake ".#$HOSTNAME" &>.nixos.log &
+sudo nixos-rebuild "$OPTIONS" --flake ".#$HOSTNAME" &>.nixos.log &
 rebuild_pid=$!
 
 # Start spinner animation
@@ -130,9 +114,9 @@ tput cnorm
 if wait $rebuild_pid; then
   CURRENT=$(nixos-rebuild list-generations | grep current | tr -s ' ' | tr -d '*')
   echo -e "\e[32mDone\e[0m - \e[1m$CURRENT\e[0m"
-  notify-send -e "NixOS Rebuild ($REBUILD_CMD)" "Done" --icon=software-update-available
+  notify-send -e "NixOS Rebuild ($OPTIONS)" "Done" --icon=software-update-available
 else
-  notify-send -e "NixOS Rebuild ($REBUILD_CMD)" "Error" --icon=software-update-urgent --urgency=critical
+  notify-send -e "NixOS Rebuild ($OPTIONS)" "Error" --icon=software-update-urgent --urgency=critical
   git reset -q
 
   echo ""

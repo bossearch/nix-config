@@ -28,17 +28,30 @@ OPTIONS=""
 
 # Check for arguments
 case "$1" in
-  "--switch") OPTIONS="switch --flake ." ;;
-  "--news") OPTIONS="news --flake ." ;;
-  "--list") home-manager generations; exit 0 ;;
-  "--delete") OPTIONS="expire-generations -d" ;;
-  *) printf "$man"; exit 0 ;;
+"switch") OPTIONS="switch --flake ." ;;
+"news") OPTIONS="news --flake ." ;;
+"list")
+  home-manager generations
+  exit 0
+  ;;
+"delete") OPTIONS="expire-generations -d" ;;
+*)
+  printf "$man"
+  exit 0
+  ;;
 esac
 
-# Stage all changes
-git add .
-
+# Show your changes
+git diff -U0 --no-prefix '*.nix' ':!hosts/*' ':!modules/nixos/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
+  -e 's/^(diff --git .*)/\n\x1b[1m\1\x1b[0m/' \
+  -e 's/^(\+)(.*)/\x1b[32m+\2\x1b[0m/' \
+  -e 's/^(-)(.*)/\x1b[31m-\2\x1b[0m/'
 echo ""
+git status --short '*.nix' ':!hosts/*' ':!modules/nixos/*'
+
+# Stage all changes
+git add '*.*' ':!hosts/*' ':!modules/nixos/*'
+
 trap 'tput cnorm; git reset -q; echo -e "\nAborted by user."; exit 1' SIGINT
 read -p "Are you sure you want to proceed? (y/N): " confirm
 confirm="${confirm:-n}"
@@ -61,7 +74,7 @@ spinner() {
   tput civis
 
   while ps -p $pid &>/dev/null; do
-    for ((i=0; i<${#spin}; i++)); do
+    for ((i = 0; i < ${#spin}; i++)); do
       local last_log=$(tail -n 1 .hm.log | cut -c 1-$max_width) # Get the last line from the log file
       echo -ne "\r\033[K\e[33m[${spin:$i:1}]\e[0m $last_log"
       sleep $delay
