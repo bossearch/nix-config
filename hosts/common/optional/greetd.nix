@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs.unstable; [
     gowall
   ];
@@ -7,8 +11,7 @@
     settings = rec {
       initial_session = {
         command = "bash -c '.config/hypr/scripts/hyprpaper.sh >/dev/null; Hyprland >/dev/null'";
-        # command = ".config/hypr/scripts/hyprpaper.sh >/dev/null";
-        user = "bosse";
+        user = "${config.spec.userName}";
       };
       default_session = initial_session;
     };

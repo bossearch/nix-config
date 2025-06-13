@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   automatedusbguard = pkgs.writeScript "automatedusbguard.sh" ''
     #!${pkgs.bash}/bin/bash
     export DISPLAY=:0
@@ -26,14 +30,13 @@
     blocked=($(${pkgs.usbguard}/bin/usbguard list-devices | grep block | grep -oP 'id \K[0-9a-f]{4}:[0-9a-f]{4}' | tail -1))
 
     # Show Zenity dialog
-    choice=$(/run/wrappers/bin/su bosse -c "${pkgs.zenity}/bin/zenity --question \
+    choice=$(/run/wrappers/bin/su ${config.spec.userName} -c "${pkgs.zenity}/bin/zenity --question \
       --text='Do you trust the $DEVICE_VENDOR $DEVICE_NAME device?' --title='New Device Detected' \
       --ok-label='Allow' --cancel-label='Block'")
 
 
     if [ $? -eq 0 ]; then
       ${pkgs.usbguard}/bin/usbguard allow-device $blocked
-      #echo "Allowed device $blocked" >> /home/bosse/.allowed
     else
       :
     fi
