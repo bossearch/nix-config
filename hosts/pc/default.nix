@@ -34,18 +34,11 @@
     ];
   };
 
-  networking = {
-    hostName = "pc";
-    networkmanager.enable = true;
-  };
-
-  # Set your time zone.
-  time.timeZone = "Asia/Singapore";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bosse = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio" "video" "libvirtd"];
+  spec = {
+    hostName = "vm";
+    userName = "bosse";
+    timeZone = "Asia/Singapore";
+    theme = "tokyo-night-dark";
   };
 
   # Do not change these future me !

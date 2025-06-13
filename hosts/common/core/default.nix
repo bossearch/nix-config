@@ -1,5 +1,5 @@
-# This file (and the global directory) holds config that i use on all hosts
 {
+  config,
   inputs,
   outputs,
   ...
@@ -7,6 +7,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      ./colors.nix
       ./firewall.nix
       ./keyring.nix
       ./locale.nix
@@ -15,9 +16,22 @@
       # ./proxy.nix
       ./shell.nix
       ./ssh.nix
-      ./stylix.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
+
+  networking = {
+    hostName = "${config.spec.hostName}";
+    networkmanager.enable = true;
+  };
+
+  # Set your time zone.
+  time.timeZone = "${config.spec.timeZone}";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.${config.spec.userName} = {
+    isNormalUser = true;
+    extraGroups = ["wheel" "networkmanager" "audio" "video"];
+  };
 
   home-manager = {
     useGlobalPkgs = true;

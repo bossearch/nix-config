@@ -22,18 +22,11 @@
     TCPPorts = [80 443];
   };
 
-  networking = {
+  spec = {
     hostName = "vm";
-    networkmanager.enable = true;
-  };
-
-  # Set your time zone.
-  time.timeZone = "Asia/Singapore";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bosse = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio" "video"];
+    userName = "bosse";
+    timeZone = "Asia/Singapore";
+    theme = "tokyo-night-dark";
   };
 
   # Do not change these future me !
