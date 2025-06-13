@@ -8,7 +8,7 @@
     height =
       if mymonitor
       then "385"
-      else "324";
+      else "332";
   };
 in {
   home.file.".config/hypr/scripts/zenity-run.sh" = {
