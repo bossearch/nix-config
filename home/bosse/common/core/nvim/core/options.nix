@@ -45,7 +45,6 @@
       sidescrolloff = 8; # Columns of context
       signcolumn = "yes"; # # Whether to show the signcolumn
       smartcase = true; # Override the 'ignorecase' option if the search pattern contains upper
-      smartindent = true; # Insert indents automatically
       smoothscroll = true; # self explained
       splitbelow = true; # A new window is put below the current one
       splitkeep = "screen";
