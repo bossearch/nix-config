@@ -10,6 +10,7 @@
         char = {
           jump_labels = true;
           highlight = {backdrop = false;};
+          label = {exclude = "abcdhijklpqrsxy";};
         };
       };
       prompt = {
