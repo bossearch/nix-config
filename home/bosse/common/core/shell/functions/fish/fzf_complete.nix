@@ -3,26 +3,21 @@
     function __fzf_complete
         set -l cmd (commandline -co) (commandline -ct)
         switch $cmd[1]
-        case env sudo
-            for i in (seq 2 (count $cmd))
-                switch $cmd[$i]
-                case '-*'
-                case '*=*'
-                case '*'
-                    set cmd $cmd[$i..-1]
-                    break
+            case env sudo
+                for i in (seq 2 (count $cmd))
+                    switch $cmd[$i]
+                        case '-*'
+                        case '*=*'
+                        case '*'
+                            set cmd $cmd[$i..-1]
+                            break
+                    end
                 end
-            end
         end
         set -l cmd_lastw $cmd[-1]
         set cmd (string join -- ' ' $cmd)
-
         set -l initial_query ''\''
-        switch $cmd[1]
-        case git
-            test -n "$cmd_lastw"; and set initial_query --query="$cmd_lastw"
-        end
-
+        test -n "$cmd_lastw"; and set initial_query --query="$cmd_lastw"
         set -l complist (complete -C$cmd)
         set -l result
         test -z "$complist"; and return
@@ -40,7 +35,7 @@
                 else
                     set result $result $r
                 end
-            end
+              end
             if test -z "$query" ;and test -z "$result"
                 commandline -f repaint
                 return
@@ -53,39 +48,23 @@
         for i in (seq (count $result))
             set -l r $result[$i]
             switch $prefix
-            case "'"
-                commandline -t -- (string escape -- $r)
-            case '"'
-                if string match '*"*' -- $r >/dev/null
-                    commandline -t --  (string escape -- $r)
-                else
-                    commandline -t -- '"'$r'"'
-                end
-            case '~'
-                commandline -t -- (string sub -s 2 (string escape -n -- $r))
-            case '*'
-                commandline -t -- $r
+                case "'"
+                    commandline -t -- (string escape -- $r)
+                case '"'
+                    if string match '*"*' -- $r >/dev/null
+                        commandline -t --  (string escape -- $r)
+                    else
+                        commandline -t -- '"'$r'"'
+                    end
+                case '~'
+                    commandline -t -- (string sub -s 2 (string escape -n -- $r))
+                case '*'
+                    commandline -t -- $r
             end
             [ $i -lt (count $result) ]; and commandline -i ' '
         end
         commandline -f repaint
     end
-
-    function __fzf_complete_dispatcher --argument-names cmd rest
-        if string match -q "__fzf_complete_preview" $cmd
-            __fzf_complete_preview $rest
-        end
-    end
-
-    function __fzf_complete_preview
-        set -l path (string replace "~" $HOME $argv[1])
-        test -d "$path"; and eval $FZF_PREVIEW_DIR_CMD (string escape $path)
-        test -f "$path"; and grep -qI . "$path"; and eval $FZF_PREVIEW_FILE_CMD (string escape $path)
-        type -q "$path"; and type -a "$path"
-        echo $argv[2]
-    end
-
-    string match -q "__fzf_complete_preview" $argv[1]; and __fzf_complete_preview $argv[2]
 
     function __fzf_complete_opts
         echo $FZF_DEFAULT_OPTS
@@ -94,5 +73,19 @@
         set -l file (status -f)
         echo --with-nth=1 --preview-window=right --preview="fish\ '$file'\ __fzf_complete_preview\ '{1}'\ '{2..}'"
     end
+
+    function __fzf_complete_preview
+        set -l path (string replace "~" $HOME -- $argv[1])
+        if test -d "$path"
+            eval $FZF_PREVIEW_DIR_CMD (string escape $path)
+        end
+        if test -f "$path"; and grep -qI . "$path"
+            eval $FZF_PREVIEW_FILE_CMD (string escape $path)
+        end
+        type -q "$path" 2>/dev/null; and type -a "$path"
+        echo $argv[2]
+    end
+
+    test "$argv[1]" = "__fzf_complete_preview"; and __fzf_complete_preview $argv[2..3]
   '';
 }

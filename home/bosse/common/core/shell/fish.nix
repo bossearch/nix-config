@@ -2,6 +2,7 @@
   imports = [
     ./starship.nix
     ./functions/fish/fzf_complete.nix
+    ./functions/fish/completions.nix
   ];
   home.packages = [pkgs.file];
   programs.fish = {
