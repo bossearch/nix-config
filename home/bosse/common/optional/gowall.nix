@@ -27,6 +27,9 @@ in {
       ${pkgs.coreutils}/bin/mkdir -p ${Gowall_dir}
     fi
   '';
+  home.packages = with pkgs; [
+    gowall
+  ];
   home.file.".config/gowall/config.yml".text = ''
     EnableImagePreviewing: false
     InlineImagePreview: false
