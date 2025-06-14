@@ -143,9 +143,6 @@
             vim.api.nvim_set_hl(0,"BlinkCmpKindText",{fg=p.base07,bg="NONE"})
 
             vim.api.nvim_set_hl(0, "BlinkCmpKindSnippet", {fg = p.base08, bg = "NONE"})
-            vim.api.nvim_set_hl(0, "BlinkCmpKindReference", {fg = p.base08, bg = "NONE"})
-            vim.api.nvim_set_hl(0, "BlinkCmpKindCopilot", {fg = p.base08, bg = "NONE"})
-            vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", {fg = p.base08, bg = "NONE"})
 
             vim.api.nvim_set_hl(0,"BlinkCmpKindConstant",{fg=p.base09,bg="NONE"})
             vim.api.nvim_set_hl(0,"BlinkCmpKindBoolean",{fg=p.base09,bg="NONE"})
@@ -159,6 +156,10 @@
 
             vim.api.nvim_set_hl(0, "BlinkCmpKindValue", {fg = p.base0A, bg = "NONE"})
             vim.api.nvim_set_hl(0, "BlinkCmpKindString", {fg = p.base0A, bg = "NONE"})
+
+            vim.api.nvim_set_hl(0, "BlinkCmpKindReference", {fg = p.base0B, bg = "NONE"})
+            vim.api.nvim_set_hl(0, "BlinkCmpKindCopilot", {fg = p.base0B, bg = "NONE"})
+            vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", {fg = p.base0B, bg = "NONE"})
 
             vim.api.nvim_set_hl(0,"BlinkCmpKindField",{fg=p.base0C,bg="NONE"})
             vim.api.nvim_set_hl(0,"BlinkCmpKindKey",{fg=p.base0C,bg="NONE"})
