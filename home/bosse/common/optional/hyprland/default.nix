@@ -33,4 +33,6 @@
         config.monitors;
     };
   };
+
+  services.hyprsunset.enable = true;
 }
