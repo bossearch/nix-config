@@ -10,8 +10,12 @@
       # If the class is "Waydroid", stop the Waydroid session
       if [[ "$focused_class" == "Waydroid" ]]; then
         pkexec ~/.config/hypr/scripts/assets/waydroid-quit.sh
+
       elif [[ "$focused_class" == "mpv" ]]; then
-        echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket
+        if ! echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket; then
+          pkill mpv
+        fi
+
       else
         hyprctl dispatch killactive
       fi
