@@ -13,8 +13,6 @@
 
   home.packages = with pkgs; [
     cliphist
-    hypridle
-    hyprpaper
     hyprpicker
     hyprsunset
     localsend

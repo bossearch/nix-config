@@ -18,7 +18,7 @@
       fi
 
       popd >/dev/null || exit
-      hyprpaper >/dev/null 2>&1 &
+      hyprctl hyprpaper reload ,"/tmp/hyprpaper.png"
       hyprlock >/dev/null 2>&1 &
     '';
   };
