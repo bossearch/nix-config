@@ -1,5 +1,6 @@
 {
   imports = [
+    ./disko.nix
     ./hardware-configuration.nix
     ./../common/core
     ./../common/optional/bluetooth.nix
