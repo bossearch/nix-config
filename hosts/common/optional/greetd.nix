@@ -16,8 +16,9 @@
     INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
 
     if [ ! -f "$INPUT_WALL" ]; then
-      curl -s -A "Mozilla/5.0" 'https://www.reddit.com/r/wallpaper/top/.json?limit=1' |
+      curl -s -A "Mozilla/5.0" 'https://www.reddit.com/r/wallpaper/top/.json?limit=3' |
         jq -r '.data.children[] | select(.data.post_hint == "image") | .data.url' |
+        head -n 1 |
         xargs -I {} sh -c 'ext="''${1##*.}"; wget -q -O "wall-$(date +%Y%m%d).$ext" "$1"' _ {}
     fi
 
