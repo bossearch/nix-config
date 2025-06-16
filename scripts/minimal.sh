@@ -36,4 +36,12 @@ git -C ~/.nix-config add .
 # Install NixOS using minimal flake
 sudo nixos-install --no-root-password --flake "$MINIMAL_FLAKE#$HOST"
 
-echo -e "${GREEN}✔ Minimal installation complete for $HOST. Please reboot to finish setup.${NC}"
+echo -e "${GREEN}✔ Minimal installation complete for $HOST"
+
+for i in {5..1}; do
+  echo -ne "${GREEN}Rebooting in $i seconds... Press Ctrl+C to cancel.${NC}\r"
+  sleep 1
+done
+
+echo -e "\n${GREEN}Rebooting now...${NC}"
+reboot

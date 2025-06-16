@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Automated script to install my nix-config credit, to `https://github.com/librephoenix/nixos-config`
-# If you new to nixos i highly recommend to watch his yt channel.
-
 set -e
 
 # Color definitions
@@ -26,14 +23,22 @@ fi
 FLAKE=~/.nix-config
 
 # Generate hardware config for new system
-sudo cp /etc/nixos/hardware-configuration.nix $FLAKE/hosts/$HOSTNAME/hardware-configuration.nix
+#sudo cp /etc/nixos/hardware-configuration.nix $FLAKE/hosts/$HOSTNAME/hardware-configuration.nix
 
 # Rebuild system
-sudo nixos-rebuild switch --flake $FLAKE#$HOSTNAME
+sudo nixos-rebuild switch --flake "$FLAKE#$HOSTNAME"
 
 # Install and build home-manager configuration
-nix run home-manager --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake $FLAKE#$USERNAME@$HOSTNAME
+nix run home-manager --extra-experimental-features 'nix-command flakes' -- switch --flake "$FLAKE#$USERNAME@$HOSTNAME"
 
-PAGER=cat home-manager news --flake $FLAKE#$USERNAME@$HOSTNAME
+env PAGER=cat home-manager news --flake "$FLAKE#$USERNAME@$HOSTNAME"
 
-echo -e "${GREEN}Installation complete. It is recommended to reboot your system now.${NC}"
+echo -e "${GREEN}✔ Full installation complete for $USERNAME@$HOSTNAME"
+
+# for i in {5..1}; do
+#   echo -ne "${GREEN}Rebooting in $i seconds... Press Ctrl+C to cancel.${NC}\r"
+#   sleep 1
+# done
+#
+# echo -e "\n${GREEN}Rebooting now...${NC}"
+# reboot
