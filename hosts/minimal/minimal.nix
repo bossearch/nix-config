@@ -3,10 +3,14 @@
 
   services.openssh.enable = true;
 
-  users.users.root = {
-    initialPassword = "root";
-    isNormalUser = false;
+  users.users.bosse = {
+    # temporary will got replaced after full build
+    initialPassword = "bosse";
+    isNormalUser = true;
   };
+
+  services.getty.autologinUser = "bosse";
+
   boot = {
     # Use systemd bootload
     loader.systemd-boot.enable = true;
