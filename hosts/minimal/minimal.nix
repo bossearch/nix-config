@@ -27,7 +27,7 @@
     "flakes"
   ];
 
-  environment.systemPackages = with pkgs; [git];
+  environment.systemPackages = with pkgs; [gitMinimal];
   # bootstrap full nixos config from TTY autologin using bash loginShellInit
   programs.bash = {
     loginShellInit = ''

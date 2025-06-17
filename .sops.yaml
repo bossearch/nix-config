@@ -1,0 +1,8 @@
+keys:
+  - &hosts:
+    - &vm age1taspkrft3qqspgtn5h0wu0jvk0mju2pknu68cvl9scmyl6zsvgfqw8vedk
+creation_rules:
+  - path_regex: ^(hosts/vm/)?secrets\.ya?ml$
+    key_groups:
+    - age:
+      - *vm
