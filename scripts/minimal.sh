@@ -44,4 +44,6 @@ for i in {5..1}; do
 done
 
 echo -e "\n${GREEN}Rebooting now...${NC}"
-reboot
+(sleep 1 && reboot) &
+disown
+exit 0

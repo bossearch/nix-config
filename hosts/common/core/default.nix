@@ -16,6 +16,7 @@
       # ./proxy.nix
       ./shell.nix
       ./ssh.nix
+      ./sops.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

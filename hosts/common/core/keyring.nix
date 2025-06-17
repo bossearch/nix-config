@@ -27,6 +27,4 @@
       pinentryPackage = pkgs.pinentry-gnome3;
     };
   };
-
-  services.openssh.enable = false;
 }
