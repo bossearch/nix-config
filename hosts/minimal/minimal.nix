@@ -1,9 +1,9 @@
-{pkgs, ...}: {
+{
   time.timeZone = "Asia/Singapore";
 
   users.users.bosse = {
     # temporary will got replaced after full build
-    initialPassword = "bosse";
+    initialPassword = "minimal";
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
@@ -19,7 +19,6 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
-
   services.getty.autologinUser = "bosse";
 
   boot = {
@@ -34,18 +33,6 @@
     "nix-command"
     "flakes"
   ];
-
-  environment.systemPackages = with pkgs; [gitMinimal];
-  # bootstrap full nixos config from TTY autologin using bash loginShellInit
-  programs.bash = {
-    loginShellInit = ''
-      if [ ! -d "$HOME/.nix-config" ]; then
-        echo "[+] Cloning and installing full config..."
-        git clone --branch bootstrap https://github.com/bossearch/nix-config "$HOME/.nix-config"
-        exec "$HOME/.nix-config/scripts/install.sh"
-      fi
-    '';
-  };
 
   # Do not change these future me !
   system.stateVersion = "24.11"; # Did you read the comment?
