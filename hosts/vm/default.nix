@@ -31,15 +31,6 @@
     theme = "tokyo-night-dark";
   };
 
-  # re declare this on main hosts file for testing
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.systemd-boot.consoleMode = "max";
-    loader.efi.canTouchEfiVariables = true;
-    loader.timeout = 1;
-  };
-  #
-
   # Do not change these future me !
   system.stateVersion = "24.11"; # Did you read the comment?
 }

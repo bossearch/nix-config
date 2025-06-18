@@ -29,9 +29,9 @@ FLAKE=~/.nix-config
 sudo nixos-rebuild switch --flake "$FLAKE#$HOSTNAME"
 
 # Install and build home-manager configuration
-nix run home-manager --extra-experimental-features 'nix-command flakes' -- switch --flake "$FLAKE#$USERNAME@$HOSTNAME"
-
-env PAGER=cat home-manager news --flake "$FLAKE#$USERNAME@$HOSTNAME"
+# nix run home-manager --extra-experimental-features 'nix-command flakes' -- switch --flake "$FLAKE#$USERNAME@$HOSTNAME"
+#
+# env PAGER=cat home-manager news --flake "$FLAKE#$USERNAME@$HOSTNAME"
 
 echo -e "${GREEN}✔ Full installation complete for $USERNAME@$HOSTNAME"
 
