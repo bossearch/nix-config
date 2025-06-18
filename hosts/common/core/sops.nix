@@ -12,8 +12,5 @@ in {
   sops = {
     age.sshKeyPaths = map getKeyPath keys;
     defaultSopsFile = ../../${config.spec.hostName}/secrets.yaml;
-    defaultSopsFormat = "yaml";
-
-    secrets.passwd = {};
   };
 }

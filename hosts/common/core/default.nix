@@ -7,14 +7,15 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      ./colors.nix
+      ./boot.nix
+      #./colors.nix
       ./firewall.nix
-      ./keyring.nix
-      ./locale.nix
-      ./network.nix
+      #./keyring.nix
+      #./locale.nix
+      #./network.nix
       ./nix.nix
-      # ./proxy.nix
-      ./shell.nix
+      ##./proxy.nix
+      #./shell.nix
       ./ssh.nix
       ./sops.nix
     ]
@@ -28,10 +29,15 @@
   # Set your time zone.
   time.timeZone = "${config.spec.timeZone}";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${config.spec.userName} = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio" "video"];
+  # Define a user account.
+  sops.secrets.passwd.neededForUsers = true;
+  users = {
+    mutableUsers = false;
+    users.${config.spec.userName} = {
+      isNormalUser = true;
+      extraGroups = ["wheel" "networkmanager" "audio" "video"];
+      hashedPasswordFile = config.sops.secrets.passwd.path;
+    };
   };
 
   home-manager = {
