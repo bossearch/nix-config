@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./../common/core
     ./../common/optional/bluetooth.nix
+    # ./../common/optional/bridge.nix
     ./../common/optional/font.nix
     # ./../common/optional/graphics.nix
     ./../common/optional/greetd.nix
