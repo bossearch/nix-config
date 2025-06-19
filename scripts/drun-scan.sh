@@ -64,6 +64,7 @@ exclude_apps=(
   "org.pwmt.zathura-djvu"
   "org.pwmt.zathura-pdf-mupdf"
   "polkit-gnome-authentication-agent-1"
+  "qt5ct"
   "qv4l2"
   "qvidcap"
   "qwant-maps-geo-handler"

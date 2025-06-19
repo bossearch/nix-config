@@ -5,6 +5,8 @@
   ];
   home.packages = with pkgs; [
     adw-gtk3
+    libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum
   ];
   home.pointerCursor = {
     name = "macOS";
@@ -29,7 +31,7 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk3";
+    platformTheme.name = "qt5ct";
     style.name = "kvantum";
   };
 }
