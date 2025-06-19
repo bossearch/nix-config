@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   home.file.".config/hypr/scripts/game-mode.sh" = {
     executable = true;
     text = ''
@@ -6,11 +6,11 @@
 
       current_workspace=$(hyprctl activewindow | grep "workspace: " | sed -E 's/.*workspace: .*\((.*)\)/\1/')
 
-      if [ -f ~/.cache/gamemode ]; then
+      if [ -f ~/.cache/bosse/gamemode ]; then
         hyprctl --batch "\
           dispatch togglespecialworkspace gamespace;\
           reload"
-        rm ~/.cache/gamemode
+        rm ~/.cache/bosse/gamemode
         notify-send -a game_off "Game Mode" "Deactivated"
       else
         if [ "$current_workspace" = "special:gamespace" ]; then
@@ -22,7 +22,7 @@
             keyword decoration:active_opacity 1;\
             keyword decoration:inactive_opacity 1;\
             keyword decoration:rounding 0"
-          touch ~/.cache/gamemode
+          touch ~/.cache/bosse/gamemode
           notify-send -a game_on "Game Mode" "Activated"
         else
           hyprctl --batch "\
@@ -34,7 +34,7 @@
             keyword decoration:active_opacity 1;\
             keyword decoration:inactive_opacity 1;\
             keyword decoration:rounding 0"
-          touch ~/.cache/gamemode
+          touch ~/.cache/bosse/gamemode
           notify-send -a game_on "Game Mode" "Activated"
         fi
       fi
