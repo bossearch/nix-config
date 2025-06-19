@@ -1,10 +1,4 @@
-{config, ...}: let
-  mymonitor = builtins.all (m: m.height == 1440) config.monitors;
-  cursor =
-    if mymonitor
-    then "24"
-    else "22";
-in {
+{
   wayland.windowManager.hyprland.extraConfig = ''
     ####################
     ### ENVIRONTMENT ###
@@ -12,14 +6,9 @@ in {
 
     # See https://wiki.hyprland.org/Configuring/Environment-variables/
 
-    env = XCURSOR_SIZE,${cursor}
-    env = XCURSOR_THEME,macOS
-    env = HYPRCURSOR_SIZE,${cursor}
-    env = HYPRCURSOR_THEME,macOS
-
     env = QT_QPA_PLATFORM,wayland;xcb
-    # env = QT_QPA_PLATFORMTHEME,qt6ct
-    env = QT_STYLE_OVERRIDE=kvantum
+    env = QT_QPA_PLATFORMTHEME,qt5ct
+    env = QT_STYLE_OVERRIDE,kvantum
     env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 
     env = XDG_SESSION_TYPE,wayland

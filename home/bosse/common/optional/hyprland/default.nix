@@ -2,7 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  mymonitor = builtins.all (m: m.height == 1440) config.monitors;
+  cursor =
+    if mymonitor
+    then 24
+    else 22;
+in {
   imports = [
     ./conf
     ./scripts
@@ -31,6 +37,19 @@
           m: "${m.name},${toString m.width}x${toString m.height}@${toString m.refreshRate},0x0,1"
         )
         config.monitors;
+    };
+  };
+
+  home.pointerCursor.hyprcursor = {
+    enable = true;
+    size = cursor;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    config.hyprland = {
+      default = ["wlr" "gtk"];
     };
   };
 

@@ -20,7 +20,7 @@
     ./common/optional/spotify.nix
     ./common/optional/theme
     # ./common/optional/vaults.nix
-    # ./common/optional/vesktop
+    ./common/optional/vesktop
     ./common/optional/waybar
     # ./common/optional/zathura.nix
   ];
