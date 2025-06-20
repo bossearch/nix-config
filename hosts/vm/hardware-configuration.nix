@@ -17,7 +17,6 @@
   boot.extraModulePackages = [];
   boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
     mkdir -m 0755 -p /key
-    sleep 2 # Give the USB device time to initialize
     for i in $(seq 1 10); do
       if [ -e /dev/disk/by-uuid/DA30-0796 ]; then
         echo ">> Found USB device."
@@ -25,11 +24,14 @@
       fi
       sleep 1
     done
+    if [ ! -e /key/luks.key ]; then
+      echo ">> Keyfile not found, exiting Plymouth to show prompt."
+      plymouth --quit || true
+    fi
   '';
-  boot.initrd.luks.devices.enc = {
+
+  boot.initrd.luks.devices.nixos = {
     keyFile = "/key/luks.key";
-    allowDiscards = true;
-    keyFileSize = 4096;
     fallbackToPassword = true; # Allow password if USB key is missing
     preLVM = false;
   };
