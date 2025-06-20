@@ -14,20 +14,19 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = ["umask=0077"];
             };
           };
 
           luks = {
             size = "100%";
-            label = "luks";
             content = {
               type = "luks";
-              name = "enc";
-              passwordFile = "/key/luks";
+              name = "nixos";
               settings.keyFile = "/key/luks.key";
               content = {
                 type = "btrfs";
-                extraArgs = ["-L" "nixos" "-f"];
+                extraArgs = ["-f"];
                 subvolumes = {
                   "@root" = {
                     mountpoint = "/";
