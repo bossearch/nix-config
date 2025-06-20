@@ -11,12 +11,19 @@
     mkMinimal = host:
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          (import ./disko.nix {inherit inputs;})
-          ./hardware-configuration.nix
-          ./minimal.nix
-          ({...}: {networking.hostName = host;})
-        ];
+        modules = let
+          luksKeyModule =
+            if builtins.pathExists ./luks-key.nix
+            then [./luks-key.nix]
+            else [];
+        in
+          [
+            (import ./disko.nix {inherit inputs;})
+            ./hardware-configuration.nix
+            ./minimal.nix
+            ({...}: {networking.hostName = host;})
+          ]
+          ++ luksKeyModule;
       };
   in {
     nixosConfigurations = {

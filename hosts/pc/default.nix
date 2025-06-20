@@ -36,7 +36,7 @@
   };
 
   spec = {
-    hostName = "vm";
+    hostName = "pc";
     userName = "bosse";
     timeZone = "Asia/Singapore";
     theme = "tokyo-night-dark";

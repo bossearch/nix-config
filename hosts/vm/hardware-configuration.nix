@@ -2,39 +2,20 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  config,
   lib,
-  modulesPath,
   pkgs,
+  modulesPath,
   ...
 }: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot.initrd.kernelModules = ["uas" "usbcore" "usb_storage" "vfat" "nls_cp437" "nls_iso8859_1"];
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
-    mkdir -m 0755 -p /key
-    for i in $(seq 1 10); do
-      if [ -e /dev/disk/by-uuid/DA30-0796 ]; then
-        echo ">> Found USB device."
-        mount -n -t vfat -o ro /dev/disk/by-uuid/DA30-0796 /key && break
-      fi
-      sleep 1
-    done
-    if [ ! -e /key/luks.key ]; then
-      echo ">> Keyfile not found, exiting Plymouth to show prompt."
-      plymouth --quit || true
-    fi
-  '';
-
-  boot.initrd.luks.devices.nixos = {
-    keyFile = "/key/luks.key";
-    fallbackToPassword = true; # Allow password if USB key is missing
-    preLVM = false;
-  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

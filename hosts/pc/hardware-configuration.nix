@@ -7,68 +7,15 @@
   pkgs,
   modulesPath,
   ...
-}: let
-  # Replace with the actual UUIDs from `lsblk -f`
-  USB_PARTITION_UUID = "DA30-0796";
-  LUKS_UUID = "7171bf80-5c07-4f3c-ae14-69430f337d90";
-  KEYFILE_PATH = "/key/pc.key";
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "amdgpu"
-    "nls_cp437"
-    "nls_iso8859_1"
-    "nvme"
-    "sd_mod"
-    "uas"
-    "usb_storage"
-    "usbcore"
-    "usbhid"
-    "vfat"
-    "xhci_pci"
-  ];
+  boot.initrd.availableKernelModules = ["ahci" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
-    mkdir -m 0755 -p /key
-    sleep 2 # Give the USB device time to initialize
-    mount -n -t vfat -o ro /dev/disk/by-uuid/${USB_PARTITION_UUID} /key
-  '';
-
-  # LUKS decryption configuration
-  boot.initrd.luks.devices."lukslvm" = {
-    device = "/dev/disk/by-uuid/${LUKS_UUID}";
-    keyFile = KEYFILE_PATH;
-    allowDiscards = true;
-    keyFileSize = 4096;
-    fallbackToPassword = true; # Allow password if USB key is missing
-    preLVM = false;
-  };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/90e22273-8eca-49d7-ac10-92c1097f50de";
-    fsType = "ext4";
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/586e3680-ea77-4c34-bb74-835710b2f6cf";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A51E-A6C8";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/dcbe2c96-799f-406f-b8a3-a28b0c18ff65";}
-  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
