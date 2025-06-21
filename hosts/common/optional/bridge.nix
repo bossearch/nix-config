@@ -1,5 +1,5 @@
 {
-  networkmanager.ensureProfiles.profiles = {
+  networking.networkmanager.ensureProfiles.profiles = {
     "br0" = {
       connection = {
         id = "br0";
