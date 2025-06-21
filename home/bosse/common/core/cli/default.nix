@@ -16,6 +16,7 @@
     eza
     fd
     ffmpeg
+    file
     imagemagick
     jq
     killall
