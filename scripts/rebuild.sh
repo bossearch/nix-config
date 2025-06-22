@@ -44,6 +44,8 @@ case "$1" in
   ;;
 "update")
   nix flake update
+  cd ~/.nix-config/hosts/minimal
+  nix flake update
   exit 0
   ;;
 "delete")
