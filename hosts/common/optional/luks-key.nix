@@ -10,8 +10,11 @@
       sleep 1
     done
     if [ ! -e /key/luks.key ]; then
-      echo ">> Keyfile not found, exiting Plymouth to show prompt."
-      plymouth --quit || true
+      echo ">> Keyfile not found."
+      if command -v plymouth >/dev/null 2>&1; then
+        echo ">> Exiting Plymouth to show prompt..."
+        plymouth --quit || true
+      fi
     fi
   '';
 
