@@ -1,9 +1,6 @@
 {
-  time.timeZone = "Asia/Singapore";
-
   users.users.bosse = {
-    # temporary will got replaced after full build
-    initialPassword = "minimal";
+    initialPassword = import ./password.nix;
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
