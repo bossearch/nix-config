@@ -16,6 +16,10 @@
             if builtins.pathExists ./luks-key.nix
             then [./luks-key.nix]
             else [];
+          wifiModule =
+            if builtins.pathExists ./wpa.nix
+            then [./wpa.nix]
+            else [];
         in
           [
             (import ./disko.nix {inherit inputs;})
@@ -23,7 +27,7 @@
             ./minimal.nix
             ({...}: {networking.hostName = host;})
           ]
-          ++ luksKeyModule;
+          ++ luksKeyModule ++ wifiModule;
       };
   in {
     nixosConfigurations = {
