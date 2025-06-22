@@ -35,8 +35,8 @@
       bind -r Down resize-pane -D    # Resize pane downward
       bind -r Up resize-pane -U      # Resize pane upward
       bind -r Right resize-pane -R   # Resize pane to the right
-      bind -r h previous-window
-      bind -r l next-window
+      bind -n M-h previous-window
+      bind -n M-l next-window
       bind -r s swap-pane -D
 
       # Split
