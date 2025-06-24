@@ -10,7 +10,7 @@
       ./cli
       ./mime.nix
       ./git.nix
-      ./nixpkgs.nix
+      ./nix.nix
       ./nvim
       ./shell
     ]
