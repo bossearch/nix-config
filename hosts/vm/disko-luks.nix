@@ -32,9 +32,9 @@
                     mountpoint = "/";
                     mountOptions = ["noatime" "compress=zstd" "subvol=@root"];
                   };
-                  "@persist" = {
-                    mountpoint = "/persist";
-                    mountOptions = ["noatime" "compress=zstd" "subvol=@persist"];
+                  "@home" = {
+                    mountpoint = "/home";
+                    mountOptions = ["noatime" "compress=zstd" "subvol=@home"];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
@@ -53,5 +53,4 @@
       };
     };
   };
-  fileSystems."/persist".neededForBoot = true;
 }
