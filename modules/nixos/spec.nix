@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkOption types;
 in {
   options.spec = mkOption {
@@ -23,7 +27,27 @@ in {
             "tokyo-night-dark"
           ];
         };
+        disk = mkOption {
+          default = "/dev/vda";
+          type = types.str;
+        };
+        swap = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        swapSize = mkOption {
+          default = "";
+          type = types.str;
+        };
       };
     };
+  };
+  config = {
+    assertions = [
+      {
+        assertion = !(config.spec.swap) || (config.spec.swapSize != "");
+        message = "If `spec.swap` is true, then `spec.swapSize` must be specified.";
+      }
+    ];
   };
 }

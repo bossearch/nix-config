@@ -7,8 +7,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = {nixpkgs, ...} @ inputs: let
-    mkMinimal = host:
+    mkMinimal = host: disk: swap: swapSize:
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = let
@@ -22,7 +23,33 @@
             else [];
         in
           [
-            (import ./disko.nix {inherit inputs;})
+            inputs.disko.nixosModules.disko
+            ({lib, ...}: let
+              inherit (lib) mkOption types;
+            in {
+              options.spec = mkOption {
+                type = types.submodule {
+                  options = {
+                    disk = mkOption {
+                      type = types.str;
+                    };
+                    swap = mkOption {
+                      type = types.bool;
+                    };
+                    swapSize = mkOption {
+                      type = types.str;
+                    };
+                  };
+                };
+              };
+            })
+            ({...}: {
+              spec.disk = disk;
+              spec.swap = swap;
+              spec.swapSize = swapSize;
+            })
+
+            ./disko.nix
             ./hardware-configuration.nix
             ./minimal.nix
             ({...}: {networking.hostName = host;})
@@ -31,8 +58,8 @@
       };
   in {
     nixosConfigurations = {
-      pc = mkMinimal "pc";
-      vm = mkMinimal "vm";
+      pc = mkMinimal "pc" "/dev/nvme0n1" true "32G";
+      vm = mkMinimal "vm" "/dev/vda" false "0G";
     };
   };
 }

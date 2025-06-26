@@ -1,7 +1,7 @@
-{
+{inputs, ...}: {
   imports = [
-    ./disko.nix
-    ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./../common/disks/btrfs-luks-impermanence.nix
     ./../common/core
     ./../common/optional/bluetooth.nix
     # ./../common/optional/bridge.nix
@@ -31,6 +31,9 @@
     userName = "bosse";
     timeZone = "Asia/Singapore";
     theme = "tokyo-night-dark";
+    disk = "/dev/vda";
+    swap = false;
+    swapSize = "0G";
   };
 
   # Do not change these future me !
