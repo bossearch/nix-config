@@ -1,9 +1,12 @@
-{inputs, ...}: {
-  imports = [inputs.disko.nixosModules.disko];
+{
+  config,
+  lib,
+  ...
+}: {
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/vda";
+      device = config.spec.disk;
       content = {
         type = "gpt";
         partitions = {
@@ -32,18 +35,18 @@
                     mountpoint = "/";
                     mountOptions = ["noatime" "compress=zstd" "subvol=@root"];
                   };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = ["noatime" "compress=zstd" "subvol=@home"];
+                  "@persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = ["noatime" "compress=zstd" "subvol=@persist"];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
                     mountOptions = ["noatime" "compress=zstd" "subvol=@nix"];
                   };
-                  "@swap" = {
+                  "@swap" = lib.mkIf config.spec.swap {
                     mountpoint = "/swap";
                     mountOptions = ["noatime" "subvol=@swap"];
-                    swap.swapfile.size = "1G";
+                    swap.swapfile.size = config.spec.swapSize;
                   };
                 };
               };
@@ -53,4 +56,5 @@
       };
     };
   };
+  fileSystems."/persist".neededForBoot = true;
 }

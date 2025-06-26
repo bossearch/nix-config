@@ -1,9 +1,8 @@
-{inputs, ...}: {
-  imports = [inputs.disko.nixosModules.disko];
+{config, ...}: {
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/vda";
+      device = config.spec.disk;
       content = {
         type = "gpt";
         partitions = {
@@ -17,6 +16,7 @@
               mountOptions = ["umask=0077"];
             };
           };
+
           root = {
             size = "100%";
             content = {
