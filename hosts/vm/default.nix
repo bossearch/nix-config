@@ -1,9 +1,9 @@
-{inputs, ...}: {
+{
   imports = [
     ./../common/core
+    ./../common/users
     ./../common/disks
     ./../common/disks/btrfs-impermanence.nix
-    ./hardware-configuration.nix
     # ./../common/optional/bluetooth.nix
     # ./../common/optional/font.nix
     # ./../common/optional/graphics.nix
@@ -20,6 +20,7 @@
     # ./../common/optional/usbguard.nix
     # ./../common/optional/virt-manager.nix
     # ./../common/optional/waydroid.nix
+    ./hardware-configuration.nix
   ];
 
   port = {
