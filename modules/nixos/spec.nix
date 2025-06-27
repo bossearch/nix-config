@@ -39,6 +39,10 @@ in {
           default = "";
           type = types.str;
         };
+        impermanence = mkOption {
+          default = false;
+          type = types.bool;
+        };
       };
     };
   };

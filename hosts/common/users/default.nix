@@ -4,8 +4,6 @@
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-  hasOptinPersistence =
-    lib.hasAttrByPath ["environment" "persistence" "/persist"] config;
 in {
   # Define a user account.
   sops.secrets.passwd.neededForUsers = true;
@@ -31,13 +29,13 @@ in {
     };
   };
 
-  environment.persistence = lib.mkIf hasOptinPersistence {
+  environment.persistence = lib.mkIf config.spec.impermanence {
     "/persist" = {
       users.${config.spec.userName}.directories = ["."];
     };
   };
 
-  system.activationScripts.persistent-dirs.text = lib.mkIf hasOptinPersistence (
+  system.activationScripts.persistent-dirs.text = lib.mkIf config.spec.impermanence (
     let
       mkHomePersist = user:
         lib.optionalString user.createHome ''

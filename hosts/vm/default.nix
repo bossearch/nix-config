@@ -35,6 +35,7 @@
     disk = "/dev/vda";
     swap = false;
     swapSize = "0G";
+    impermanence = true;
   };
 
   # Do not change these future me !
