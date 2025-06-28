@@ -6,25 +6,25 @@
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
-    impermanence.url = "github:nix-community/impermanence";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-colors.url = "github:misterio77/nix-colors";
+    sops-nix = {
+      url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    impermanence.url = "github:nix-community/impermanence";
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
 
     # Third party programs, packaged with nix
     nixvim = {
@@ -90,14 +90,6 @@
       };
     };
 
-    # Android
-    nixOnDroidConfigurations = {
-      default = nix-on-droid.lib.nixOnDroidConfiguration {
-        pkgs = pkgsFor.aarch64-linux;
-        modules = [./hosts/droid];
-      };
-    };
-
     homeConfigurations = {
       # Main Desktop
       "bosse@pc" = home-manager.lib.homeManagerConfiguration {
@@ -115,6 +107,19 @@
         extraSpecialArgs = {
           inherit inputs outputs;
         };
+      };
+    };
+
+    # Android
+    nixOnDroidConfigurations = {
+      default = nix-on-droid.lib.nixOnDroidConfiguration {
+        pkgs = pkgsFor.aarch64-linux;
+        modules = [
+          (import ./hosts/droid {
+            inherit inputs outputs;
+            pkgs = pkgsFor.aarch64-linux;
+          })
+        ];
       };
     };
   };
