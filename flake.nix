@@ -7,6 +7,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     impermanence.url = "github:nix-community/impermanence";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,9 +19,10 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     nix-colors.url = "github:misterio77/nix-colors";
 
@@ -43,6 +48,7 @@
   outputs = {
     self,
     nixpkgs,
+    nix-on-droid,
     home-manager,
     systems,
     ...
@@ -79,6 +85,14 @@
         specialArgs = {
           inherit inputs outputs;
         };
+      };
+    };
+
+    # Android
+    nixOnDroidConfigurations = {
+      default = nix-on-droid.lib.nixOnDroidConfiguration {
+        pkgs = pkgsFor.aarch64-linux;
+        modules = [./hosts/droid];
       };
     };
 
