@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   outputs,
   pkgs,
   ...
@@ -14,16 +15,28 @@ in {
   # Simply install just the packages
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
-    vim
+    busybox
     git
+    hostname
+    man
+    openssh
+    procps
+    socat
+    sshpass
+    vim
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
 
+  # Fix for private dns
+  environment.etc."resolv.conf".text = lib.mkForce ''
+    nameserver 1.1.1.1
+    nameserver 2606:4700:4700::1111
+  '';
+
   # Android/Termux specific configuration
   android-integration = {
-    # to make sure I have access to phone's storage system
     termux-open.enable = true;
     termux-reload-settings.enable = true;
     termux-setup-storage.enable = true;
@@ -35,8 +48,10 @@ in {
     inherit inputs outputs;
   };
 
+  user.shell = "${pkgs.fish}/bin/fish";
+
   terminal = {
-    font = "${pkgs.nerd-fonts.commit-mono}/share/fonts/truetype/NerdFonts/CommitMono/CommitMonoNerdFont-Regular.ttf";
+    font = "${pkgs.nerd-fonts.commit-mono}/share/fonts/opentype/NerdFonts/CommitMono/CommitMonoNerdFont-Regular.otf";
 
     # Dracula colorscheme
     colors = {

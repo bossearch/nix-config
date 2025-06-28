@@ -114,7 +114,7 @@
         pkgs = pkgsFor.aarch64-linux;
         modules = [
           (import ./hosts/droid {
-            inherit inputs outputs;
+            inherit inputs outputs lib;
             pkgs = pkgsFor.aarch64-linux;
           })
         ];
