@@ -12,5 +12,5 @@ in {
   colorScheme =
     nix-colors.lib.schemeFromYAML
     "${config.spec.theme}"
-    (builtins.readFile ../../../../modules/themes/${config.spec.theme}.yaml);
+    (builtins.readFile ../../../modules/themes/${config.spec.theme}.yaml);
 }

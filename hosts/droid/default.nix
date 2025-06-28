@@ -3,7 +3,14 @@
   outputs,
   pkgs,
   ...
-}: {
+}: let
+  theme = "tokyo-night-dark";
+  inherit (inputs.nix-colors.lib) schemeFromYAML;
+  colorScheme =
+    schemeFromYAML
+    theme
+    (builtins.readFile ../../modules/themes/${theme}.yaml);
+in {
   # Simply install just the packages
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
@@ -26,6 +33,35 @@
   home-manager.config = ../../home/droid;
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
+  };
+
+  terminal = {
+    font = "${pkgs.nerd-fonts.commit-mono}/share/fonts/truetype/NerdFonts/CommitMono/CommitMonoNerdFont-Regular.ttf";
+
+    # Dracula colorscheme
+    colors = {
+      background = "#${colorScheme.palette.base00}";
+      foreground = "#${colorScheme.palette.base07}";
+
+      cursor = "#${colorScheme.palette.base07}";
+      color0 = "#${colorScheme.palette.base01}";
+      color1 = "#${colorScheme.palette.base08}";
+      color2 = "#${colorScheme.palette.base0B}";
+      color3 = "#${colorScheme.palette.base0A}";
+      color4 = "#${colorScheme.palette.base0D}";
+      color5 = "#${colorScheme.palette.base0E}";
+      color6 = "#${colorScheme.palette.base0C}";
+      color7 = "#${colorScheme.palette.base05}";
+
+      color8 = "#${colorScheme.palette.base03}";
+      color9 = "#${colorScheme.palette.base08}";
+      color10 = "#${colorScheme.palette.base0B}";
+      color11 = "#${colorScheme.palette.base0A}";
+      color12 = "#${colorScheme.palette.base0D}";
+      color13 = "#${colorScheme.palette.base0E}";
+      color14 = "#${colorScheme.palette.base0C}";
+      color15 = "#${colorScheme.palette.base07}";
+    };
   };
 
   # Set up nix for flakes
