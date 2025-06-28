@@ -53,8 +53,6 @@
     '';
     shellAliases = {
       v = "nvim --startuptime /tmp/nvim-startup.log";
-      vi = "nvim --startuptime /tmp/nvim-startup.log";
-      vim = "nvim --startuptime /tmp/nvim-startup.log";
       nvim = "nvim --startuptime /tmp/nvim-startup.log";
       ls = "eza -l --color=always --no-user --no-permissions --no-filesize --no-time";
       la = "eza -la --color=always --no-user --no-permissions --no-filesize --no-time";

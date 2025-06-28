@@ -2,6 +2,11 @@
   notify = {
     onEvent = "fish_postexec";
     body = ''
+      # Exit early if notify-send is not available
+      if not type -q notify-send
+        return
+      end
+
       # List of commands to exclude
       set -l exclude_cmds \
           nyaa \
