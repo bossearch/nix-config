@@ -8,14 +8,14 @@
     [
       inputs.home-manager.nixosModules.home-manager
       ./boot.nix
-      #./colors.nix
+      ./colors.nix
       ./firewall.nix
-      #./keyring.nix
-      #./locale.nix
-      #./network.nix
+      ./keyring.nix
+      ./locale.nix
+      ./network.nix
       ./nix.nix
-      ##./proxy.nix
-      #./shell.nix
+      #./proxy.nix
+      ./shell.nix
       ./ssh.nix
       ./sops.nix
     ]
