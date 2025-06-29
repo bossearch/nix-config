@@ -5,12 +5,13 @@
     ./../common/disks
     ./../common/disks/btrfs-impermanence.nix
     # ./../common/optional/bluetooth.nix
-    # ./../common/optional/font.nix
+    # ./../common/optional/bridge.nix
+    ./../common/optional/font.nix
     # ./../common/optional/graphics.nix
     ./../common/optional/greetd.nix
     # ./../common/optional/hyprland.nix
     ./../common/optional/impermanence.nix
-    ./../common/optional/luks-key.nix
+    # ./../common/optional/luks-key.nix
     ./../common/optional/misc.nix
     ./../common/optional/nix-ld.nix
     ./../common/optional/pipewire.nix
