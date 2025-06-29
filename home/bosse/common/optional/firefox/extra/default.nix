@@ -281,6 +281,11 @@
       user_pref("toolkit.telemetry.cachedClientID", "c0ffeec0-ffee-c0ff-eec0-ffeec0ffeec0");
       user_pref("toolkit.telemetry.cachedProfileGroupID", "decafdec-afde-cafd-ecaf-decafdecafde");
 
+      user_pref("datareporting.usage.uploadEnabled", false);
+      user_pref("extensions.formautofill.addresses.enabled", false);
+      user_pref("extensions.formautofill.creditCards.enabled", false);
+      user_pref("network.trr.mode", 5);
+
       user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Pocket > Sponsored Stories
       user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // [FF83+] Sponsored shortcuts
       user_pref("browser.newtabpage.activity-stream.default.sites", "");

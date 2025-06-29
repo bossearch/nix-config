@@ -2,6 +2,15 @@
   imports = [./extra];
   programs.firefox = {
     enable = true;
+    policies = {
+      Cookies = {
+        Allow = import ./allowlist.nix;
+        Behavior = "reject-tracker";
+        BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
+        Locked = true;
+      };
+      ExtensionSettings = import ./extension.nix;
+    };
     profiles.bosse = {
       id = 0;
       isDefault = true;
@@ -14,21 +23,6 @@
           "wikipedia".metaData.hidden = true;
         };
         force = true;
-      };
-      extensions = {
-        force = true;
-        packages = with pkgs.inputs.firefox-addons; [
-          cookie-autodelete
-          darkreader
-          new-tab-override
-          onetab
-          proton-pass
-          side-view
-          sponsorblock
-          tweaks-for-youtube
-          ublock-origin
-          vimium
-        ];
       };
     };
     nativeMessagingHosts = [pkgs.bukubrow];
