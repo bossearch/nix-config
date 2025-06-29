@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [./extra];
   programs.firefox = {
     enable = true;
@@ -25,6 +25,5 @@
         force = true;
       };
     };
-    nativeMessagingHosts = [pkgs.bukubrow];
   };
 }
