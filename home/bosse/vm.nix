@@ -1,28 +1,28 @@
 {
   imports = [
-    ./common/core
-    ./common/optional/dunst
-    # ./common/optional/feh.nix
-    ./common/optional/firefox
-    ./common/optional/gowall.nix
-    ./common/optional/hyprland
-    # ./common/optional/kdeconnect.nix
-    ./common/optional/kitty.nix
-    # ./common/optional/minecraft.nix
-    # ./common/optional/mpv
-    ./common/optional/nautilus.nix
-    # ./common/optional/nchat
-    # ./common/optional/neomutt.nix
-    # ./common/optional/newsboat.nix
-    # ./common/optional/nyaa.nix
-    # ./common/optional/obsidian.nix
-    # ./common/optional/qmk
-    ./common/optional/spotify.nix
-    ./common/optional/theme
-    # ./common/optional/vaults.nix
-    ./common/optional/vesktop
-    ./common/optional/waybar
-    # ./common/optional/zathura.nix
+    ../common/core
+    ../common/optional/dunst
+    # ../common/optional/feh.nix
+    ../common/optional/firefox
+    ../common/optional/gowall.nix
+    ../common/optional/hyprland
+    # ../common/optional/kdeconnect.nix
+    ../common/optional/kitty.nix
+    # ../common/optional/minecraft.nix
+    # ../common/optional/mpv
+    ../common/optional/nautilus.nix
+    # ../common/optional/nchat
+    # ../common/optional/neomutt.nix
+    # ../common/optional/newsboat.nix
+    # ../common/optional/nyaa.nix
+    # ../common/optional/obsidian.nix
+    # ../common/optional/qmk
+    ../common/optional/spotify.nix
+    ../common/optional/theme
+    # ../common/optional/vaults.nix
+    ../common/optional/vesktop
+    ../common/optional/waybar
+    # ../common/optional/zathura.nix
   ];
 
   monitors = [
