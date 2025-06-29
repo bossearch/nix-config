@@ -17,6 +17,7 @@
     $run = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/run.sh"
     $emoji = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
     $clipboard = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
+    $loadbuku = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/hypr/scripts/load-buku.sh"
     $cheatsheet = ~/.config/qmk/cheatsheet-wrapper.sh
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
@@ -34,8 +35,8 @@
     bind = $mainMod, R, exec, ~/.config/hypr/scripts/deepl-terjemah.sh
     bind = $mainMod, E, exec, ~/.config/hypr/scripts/deepl-translate.sh
     bind = $mainMod, L, exec, ~/.config/hypr/scripts/hyprlock.sh
+    bind = $mainMod, B, exec, $loadbuku
 
-    # Screenshot, Screenrecord, and OCR
     bind = $meh, Q, exec, ~/.config/waybar/scripts/screenshot/ssmonitor.sh
     bind = $hyper, Q, exec, ~/.config/waybar/scripts/screenrecord/recmonitor.sh
     bind = $meh, W, exec, ~/.config/waybar/scripts/screenshot/sswindow.sh
@@ -55,6 +56,7 @@
     bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
     bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
     bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
+    bind = $hyper, B, exec, ~/.config/hypr/scripts/save-buku.sh
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
