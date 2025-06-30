@@ -1,6 +1,6 @@
 keys:
   - &hosts:
-    - &stagea age1taspkrft3qqspgtn5h0wu0jvk0mju2pknu68cvl9scmyl6zsvgfqw8vedk
+    - &stagea age1p74ghnw9x3yt55kawaeaaz8cmrmthlg4j8rd4qqv5dsz8s7jqusshjz4xq
 creation_rules:
   - path_regex: ^(hosts/stagea/)?secrets\.ya?ml$
     key_groups:
