@@ -4,6 +4,7 @@
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  host = config.spec.hostName;
 in {
   # Define a user account.
   sops.secrets.passwd.neededForUsers = true;
@@ -24,6 +25,9 @@ in {
           "scanner" # for print/scan"
           "lp" # for print/scan"
         ])
+      ];
+      openssh.authorizedKeys.keyFiles = [
+        ../../${host}/id_${host}.pub
       ];
       hashedPasswordFile = config.sops.secrets.passwd.path;
     };
