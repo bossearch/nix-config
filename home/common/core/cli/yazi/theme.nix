@@ -17,7 +17,7 @@
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
   programs.yazi.theme = {
-    manager = {
+    mgr = {
       cwd = {
         fg = base05;
         italic = true;

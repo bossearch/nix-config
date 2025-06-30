@@ -1,6 +1,6 @@
 {
   programs.yazi.keymap = {
-    manager.prepend_keymap = [
+    mgr.prepend_keymap = [
       {
         run = "plugin ouch --args=zip";
         on = ["C"];

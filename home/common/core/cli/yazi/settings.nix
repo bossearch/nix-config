@@ -1,6 +1,6 @@
 {
   programs.yazi.settings = {
-    manager = {
+    mgr = {
       ratio = [1 3 4];
       show_hidden = true;
     };
