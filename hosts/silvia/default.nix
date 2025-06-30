@@ -10,6 +10,8 @@
     ./../common/optional/graphics.nix
     ./../common/optional/greetd.nix
     # ./../common/optional/hyprland.nix
+    ./../common/optional/impermanence.nix
+    ./../common/optional/luks-key.nix
     ./../common/optional/misc.nix
     ./../common/optional/nix-ld.nix
     ./../common/optional/pipewire.nix
