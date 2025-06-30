@@ -18,7 +18,7 @@
       };
       envfs.enable = true;
     }
-    (lib.mkIf (config.spec.hostName == "vm") {
+    (lib.mkIf (config.spec.hostName == "stagea") {
       spice-vdagentd.enable = true;
       qemuGuest.enable = true;
     })

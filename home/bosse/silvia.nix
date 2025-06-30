@@ -36,7 +36,7 @@
   ];
 
   spec = {
-    hostName = "pc";
+    hostName = "silvia";
     userName = "bosse";
     theme = "tokyo-night-dark";
   };

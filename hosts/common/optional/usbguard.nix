@@ -19,7 +19,7 @@
     insertedDevicePolicy = "apply-policy"; # New devices require approval
 
     rules = lib.mkMerge [
-      (lib.mkIf (config.spec.hostName == "pc") ''
+      (lib.mkIf (config.spec.hostName == "silvia") ''
         allow id 1d6b:0002 serial "0000:08:00.3" name "xHCI Host Controller" with-interface 09:00:00 with-connect-type ""
         allow id 1d6b:0003 serial "0000:08:00.3" name "xHCI Host Controller" with-interface 09:00:00 with-connect-type ""
         allow id 1d6b:0002 serial "0000:08:00.4" name "xHCI Host Controller" with-interface 09:00:00 with-connect-type ""
@@ -36,7 +36,7 @@
         allow id 4653:0001 serial "" name "Corne" via-port "3-1.2.3.1" with-interface { 03:01:01 03:00:00 } with-connect-type "unknown"
         allow id 1b1c:1b3e serial "0A026035AF359CA25B23342BF5001BC6" name "Corsair Gaming SCIMITAR PRO RGB Mouse" with-interface { 03:01:02 03:00:00 } with-connect-type "unknown"
       '')
-      (lib.mkIf (config.spec.hostName == "vm") ''
+      (lib.mkIf (config.spec.hostName == "stagea") ''
         allow id 1d6b:0002 serial "0000:02:00.0" name "xHCI Host Controller" with-interface 09:00:00 with-connect-type ""
         allow id 1d6b:0003 serial "0000:02:00.0" name "xHCI Host Controller" with-interface 09:00:00 with-connect-type ""
         allow id 0627:0001 serial "28754-0000:00:02.1:00.0-1" name "QEMU USB Tablet" with-interface 03:00:00 with-connect-type "unknown"

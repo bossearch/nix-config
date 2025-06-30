@@ -4,7 +4,7 @@
   ...
 }: let
   boxes =
-    if config.spec.hostName == "pc"
+    if config.spec.hostName == "silvia"
     then "cpu proc gpu0"
     else "cpu proc";
 in {

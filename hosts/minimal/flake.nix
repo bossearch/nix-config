@@ -58,8 +58,8 @@
       };
   in {
     nixosConfigurations = {
-      pc = mkMinimal "pc" "/dev/nvme0n1" true "32G";
-      vm = mkMinimal "vm" "/dev/vda" false "0G";
+      silvia = mkMinimal "silvia" "/dev/nvme0n1" true "32G";
+      stagea = mkMinimal "stagea" "/dev/vda" false "0G";
     };
   };
 }

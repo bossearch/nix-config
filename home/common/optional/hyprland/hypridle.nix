@@ -1,6 +1,6 @@
 {config, ...}: let
   enabled =
-    if config.spec.hostName == "pc"
+    if config.spec.hostName == "silvia"
     then true
     else false;
 in {

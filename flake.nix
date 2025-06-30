@@ -71,15 +71,15 @@
 
     nixosConfigurations = {
       # Main Desktop
-      pc = lib.nixosSystem {
-        modules = [./hosts/pc];
+      silvia = lib.nixosSystem {
+        modules = [./hosts/silvia];
         specialArgs = {
           inherit inputs outputs;
         };
       };
       # Virtual Machine
-      vm = lib.nixosSystem {
-        modules = [./hosts/vm];
+      stagea = lib.nixosSystem {
+        modules = [./hosts/stagea];
         specialArgs = {
           inherit inputs outputs;
         };
@@ -88,18 +88,18 @@
 
     homeConfigurations = {
       # Main Desktop
-      "bosse@pc" = home-manager.lib.homeManagerConfiguration {
+      "bosse@silvia" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
-        modules = [./home/bosse/pc.nix];
+        modules = [./home/bosse/silvia.nix];
         extraSpecialArgs = {
           inherit inputs outputs;
         };
       };
 
       # Virtual Machine
-      "bosse@vm" = home-manager.lib.homeManagerConfiguration {
+      "bosse@stagea" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
-        modules = [./home/bosse/vm.nix];
+        modules = [./home/bosse/stagea.nix];
         extraSpecialArgs = {
           inherit inputs outputs;
         };
