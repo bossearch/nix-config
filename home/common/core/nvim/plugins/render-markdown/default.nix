@@ -7,7 +7,8 @@
       enable = true;
       lazyLoad = {
         settings = {
-          ft = ["markdown"];
+          cmd = ["RenderMarkdown"];
+          keys = ["<leader>m"];
         };
       };
       settings = {
