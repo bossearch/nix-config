@@ -2,7 +2,7 @@
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
       {
-        run = "plugin ouch --args=zip";
+        run = "plugin ouch --arg=zip";
         on = ["C"];
         desc = "Compress with ouch";
       }
