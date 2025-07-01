@@ -13,7 +13,6 @@ let
       ./furl.nix
       ./greeting.nix
       ./notify.nix
-      ./scripts.nix
       ./sy.nix
       ./tmux-pane.nix
       ./tmux-panekill.nix

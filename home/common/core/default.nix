@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   outputs,
   ...
 }: {
@@ -10,6 +9,7 @@
       ./cli
       ./mime.nix
       ./git.nix
+      ./hm.nix
       ./nix.nix
       ./nvim
       ./shell
