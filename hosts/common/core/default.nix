@@ -15,6 +15,7 @@
       ./network.nix
       ./nix.nix
       #./proxy.nix
+      ./rb.nix
       ./shell.nix
       ./ssh.nix
       ./sops.nix
