@@ -4,11 +4,14 @@
     text = ''
       #!/usr/bin/env bash
 
-      SCREENSHOT_PATH="/tmp/hyprlock.png"
+      CACHE_DIR="$HOME/.cache/bosse"
+      SCREENSHOT_PATH="$CACHE_DIR/hyprlock.png"
       rm "$SCREENSHOT_PATH"
       grim -l 0 -t png "$SCREENSHOT_PATH"
 
-      hyprlock
+      hyprlock &
+      sleep 5
+      cp "$CACHE_DIR/hyprpaper.png" "$CACHE_DIR/hyprlock.png"
     '';
   };
 }
