@@ -10,7 +10,7 @@
       mkdir -p ~/Videos//Screenrecords
 
       # For sourcing looper.sh
-      SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+      SCRIPT_DIR="$HOME/.config/waybar/scripts/screenrecord"
 
       # Define the filename with the current date and time
       FILENAME="$HOME/Videos/Screenrecords/Area-$(date +%F_%T).mp4"

@@ -10,7 +10,7 @@
       mkdir -p ~/Videos//Screenrecords
 
       # For sourcing looper.sh
-      SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+      SCRIPT_DIR="$HOME/.config/waybar/scripts/screenrecord"
 
       # Define tooltip file location
       SCREENRECORD_TOOLTIP="$HOME/.cache/bosse/screenrecord-tooltip"

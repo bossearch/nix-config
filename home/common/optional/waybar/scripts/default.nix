@@ -24,6 +24,7 @@
     ./pavucontrol/toggle-output.nix
 
     ./screenrecord/checkrec.nix
+    ./screenrecord/looper.nix
     ./screenrecord/recarea.nix
     ./screenrecord/recmonitor.nix
     ./screenrecord/recwindow.nix

@@ -10,7 +10,7 @@
       mkdir -p ~/Videos//Screenrecords
 
       # For sourcing looper.sh
-      SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+      SCRIPT_DIR="$HOME/.config/waybar/scripts/screenrecord"
 
       # Get the name of the monitor/output using hyprctl (default to the first monitor)
       OUTPUT=$(hyprctl -j monitors | jq -r '.[0].name')
