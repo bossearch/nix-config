@@ -9,7 +9,7 @@
 
       # If the class is "Waydroid", stop the Waydroid session
       if [[ "$focused_class" == "Waydroid" ]]; then
-        pkexec ~/.config/hypr/scripts/assets/waydroid-quit.sh
+        waydroid session stop
 
       elif [[ "$focused_class" == "mpv" ]]; then
         if ! echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket; then

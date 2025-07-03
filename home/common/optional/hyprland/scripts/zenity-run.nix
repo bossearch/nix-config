@@ -30,7 +30,7 @@ in {
         prismlauncher
         ;;
       "Waydroid")
-        ~/.config/hypr/scripts/assets/waydroid-run.sh
+        waydroid show-full-ui
         ;;
       "VirtManager")
         virt-manager
