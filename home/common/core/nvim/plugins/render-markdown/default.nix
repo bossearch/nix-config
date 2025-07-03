@@ -5,12 +5,6 @@
     ];
     plugins.render-markdown = {
       enable = true;
-      lazyLoad = {
-        settings = {
-          cmd = ["RenderMarkdown"];
-          keys = ["<leader>m"];
-        };
-      };
       settings = {
         enabled = false;
         file_types = ["markdown"];
