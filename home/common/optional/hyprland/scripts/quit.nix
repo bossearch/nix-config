@@ -16,6 +16,9 @@
           pkill mpv
         fi
 
+      elif [[ "$focused_class" == "org.gnome.Nautilus" ]]; then
+        nautilus --quit
+
       else
         hyprctl dispatch killactive
       fi

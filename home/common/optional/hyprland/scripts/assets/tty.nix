@@ -5,7 +5,7 @@
       #!/usr/bin/env bash
 
       SESSION_FILE="$HOME/.cache/bosse/session-name"
-      SOCKET="/tmp/tmux-1000/default"
+      SOCKET=$(echo "$TMUX" | cut -d',' -f1)
 
       # Check if tmux is installed
       if command -v tmux >/dev/null 2>&1; then
