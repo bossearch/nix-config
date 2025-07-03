@@ -1,4 +1,11 @@
-{
+{config, ...}: let
+  theme =
+    if config.spec.theme == "tokyo-night-dark"
+    then "tokyo-dark"
+    else if config.spec.theme == "catppuccin-mocha"
+    then "catppuccin"
+    else "palette";
+in {
   home.file.".config/hypr/scripts/hyprpaper.sh" = {
     executable = true;
     text = ''
@@ -31,6 +38,9 @@
         fi
       fi
 
+      # restart waybar when internet is active
+      systemctl restart --user waybar.service || true
+
       DATE=$(date +%Y%m%d)
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
       OUTPUT_DIR="''${HOME}/.cache/bosse"
@@ -52,7 +62,7 @@
 
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
       if [ -f "$INPUT_WALL" ]; then
-        gowall convert "$INPUT_WALL" -t palette --output "$OUTPUT_DIR/hyprpaper.png"
+        gowall convert "$INPUT_WALL" -t ${theme} --output "$OUTPUT_DIR/hyprpaper.png"
         cp "$OUTPUT_DIR/hyprpaper.png" "$OUTPUT_DIR/hyprlock.png"
         echo "Wallpaper converted" >> "$log_file"
       fi
