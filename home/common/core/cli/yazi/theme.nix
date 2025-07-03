@@ -57,17 +57,6 @@ in {
         bg = base0D;
       };
 
-      # Tab
-      tab_active = {
-        fg = base07;
-        bg = base02;
-      };
-      tab_inactive = {
-        fg = base02;
-        bg = base00;
-      };
-      tab_width = 1;
-
       # Count
       count_copied = {
         fg = base07;
@@ -85,6 +74,17 @@ in {
       # Border
       border_symbol = "│";
       border_style = {fg = base0F;};
+    };
+
+    tabs = {
+      active = {
+        fg = base07;
+        bg = base02;
+      };
+      inactive = {
+        fg = base02;
+        bg = base00;
+      };
     };
 
     status = {
