@@ -1,5 +1,5 @@
 {
-  home.file.".config/nchat/app.conf" = {
+  home.file.".config/nchat/key.conf" = {
     text = ''
       backspace=KEY_BACKSPACE
       backspace_alt=KEY_ALT_BACKSPACE

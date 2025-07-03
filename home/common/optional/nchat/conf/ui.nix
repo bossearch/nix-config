@@ -1,5 +1,5 @@
 {
-  home.file.".config/nchat/app.conf" = {
+  home.file.".config/nchat/ui.conf" = {
     text = ''
       attachment_indicator=📎
       attachment_open_command=xdg-open >/dev/null 2>&1 '%1' &

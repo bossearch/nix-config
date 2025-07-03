@@ -1,5 +1,5 @@
 {
-  home.file.".config/nchat/app.conf" = {
+  home.file.".config/nchat/usercolor.conf" = {
     text = ''
       0xf7768e
       0x9ece6a

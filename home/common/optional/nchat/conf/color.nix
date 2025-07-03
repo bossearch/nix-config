@@ -3,13 +3,14 @@
   base01 = config.colorScheme.palette.base01;
   base02 = config.colorScheme.palette.base02;
   base05 = config.colorScheme.palette.base05;
+  base07 = config.colorScheme.palette.base07;
   base0D = config.colorScheme.palette.base0D;
   base0E = config.colorScheme.palette.base0E;
 in {
-  home.file.".config/nchat/app.conf" = {
+  home.file.".config/nchat/color.conf" = {
     text = ''
       default_color_bg=0x${base00}
-      default_color_fg=0x${base01}
+      default_color_fg=0x${base07}
       dialog_attr=
       dialog_attr_selected=reverse
       dialog_color_bg=
