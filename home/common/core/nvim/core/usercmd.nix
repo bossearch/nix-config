@@ -83,6 +83,86 @@
           '';
         };
       };
+      ReloadTheme = {
+        command = {
+          __raw = ''
+            function()
+              package.loaded["lib.util"] = nil
+              local palette = require("lib.util").get_colorScheme()
+              -- Reapply mini.base16 theme
+              require("mini.base16").setup({ palette = palette })
+
+              -- Reapply Lualine
+              local custom_lualine_theme = {
+                normal = {
+                  a = { fg = palette.base00, bg = palette.base0D, gui = "bold" },
+                  b = { fg = palette.base0D, bg = palette.base02 },
+                  c = { fg = palette.base05, bg = palette.base01 },
+                },
+                insert = {
+                  a = { fg = palette.base00, bg = palette.base0B, gui = "bold" },
+                  b = { fg = palette.base0B, bg = palette.base02 },
+                },
+                visual = {
+                  a = { fg = palette.base00, bg = palette.base0E, gui = "bold" },
+                  b = { fg = palette.base0E, bg = palette.base02 },
+                },
+                replace = {
+                  a = { fg = palette.base00, bg = palette.base08, gui = "bold" },
+                  b = { fg = palette.base08, bg = palette.base02 },
+                },
+                command = {
+                  a = { fg = palette.base00, bg = palette.base0A, gui = "bold" },
+                  b = { fg = palette.base0A, bg = palette.base02 },
+                },
+                inactive = {
+                  a = { fg = palette.base03, bg = palette.base00 },
+                  b = { fg = palette.base03, bg = palette.base00 },
+                  c = { fg = palette.base03, bg = palette.base01 },
+                },
+              }
+              require("lualine").setup({
+                options = {
+                  theme = custom_lualine_theme,
+                },
+                sections = {
+                  lualine_x = {
+                    {
+                      require("noice").api.status.command.get,
+                      cond = require("noice").api.status.command.has,
+                      color = { fg = palette.base09 },
+                    },
+                    {
+                      require("noice").api.status.mode.get,
+                      cond = require("noice").api.status.mode.has,
+                      color = { fg = palette.base0E },
+                    },
+                    -- {
+                    --   function()
+                    --     return " " .. require("dap").status()
+                    --   end,
+                    --   cond = function()
+                    --     return package.loaded["dap"] and require("dap").status() ~= ""
+                    --   end,
+                    --   color = { fg = palette.base08 },
+                    -- },
+                   },
+                 },
+              })
+
+              -- Reapply colorful-winsep (not work)
+              require("colorful-winsep").setup({
+                hi = {
+                  fg = palette.base0F
+                },
+              })
+
+              -- Reapply other thing
+              require("lib.util").set_highlights()
+            end, {}
+          '';
+        };
+      };
     };
   };
 }

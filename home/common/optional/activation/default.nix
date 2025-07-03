@@ -1,5 +1,23 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
+  theme =
+    if config.spec.theme == "tokyo-night-dark"
+    then "tokyo-dark"
+    else if config.spec.theme == "catppuccin-mocha"
+    then "catppuccin"
+    else "palette";
   drunScan = import ./drun-scan.nix;
+  themeSync = import ./theme-sync.nix {
+    inherit lib;
+    theme = theme;
+    monitors = config.monitors;
+  };
 in {
-  home.activation.drunScan = lib.hm.dag.entryAfter ["writeBoundary"] drunScan;
+  home.activation = {
+    drunScan = lib.hm.dag.entryAfter ["writeBoundary"] drunScan;
+    themeSync = lib.hm.dag.entryAfter ["writeBoundary"] themeSync;
+  };
 }
