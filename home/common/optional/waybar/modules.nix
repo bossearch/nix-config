@@ -44,6 +44,7 @@ in {
         "on-click-middle" = "hyprctl dispatch togglespecialworkspace anonymous";
         "on-scroll-up" = "hyprctl dispatch togglespecialworkspace gamespace";
         "on-scroll-down" = "hyprctl dispatch togglespecialworkspace scratchpad";
+        "tooltip" = false;
       };
 
       "group/task" = {
