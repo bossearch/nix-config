@@ -1,7 +1,6 @@
 {
   imports = [
     ./chrome
-    ./extension-settings.nix
   ];
   home.file.".mozilla/firefox/bosse/user.js" = {
     text = ''

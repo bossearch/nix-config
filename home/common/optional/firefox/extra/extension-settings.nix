@@ -1,7 +1,0 @@
-{
-  home.file.".mozilla/firefox/bosse/extension-settings.js" = {
-    text = ''
-      {"version":3, "tabHideNotification":{}, "homepageNotification":{}, "default_search":{}, "newTabNotification":{ "newtaboverride@agenedia.com":{"initialValue":false,"precedenceList":[{"id":"newtaboverride@agenedia.com","installDate":1000,"value":true,"enabled":true}]} }, "url_overrides":{ "newTabURL":{"initialValue":"about:newtab","precedenceList":[{"id":"newtaboverride@agenedia.com","installDate":1000,"value":"moz-extension://a31c27fd-5fa7-4a05-a8b3-65083807e5eb/html/newtab.html","enabled":true}]} }, "prefs":{ "websites.hyperlinkAuditingEnabled":{"initialValue":{},"precedenceList":[{"id":"uBlock0@raymondhill.net","installDate":1000,"value":false,"enabled":true}]}, "network.networkPredictionEnabled":{"initialValue":{"network.predictor.enabled":false,"network.prefetch-next":false,"network.dns.disablePrefetch":true},"precedenceList":[{"id":"uBlock0@raymondhill.net","installDate":1000,"value":false,"enabled":true}]}, "privacy.containers":{ "initialValue":{}, } }, "commands":{ "display-onetab":{ "precedenceList":[{ "id":"extension@one-tab.com", "installDate":1000, "value":{"shortcut":"Alt+Shift+O"}, "enabled":true }] }, "toggle":{"precedenceList":[{"id":"addon@darkreader.org","installDate":1000,"value":{"shortcut":""},"enabled":true}]}, "addSite":{"precedenceList":[{"id":"addon@darkreader.org","installDate":1000,"value":{"shortcut":"Alt+Shift+U"},"enabled":true}]} }}
-    '';
-  };
-}
