@@ -13,7 +13,7 @@ in {
     @define-color fg ${base01-rgba};
     @define-color bblack #${config.colorScheme.palette.base03};
     @define-color gray #${config.colorScheme.palette.base04};
-    @define-color nwhite #${config.colorScheme.palette.base06};
+    @define-color nwhite #${config.colorScheme.palette.base05};
     @define-color bwhite #${config.colorScheme.palette.base07};
     @define-color red #${config.colorScheme.palette.base08};
     @define-color yellow #${config.colorScheme.palette.base0A};
