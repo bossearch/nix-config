@@ -145,6 +145,7 @@ in {
         "format" = "";
         "on-click" = "~/.config/waybar/scripts/launcher/launcher-left.sh";
         "on-click-right" = "~/.config/waybar/scripts/launcher/launcher-right.sh";
+        "on-click-middle" = "~/.config/hypr/scripts/quit.sh";
         "tooltip" = false;
       };
 
