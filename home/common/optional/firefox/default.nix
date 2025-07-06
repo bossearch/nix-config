@@ -2,15 +2,7 @@
   imports = [./extra];
   programs.firefox = {
     enable = true;
-    policies = {
-      Cookies = {
-        Allow = import ./allowlist.nix;
-        Behavior = "reject-tracker";
-        BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
-        Locked = true;
-      };
-      ExtensionSettings = import ./extension.nix;
-    };
+    policies = import ./policies;
     profiles.bosse = {
       id = 0;
       isDefault = true;

@@ -14,6 +14,7 @@
         visibility: hidden;
         background-color: inherit;
         -moz-user-focus: normal;
+        z-index: 100;
       }
       #sidebar-header::before{
         visibility: visible;
