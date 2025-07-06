@@ -47,7 +47,7 @@
 
       # Save and report
       echo "$NEXT_PLAYER" > "$STATE_FILE"
-      notify-send -a playerctl -i "$ICON" "Playerctl" "$NEXT_PLAYER $(playerctl)"
+      notify-send -a playerctl -i "$ICON" "Playerctl" "$NEXT_PLAYER"
     '';
   };
 }
