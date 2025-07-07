@@ -57,57 +57,57 @@
         desc = "Go ~/.nix-config";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core";
+        run = "cd ~/.nix-config/home/common/core";
         on = ["n" "c"];
         desc = "nix-config/core";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core/nvim";
+        run = "cd ~/.nix-config/home/common/core/nvim";
         on = ["n" "n"];
         desc = "nix-config/neovim";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core/cli/tmux";
+        run = "cd ~/.nix-config/home/common/core/cli/tmux";
         on = ["n" "t"];
         desc = "nix-config/tmux";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core/cli/yazi";
+        run = "cd ~/.nix-config/home/common/core/cli/yazi";
         on = ["n" "y"];
         desc = "nix-config/yazi";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core/cli/fzf";
+        run = "cd ~/.nix-config/home/common/core/cli/fzf";
         on = ["n" "f"];
         desc = "nix-config/fzf";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/core/zsh";
-        on = ["n" "z"];
-        desc = "nix-config/zsh";
+        run = "cd ~/.nix-config/home/common/core/shell";
+        on = ["n" "s"];
+        desc = "nix-config/shell";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/optional";
+        run = "cd ~/.nix-config/home/common/optional";
         on = ["n" "o"];
         desc = "nix-config/optional";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/optional/hyprland";
+        run = "cd ~/.nix-config/home/common/optional/hyprland";
         on = ["n" "h"];
         desc = "nix-config/hyprland";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/optional/mpv";
+        run = "cd ~/.nix-config/home/common/optional/mpv";
         on = ["n" "m"];
         desc = "nix-config/mpv";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/optional/waybar";
+        run = "cd ~/.nix-config/home/common/optional/waybar";
         on = ["n" "w"];
         desc = "nix-config/waybar";
       }
       {
-        run = "cd ~/.nix-config/home/bosse/common/optional/firefox";
+        run = "cd ~/.nix-config/home/common/optional/firefox";
         on = ["n" "b"];
         desc = "nix-config/browser";
       }
