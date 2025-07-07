@@ -1,14 +1,14 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/screenrecord/checkrec.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       # Path to the icon file
-      SCREENRECORD_ICON="$HOME/.cache/bosse/screenrecord-icon"
+      SCREENRECORD_ICON="$HOME/.cache/${config.spec.userName}/screenrecord-icon"
 
       # Get content from tooltip file
-      SCREENRECORD_TOOLTIP=$(cat "$HOME/.cache/bosse/screenrecord-tooltip")
+      SCREENRECORD_TOOLTIP=$(cat "$HOME/.cache/${config.spec.userName}/screenrecord-tooltip")
 
       # Define icons
       icon_recording=""

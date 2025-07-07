@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/screenrecord/recmonitor.sh" = {
     executable = true;
     text = ''
@@ -19,7 +19,7 @@
       FILENAME="$HOME/Videos/Screenrecords/$OUTPUT-$(date +%F_%T).mp4"
 
       # Define tooltip file location
-      SCREENRECORD_TOOLTIP="$HOME/.cache/bosse/screenrecord-tooltip"
+      SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"
 
       # Create or update tooltip file for checkrec.sh
       echo "Screenrecording on Monitor: $OUTPUT" > "$SCREENRECORD_TOOLTIP"

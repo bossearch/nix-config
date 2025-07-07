@@ -227,7 +227,7 @@ in {
 
       "custom/hyprsunset" = {
         "format" = "{}";
-        "exec" = "cat ~/.cache/bosse/hyprsunset-icon";
+        "exec" = "cat ~/.cache/${config.spec.userName}/hyprsunset-icon";
         "on-click" = "~/.config/waybar/scripts/hyprsunset/hyprsunset.sh";
         "on-scroll-up" = "~/.config/waybar/scripts/hyprsunset/scroll-up.sh";
         "on-scroll-down" = "~/.config/waybar/scripts/hyprsunset/scroll-down.sh";
@@ -408,7 +408,7 @@ in {
 
       "custom/notification" = {
         "format" = " {} ";
-        "exec" = "cat ~/.cache/bosse/notification-icon";
+        "exec" = "cat ~/.cache/${config.spec.userName}/notification-icon";
         "on-click" = "~/.config/waybar/scripts/dunst/dunsticon.sh";
         "signal" = 10;
         "tooltip" = false;

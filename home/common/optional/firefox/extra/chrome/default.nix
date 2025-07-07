@@ -1,6 +1,6 @@
-{
+{config, ...}: {
   imports = [./includes];
-  home.file.".mozilla/firefox/bosse/chrome/userChrome.css" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/userChrome.css" = {
     text = ''
       @import url(includes/custom-button.css);
       @import url(includes/custom-colors.css);

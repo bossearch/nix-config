@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   imports = [
     ./player-seek.nix
     ./player-skip.nix
@@ -10,7 +10,7 @@
       #!/usr/bin/env bash
 
       # Temp file to store current player
-      STATE_FILE="$HOME/.cache/bosse/player"
+      STATE_FILE="$HOME/.cache/${config.spec.userName}/player"
 
       # Get currently available players
       AVAILABLE_PLAYERS=($(playerctl -l 2>/dev/null | sort))

@@ -9,7 +9,7 @@
 
       background = {
         monitor = "";
-        path = "/home/${config.spec.userName}/.cache/bosse/hyprlock.png";
+        path = "/home/${config.spec.userName}/.cache/${config.spec.userName}/hyprlock.png";
         # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanat ions
         blur_size = 6;
         blur_passes = 3; # 0 disables blurring

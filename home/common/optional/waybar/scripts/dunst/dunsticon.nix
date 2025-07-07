@@ -1,12 +1,12 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/dunst/dunsticon.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       # File to store the current icon state
-      ICON_FILE="$HOME/.cache/bosse/notification-icon"
-      VOLUME_FILE="$HOME/.cache/bosse/volume"
+      ICON_FILE="$HOME/.cache/${config.spec.userName}/notification-icon"
+      VOLUME_FILE="$HOME/.cache/${config.spec.userName}/volume"
 
       # Read the current icon from the file
       CURRENT_ICON=$(cat "$ICON_FILE")

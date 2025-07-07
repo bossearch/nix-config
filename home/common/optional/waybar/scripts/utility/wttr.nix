@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/utility/wttr.py" = {
     text = ''
       #!/usr/bin/env python
@@ -17,7 +17,7 @@
           return latitude, longitude
 
       # Load coordinates from the config.md file
-      latitude, longitude = read_coordinates_from_md('/home/bosse/Documents/obsidian-vault/04 - Area/nixos/coordinate.md')
+      latitude, longitude = read_coordinates_from_md('/home/${config.spec.userName}/Documents/obsidian-vault/04 - Area/nixos/coordinate.md')
 
       WEATHER_CODES = {
           '113': '☀️',

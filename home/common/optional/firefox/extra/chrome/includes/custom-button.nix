@@ -1,5 +1,5 @@
-{
-  home.file.".mozilla/firefox/bosse/chrome/includes/custom-button.css" = {
+{config, ...}: {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-button.css" = {
     text = ''
       /* Removes the annoying rainbow thing from the hamburger  */
       #appMenu-fxa-separator{border-image:none !important;}

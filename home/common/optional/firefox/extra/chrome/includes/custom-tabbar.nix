@@ -1,5 +1,5 @@
-{
-  home.file.".mozilla/firefox/bosse/chrome/includes/custom-tabbar.css" = {
+{config, ...}: {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-tabbar.css" = {
     text = ''
       :root {
         /* Show X button on tab bar option */

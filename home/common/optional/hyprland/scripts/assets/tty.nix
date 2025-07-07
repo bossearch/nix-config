@@ -1,10 +1,10 @@
-{
+{config, ...}: {
   home.file.".config/hypr/scripts/assets/tty.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      SESSION_FILE="$HOME/.cache/bosse/session-name"
+      SESSION_FILE="$HOME/.cache/${config.spec.userName}/session-name"
       SOCKET=$(echo "$TMUX" | cut -d',' -f1)
 
       # Check if tmux is installed
@@ -17,7 +17,7 @@
         else
           if ! tmux -S "$SOCKET" has-session &>/dev/null; then
             # Ask for a session name
-            SESSION_NAME=$(zenity --entry --title="Tmux Session" --text="Enter tmux session name:" 2>/dev/null)
+            SESSION_NAME=$(zenity --entry --title="Welcome back, ${config.spec.userName}@${config.spec.hostName}" --text="Enter tmux session name:" 2>/dev/null)
 
             if [ -z "$SESSION_NAME" ] && [ -f "$SESSION_FILE" ]; then
               SESSION_NAME=$(cat "$SESSION_FILE")

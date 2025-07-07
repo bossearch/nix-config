@@ -1,6 +1,6 @@
-''
+{config, ...}: ''
   # Output file for the app names and Exec commands
-  output_file="$HOME/.cache/bosse/drun.txt"
+  output_file="$HOME/.cache/${config.spec.userName}/drun.txt"
 
   rm -f "$output_file"
   mkdir -p "$(dirname "$output_file")"

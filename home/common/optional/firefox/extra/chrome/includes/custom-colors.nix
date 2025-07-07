@@ -1,5 +1,5 @@
 {config, ...}: {
-  home.file.".mozilla/firefox/bosse/chrome/includes/custom-colors.css" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-colors.css" = {
     text = ''
       :root {
         --foreground-alpha: #${config.colorScheme.palette.base01}cc;

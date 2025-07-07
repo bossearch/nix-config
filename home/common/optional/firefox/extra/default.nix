@@ -1,8 +1,8 @@
-{
+{config, ...}: {
   imports = [
     ./chrome
   ];
-  home.file.".mozilla/firefox/bosse/user.js" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/user.js" = {
     text = ''
       //
       /* You may copy+paste this file and use it as it is.

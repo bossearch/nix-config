@@ -1,9 +1,9 @@
-{
+{config, ...}: {
   imports = [./extra];
   programs.firefox = {
     enable = true;
     policies = import ./policies;
-    profiles.bosse = {
+    profiles.${config.spec.userName} = {
       id = 0;
       isDefault = true;
       search = {

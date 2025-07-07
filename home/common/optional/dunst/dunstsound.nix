@@ -1,10 +1,10 @@
-{
+{config, ...}: {
   home.file.".config/dunst/dunstsound.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      VOLUME_FILE="$HOME/.cache/bosse/volume"
+      VOLUME_FILE="$HOME/.cache/${config.spec.userName}/volume"
       CURRENT_VOLUME=$(cat "$VOLUME_FILE")
 
       if [ "$DUNST_URGENCY" = "CRITICAL" ]; then

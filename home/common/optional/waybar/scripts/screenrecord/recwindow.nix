@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/screenrecord/recwindow.sh" = {
     executable = true;
     text = ''
@@ -13,7 +13,7 @@
       SCRIPT_DIR="$HOME/.config/waybar/scripts/screenrecord"
 
       # Define tooltip file location
-      SCREENRECORD_TOOLTIP="$HOME/.cache/bosse/screenrecord-tooltip"
+      SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"
 
       # Get the active window's geometry using hyprctl
       WINDOW=$(hyprctl -j activewindow)

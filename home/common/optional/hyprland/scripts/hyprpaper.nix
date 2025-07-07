@@ -14,7 +14,7 @@ in {
 
       pushd ~/Pictures/gowall >/dev/null || exit
 
-      log_file="''${HOME}/.cache/bosse/daily-wallpaper.log"
+      log_file="$HOME/.cache/${config.spec.userName}/daily-wallpaper.log"
       mkdir -p "$(dirname "$log_file")"
       echo "[daily-wallpaper] $(date): Internet connection check..." >"$log_file"
 
@@ -43,7 +43,7 @@ in {
 
       DATE=$(date +%Y%m%d)
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
-      OUTPUT_DIR="''${HOME}/.cache/bosse"
+      OUTPUT_DIR="$HOME/.cache/${config.spec.userName}"
 
       if [ ! -f "$INPUT_WALL" ]; then
         curl -s -A "Mozilla/5.0" 'https://www.reddit.com/r/wallpaper/top/.json?limit=5' |

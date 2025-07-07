@@ -25,10 +25,10 @@ in {
     cursor_padding = 4;
     client.transmission = {
       base_url = "http://localhost:9091/transmission/rpc";
-      username = "bosse";
-      password_file = "/home/bosse/Documents/obsidian-vault/05 - Permanent/transmission-password.md";
+      username = "${config.spec.userName}";
+      password_file = "/home/${config.spec.userName}/Documents/obsidian-vault/05 - Permanent/transmission-password.md";
       use_magnet = true;
-      download_dir = "/home/bosse/Videos/Anime/";
+      download_dir = "/home/${config.spec.userName}/Videos/Anime/";
     };
   };
 

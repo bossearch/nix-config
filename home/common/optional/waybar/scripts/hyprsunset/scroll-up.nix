@@ -1,11 +1,11 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/hyprsunset/scroll-up.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       # File to store the actual (incremented) temperature
-      TEMP_SCROLL="$HOME/.cache/bosse/temp-scroll"
+      TEMP_SCROLL="$HOME/.cache/${config.spec.userName}/temp-scroll"
 
       # Read the actual (incremented) temperature from the file
       temp_scroll_value=$(cat "$TEMP_SCROLL")

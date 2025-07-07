@@ -9,8 +9,11 @@
     else if config.spec.theme == "catppuccin-mocha"
     then "catppuccin"
     else "palette";
-  drunScan = import ./drun-scan.nix;
+  drunScan = import ./drun-scan.nix {
+    inherit config;
+  };
   themeSync = import ./theme-sync.nix {
+    inherit config;
     inherit lib;
     theme = theme;
     monitors = config.monitors;

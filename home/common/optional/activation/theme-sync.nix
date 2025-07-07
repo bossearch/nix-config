@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   theme,
   monitors,
@@ -11,7 +12,7 @@
 in ''
   export PATH="$HOME/.nix-profile/bin:/run/wrappers/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:$PATH"
 
-  CACHE_DIR="$HOME/.cache/bosse"
+  CACHE_DIR="$HOME/.cache/${config.spec.userName}"
   mkdir -p "$CACHE_DIR"
 
   THEME="${theme}"
