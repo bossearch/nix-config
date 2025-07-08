@@ -54,7 +54,9 @@
       }
 
       /* Hides the list-all-tabs button*/
+      /*
       #alltabs-button { display: none !important; }
+      */
 
       /* Hides the Extensions Menu Icon */
       /*
