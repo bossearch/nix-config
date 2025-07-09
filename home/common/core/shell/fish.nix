@@ -6,6 +6,7 @@
   ];
   programs.fish = {
     enable = true;
+    generateCompletions = false;
     shellInit = ''
       set -gx FZF_CTRL_T_OPTS "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       set -gx FZF_ALT_C_OPTS  "--preview='~/.config/fzf/extra/fzf-preview.sh {}'";
