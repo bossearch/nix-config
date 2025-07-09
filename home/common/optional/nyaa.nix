@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  base03 = "#${config.colorScheme.palette.base03}";
   base09 = "#${config.colorScheme.palette.base09}";
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
@@ -17,7 +18,7 @@ in {
 
   programs.nyaa = {
     enable = true;
-    default_theme = "TokyoNight";
+    default_theme = "palette";
     default_source = "Nyaa";
     download_client = "Transmission";
     timeout = 30;
@@ -32,14 +33,14 @@ in {
     };
   };
 
-  home.file.".config/nyaa/themes/TokyoNight.toml".text = ''
-    name = "TokyoNight"
+  home.file.".config/nyaa/themes/palette.toml".text = ''
+    name = "palette"
     bg = "Reset"
     fg = "White"
     border = "Rounded"
     border_color = "${base0F}"
     border_focused_color = "${base09}"
-    hl_bg = "Gray"
+    hl_bg = "${base03}"
     solid_bg = "White"
     solid_fg = "Black"
     success = "Green"
