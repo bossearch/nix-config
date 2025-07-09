@@ -16,7 +16,7 @@
         package = pkgs.udisks2;
         mountOnMedia = true;
       };
-      envfs.enable = true;
+      envfs.enable = false;
     }
     (lib.mkIf (config.spec.hostName == "stagea") {
       spice-vdagentd.enable = true;
