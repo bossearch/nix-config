@@ -28,14 +28,14 @@
           dots_size = 0.2;
           dots_spacing = 0.2;
           dots_center = true;
-          outer_color = "rgba(16161ECC)";
-          inner_color = "rgba(1A1B26CC)";
-          check_color = "rgb(16161E)";
-          fail_color = "rgb(F7768E)";
-          font_color = "rgb(C0CAF5)";
+          outer_color = "rgba(${config.colorScheme.palette.base01}CC)";
+          inner_color = "rgba(${config.colorScheme.palette.base00}CC)";
+          check_color = "rgb(${config.colorScheme.palette.base01})";
+          fail_color = "rgb(${config.colorScheme.palette.base08})";
+          font_color = "rgb(${config.colorScheme.palette.base07})";
           font_family = "CommitMono Nerd Font";
           fade_on_empty = false;
-          placeholder_text = "<span foreground=\"##C0CAF5\"><i>󰌾 Logged in as </i><span foreground=\"##7DCFFF\">$USER</span></span>";
+          placeholder_text = "<span foreground=\"##${config.colorScheme.palette.base07}\"><i>󰌾 Logged in as </i><span foreground=\"##${config.colorScheme.palette.base0C}\">$USER</span></span>";
           hide_input = false;
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
           position = "0, 150";
@@ -49,7 +49,7 @@
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +'%A, %-d %B')\"";
-          color = "rgb(C0CAF5)";
+          color = "rgb(${config.colorScheme.palette.base07})";
           font_size = 22;
           font_family = "Extra Bold";
           position = "0, 400";
@@ -60,7 +60,7 @@
         {
           monitor = "";
           text = "$TIME";
-          color = "rgb(C0CAF5)";
+          color = "rgb(${config.colorScheme.palette.base07})";
           font_size = 95;
           font_family = "Extra Bold";
           position = "0, 300";
