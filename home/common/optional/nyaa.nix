@@ -37,8 +37,8 @@ in {
     bg = "Reset"
     fg = "White"
     border = "Rounded"
-    border_color = ${base0F}
-    border_focused_color = ${base09}
+    border_color = "${base0F}"
+    border_focused_color = "${base09}"
     hl_bg = "Gray"
     solid_bg = "White"
     solid_fg = "Black"
