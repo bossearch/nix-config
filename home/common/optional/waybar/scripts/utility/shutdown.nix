@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   home.file.".config/waybar/scripts/utility/shutdown.sh" = {
     executable = true;
     text = ''
@@ -11,11 +11,20 @@
         --icon-name=system-shutdown
 
       if [ $? -eq 0 ]; then
+        SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
+        tmux -S "$SOCKET" run-shell -b '${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh'
         sleep 1
+
+        tmux -S "$SOCKET" kill-server
+        sleep 1
+
+        HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
+        hyprctl --batch "$HYPRCMDS"
+        sleep 1
+
         ddcutil setvcp D6 05
+        sleep 1
         systemctl --quiet --no-warn poweroff
-      #else
-      #  echo "Shutdown canceled."
       fi
     '';
   };

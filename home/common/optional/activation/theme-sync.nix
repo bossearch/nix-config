@@ -37,7 +37,8 @@ in ''
 
     # Tmux
     if [[ -z "''${SSH_CONNECTION-}" ]]; then
-      SOCKET=$(echo "$TMUX" | cut -d',' -f1)
+      SOCKET=''${TMUX:+$(echo "$TMUX" | cut -d',' -f1)}
+      SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
       if tmux -S "$SOCKET" has-session &>/dev/null; then
         tmux -S "$SOCKET" source-file ~/.config/tmux/tmux.conf
       fi
