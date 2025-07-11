@@ -30,7 +30,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
     settings = {
       monitor =
         map (

@@ -8,7 +8,7 @@
     exec 1>/dev/null 2>&1
 
     if command -v Hyprland >/dev/null 2>&1; then
-      exec Hyprland
+      exec uwsm start hyprland-uwsm.desktop
     else
       chvt 2
     fi
@@ -26,4 +26,11 @@ in {
     };
   };
   systemd.services."getty@tty2".enable = true;
+
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+  };
 }
