@@ -5,10 +5,11 @@
       #!/usr/bin/env bash
 
       SESSION_FILE="$HOME/.cache/${config.spec.userName}/session-name"
-      SOCKET=$(echo "$TMUX" | cut -d',' -f1)
+      SOCKET=''${TMUX:+$(echo "$TMUX" | cut -d',' -f1)}
+      SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
 
       # Check if tmux is installed
-      if command -v tmux >/dev/null 2>&1; then
+      if command -v tmux &>/dev/null; then
         TERM_TITLE=$(hyprctl activewindow | awk -F': ' '/title: / {print $2}')
         # Check if the title is "magic"
         if [ "$TERM_TITLE" = "scratchpad" ]; then
@@ -27,13 +28,11 @@
 
             echo "$SESSION_NAME" >"$SESSION_FILE"
             # Start a new tmux session with the given name
-            tmux new-session -d -s "$SESSION_NAME"
-            tmux attach-session -t "$SESSION_NAME"
+            tmux -S "$SOCKET" new-session -d -s "$SESSION_NAME"
+            exec tmux -S "$SOCKET" attach-session -t "$SESSION_NAME"
           else
-            if tmux -S "$SOCKET" list-sessions -F '#{session_attached}' | grep -q '^1$'; then
-              :
-            else
-              tmux -S "$SOCKET" attach-session
+            if ! tmux -S "$SOCKET" list-sessions -F '#{session_attached}' | grep -q '^1$'; then
+              exec tmux -S "$SOCKET" attach-session -t "$SESSION_NAME"
             fi
           fi
         fi
