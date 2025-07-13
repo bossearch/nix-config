@@ -12,7 +12,7 @@
       Snacks.toggle.indent():map("<leader>ti")
 
       if vim.lsp.inlay_hint then
-        Snacks.toggle.inlay_hints():map("<leader>th")
+        Snacks.toggle.inlay_hints():map("<leader>tI")
       end
 
       -- conform
@@ -143,6 +143,22 @@
           end
         end,
       }):map("<leader>tn")
+
+      -- nvim-highlight-colors
+      Snacks.toggle({
+        name = "Highlight Colors",
+        get = function()
+          return require("nvim-highlight-colors").is_active()
+        end,
+        set = function(state)
+          local hlc = require("nvim-highlight-colors")
+          if state then
+            hlc.turnOn()
+          else
+            hlc.turnOff()
+          end
+        end,
+      }):map("<leader>th")
     '';
   };
 }
