@@ -23,6 +23,7 @@ in {
     procps
     socat
     sshpass
+    ssh-to-age
     vim
   ];
 
