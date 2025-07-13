@@ -52,64 +52,99 @@
         desc = "Go to trash";
       }
       {
-        run = "cd ~/.nix-config";
-        on = ["g" "n"];
-        desc = "Go ~/.nix-config";
+        run = "cd ~/.nix-config/hosts";
+        on = ["g" "N" "."];
+        desc = "nixconfig/hosts";
+      }
+      {
+        run = "cd ~/.nix-config/hosts/common/core";
+        on = ["g" "N" "c"];
+        desc = "nixconfig/hosts.../core";
+      }
+      {
+        run = "cd ~/.nix-config/hosts/common/optional";
+        on = ["g" "N" "o"];
+        desc = "nixconfig/hosts.../optional";
+      }
+      {
+        run = "cd ~/.nix-config/hosts/droid";
+        on = ["g" "N" "d"];
+        desc = "nixconfig/hosts.../droid";
+      }
+      {
+        run = "cd ~/.nix-config/modules";
+        on = ["g" "N" "m"];
+        desc = "nixconfig/modules";
+      }
+      {
+        run = "cd ~/.nix-config/overlays";
+        on = ["g" "N" "O"];
+        desc = "nixconfig/overlays";
+      }
+      {
+        run = "cd ~/.nix-config/pkgs";
+        on = ["g" "N" "p"];
+        desc = "nixconfig/pkgs";
+      }
+      {
+        run = "cd ~/.nix-config/home";
+        on = ["g" "n" "."];
+        desc = "nixconfig/home";
       }
       {
         run = "cd ~/.nix-config/home/common/core";
-        on = ["n" "c"];
-        desc = "nix-config/core";
+        on = ["g" "n" "c"];
+        desc = "nixconfig/home.../core";
       }
       {
         run = "cd ~/.nix-config/home/common/core/nvim";
-        on = ["n" "n"];
-        desc = "nix-config/neovim";
+        on = ["g" "n" "n"];
+        desc = "nixconfig/home.../neovim";
       }
       {
         run = "cd ~/.nix-config/home/common/core/cli/tmux";
-        on = ["n" "t"];
-        desc = "nix-config/tmux";
+        on = ["g" "n" "t"];
+        desc = "nixconfig/home.../tmux";
       }
       {
         run = "cd ~/.nix-config/home/common/core/cli/yazi";
-        on = ["n" "y"];
-        desc = "nix-config/yazi";
+        on = ["g" "n" "y"];
+        desc = "nixconfig/home.../yazi";
       }
       {
         run = "cd ~/.nix-config/home/common/core/cli/fzf";
-        on = ["n" "f"];
-        desc = "nix-config/fzf";
+        on = ["g" "n" "f"];
+        desc = "nixconfig/home.../fzf";
       }
       {
         run = "cd ~/.nix-config/home/common/core/shell";
-        on = ["n" "s"];
-        desc = "nix-config/shell";
+        on = ["g" "n" "s"];
+        desc = "nixconfig/home.../shell";
       }
       {
         run = "cd ~/.nix-config/home/common/optional";
-        on = ["n" "o"];
-        desc = "nix-config/optional";
+        on = ["g" "n" "o"];
+        desc = "nixconfig/home.../optional";
       }
       {
         run = "cd ~/.nix-config/home/common/optional/hyprland";
-        on = ["n" "h"];
-        desc = "nix-config/hyprland";
+        on = ["g" "n" "h"];
+        desc = "nixconfig/home.../hyprland";
       }
       {
         run = "cd ~/.nix-config/home/common/optional/mpv";
-        on = ["n" "m"];
-        desc = "nix-config/mpv";
+        on = ["g" "n" "m"];
+        desc = "nixconfig/home.../mpv";
       }
       {
         run = "cd ~/.nix-config/home/common/optional/waybar";
-        on = ["n" "w"];
-        desc = "nix-config/waybar";
+        on = ["g" "n" "w"];
+        desc = "nixconfig/home.../waybar";
       }
       {
         run = "cd ~/.nix-config/home/common/optional/firefox";
-        on = ["n" "b"];
-        desc = "nix-config/browser";
+        on = ["g" "n" "b"];
+        desc = "nixconfig/home.../browser";
       }
     ];
   };
