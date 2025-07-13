@@ -4,10 +4,10 @@
     settings = {
       ipc = true;
       splash = false;
-      preload = "/home/${config.spec.userName}/.cache/${config.spec.userName}/hyprpaper.png";
+      preload = "${config.home.homeDirectory}/.cache/${config.spec.userName}/hyprpaper.png";
       wallpaper =
         map (
-          m: "${m.name}, /home/${config.spec.userName}/.cache/${config.spec.userName}/hyprpaper.png"
+          m: "${m.name}, ${config.home.homeDirectory}/.cache/${config.spec.userName}/hyprpaper.png"
         )
         config.monitors;
     };

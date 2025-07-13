@@ -3,8 +3,8 @@
     text = ''
       local mp = require("mp")
       local utils = require("mp.utils")
-      local first_load_status_file = "/home/${config.spec.userName}/.cache/${config.spec.userName}/first-load-status.txt"
-      local vapoursynth_status_file = "/home/${config.spec.userName}/.cache/${config.spec.userName}/vapoursynth-status.txt"
+      local first_load_status_file = "${config.home.homeDirectory}/.cache/${config.spec.userName}/first-load-status.txt"
+      local vapoursynth_status_file = "${config.home.homeDirectory}/.cache/${config.spec.userName}/vapoursynth-status.txt"
       local check_interval = 5 -- Interval to check FPS, in seconds
 
       -- Function to load the first_load state from file

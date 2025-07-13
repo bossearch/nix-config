@@ -14,14 +14,14 @@ in {
     text = ''
       [Lofi]
       backend = "Gocryptfs"
-      encrypted_data_directory = "/home/${config.spec.userName}/Downloads/.other"
-      mount_directory = "/home/${config.spec.userName}/.local/share/Vaults/Lofi"
+      encrypted_data_directory = "${config.home.homeDirectory}/Downloads/.other"
+      mount_directory = "${config.home.homeDirectory}/.local/share/Vaults/Lofi"
       session_lock = true
 
       [Secrets]
       backend = "Gocryptfs"
       encrypted_data_directory = "/media/External/Secrets"
-      mount_directory = "/home/${config.spec.userName}/.local/share/Vaults/Secrets"
+      mount_directory = "${config.home.homeDirectory}/.local/share/Vaults/Secrets"
       session_lock = true
     '';
   };

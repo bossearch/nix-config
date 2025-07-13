@@ -127,7 +127,7 @@
         subtitle_check_timer:kill()
       end)
 
-      local first_load_status_file = "/home/${config.spec.userName}/.cache/${config.spec.userName}/first-load-status.txt"
+      local first_load_status_file = "${config.home.homeDirectory}/.cache/${config.spec.userName}/first-load-status.txt"
       local function load_first_load_status()
         local file = io.open(first_load_status_file, "r")
         if file then

@@ -34,12 +34,12 @@ in {
   '';
 
   home.file.".config/gtk-3.0/bookmarks".text = ''
-    file:///home/${config.spec.userName}/Desktop Desktop
-    file:///home/${config.spec.userName}/Downloads Downloads
-    file:///home/${config.spec.userName}/Documents Documents
-    file:///home/${config.spec.userName}/Pictures Pictures
-    file:///home/${config.spec.userName}/Videos Videos
-    file:///home/${config.spec.userName}/.local/share/Vaults Vaults
+    file://${config.home.homeDirectory}/Desktop Desktop
+    file://${config.home.homeDirectory}/Downloads Downloads
+    file://${config.home.homeDirectory}/Documents Documents
+    file://${config.home.homeDirectory}/Pictures Pictures
+    file://${config.home.homeDirectory}/Videos Videos
+    file://${config.home.homeDirectory}/.local/share/Vaults Vaults
   '';
 
   home.file.".config/user-dirs.dirs".text = ''
