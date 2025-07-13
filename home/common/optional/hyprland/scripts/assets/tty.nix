@@ -6,7 +6,9 @@
 
       SESSION_FILE="$HOME/.cache/${config.spec.userName}/session-name"
       SOCKET=''${TMUX:+$(echo "$TMUX" | cut -d',' -f1)}
-      SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
+      SOCKET=''${SOCKET:-''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-$(id -u)/default}
+
+      mkdir -p "$(dirname "$SOCKET")"
 
       # Check if tmux is installed
       if command -v tmux &>/dev/null; then

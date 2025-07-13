@@ -41,7 +41,7 @@ in ''
     # Tmux
     if [[ -z "''${SSH_CONNECTION-}" ]]; then
       SOCKET=''${TMUX:+$(echo "$TMUX" | cut -d',' -f1)}
-      SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
+      SOCKET=''${SOCKET:-''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-$(id -u)/default}
       if tmux -S "$SOCKET" has-session &>/dev/null; then
         tmux -S "$SOCKET" source-file ~/.config/tmux/tmux.conf
       fi
