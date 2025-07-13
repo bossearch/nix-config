@@ -17,7 +17,7 @@
       echo "$new_temp_scroll_value" >"$TEMP_SCROLL"
 
       # Apply the new actual temperature using hyprsunset
-      hyprsunset -t "$new_temp_scroll_value"
+      hyprctl hyprsunset temperature "$new_temp_scroll_value"
     '';
   };
 }

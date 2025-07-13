@@ -17,12 +17,12 @@
         echo "  " >"$ICON_FILE"
         echo "2700" | tee "$TEMP_FILE" "$TEMP_SCROLL"
         pkill -SIGRTMIN+12 waybar
-        hyprsunset -t 2700
+        hyprctl hyprsunset temperature 2700
       else
         echo "  " >"$ICON_FILE"
         echo "6500" | tee "$TEMP_FILE" "$TEMP_SCROLL"
         pkill -SIGRTMIN+12 waybar
-        hyprsunset -t 6500
+        hyprctl hyprsunset temperature 6500
       fi
     '';
   };
