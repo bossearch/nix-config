@@ -6,7 +6,9 @@
 }: let
   reloadWallpaper =
     lib.concatMapStringsSep "\n" (
-      m: ''hyprctl hyprpaper wallpaper "${m.name},$CACHE_DIR/hyprpaper.png"''
+      m: ''
+        hyprctl hyprpaper wallpaper "${m.name},$CACHE_DIR/hyprpaper.png"
+      ''
     )
     monitors;
 in ''
@@ -28,9 +30,10 @@ in ''
     echo "$THEME" >"$THEME_FILE"
 
     # Hyprpaper
-    OLD_WALL=$(find "$HOME/Pictures/gowall" -type f -name "wall-$(date -d 'yesterday' +%Y%m%d).*" | sort | tail -n 1)
+    OLD_WALL=$(find "$HOME/Pictures/gowall" -maxdepth 1 -type f -name 'wall-*' | sort | tail -n 2 | head -n 1)
     if [[ -f "$OLD_WALL" ]]; then
       gowall convert "$OLD_WALL" -t "$THEME" --output "$CACHE_DIR/hyprpaper.png"
+      sleep 2
       hyprctl hyprpaper reload ,"$CACHE_DIR/hyprpaper.png"
       ${reloadWallpaper}
     fi
@@ -45,10 +48,11 @@ in ''
     fi
 
     # Nvim
-    NVIM_SOCK=$(find /run/user/1000 -maxdepth 1 -type s -name 'nvim.*' | head -n 1)
-    if [[ -n "$NVIM_SOCK" ]]; then
-      nvim --server "$NVIM_SOCK" --remote-send '<C-\><C-N>:ReloadTheme<CR>'
-    fi
+    for NVIM_SOCK in /run/user/1000/nvim.*; do
+      if [[ -S "$NVIM_SOCK" ]]; then
+        nvim --server "$NVIM_SOCK" --remote-send '<C-\><C-N>:ReloadTheme<CR>'
+      fi
+    done
 
     # Rerun hyprpaper.sh to generate new wallpaper
     $HOME/.config/hypr/scripts/hyprpaper.sh & disown
