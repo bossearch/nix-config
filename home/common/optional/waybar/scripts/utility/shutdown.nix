@@ -23,7 +23,6 @@
         sleep 1
 
         ddcutil setvcp D6 05
-        sleep 1
         systemctl --quiet --no-warn poweroff
       fi
     '';
