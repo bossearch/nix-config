@@ -9,7 +9,7 @@
       from datetime import datetime
 
       # Function to read coordinates from the Markdown file
-      def read_coordinates_from_md(file_path):
+      def read_coordinates(file_path):
           with open(file_path, 'r') as file:
               content = file.read()
               latitude = re.search(r'Latitude:\s*([0-9.-]+)', content).group(1)
@@ -17,7 +17,7 @@
           return latitude, longitude
 
       # Load coordinates from the config.md file
-      latitude, longitude = read_coordinates_from_md('/home/${config.spec.userName}/Documents/obsidian-vault/04 - Area/nixos/coordinate.md')
+      latitude, longitude = read_coordinates('${config.home.homeDirectory}/.cache/${config.spec.userName}/coordinate')
 
       WEATHER_CODES = {
           '113': '☀️',

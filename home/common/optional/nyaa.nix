@@ -27,9 +27,9 @@ in {
     client.transmission = {
       base_url = "http://localhost:9091/transmission/rpc";
       username = "${config.spec.userName}";
-      password_file = "/home/${config.spec.userName}/Documents/obsidian-vault/05 - Permanent/transmission-password.md";
+      password_file = "${config.home.homeDirectory}/.cache/${config.spec.userName}/transmission";
       use_magnet = true;
-      download_dir = "/home/${config.spec.userName}/Videos/Anime/";
+      download_dir = "${config.home.homeDirectory}/Videos/Anime/";
     };
   };
 

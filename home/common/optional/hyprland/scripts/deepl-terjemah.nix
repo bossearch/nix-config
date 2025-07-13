@@ -5,7 +5,7 @@
       #!/usr/bin/env bash
 
       # Define your DeepL API key
-      API_KEY=$(cat /home/${config.spec.userName}/Documents/obsidian-vault/05\ -\ Permanent/deepl-api.md)
+      API_KEY=$(cat ${config.home.homeDirectory}/.cache/${config.spec.userName}/deepl)
 
       # Get the selected text from the Wayland clipboard
       text=$(wl-paste -p)

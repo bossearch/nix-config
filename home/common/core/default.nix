@@ -13,6 +13,7 @@
       ./nix.nix
       ./nvim
       ./shell
+      ./sops.nix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
