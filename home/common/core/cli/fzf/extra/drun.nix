@@ -1,11 +1,11 @@
-{config, ...}: {
+{
   home.file.".config/fzf/extra/drun.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       # Read the app names and Exec commands from the saved txt file
-      apps_list=$(cat "$HOME/.cache/${config.spec.userName}/drun.txt")
+      apps_list=$(cat "$HOME/.cache/$(whoami)/drun.txt")
 
       # Use fzf to list app names and select multiple
       selected=$(
