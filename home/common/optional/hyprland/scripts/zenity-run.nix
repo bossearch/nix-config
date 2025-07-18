@@ -18,11 +18,14 @@ in {
 
       # Show a dialog to choose an application
       choice=$(zenity --list --title="App Selector" \
-        --column="App" "Steam" "PrismLauncher" "Waydroid" "VirtManager"\
+        --column="App" "Bottles" "Steam" "PrismLauncher" "Waydroid" "VirtManager"\
         --width=${size.width} --height=${size.height})
 
       # Check the user's choice and launch the selected app
       case $choice in
+      "Bottles")
+        bottles
+        ;;
       "Steam")
         steam
         ;;

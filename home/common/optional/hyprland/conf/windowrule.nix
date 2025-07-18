@@ -60,6 +60,13 @@ in {
     windowrule = center 1, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
 
+    #bottles
+    windowrule = workspace special:gamespace, class:(com.usebottles.bottles)
+    windowrule = workspace special:gamespace, title:(DNOrigins Launcher)
+    windowrule = center 1, title:(DNOrigins Launcher)
+    windowrule = workspace special:gamespace, title:(DNOrigins)
+    windowrule = center 1, title:(DNOrigins)
+
     #btop
     windowrule = float, class:(kitty),title:(btop)
     windowrule = center 1, class:(kitty),title:(btop)
@@ -142,6 +149,7 @@ in {
     #prismlauncher
     windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
     windowrule = workspace special:gamespace, class:^(Minecraft\* )$, title:^(Minecraft\* )$
+
     #waydroid
     windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
 

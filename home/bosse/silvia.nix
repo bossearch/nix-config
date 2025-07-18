@@ -23,6 +23,7 @@
     ../common/optional/vaults.nix
     ../common/optional/vesktop
     ../common/optional/waybar
+    ../common/optional/wine.nix
     ../common/optional/zathura.nix
   ];
 
