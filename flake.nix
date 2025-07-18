@@ -57,8 +57,10 @@
         import nixpkgs {
           inherit system;
           overlays = builtins.attrValues outputs.overlays;
-          config.allowUnfree = true;
-          allowUnfreePredicate = _: true;
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = _: true;
+          };
         }
     );
   in {
