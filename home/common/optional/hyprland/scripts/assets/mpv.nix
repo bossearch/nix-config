@@ -8,9 +8,9 @@
 
       # Check if mpv is already running
       if pgrep -x "mpv" >/dev/null; then
-        echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket
+        echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:"$MPV_SOCKET"
       else
-        mpv --player-operation-mode=pseudo-gui --input-ipc-server=/tmp/mpv-socket
+        mpv --player-operation-mode=pseudo-gui --input-ipc-server="$MPV_SOCKET"
       fi
     '';
   };

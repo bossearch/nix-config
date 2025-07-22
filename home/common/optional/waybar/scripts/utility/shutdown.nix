@@ -11,11 +11,15 @@
         --icon-name=system-shutdown
 
       if [ $? -eq 0 ]; then
-        SOCKET=''${SOCKET:-/tmp/tmux-$(id -u)/default}
+        SOCKET=''${SOCKET:-''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-$(id -u)/default}
         tmux -S "$SOCKET" run-shell -b '${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh'
         sleep 1
 
         tmux -S "$SOCKET" kill-server
+        sleep 1
+
+        MPV_SOCKET="/tmp/mpv-socket"
+        echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:"$MPV_SOCKET"
         sleep 1
 
         HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
