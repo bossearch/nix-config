@@ -15,6 +15,10 @@
     Value = false;
     Status = "default";
   };
+  "browser.search.separatePrivateDefault" = {
+    Value = false;
+    Status = "default";
+  };
   "browser.startup.homepage" = {
     Value = "https://bossearch.github.io/tab/";
     Status = "default";
