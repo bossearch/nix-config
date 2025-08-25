@@ -5,7 +5,7 @@
     ./../common/disks
     ./../common/disks/btrfs-luks-impermanence.nix
     ./../common/optional/bluetooth.nix
-    ./../common/optional/bridge.nix
+    # ./../common/optional/bridge.nix
     ./../common/optional/font.nix
     ./../common/optional/graphics.nix
     ./../common/optional/greetd.nix
