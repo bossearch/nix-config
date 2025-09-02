@@ -16,6 +16,19 @@ in {
     transmission_4-gtk
   ];
 
+  xdg.desktopEntries.transmission-gtk = {
+    type = "Application";
+    name = "transmission-gtk";
+    exec = "transmission-gtk %U";
+    noDisplay = true;
+    terminal = false;
+    comment = "Custom definition for transmission-gtk";
+    mimeType = [
+      "application/x-bittorrent"
+      "x-scheme-handler/magnet"
+    ];
+  };
+
   programs.nyaa = {
     enable = true;
     default_theme = "palette";
