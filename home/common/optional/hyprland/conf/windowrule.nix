@@ -62,10 +62,13 @@ in {
 
     #bottles
     windowrule = workspace special:gamespace, class:(com.usebottles.bottles)
+    windowrule = opaque, class:(com.usebottles.bottles)
     windowrule = workspace special:gamespace, title:(DNOrigins Launcher)
     windowrule = center 1, title:(DNOrigins Launcher)
+    windowrule = opaque, title:(DNOrigins Launcher)
     windowrule = workspace special:gamespace, title:(DNOrigins)
     windowrule = center 1, title:(DNOrigins)
+    windowrule = opaque, title:(DNOrigins)
 
     #btop
     windowrule = float, class:(kitty),title:(btop)
