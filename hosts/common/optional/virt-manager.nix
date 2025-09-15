@@ -6,6 +6,7 @@
       package = pkgs.qemu_kvm;
       swtpm.enable = true;
       ovmf.enable = true;
+      vhostUserPackages = with pkgs; [virtiofsd];
     };
   };
   virtualisation.spiceUSBRedirection.enable = true;
