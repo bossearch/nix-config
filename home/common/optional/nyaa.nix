@@ -16,7 +16,7 @@ in {
     transmission_4-gtk
   ];
 
-  xdg.desktopEntries.transmission-gtk = {
+  xdg.desktopEntries.transmission = {
     type = "Application";
     name = "transmission-gtk";
     exec = "transmission-gtk %U";
@@ -33,6 +33,7 @@ in {
     enable = true;
     default_theme = "palette";
     default_source = "Nyaa";
+    # download_client = "RunCommand";
     download_client = "Transmission";
     timeout = 30;
     scroll_padding = 3;
@@ -42,7 +43,7 @@ in {
       username = "${config.spec.userName}";
       password_file = "${config.home.homeDirectory}/.cache/${config.spec.userName}/transmission";
       use_magnet = true;
-      download_dir = "${config.home.homeDirectory}/Videos/Anime/";
+      download_dir = "${config.home.homeDirectory}/Downloads/Torrent/";
     };
   };
 

@@ -73,6 +73,7 @@
     "qwant-maps-geo-handler"
     "remote-viewer"
     "steam"
+    "transmission-gtk"
     "umpv"
     "uuctl"
     "user-dirs-update-gtk"
@@ -126,7 +127,6 @@
   )
 
   custom_execs=(
-    "transmission-gtk:transmission-gtk"
     "spotify:spotify"
     "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec zsh'"
     "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'"

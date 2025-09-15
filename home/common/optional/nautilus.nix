@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  Home_dir = "${config.home.homeDirectory}/{Desktop,Downloads,Documents,Pictures,Videos}";
+  Home_dir = "${config.home.homeDirectory}/{Desktop,Downloads/Torrent,Documents,Pictures,Videos}";
 in {
   home.packages = with pkgs; [
     nautilus

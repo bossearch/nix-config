@@ -7,6 +7,7 @@
       mpv = ["mpv.desktop"];
       nautilus = ["nautilus-autorun-software.desktop"];
       nvim = ["nvim.desktop"];
+      transmission = ["transmission.desktop"];
       yazi = ["yazi.desktop"];
       zathura = ["org.pwmt.zathura.desktop"];
     in {
@@ -123,6 +124,8 @@
 
       # misc
       "x-content/unix-software" = nautilus;
+      "application/x-bittorrent" = transmission;
+      "x-scheme-handler/magnet" = transmission;
     };
   };
 }

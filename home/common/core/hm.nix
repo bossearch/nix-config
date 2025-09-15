@@ -19,7 +19,7 @@
     OPTIONS=""
 
     case "$1" in
-    "switch") OPTIONS="switch --flake ." ;;
+    "switch") OPTIONS="switch -b backup --flake ." ;;
     "news") OPTIONS="news --flake ." ;;
     "list")
       home-manager generations
