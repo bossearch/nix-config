@@ -6,6 +6,5 @@
     LC_MONETARY = "id_ID.UTF-8";
     LC_PAPER = "id_ID.UTF-8";
     LC_TELEPHONE = "id_ID.UTF-8";
-    LC_TIME = "id_ID.UTF-8";
   };
 }
