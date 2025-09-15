@@ -25,6 +25,7 @@
     ouch
     poppler
     ripgrep
+    taskwarrior3
     toipe
     unzip
     wget
