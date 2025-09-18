@@ -1,5 +1,13 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [./extra];
+  home.packages = with pkgs; [
+    xdm
+  ];
+
   programs.firefox = {
     enable = true;
     policies = import ./policies;

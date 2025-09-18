@@ -10,7 +10,6 @@ in {
     nautilus
     dconf
     sushi
-    # varia
   ];
 
   dconf.settings = {
