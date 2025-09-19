@@ -62,4 +62,11 @@
     private_browsing = true;
     default_area = "menupanel";
   };
+
+  "xdm-v8-browser-helper@subhra74.github.io.xpi" = {
+    installation_mode = "force_installed";
+    install_url = "https://addons.mozilla.org/firefox/downloads/latest/xdm-browser-monitor-v8/latest.xpi";
+    private_browsing = true;
+    default_area = "navbar";
+  };
 }
