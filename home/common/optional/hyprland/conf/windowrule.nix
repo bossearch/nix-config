@@ -194,6 +194,12 @@ in {
     #vesktop
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
 
+    #xdm
+    windowrule = float, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
+    windowrule = center 1, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
+    windowrule = size ${size."1/3-3:2"}, class:(Xdm-app), title:(Xtreme Download Manager|Settings)
+    windowrule = size ${size."1/4"}, class:(Xdm-app), title:(New Download|Download Complete|.*%.*)
+
     #zathura
     windowrule = float,class:(org.pwmt.zathura)
     windowrule = center 1,class:(org.pwmt.zathura)
