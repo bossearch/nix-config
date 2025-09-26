@@ -10,6 +10,7 @@
       transmission = ["transmission.desktop"];
       yazi = ["yazi.desktop"];
       zathura = ["org.pwmt.zathura.desktop"];
+      xdm = ["xdm.desktop"];
     in {
       # Feh
       "image/avif" = feh;
@@ -126,6 +127,8 @@
       "x-content/unix-software" = nautilus;
       "application/x-bittorrent" = transmission;
       "x-scheme-handler/magnet" = transmission;
+      "x-scheme-handler/xdm-app" = xdm;
+      "x-scheme-handler/xdm+app" = xdm;
     };
   };
 }
