@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     playerctl
     pulseaudio
+    alsa-utils
   ];
   services.pipewire = {
     enable = true;
