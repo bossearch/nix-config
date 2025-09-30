@@ -116,5 +116,8 @@
     bind = $hyper, mouse_up, exec, current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2;}') && hyprctl keyword cursor:zoom_factor $(echo "$current - 0.5"|bc)
     bind = $hyper, mouse:272, exec, hyprctl keyword cursor:zoom_factor 2
     bind = $hyper, mouse:273, exec, hyprctl keyword cursor:zoom_factor 1
+
+    # DN origin
+    bind = SUPER + ALT, D, exec, pkill DNOrigins
   '';
 }
