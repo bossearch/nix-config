@@ -1,5 +1,5 @@
 {config, ...}: {
-  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-urlbar.css" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/extras/custom-urlbar.css" = {
     text = ''
       /* work but you need to hover on correct place which is on urlbar box area */
       :root {

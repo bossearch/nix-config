@@ -1,5 +1,5 @@
 {config, ...}: {
-  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-compact.css" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/extras/custom-compact.css" = {
     text = ''
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/compact_extensions_panel.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */

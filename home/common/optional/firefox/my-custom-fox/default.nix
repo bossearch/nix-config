@@ -221,8 +221,8 @@
       // Enter your personal overrides below this line:
 
       user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
-      user_pref("devtools.chrome.enabled", false);
-      user_pref("devtools.debugger.remote-enabled", false);
+      user_pref("devtools.chrome.enabled", true);
+      user_pref("devtools.debugger.remote-enabled", true);
       user_pref("mousewheel.default.delta_multiplier_y", 250); // 250-400; adjust this number to your liking
       user_pref("sidebar.position_start", false);
       user_pref("sidebar.revamp", false);

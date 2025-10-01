@@ -1,5 +1,5 @@
 {config, ...}: {
-  home.file.".mozilla/firefox/${config.spec.userName}/chrome/includes/custom-colors.css" = {
+  home.file.".mozilla/firefox/${config.spec.userName}/chrome/extras/custom-colors.css" = {
     text = ''
       :root {
         --foreground-alpha: #${config.colorScheme.palette.base01}cc;
@@ -60,9 +60,15 @@
       #main-window {
         background-color: var(--foreground) !important;
       }
+
       #main-window:-moz-window-inactive {
         background-color: var(--foreground-alpha) !important;
       }
+
+      .menupopup-arrowscrollbox {
+        background: var(--background) !important;
+      }
+
     '';
   };
 }

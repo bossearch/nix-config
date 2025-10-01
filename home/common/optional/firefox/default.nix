@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [./extra];
+  imports = [./my-custom-fox];
   home.packages = with pkgs; [
     xdm
   ];
