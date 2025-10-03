@@ -142,9 +142,17 @@
         desc = "nixconfig/home.../waybar";
       }
       {
-        run = "cd ~/.nix-config/home/common/optional/firefox";
-        on = ["g" "n" "b"];
-        desc = "nixconfig/home.../browser";
+        on = ["c" "d"];
+        run = ''
+          shell -- for f in "$@"; do
+            if [ -L "$f" ]; then
+              mv -- "$f" "$f.og"
+              cp -L --no-preserve=mode,ownership -- "$f.og" "$f"
+              chmod u+rw "$f"
+            fi
+          done
+        '';
+        desc = "Keep symlink as .og and create real file in its place";
       }
     ];
   };
