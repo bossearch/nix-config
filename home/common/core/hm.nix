@@ -20,7 +20,10 @@
 
     case "$1" in
     "switch") OPTIONS="switch -b backup --flake ." ;;
-    "news") OPTIONS="news --flake ." ;;
+    "news")
+      home-manager news --flake .
+      exit 0
+      ;;
     "list")
       home-manager generations
       exit 0
