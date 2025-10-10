@@ -112,7 +112,7 @@
         persistent_overlay = "yes";
         plot_vsync_ratio = "no";
         plot_vsync_jitter = "no";
-        font_size = 6;
+        font_size = 20;
         font_color = "ffffff";
         border_size = 0.2;
         border_color = 000000;
