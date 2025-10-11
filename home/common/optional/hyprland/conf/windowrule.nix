@@ -192,6 +192,7 @@ in {
     windowrule = opaque, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
 
     #vesktop
+    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(vesktop)
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
 
     #xdm
