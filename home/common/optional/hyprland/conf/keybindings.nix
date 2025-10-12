@@ -118,6 +118,6 @@
     bind = $hyper, mouse:273, exec, hyprctl keyword cursor:zoom_factor 1
 
     # DN origin
-    bind = SUPER + ALT, D, exec, pkill DNOrigins
+    bind = SUPER + ALT, D, exec, pkill DNOrigins; pkill bottles
   '';
 }
