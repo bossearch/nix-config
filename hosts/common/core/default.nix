@@ -10,6 +10,7 @@
       ./boot.nix
       ./colors.nix
       ./firewall.nix
+      ./fsmount.nix
       ./keyring.nix
       ./locale.nix
       ./network.nix
