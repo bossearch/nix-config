@@ -109,6 +109,12 @@
     "waydroid.org.lineageos.recorder"
     "waydroid.org.mozilla.firefox"
     "wheelmap-geo-handler"
+    "wine"
+    "wine-extension-chm"
+    "wine-extension-hlp"
+    "wine-extension-msp"
+    "wine-extension-vbs"
+    "winetricks"
     "xdg-desktop-portal-gtk"
     "yazi"
   )
