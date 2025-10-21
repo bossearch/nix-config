@@ -1,11 +1,18 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }: let
   cacheDir = "${config.home.homeDirectory}/.cache/${config.spec.userName}";
 in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
+
+  home.packages = with pkgs; [
+    age
+    sops
+    ssh-to-age
+  ];
 
   sops = {
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
