@@ -5,7 +5,7 @@
         id = "br0";
         type = "bridge";
         interface-name = "br0";
-        autoconnect = true;
+        autoconnect = false;
       };
       ipv4.method = "auto";
       ipv6.method = "ignore";
@@ -17,7 +17,7 @@
         type = "ethernet";
         # Change if your NIC is named differently
         # interface-name = "enp5s0";
-        autoconnect = true;
+        autoconnect = false;
         master = "br0";
         slave-type = "bridge";
       };
