@@ -1,4 +1,8 @@
 {config, ...}: let
+  length =
+    if builtins.all (m: m.width == 2560) config.monitors
+    then 120
+    else 60;
   base07 = "#${config.colorScheme.palette.base07}";
   base08 = "#${config.colorScheme.palette.base08}";
   base0A = "#${config.colorScheme.palette.base0A}";
@@ -35,7 +39,7 @@ in {
 
       "hyprland/window" = {
         "format" = "{}";
-        "max-length" = 120;
+        "max-length" = length;
         # "separate-outputs"= true;
         "icon" = true;
         "icon-size" = 16;
