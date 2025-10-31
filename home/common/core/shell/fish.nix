@@ -65,6 +65,8 @@
       c = "clear";
       cat = "bat --style=plain --theme=ansi";
       ".." = "cd ..";
+      bridge-enable = "nmcli con up br0";
+      bridge-disable = "nmcli con down br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
     };
     functions = import ./functions/fish;

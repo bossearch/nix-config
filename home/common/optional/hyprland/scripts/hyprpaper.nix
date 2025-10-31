@@ -18,24 +18,11 @@ in {
       mkdir -p "$(dirname "$log_file")"
       echo "[daily-wallpaper] $(date): Internet connection check..." >"$log_file"
 
-      if nmcli device status | grep -q '^br0'; then
-        for i in {1..60}; do
-          state=$(nmcli -t -f GENERAL.STATE device show br0 | awk -F'[: ]' '{print $2}')
-          echo "Attempt $i: br0 state is $state" >>"$log_file"
-          if [ "$state" = "100" ]; then
-            break
-          fi
-          sleep 1
-        done
+      if ! ping -c 1 1.1.1.1 >/dev/null 2>&1; then
+        echo "Internet check failed. Aborting." >>"$log_file"
+        exit 1
       else
-        echo "br0 not found, falling back to generic internet check..." >>"$log_file"
-        sleep 10
-        if ! ping -c 1 1.1.1.1 >/dev/null 2>&1; then
-          echo "Internet check failed. Aborting." >>"$log_file"
-          exit 1
-        else
-          echo "Internet is reachable." >>"$log_file"
-        fi
+        echo "Internet is reachable." >>"$log_file"
       fi
 
       # restart waybar when internet is active
