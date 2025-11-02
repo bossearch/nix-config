@@ -185,7 +185,7 @@ in {
     windowrule = size ${size."1/3-3:2"}, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
 
     #virt-manager
-    windowrule = workspace special:gamespace, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
+    windowrule = workspace 5, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
     windowrule = float, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = center 1, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$

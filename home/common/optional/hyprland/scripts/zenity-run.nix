@@ -18,7 +18,7 @@ in {
 
       # Show a dialog to choose an application
       choice=$(zenity --list --title="App Selector" \
-        --column="App" "Bottles" "Steam" "PrismLauncher" "Waydroid" "VirtManager"\
+        --column="App" "Bottles" "Steam" "PrismLauncher" "Waydroid"\
         --width=${size.width} --height=${size.height})
 
       # Check the user's choice and launch the selected app
@@ -34,9 +34,6 @@ in {
         ;;
       "Waydroid")
         waydroid show-full-ui
-        ;;
-      "VirtManager")
-        virt-manager
         ;;
       *)
         # Do nothing if no selection is made

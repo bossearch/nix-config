@@ -79,7 +79,6 @@
     "user-dirs-update-gtk"
     "userapp-transmission-gtk-*"
     "vim"
-    "virt-manager"
     "waydroid.app.install"
     "waydroid.com.android.calculator2"
     "waydroid.com.android.camera2"
