@@ -23,6 +23,8 @@
       bind -M insert . __fish_expand_dots
       bind -M insert '$' __fish_expand_args
       bind -M default --erase ! . '$'
+      bind -M default \ce edit_command_buffer
+      bind -M insert \ce edit_command_buffer
 
       set -gx fish_color_autosuggestion      brblack
       set -gx fish_color_cancel              -r
