@@ -129,6 +129,7 @@
     "org.gnome.baobab:baobab"
     "org.pulseaudio.pavucontrol:pavucontrol"
     "org.shotcut.Shotcut:shotcut"
+    "vesktop:discord"
   )
 
   custom_execs=(
