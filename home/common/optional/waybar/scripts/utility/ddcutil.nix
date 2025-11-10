@@ -42,7 +42,7 @@
           ddcutil_fast setvcp 10 $command $step
           ;;
         max)
-          ddcutil_fast setvcp 10 100
+          ddcutil_fast setvcp 10 80
           ;;
         min)
           ddcutil_fast setvcp 10 0
