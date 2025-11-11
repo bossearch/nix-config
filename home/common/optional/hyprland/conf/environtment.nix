@@ -24,6 +24,6 @@
     env = NIXOS_OZONE_WL,1
 
     # fix black border from context menu on nautilus
-    env = GSK_RENDERER,gl
+    # env = GSK_RENDERER,gl
   '';
 }
