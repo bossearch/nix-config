@@ -55,7 +55,7 @@ in {
     windowrule = workspace 1, initialTitle:(Alacritty)
 
     #blueman
-    windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+    # windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = float, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = center 1, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
     windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
@@ -138,13 +138,13 @@ in {
     windowrule = workspace 6, class:(kitty),title:(nchat)
 
     #nmtui
-    windowrule = workspace 4, class:(kitty),title:(nmtui)
+    # windowrule = workspace 4, class:(kitty),title:(nmtui)
     windowrule = float, class:(kitty),title:(nmtui)
     windowrule = center 1, class:(kitty),title:(nmtui)
     windowrule = size ${size."1/2-1:1"}, class:(kitty),title:(nmtui)
 
     #pavucontrol
-    windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
+    # windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
     windowrule = float, initialClass:^(org.pulseaudio.pavucontrol)$
     windowrule = center 1, initialClass:^(org.pulseaudio.pavucontrol)$
     windowrule = size ${size."1/2"}, initialClass:^(org.pulseaudio.pavucontrol)$
@@ -173,7 +173,7 @@ in {
     windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
 
     #uget
-    windowrule = workspace 1, class:(uget-gtk),title:(uGet - New Download)
+    windowrule = workspace 2, class:(uget-gtk),title:(uGet - New Download)
     windowrule = workspace 4, class:(uget-gtk),title:(uGet)
     windowrule = float, class:(uget-gtk),title:(uGet - New Download)
     windowrule = center 1, class:(uget-gtk),title:(uGet - New Download)
@@ -194,6 +194,9 @@ in {
     #vesktop
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(vesktop)
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
+    windowrule = float, initialClass:(vesktop),initialTitle:(Discord Popout)
+    windowrule = center 1, initialClass:(vesktop),initialTitle:(Discord Popout)
+    windowrule = size ${size."3/4"}, initialClass:(vesktop),initialTitle:(Discord Popout)
 
     #xdm
     windowrule = float, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
