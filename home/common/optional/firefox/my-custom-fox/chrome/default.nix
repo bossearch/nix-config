@@ -5,6 +5,7 @@
       @import url(extras/custom-button.css);
       @import url(extras/custom-colors.css);
       @import url(extras/custom-compact.css);
+      @import url(extras/custom-context.css);
       @import url(extras/custom-others.css);
       @import url(extras/custom-tabbar.css);
       @import url(extras/custom-urlbar.css);

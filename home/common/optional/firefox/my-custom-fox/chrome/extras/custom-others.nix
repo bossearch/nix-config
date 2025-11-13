@@ -24,7 +24,7 @@
         right: 0;
         width: 20px;
         height: 20px;
-        background: #27a1b9; /* Cyan color */
+        background: #${config.colorScheme.palette.base0F};
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
       }
       #sidebar-switcher-target.active{
