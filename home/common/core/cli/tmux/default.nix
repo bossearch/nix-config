@@ -55,11 +55,11 @@
       # Fzf
       unbind Space
       unbind q
-      bind Space popup -E -B -w80 -h10 -xC -y38.5  "fish -c pane"
-      bind Escape popup -E -B -w80 -h10 -xC -y38.5  "fish -c panekill"
-      bind Tab popup -E -B -w80 -h10 -xC -y38.5  "fish -c tm"
-      bind q popup -E -B -w80 -h10 -xC -y38.5  "fish -c tmkill"
-      bind o popup -E -B -w80 -h10 -xC -y38.5  "fish -c furl"
+      bind Space popup -E -B -w80 -h10 -xC -yC "fish -c pane"
+      bind Escape popup -E -B -w80 -h10 -xC -yC "fish -c panekill"
+      bind Tab popup -E -B -w80 -h10 -xC -yC "fish -c tm"
+      bind q popup -E -B -w80 -h10 -xC -yC "fish -c tmkill"
+      bind o popup -E -B -w80 -h10 -xC -yC "fish -c furl"
       bind Enter popup -E -w100 -h50 -xC -yC
 
       run-shell ~/.config/tmux/plugins/mythemux/mythemux.tmux

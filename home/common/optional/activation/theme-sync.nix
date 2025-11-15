@@ -3,6 +3,7 @@
   lib,
   theme,
   monitors,
+  ...
 }: let
   reloadWallpaper =
     lib.concatMapStringsSep "\n" (
