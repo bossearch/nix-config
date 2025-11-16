@@ -1,6 +1,7 @@
 {
   imports = [
     ./dunst/dunsticon.nix
+    ./dunst/history.nix
 
     ./hyprsunset/hyprsunset.nix
     ./hyprsunset/scroll-down.nix
