@@ -10,6 +10,10 @@ in {
     vaults
   ];
 
+  home.file.".config/gtk-3.0/bookmarks".text = ''
+    file://${config.home.homeDirectory}/.local/share/Vaults Vaults
+  '';
+
   home.file.".config/user_config.toml" = {
     text = ''
       [Lofi]

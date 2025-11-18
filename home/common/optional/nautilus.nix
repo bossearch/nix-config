@@ -4,7 +4,10 @@
   pkgs,
   ...
 }: let
-  Home_dir = "${config.home.homeDirectory}/{Desktop,Downloads/Torrent,Documents,Pictures,Shared,Videos}";
+  Home_dir =
+    if config.spec.hostName == "silvia"
+    then "${config.home.homeDirectory}/{Desktop,Downloads/Torrent,Documents,Pictures,Shared,Videos}"
+    else "${config.home.homeDirectory}/{Desktop,Downloads,Documents,Pictures,Videos}";
 in {
   home.packages = with pkgs; [
     nautilus
@@ -39,7 +42,6 @@ in {
     file://${config.home.homeDirectory}/Pictures Pictures
     file://${config.home.homeDirectory}/Shared Shared
     file://${config.home.homeDirectory}/Videos Videos
-    file://${config.home.homeDirectory}/.local/share/Vaults Vaults
   '';
 
   home.file.".config/user-dirs.dirs".text = ''
