@@ -414,9 +414,10 @@ in {
         "format" = " {} ";
         "exec" = "cat ~/.cache/${config.spec.userName}/notification-icon";
         "on-click" = "~/.config/waybar/scripts/dunst/dunsticon.sh";
-        "on-click-right" = "systemctl restart --user waybar.service";
+        "on-click-right" = "~/.config/waybar/scripts/dunst/history.sh";
+        "on-click-middle" = "systemctl restart --user waybar.service";
         "signal" = 10;
-        "tooltip-format" = "Press Right Click to Restart Waybar";
+        "tooltip" = false;
       };
     };
   };
