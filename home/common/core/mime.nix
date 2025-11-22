@@ -5,10 +5,9 @@
       feh = ["feh.desktop"];
       firefox = ["firefox.desktop"];
       mpv = ["mpv.desktop"];
-      nautilus = ["nautilus-autorun-software.desktop"];
+      nautilus = ["org.gnome.Nautilus.desktop"];
       nvim = ["nvim.desktop"];
       transmission = ["transmission.desktop"];
-      yazi = ["yazi.desktop"];
       zathura = ["org.pwmt.zathura.desktop"];
       xdm = ["xdm.desktop"];
     in {
@@ -106,8 +105,8 @@
       "text/x-c++hdr" = nvim;
       "text/plain" = nvim;
 
-      # Yazi
-      "inode/directory" = yazi;
+      # Nautilus
+      "inode/directory" = nautilus;
 
       # Zathura
       "application/oxps" = zathura;
