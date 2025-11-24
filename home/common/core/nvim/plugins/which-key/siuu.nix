@@ -35,17 +35,18 @@
     __unkeyed = "<cr><cr>";
     __unkeyed-1.__raw = ''
       function()
-        require("snacks").terminal.toggle("fish", {
+        require("snacks").terminal.open("fish", {
           win = {
             width = 0.8,         -- Width of the terminal
             height = 0.8,        -- Height of the terminal
             border = "rounded",  -- Sharp border style (use "double" if preferred)
           },
           cwd = vim.fn.getcwd(), -- Set the current working directory
+          auto_close = true,
         })
       end
     '';
     desc = "Toggle Terminal On Float";
-    mode = ["n" "t"];
+    mode = "n";
   }
 ]
