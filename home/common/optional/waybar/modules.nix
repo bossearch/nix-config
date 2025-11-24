@@ -250,10 +250,13 @@ in {
         "format" = "{icon}{volume}%";
         "max-volume" = 150;
         "format-icons" = {
+          #main speaker
           "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3" = [" " " " "  "];
           "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3-muted" = "  ";
-          "alsa_output.usb-GeneralPlus_USB_Audio_Device-00.analog-stereo" = "󰋋 ";
-          "alsa_output.usb-GeneralPlus_USB_Audio_Device-00.analog-stereo-muted" = "󰟎 ";
+          #front jack
+          "alsa_output.pci-0000_08_00.6.analog-stereo" = "󰋋 ";
+          "alsa_output.pci-0000_08_00.6.analog-stereo-muted" = "󰟎 ";
+          #bluetooth
           "bluez_output.00_A4_1C_F9_15_84.1" = "󰂰 ";
           "bluez_output.00_A4_1C_F9_15_84.1-muted" = "󰂲 ";
         };
