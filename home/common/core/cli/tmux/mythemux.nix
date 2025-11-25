@@ -3,8 +3,8 @@
     source = pkgs.fetchFromGitHub {
       owner = "bossearch";
       repo = "mythemux";
-      rev = "ed33d2488b84e1c2aaaaa24d6af2b8dcf661e636";
-      sha256 = "sha256-e2mP5qjE8ysQW6gXtSYk99LvBksEJe7NBEex0+sTgGU=";
+      rev = "4250787c7ffc407134c4c0d3111479f8cede674d";
+      sha256 = "sha256-JZ/OF7VGKHyMhChKi7+SGYQvszlHricAK5qJQUl8VYY=";
     };
     target = ".config/tmux/plugins/mythemux";
   };
