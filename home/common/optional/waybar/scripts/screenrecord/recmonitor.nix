@@ -6,33 +6,28 @@
 
       set -e
 
-      # Ensure the screenshots directory exists
-      mkdir -p ~/Videos//Screenrecords
+      mkdir -p ~/Videos/Screenrecords
 
-      # For sourcing looper.sh
-      SCRIPT_DIR="$HOME/.config/waybar/scripts/screenrecord"
-
-      # Get the name of the monitor/output using hyprctl (default to the first monitor)
+      TRAY="$HOME/.config/waybar/scripts/screenrecord/tray.sh"
+      PLAYBACK="$HOME/.config/waybar/scripts/screenrecord/playback.sh"
       OUTPUT=$(hyprctl -j monitors | jq -r '.[0].name')
-
-      # Define the filename with the current date and time
       FILENAME="$HOME/Videos/Screenrecords/$OUTPUT-$(date +%F_%T).mp4"
-
-      # Define tooltip file location
       SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"
 
-      # Create or update tooltip file for checkrec.sh
-      echo "Screenrecording on Monitor: $OUTPUT" > "$SCREENRECORD_TOOLTIP"
+      read -r BUTTON COMMAND < <("$PLAYBACK")
+      echo "Button code: $BUTTON"
+      echo "wl-screenrec $COMMAND"
 
-      # Notify the user that the recording has started
-      notify-send -a screenrecord "Screenrecording on Monitor: $OUTPUT will start in 3 seconds" -t 2500
-      sleep 3
-
-      # Start recording the entire monitor
-      wl-screenrec --audio --low-power=off --no-damage -o "$OUTPUT" -f "$FILENAME" & "$SCRIPT_DIR/looper.sh"
-
-      # When the script finishes (e.g., with CTRL+C), notify the user
-      trap 'dunstify "Screenrecord saved to $FILENAME" -t 3000' EXIT
+      if [[ "$BUTTON" -eq 0 ]]; then
+        echo "Screenrecording on Monitor: $OUTPUT" >"$SCREENRECORD_TOOLTIP"
+        notify-send -a screenrecord "Screenrecording on Monitor: $OUTPUT will start in 3 seconds" -t 2500
+        sleep 3
+        eval "wl-screenrec $COMMAND --low-power=off --no-damage -o \"$OUTPUT\" -f \"$FILENAME\" & $TRAY"
+        trap 'notify-send "Screenrecord saved to $FILENAME" -t 3000' EXIT
+      else
+        notify-send -a screenrecord --urgency=critical "Screenrecord Cancelled"
+        exit 0
+      fi
     '';
   };
 }

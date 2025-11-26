@@ -1,19 +1,20 @@
-{
+{config, ...}: {
   home.file.".config/waybar/scripts/screenrecord/stoprec.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      # Find the PID of wl-screenrec
-      pid=$(pgrep wl-screenrec)
+      PID=$(pgrep wl-screenrec)
+      CACHE_DIR="$HOME/.cache/${config.spec.userName}"
 
-      # Check if the PID is found
-      if [ -n "$pid" ]; then
-        # Send SIGINT to gracefully stop wl-screenrec
-        kill -INT "$pid"
-        echo "Terminated wl-screenrec with PID $pid"
-      else
-        echo "No wl-screenrec process found."
+      if [ -n "$PID" ]; then
+        kill -INT "$PID"
+        pactl unload-module module-combine-sink
+        pactl unload-module module-loopback
+        if [[ -f $CACHE_DIR/default-sink ]]; then
+          pactl set-default-sink "$(cat "$CACHE_DIR/default-sink")"
+          rm -rf "$CACHE_DIR/default-sink"
+        fi
       fi
     '';
   };

@@ -25,11 +25,12 @@
     ./pavucontrol/toggle-output.nix
 
     ./screenrecord/checkrec.nix
-    ./screenrecord/looper.nix
+    ./screenrecord/playback.nix
     ./screenrecord/recarea.nix
     ./screenrecord/recmonitor.nix
     ./screenrecord/recwindow.nix
     ./screenrecord/stoprec.nix
+    ./screenrecord/tray.nix
 
     ./screenshot/ocr.nix
     ./screenshot/ssarea.nix

@@ -1,5 +1,5 @@
 {
-  home.file.".config/waybar/scripts/screenrecord/looper.sh" = {
+  home.file.".config/waybar/scripts/screenrecord/tray.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
