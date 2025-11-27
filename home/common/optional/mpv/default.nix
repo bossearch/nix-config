@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./config.nix
     ./filters
@@ -45,8 +49,8 @@
   xdg.desktopEntries.mpv = {
     type = "Application";
     name = "mpvipc";
-    icon = "mpv"; # You can replace this with a custom icon path if needed
-    exec = "mpv --player-operation-mode=pseudo-gui --input-ipc-server=/tmp/mpv-socket";
+    icon = "mpv";
+    exec = "/home/${config.spec.userName}/.config/hypr/scripts/assets/mpv.sh";
     terminal = false;
     categories = ["AudioVideo" "Audio" "Video" "Player" "TV"];
     mimeType = [
