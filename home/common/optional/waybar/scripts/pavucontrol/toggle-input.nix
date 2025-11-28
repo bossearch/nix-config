@@ -3,21 +3,20 @@
     executable = true;
     text = ''
       #!/usr/bin/env bash
-
       set -e
 
       # Get the microphone source ID
-      CURRENT_SOURCE=$(pactl info | grep "Default Source" | cut -d ' ' -f 3)
+      CURRENT_SOURCE=$(pactl get-default-source)
 
       # Get the current mute state (0 for unmuted, 1 for muted)
-      MUTE_STATE=$(pactl get-source-mute $CURRENT_SOURCE | awk '{print $2}')
+      SOURCE_STATUS=$(pactl get-source-mute "$CURRENT_SOURCE" | awk '{print $2}')
 
       # Toggle the mute state
-      if [ "$MUTE_STATE" = "yes" ]; then
-        pactl set-source-mute $CURRENT_SOURCE 0
+      if [ "$SOURCE_STATUS" = "yes" ]; then
+        pactl set-source-mute "$CURRENT_SOURCE" 0
         notify-send "Microphone Unmuted"
       else
-        pactl set-source-mute $CURRENT_SOURCE 1
+        pactl set-source-mute "$CURRENT_SOURCE" 1
         notify-send "Microphone Muted"
       fi
 

@@ -3,12 +3,22 @@
     executable = true;
     text = ''
       #!/usr/bin/env bash
+      set -e
 
       # Get the current default source (microphone)
-      CURRENT_SOURCE=$(pactl info | grep "Default Source" | cut -d ' ' -f 3)
+      CURRENT_SOURCE=$(pactl get-default-source)
 
       # Get a list of all input sources (microphones)
-      SOURCES=($(pactl list sources short | awk '/input/ {print $2}'))
+      mapfile -t SOURCES < <(pactl list short sources | awk '/alsa_input/ {print $2}')
+
+      if [[ ''${#SOURCES[@]} -eq 0 ]]; then
+          notify-send --urgency=critical "No audio input found!"
+          exit 1
+      fi
+
+      if [[ ''${#SOURCES[@]} -eq 1 ]]; then
+          exit 0
+      fi
 
       # Find the index of the current source
       for i in "''${!SOURCES[@]}"; do

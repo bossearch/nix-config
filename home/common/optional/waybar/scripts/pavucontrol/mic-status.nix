@@ -11,7 +11,7 @@
       MUTE_STATE=$(pactl get-source-mute $CURRENT_SOURCE | awk '{print $2}')
 
       # Mic list
-      DESK_MIC="alsa_input.usb-GeneralPlus_USB_Audio_Device-00.mono-fallback"
+      DESK_MIC="alsa_input.pci-0000_08_00.6.analog-stereo"
       TWS_MIC="bluez_input.00:A4:1C:F9:15:84"
 
       if [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "no" ]]; then
