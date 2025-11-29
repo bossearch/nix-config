@@ -38,6 +38,7 @@
     ./screenshot/sswindow.nix
 
     ./utility/ddcutil.nix
+    ./utility/hyprpicker.nix
     ./utility/memhog.nix
     ./utility/reboot.nix
     ./utility/shutdown.nix

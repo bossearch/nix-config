@@ -325,8 +325,8 @@ in {
       };
 
       "custom/hyprpicker" = {
-        "format" = "";
-        "on-click" = "hyprpicker -a";
+        "format" = " ";
+        "on-click" = "~/.config/waybar/scripts/utility/hyprpicker.sh";
         "tooltip" = false;
       };
 

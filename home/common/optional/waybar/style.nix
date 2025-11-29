@@ -140,7 +140,7 @@ in {
       padding: 0px 0px 0px 6px;
     }
     #custom-hyprpicker {
-      padding: 0px 0px 0px 4px;
+      padding: 0px 4px 0px 0px;
     }
     #custom-lamp {
       padding: 0px 0px 0px 8px;
