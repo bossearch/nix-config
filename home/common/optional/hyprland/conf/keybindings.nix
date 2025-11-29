@@ -101,11 +101,10 @@
     # Media key
     bindel = , XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
     bindel = , XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindl = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
 
     # Requires playerctl
     bind = , XF86AudioPlay, exec, ~/.config/hypr/scripts/playerctl/player-toggle.sh
-    bind = $secMod, XF86AudioPlay, exec, ~/.config/hypr/scripts/playerctl/playerctl.sh
+    bind = , XF86AudioMute, exec, ~/.config/hypr/scripts/playerctl/playerctl.sh
     bind = , XF86AudioPrev, exec, ~/.config/hypr/scripts/playerctl/player-seek.sh -5
     bind = , XF86AudioNext, exec, ~/.config/hypr/scripts/playerctl/player-seek.sh +5
     bindo = , XF86AudioPrev, exec, ~/.config/hypr/scripts/playerctl/player-skip.sh previous
