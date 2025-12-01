@@ -1,7 +1,7 @@
 {
-  lib,
-  inputs,
   config,
+  inputs,
+  lib,
   ...
 }: {
   imports = [inputs.impermanence.nixosModules.impermanence];
@@ -62,14 +62,6 @@
               user = "root";
               group = "root";
               mode = "0750";
-            }
-          ]
-          ++ lib.optionals config.virtualisation.libvirtd.qemu.ovmf.enable [
-            {
-              directory = "/var/lib/tpm";
-              user = "root";
-              group = "root";
-              mode = "0700";
             }
           ]
         )

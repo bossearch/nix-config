@@ -16,7 +16,6 @@
 in {
   services.greetd = {
     enable = true;
-    vt = 1;
     settings = rec {
       initial_session = {
         command = fallbackScript;

@@ -14,15 +14,10 @@
       graphics.enable = true;
       graphics.enable32Bit = true;
       graphics.extraPackages = with pkgs; [
-        amdvlk
         rocmPackages.clr.icd
-      ];
-      graphics.extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
       ];
       amdgpu = {
         opencl.enable = true;
-        amdvlk.enable = true;
       };
       i2c.enable = true;
     })
