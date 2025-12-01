@@ -11,6 +11,7 @@
     ./quit.nix
     ./save-buku.nix
     ./startup-value.nix
+    ./swap-window.nix
     ./word-lookup.nix
     ./zenity-run.nix
   ];

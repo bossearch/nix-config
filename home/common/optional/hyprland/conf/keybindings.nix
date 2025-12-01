@@ -60,7 +60,7 @@
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
-    bind = $meh, ESCAPE, swapnext
+    bind = $meh, ESCAPE, exec, ~/.config/hypr/scripts/swap-window.sh
 
     # Switch workspaces with mainMod + [0-9]
     bind = $meh, H, workspace, 1
