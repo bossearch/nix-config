@@ -18,17 +18,21 @@
       echo "6500" | tee "$HYPRSUNSET_TEMP_FILE" "$HYPRSUNSET_TEMP_SCROLL"
 
       GAMEMODE_FILE="$HOME/.cache/${config.spec.userName}/gamemode"
-      if [ -f "$GAMEMODE_FILE" ]; then
-        rm "$GAMEMODE_FILE"
-      fi
+      rm -f "$GAMEMODE_FILE"
 
       SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"
-      if [ ! -f "$SCREENRECORD_TOOLTIP" ]; then
-        touch "$SCREENRECORD_TOOLTIP"
-      fi
+      touch "$SCREENRECORD_TOOLTIP"
 
       PLAYERCTL_FILE="$HOME/.cache/${config.spec.userName}/player"
       echo "spotify" >"$PLAYERCTL_FILE"
+
+      SWAP_SPECIAL_FILE="$HOME/.cache/bosse/swap-special"
+      SWAP_NORMAL_FILE="$HOME/.cache/bosse/swap-normal"
+      rm -f "$SWAP_SPECIAL_FILE" "$SWAP_NORMAL_FILE"
+
+      CPUTEMP_FILE="$HOME/.cache/${config.spec.userName}/cputemp"
+      GPUTEMP_FILE="$HOME/.cache/${config.spec.userName}/gputemp"
+      rm -f "$CPUTEMP_FILE" "$GPUTEMP_FILE"
 
       rm -f /tmp/nvim-startup.log
       nvim --headless +q --startuptime /tmp/nvim-startup.log
