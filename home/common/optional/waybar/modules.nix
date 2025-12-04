@@ -179,11 +179,12 @@ in {
       };
 
       "custom/cputemp" = {
-        "exec" = "echo $(cat $(for i in /sys/class/hwmon/hwmon*/temp3_input; do name=$(cat $(dirname \"$i\")/name 2>/dev/null); [ \"$name\" = \"k10temp\" ] && echo \"$i\" && break; done) | awk '{printf \"%d\", $1/1000}')";
-        "interval" = 5;
+        "exec" = "~/.config/waybar/scripts/temp/cputemp.sh";
         "format" = "{}°C";
+        "interval" = 5;
         "on-click" = "kitty -T btop btop";
-        "tooltip" = false;
+        "return-type" = "json";
+        "tooltip" = true;
       };
 
       "custom/gpu" = {
@@ -196,11 +197,12 @@ in {
       };
 
       "custom/gputemp" = {
-        "exec" = "echo $(cat $(for i in /sys/class/hwmon/hwmon*/temp1_input; do name=$(cat $(dirname \"$i\")/name 2>/dev/null); [ \"$name\" = \"amdgpu\" ] && echo \"$i\" && break; done) | awk '{printf \"%d\", $1/1000}')";
-        "interval" = 5;
+        "exec" = "~/.config/waybar/scripts/temp/gputemp.sh";
         "format" = "{}°C";
+        "interval" = 5;
         "on-click" = "kitty -T btop btop";
-        "tooltip" = false;
+        "return-type" = "json";
+        "tooltip" = true;
       };
 
       "custom/memory" = {

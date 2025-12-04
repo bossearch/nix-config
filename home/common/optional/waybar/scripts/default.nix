@@ -37,6 +37,10 @@
     ./screenshot/ssmonitor.nix
     ./screenshot/sswindow.nix
 
+    ./temp/cputemp.nix
+    ./temp/gputemp.nix
+    ./temp/graph.nix
+
     ./utility/ddcutil.nix
     ./utility/hyprpicker.nix
     ./utility/memhog.nix
