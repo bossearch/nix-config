@@ -46,6 +46,7 @@
     ./utility/memhog.nix
     ./utility/reboot.nix
     ./utility/shutdown.nix
+    ./utility/uptime.nix
     ./utility/virtualkeyboard.nix
     ./utility/wttr.nix
   ];
