@@ -136,6 +136,7 @@
     "spotify:spotify"
     "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec zsh'"
     "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'"
+    "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
   )
 
   readarray -t applications < <(find \
