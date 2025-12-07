@@ -2,10 +2,10 @@
 # Inspired by: https://github.com/linkarzu/dotfiles-latest
 # Author of reference: @linkarzu
 # Adapted and customized by me.
-{pkgs, ...}: {
-  programs.nixvim = {
-    extraPlugins = [pkgs.vimPlugins.img-clip-nvim];
-    extraConfigLua = ''
+{
+  programs.nixvim.plugins.img-clip = {
+    enable = true;
+    luaConfig.post = ''
       local format = "avif" -- avif,webp,png,jpg
       local quality = 75
       -- Determine Git-aware image storage path

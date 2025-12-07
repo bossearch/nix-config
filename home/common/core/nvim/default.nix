@@ -20,8 +20,6 @@
         enable = true;
         standalonePlugins = [
           "friendly-snippets" # needed for blink to access friendly-snippets
-          "colorful-winsep"
-          "img-clip.nvim"
           "outline.nvim"
         ];
       };
