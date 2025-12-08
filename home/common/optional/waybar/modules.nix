@@ -422,7 +422,7 @@ in {
         "exec" = "cat ~/.cache/${config.spec.userName}/notification-icon";
         "on-click" = "~/.config/waybar/scripts/dunst/dunsticon.sh";
         "on-click-right" = "~/.config/waybar/scripts/dunst/history.sh";
-        "on-click-middle" = "systemctl restart --user waybar.service";
+        "on-click-middle" = "dunstctl close-all";
         "signal" = 10;
         "tooltip" = false;
       };
