@@ -5,7 +5,6 @@
       "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
       "logo" = {
         "height" = 15;
-        "width" = 30;
         "padding" = {
           "top" = 1;
         };
@@ -53,7 +52,7 @@
           "keyColor" = "32";
         }
         {
-          "type" = "icons";
+          "type" = "theme";
           "key" = " ├ 󰀻 ";
           "keyColor" = "32";
         }

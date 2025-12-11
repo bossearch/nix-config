@@ -11,7 +11,7 @@ in {
       #!/usr/bin/env bash
       hyprctl dispatch movecursor ${position}
       kitty -T fastfetch -o cursor=#1a1b26 -o cursor_trail=0 -e fish -c '
-        fastfetch --logo-position right --logo-padding-right 0
+        fastfetch --logo-position right --logo-padding-right 0 --logo-padding-top 1
         bash -c "read -n 1"'
     '';
   };
