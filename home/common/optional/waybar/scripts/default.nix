@@ -7,14 +7,6 @@
     ./hyprsunset/scroll-down.nix
     ./hyprsunset/scroll-up.nix
 
-    ./lamp-control/decrease-brightness.nix
-    ./lamp-control/get-brightness.nix
-    ./lamp-control/get-temp.nix
-    ./lamp-control/increase-brightness.nix
-    ./lamp-control/toggle-temp.nix
-    ./lamp-control/turn-off.nix
-    ./lamp-control/turn-on.nix
-
     ./launcher/launcher-left.nix
     ./launcher/launcher-right.nix
 
@@ -43,6 +35,7 @@
 
     ./utility/ddcutil.nix
     ./utility/hyprpicker.nix
+    ./utility/lamp-control.nix
     ./utility/memhog.nix
     ./utility/reboot.nix
     ./utility/shutdown.nix

@@ -336,15 +336,14 @@ in {
 
       "custom/lamp" = {
         "format" = "{icon} ";
-        "format-icons" = ["󰌶" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+        "format-icons" = ["󰹐" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+        "exec" = "~/.config/waybar/scripts/utility/lamp-control.sh";
+        "on-click" = "echo 'on' > ~/.cache/${config.spec.userName}/lamp-control";
+        "on-click-middle" = "echo 'toggle' > ~/.cache/${config.spec.userName}/lamp-control";
+        "on-click-right" = "echo 'off' > ~/.cache/${config.spec.userName}/lamp-control";
+        "on-scroll-down" = "echo '-' > ~/.cache/${config.spec.userName}/lamp-control";
+        "on-scroll-up" = "echo '+' > ~/.cache/${config.spec.userName}/lamp-control";
         "return-type" = "json";
-        "exec" = "python3 ~/.config/waybar/scripts/lamp-control/get-brightness.py | { read x; echo '{\"percentage\":'''\${x}'}'; }";
-        "on-scroll-up" = "~/.config/waybar/scripts/lamp-control/increase-brightness.sh";
-        "on-scroll-down" = "~/.config/waybar/scripts/lamp-control/decrease-brightness.sh";
-        "on-click" = "~/.config/waybar/scripts/lamp-control/turn-on.sh";
-        "on-click-right" = "~/.config/waybar/scripts/lamp-control/turn-off.sh";
-        "on-click-middle" = "~/.config/waybar/scripts/lamp-control/toggle-temp.sh";
-        "signal" = 15;
         "tooltip" = false;
       };
 
