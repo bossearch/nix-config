@@ -219,8 +219,7 @@ in {
 
     # Workspaces
     workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: kitty -T scratchpad
-    workspace = special:gamespace, on-created-empty: ~/.config/hypr/scripts/zenity-run.sh
-    workspace = special:anonymous, on-created-empty: nix-shell -p tor-browser --run tor-browser
+    workspace = special:gamespace, on-created-empty: hyprctl dispatch togglespecialworkspace "gamespace"
     workspace = 1, on-created-empty: kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'
     workspace = 2, on-created-empty: firefox
   '';
