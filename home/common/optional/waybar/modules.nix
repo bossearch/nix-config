@@ -302,7 +302,7 @@ in {
         "format" = "{}";
         "tooltip" = true;
         "interval" = 3600;
-        "exec" = "python3 ~/.config/waybar/scripts/utility/wttr.py";
+        "exec" = "~/.config/waybar/scripts/utility/wttr.sh";
         "return-type" = "json";
       };
 

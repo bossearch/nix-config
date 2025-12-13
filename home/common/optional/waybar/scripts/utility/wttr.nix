@@ -1,127 +1,136 @@
 {config, ...}: {
-  home.file.".config/waybar/scripts/utility/wttr.py" = {
+  home.file.".config/waybar/scripts/utility/wttr.sh" = {
+    executable = true;
     text = ''
-      #!/usr/bin/env python
+      #!/usr/bin/env bash
 
-      import json
-      import requests
-      import re
-      from datetime import datetime
+      CACHE_DIR="$HOME/.cache/${config.spec.userName}"
+      COORD_FILE="$CACHE_DIR/coordinate"
+      WTTR_FILE="$CACHE_DIR/wttr.json"
 
-      # Function to read coordinates from the Markdown file
-      def read_coordinates(file_path):
-          with open(file_path, 'r') as file:
-              content = file.read()
-              latitude = re.search(r'Latitude:\s*([0-9.-]+)', content).group(1)
-              longitude = re.search(r'Longitude:\s*([0-9.-]+)', content).group(1)
-          return latitude, longitude
+      read -r LAT LON < <(awk -F': ' '
+        /^Longitude/ { lon=$2 }
+        /^Latitude/  { lat=$2 }
+        END { print lat, lon }
+      ' "$COORD_FILE")
 
-      # Load coordinates from the config.md file
-      latitude, longitude = read_coordinates('${config.home.homeDirectory}/.cache/${config.spec.userName}/coordinate')
+      get_weather_json=$(curl -s "https://wttr.in/''${LAT},''${LON}?format=j1")
 
-      WEATHER_CODES = {
-          '113': '☀️',
-          '116': '⛅️',
-          '119': '☁️',
-          '122': '☁️',
-          '143': '🌫',
-          '176': '🌦',
-          '179': '🌧',
-          '182': '🌧',
-          '185': '🌧',
-          '200': '⛈',
-          '227': '🌨',
-          '230': '❄️',
-          '248': '🌫',
-          '260': '🌫',
-          '263': '🌦',
-          '266': '🌦',
-          '281': '🌧',
-          '284': '🌧',
-          '293': '🌦',
-          '296': '🌦',
-          '299': '🌧',
-          '302': '🌧',
-          '305': '🌧',
-          '308': '🌧',
-          '311': '🌧',
-          '314': '🌧',
-          '317': '🌧',
-          '320': '🌨',
-          '323': '🌨',
-          '326': '🌨',
-          '329': '❄️',
-          '332': '❄️',
-          '335': '❄️',
-          '338': '❄️',
-          '350': '🌧',
-          '353': '🌦',
-          '356': '🌧',
-          '359': '🌧',
-          '362': '🌧',
-          '365': '🌧',
-          '368': '🌨',
-          '371': '❄️',
-          '374': '🌧',
-          '377': '🌧',
-          '386': '⛈',
-          '389': '🌩',
-          '392': '⛈',
-          '395': '❄️'
+      if [[ -n $get_weather_json ]]; then
+        echo "$get_weather_json" >"$WTTR_FILE"
+        weather_json=$(cat "$WTTR_FILE")
+      else
+        if [[ ! -f $WTTR_FILE ]]; then
+          echo "{\"text\": \" ⛓️‍💥 \"}"
+          exit 0
+        fi
+        weather_json=$(cat "$WTTR_FILE")
+      fi
+
+      declare -A WEATHER_CODES=(
+        ["113"]="☀️" ["116"]="⛅️" ["119"]="☁️" ["122"]="☁️" ["143"]="🌫"
+        ["176"]="🌦" ["179"]="🌧" ["182"]="🌧" ["185"]="🌧" ["200"]="⛈"
+        ["227"]="🌨" ["230"]="❄️" ["248"]="🌫" ["260"]="🌫" ["263"]="🌦"
+        ["266"]="🌦" ["281"]="🌧" ["284"]="🌧" ["293"]="🌦" ["296"]="🌦"
+        ["299"]="🌧" ["302"]="🌧" ["305"]="🌧" ["308"]="🌧" ["311"]="🌧"
+        ["314"]="🌧" ["317"]="🌧" ["320"]="🌨" ["323"]="🌨" ["326"]="🌨"
+        ["329"]="❄️" ["332"]="❄️" ["335"]="❄️" ["338"]="❄️" ["350"]="🌧"
+        ["353"]="🌦" ["356"]="🌧" ["359"]="🌧" ["362"]="🌧" ["365"]="🌧"
+        ["368"]="🌨" ["371"]="❄️" ["374"]="🌧" ["377"]="🌧" ["386"]="⛈"
+        ["389"]="🌩" ["392"]="⛈" ["395"]="❄️"
+      )
+
+      current_code=$(jq -r '.current_condition[0].weatherCode' <<<"$weather_json")
+      current_desc=$(jq -r '.current_condition[0].weatherDesc[0].value' <<<"$weather_json")
+      current_humi=$(jq -r '.current_condition[0].humidity' <<<"$weather_json")
+      current_temp=$(jq -r '.current_condition[0].FeelsLikeC' <<<"$weather_json")
+      current_wind=$(jq -r '.current_condition[0].windspeedKmph' <<<"$weather_json")
+      current_moon=$(jq -r '.weather[0].astronomy[0].moon_phase' <<<"$weather_json")
+
+      text="''${WEATHER_CODES[$current_code]} ''${current_temp}°"
+
+      moon_icon() {
+        case "$1" in
+        "New Moon") echo "🌑 New Moon" ;;
+        "Waxing Crescent") echo "🌒 Waxing Crescent" ;;
+        "First Quarter") echo "🌓 First Quarter" ;;
+        "Waxing Gibbous") echo "🌔 Waxing Gibbous" ;;
+        "Full Moon") echo "🌕 Full Moon" ;;
+        "Waning Gibbous") echo "🌖 Waning Gibbous" ;;
+        "Last Quarter") echo "🌗 Last Quarter" ;;
+        "Waning Crescent") echo "🌘 Waning Crescent" ;;
+        *) echo "🌙 Unknown" ;;
+        esac
+      }
+      moon=$(moon_icon "$current_moon")
+      tooltip="<b>''${current_desc} $(jq -r '.current_condition[0].temp_C' <<<"$weather_json")°</b> \
+      (Feels like: ''${current_temp}°)\\n\
+      Wind: ''${current_wind}Km/h\\n\
+      Humidity: ''${current_humi}%\\n\
+      Moonphase: ''${moon}\\n"
+
+      days=$(jq -c '.weather[]' <<<"$weather_json")
+      i=0
+
+      format_hour() {
+        local t=$1
+        printf "%02d" $((t / 100))
       }
 
-      data = {}
+      to_24h() {
+        date -d "$1" +"%H:%M"
+      }
 
-      weather = requests.get(f"https://wttr.in/{latitude},{longitude}?format=j1").json()
+      format_chances() {
+        local hour_json="$1"
+        declare -A chance_map=(
+          ["chanceofrain"]="Rainy"
+          ["chanceofsunshine"]="Clear"
+        )
+        local out=()
+        local val
+        for k in "''${!chance_map[@]}"; do
+          val=$(jq -r ".''${k}" <<<"$hour_json")
+          ((val > 0)) && out+=("''${val}% ''${chance_map[$k]}")
+        done
+        echo "''${out[*]}"
+      }
 
-      def format_time(time):
-          return time.replace("00", "").zfill(2)
+      while read -r day; do
+        date=$(jq -r '.date' <<<"$day")
+        sunrise_raw=$(jq -r '.astronomy[0].sunrise' <<<"$day")
+        sunset_raw=$(jq -r '.astronomy[0].sunset' <<<"$day")
+        sunrise=$(to_24h "$sunrise_raw")
+        sunset=$(to_24h "$sunset_raw")
 
-      def format_temp(temp):
-          return (hour['FeelsLikeC']+"°").ljust(3)
+        feels_list=$(jq -r '.hourly[].FeelsLikeC' <<<"$day")
+        maxfeels=$(echo "$feels_list" | sort -nr | head -n1)
+        minfeels=$(echo "$feels_list" | sort -n | head -n1)
 
-      def format_chances(hour):
-          chances = {
-              "chanceoffog": "Fog",
-              # "chanceoffrost": "Frost",
-              "chanceofrain": "Rain",
-              # "chanceofsnow": "Snow",
-              "chanceofsunshine": "Sunshine",
-              "chanceofthunder": "Thunder",
-              "chanceofwindy": "Wind",
-              "chanceofovercast": "Overcast"
-          }
+        maxtemp=$(jq -r '.maxtempC' <<<"$day")
+        mintemp=$(jq -r '.mintempC' <<<"$day")
 
-          conditions = []
-          for event in chances.keys():
-              if int(hour[event]) > 0:
-                  conditions.append(chances[event]+" "+hour[event]+"%")
-          return ", ".join(conditions)
+        [[ $i -eq 0 ]] && tooltip+="\n<b>Today, $date</b>\n"
+        [[ $i -eq 1 ]] && tooltip+="\n<b>Tomorrow, $date</b>\n"
+        [[ $i -gt 1 ]] && tooltip+="\n<b>$date</b>\n"
+        tooltip+="⬇️ $mintemp° ($minfeels°) ⬆️ $maxtemp° ($maxfeels°) 🌅 $sunrise 🌇 $sunset\n"
 
+        while read -r hour; do
+          time=$(format_hour "$(jq -r '.time' <<<"$hour")")
+          ((i == 0 && $((10#$time)) < $((10#$(date +%H))) - 2)) && continue
+          hour_code=$(jq -r '.weatherCode' <<<"$hour")
+          tempC=$(jq -r '.tempC' <<<"$hour")°
+          feels=$(jq -r '.FeelsLikeC' <<<"$hour")
+          chances=$(format_chances "$hour")
+          [[ -n "$chances" ]] && chances="• $chances"
 
-      data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-          " "+weather['current_condition'][0]['FeelsLikeC']+"°"
+          tooltip+="$time.00 • ''${WEATHER_CODES[$hour_code]} • ''${tempC} (''${feels}°) ''${chances}\n"
+        done <<<"$(jq -c '.hourly[]' <<<"$day")"
 
-      data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_C']}°</b>\n"
-      data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeC']}°\n"
-      data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
-      data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"
-      for i, day in enumerate(weather['weather']):
-          data['tooltip'] += f"\n<b>"
-          if i == 0:
-              data['tooltip'] += "Today, "
-          if i == 1:
-              data['tooltip'] += "Tomorrow, "
-          data['tooltip'] += f"{day['date']}</b>\n"
-          data['tooltip'] += f"⬆️ {day['maxtempC']}° ⬇️ {day['mintempC']}° "
-          data['tooltip'] += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
-          for hour in day['hourly']:
-              if i == 0:
-                  if int(format_time(hour['time'])) < datetime.now().hour-2:
-                      continue
-              data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
+        ((i++))
+      done <<<"$days"
 
-      print(json.dumps(data))
+      echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\"}"
     '';
   };
 }

@@ -79,7 +79,7 @@ in {
     #custom-weather {
       color: @bwhite;
       background-color: @fg;
-      padding: 0 10px;
+      padding: 0 6px;
     }
 
     #workspaces {
