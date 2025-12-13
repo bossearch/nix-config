@@ -215,21 +215,15 @@ in {
         "exec" = "~/.config/waybar/scripts/utility/memhog.sh";
       };
 
-      "backlight" = {
-        "device" = "DP-3";
-        "format" = "{icon} {percent}%";
-        "format-icons" = ["" "" "" "" "" "" "" "" ""];
-      };
-
       "custom/ddcutil" = {
         "format" = " {icon}{percentage}% ";
         "format-icons" = [" " " " " " " " " " " " " " " " " "];
-        "exec" = "~/.config/waybar/scripts/utility/ddcutil.sh";
+        "exec" = "bash -c '~/.config/waybar/scripts/utility/ddcutil.sh'";
         "return-type" = "json";
-        "on-scroll-up" = "echo '+' > /tmp/waybar-ddc-module-rx";
-        "on-scroll-down" = "echo '-' > /tmp/waybar-ddc-module-rx";
-        "on-click" = "echo 'max' > /tmp/waybar-ddc-module-rx";
-        "on-click-right" = "echo 'min' > /tmp/waybar-ddc-module-rx";
+        "on-scroll-up" = "echo '+' > ~/.cache/${config.spec.userName}/ddcutil";
+        "on-scroll-down" = "echo '-' > ~/.cache/${config.spec.userName}/ddcutil";
+        "on-click" = "echo 'max' > ~/.cache/${config.spec.userName}/ddcutil";
+        "on-click-right" = "echo 'min' > ~/.cache/${config.spec.userName}/ddcutil";
         "tooltip" = false;
       };
 

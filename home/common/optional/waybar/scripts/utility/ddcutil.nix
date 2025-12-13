@@ -1,11 +1,12 @@
-{
+# Credit to https://gist.github.com/Ar7eniyan/42567870ad2ce47143ffeb41754b4484
+{config, ...}: {
   home.file.".config/waybar/scripts/utility/ddcutil.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      receive_pipe="/tmp/waybar-ddc-module-rx"
-      step=5
+      RECEIVE_PIPE="$HOME/.cache/${config.spec.userName}/ddcutil"
+      STEP=5
 
       BUS=$(ddcutil detect | awk '/I2C bus:/ {gsub("/dev/i2c-", "", $3); print $3; exit}')
 
@@ -29,17 +30,17 @@
         echo '{ "percentage":' "$brightness" '}'
       }
 
-      rm -rf $receive_pipe
-      mkfifo $receive_pipe
+      rm -rf "$RECEIVE_PIPE"
+      mkfifo "$RECEIVE_PIPE"
 
       # in case waybar restarted the script after restarting/replugging a monitor
       print_brightness ddcutil_slow
 
       while true; do
-        read -r command <$receive_pipe
-        case $command in
+        read -r COMMAND <"$RECEIVE_PIPE"
+        case $COMMAND in
         + | -)
-          ddcutil_fast setvcp 10 $command $step
+          ddcutil_fast setvcp 10 "$COMMAND" "$STEP"
           ;;
         max)
           ddcutil_fast setvcp 10 80
