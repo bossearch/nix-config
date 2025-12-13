@@ -8,7 +8,7 @@
 
       mkdir -p ~/Videos/Screenrecords
 
-      TRAY="$HOME/.config/waybar/scripts/screenrecord/tray.sh"
+      TRAY="$HOME/.config/waybar/scripts/utility/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/screenrecord/playback.sh"
       OUTPUT=$(hyprctl -j monitors | jq -r '.[0].name')
       FILENAME="$HOME/Videos/Screenrecords/$OUTPUT-$(date +%F_%T).mp4"

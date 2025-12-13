@@ -349,7 +349,7 @@ in {
       };
 
       "custom/sswindow" = {
-        "format" = "  ";
+        "format" = " 󰘔 ";
         "on-click" = "~/.config/waybar/scripts/screenshot/sswindow.sh";
         "on-click-right" = "~/.config/waybar/scripts/screenrecord/recwindow.sh";
         "tooltip" = false;
@@ -365,7 +365,7 @@ in {
       "custom/stoprec" = {
         "format" = " {}";
         "return-type" = "json";
-        "exec" = "~/.config/waybar/scripts/screenrecord/checkrec.sh";
+        "exec" = "~/.config/waybar/scripts/screenrecord/tray.sh";
         "on-click" = "~/.config/waybar/scripts/screenrecord/stoprec.sh";
         "signal" = 11;
       };

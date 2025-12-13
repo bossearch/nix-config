@@ -8,7 +8,7 @@
 
       mkdir -p ~/Videos//Screenrecords
 
-      TRAY="$HOME/.config/waybar/scripts/screenrecord/tray.sh"
+      TRAY="$HOME/.config/waybar/scripts/utility/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/screenrecord/playback.sh"
       FILENAME="$HOME/Videos/Screenrecords/Area-$(date +%F_%T).mp4"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"

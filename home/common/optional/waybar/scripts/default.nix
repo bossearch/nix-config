@@ -16,7 +16,6 @@
     ./pavucontrol/toggle-input.nix
     ./pavucontrol/toggle-output.nix
 
-    ./screenrecord/checkrec.nix
     ./screenrecord/playback.nix
     ./screenrecord/recarea.nix
     ./screenrecord/recmonitor.nix

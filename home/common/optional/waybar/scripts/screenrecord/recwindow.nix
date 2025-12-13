@@ -8,7 +8,7 @@
 
       mkdir -p ~/Videos//Screenrecords
 
-      TRAY="$HOME/.config/waybar/scripts/screenrecord/tray.sh"
+      TRAY="$HOME/.config/waybar/scripts/utility/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/screenrecord/playback.sh"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${config.spec.userName}/screenrecord-tooltip"
       WINDOW=$(hyprctl -j activewindow)
