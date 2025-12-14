@@ -103,9 +103,10 @@
         FLAG = "SPACE";
       };
       stats = {
-        key_page_2 = "w";
-        key_page_3 = "e";
-        key_page_4 = "r";
+        key_page_1 = "1";
+        key_page_2 = "2";
+        key_page_3 = "3";
+        key_page_4 = "4";
         key_scroll_up = "UP";
         key_scroll_down = "DOWN";
         duration = 10;
