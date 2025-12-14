@@ -5,9 +5,11 @@
 
   programs.git = {
     enable = true;
-    userName = "bossearch";
-    userEmail = "yudha.bosse@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "bossearch";
+        email = "yudha.bosse@gmail.com";
+      };
       credential.helper = "${
         pkgs.git.override {withLibsecret = true;}
       }/bin/git-credential-libsecret";
