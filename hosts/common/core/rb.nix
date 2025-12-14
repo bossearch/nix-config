@@ -9,26 +9,26 @@
     pushd ~/.nix-config >/dev/null
 
     man="\
-    rb <\e[1;33moperations\e[0m> = sudo nixos-rebuild <\e[1;33moperations\e[0m> --flake .#$HOSTNAME
+        rb <\e[1;33moperations\e[0m> = sudo nixos-rebuild <\e[1;33moperations\e[0m> --flake .#$HOSTNAME
 
-    \e[1;33mswitch\e[0m  Build and activate the new configuration, and make it the boot default.
+        \e[1;33mswitch\e[0m  Build and activate the new configuration, and make it the boot default.
 
-    \e[1;33mboot\e[0m    Build the new configuration and make it the boot default (as with nixos-rebuild switch),
-            but do not activate it. That is, the system continues to run the previous configuration until the next reboot.
+        \e[1;33mboot\e[0m    Build the new configuration and make it the boot default (as with nixos-rebuild switch),
+                but do not activate it. That is, the system continues to run the previous configuration until the next reboot.
 
-    \e[1;33mtest\e[0m    Build and activate the new configuration, but do not add it to the GRUB boot menu.
-            Thus, if you reboot the system (or if it crashes), you will automatically revert to the default configuration
-            (i.e. the configuration resulting from the last call to nixos-rebuild switch or nixos-rebuild boot).
+        \e[1;33mtest\e[0m    Build and activate the new configuration, but do not add it to the GRUB boot menu.
+                Thus, if you reboot the system (or if it crashes), you will automatically revert to the default configuration
+                (i.e. the configuration resulting from the last call to nixos-rebuild switch or nixos-rebuild boot).
 
-    \e[1;33mlist\e[0m    List the available generations in a similar manner to the boot loader menu. It shows the  generation number,
-            build  date and time, NixOS version, kernel version and the configuration revision.
+        \e[1;33mlist\e[0m    List the available generations in a similar manner to the boot loader menu. It shows the  generation number,
+                build  date and time, NixOS version, kernel version and the configuration revision.
 
-    \e[1;33mupdate\e[0m  Is an alias of 'nix flake update' command updates the inputs specified in the 'flake.nix' file
-            and refreshes the 'flake.lock' file to ensure that the latest versions of dependencies are used.
+        \e[1;33mupdate\e[0m  Is an alias of 'nix flake update' command updates the inputs specified in the 'flake.nix' file
+                and refreshes the 'flake.lock' file to ensure that the latest versions of dependencies are used.
 
-    \e[1;33mdelete\e[0m  Is an alias of 'nix-collect-garbage --delete-old'. That is, it deletes all unreachable
-            store objects ⟨@docroot@/store/store-object.md⟩ in the Nix store to clean up your system.
-    "
+        \e[1;33mdelete\e[0m  Is an alias of 'nix-collect-garbage --delete-old'. That is, it deletes all unreachable
+                store objects ⟨@docroot@/store/store-object.md⟩ in the Nix store to clean up your system.
+        "
 
     # Default OPTIONS (Prevent empty execution)
     OPTIONS=""
@@ -52,7 +52,7 @@
       exit 0
       ;;
     *)
-      printf "$man"
+      echo -e "$man"
       exit 0
       ;;
     esac
@@ -68,12 +68,11 @@
     # Stage all changes
     git add '*.*' ':!home/*' ':!modules/home-manager/*'
 
-    trap 'tput cnorm; git reset -q; echo -e "\nAborted by user."; exit 1' SIGINT
-    read -p "Are you sure you want to proceed? (y/N): " confirm
+    trap 'tput cnorm; echo -e "\nAborted by user."; exit 1' SIGINT
+    read -r -p "Are you sure you want to proceed? (y/N): " confirm
     confirm="''${confirm:-y}"
     if [[ ! "$confirm" =~ ^[yY]$ ]]; then
-      git reset -q
-      echo "Aborted."
+      echo "Cancelled."
       popd >/dev/null
       exit 0
     fi
@@ -92,9 +91,10 @@
       local max_width=$(($(tput cols) - 6))
       tput civis
 
-      while ps -p $pid &>/dev/null; do
+      while ps -p "$pid" &>/dev/null; do
         for i in $(seq 0 $((''${#spin} - 1))); do
-          local last_log=$(tail -n 1 .nixos.log | cut -c 1-$max_width) # Get the last line from the log file
+          local last_log
+          last_log=$(tail -n 1 .nixos.log | cut -c 1-$max_width) # Get the last line from the log file
           echo -ne "\r\033[K\e[33m[''${spin:$i:1}]\e[0m $last_log"
           sleep $delay
         done
@@ -115,16 +115,16 @@
     if wait $rebuild_pid; then
       CURRENT=$(nixos-rebuild list-generations | grep current | tr -s ' ' | tr -d '*')
       echo -e "\e[32mDone\e[0m - \e[1m$CURRENT\e[0m"
-      notify-send -e "NixOS Rebuild ($OPTIONS)" "Done" --icon=software-update-available
+      notify-send -e "NixOS Rebuild ($OPTIONS)" "Done" --icon=dialog-information
     else
-      notify-send -e "NixOS Rebuild ($OPTIONS)" "Error" --icon=software-update-urgent --urgency=critical
+      notify-send -e "NixOS Rebuild ($OPTIONS)" "Error" --icon=dialog-warning --urgency=critical
       git reset -q
 
       echo ""
       cat .nixos.log | grep --color error
       echo ""
 
-      if read -p "Open log? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+      if read -r -p "Open log? (y/N): " confirm && [[ $confirm == [yY] ]]; then
         nvim .nixos.log
       fi
 

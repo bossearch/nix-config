@@ -8,13 +8,13 @@
     pushd ~/.nix-config >/dev/null
 
     man="\
-    hm <\e[1;33moperations\e[0m> = home-manager <\e[1;33moperations\e[0m> --flake .#$USERNAME@$HOSTNAME
+        hm <\e[1;33moperations\e[0m> = home-manager <\e[1;33moperations\e[0m> --flake .#$USERNAME@$HOSTNAME
 
-    \e[1;33mswitch\e[0m  Build and activate the new home-manager configuration.
-    \e[1;33mnews\e[0m    Show news entries in a pager.
-    \e[1;33mlist\e[0m    List the available home-manager generations.
-    \e[1;33mdelete\e[0m  Remove generations that are older than a specified timestamp.
-    "
+        \e[1;33mswitch\e[0m  Build and activate the new home-manager configuration.
+        \e[1;33mnews\e[0m    Show news entries in a pager.
+        \e[1;33mlist\e[0m    List the available home-manager generations.
+        \e[1;33mdelete\e[0m  Remove generations that are older than a specified timestamp.
+        "
 
     OPTIONS=""
 
@@ -30,7 +30,7 @@
       ;;
     "delete") OPTIONS="expire-generations -d" ;;
     *)
-      printf "$man"
+      echo -e "$man"
       exit 0
       ;;
     esac
@@ -45,12 +45,11 @@
 
     git add '*.*' ':!hosts/*' ':!modules/nixos/*'
 
-    trap 'tput cnorm; git reset -q; echo -e "\nAborted by user."; exit 1' SIGINT
-    read -p "Are you sure you want to proceed? (y/N): " confirm
+    trap 'tput cnorm; echo -e "\nAborted by user."; exit 1' SIGINT
+    read -r -p "Are you sure you want to proceed? (y/N): " confirm
     confirm="''${confirm:-n}"
     if [[ ! "$confirm" =~ ^[yY]$ ]]; then
-      git reset -q
-      echo "Aborted."
+      echo "Cancelled."
       popd >/dev/null
       exit 0
     fi
@@ -65,9 +64,10 @@
       local max_width=$(($(tput cols) - 6))
       tput civis
 
-      while ps -p $pid &>/dev/null; do
+      while ps -p "$pid" &>/dev/null; do
         for ((i = 0; i < ''${#spin}; i++)); do
-          local last_log=$(tail -n 1 .hm.log | cut -c 1-$max_width)
+          local last_log
+          last_log=$(tail -n 1 .hm.log | cut -c 1-$max_width)
           echo -ne "\r\033[K\e[33m[''${spin:$i:1}]\e[0m $last_log"
           sleep $delay
         done
@@ -85,12 +85,12 @@
     if wait $rebuild_pid; then
       CURRENT=$(home-manager generations | sed -n '2p')
       echo -e "\e[32mDone\e[0m - \e[1m$CURRENT\e[0m"
-      notify-send -e "Home Manager" "Done" --icon=software-update-available
+      notify-send -e "Home Manager" "Done" --icon=dialog-information
     else
-      notify-send -e "Home Manager" "Error" --icon=software-update-urgent --urgency=critical
+      notify-send -e "Home Manager" "Error" --icon=dialog-warning --urgency=critical
       git reset -q
 
-      if read -p "Open log? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+      if read -r -p "Open log? (y/N): " confirm && [[ $confirm == [yY] ]]; then
         nvim .hm.log
       fi
 
