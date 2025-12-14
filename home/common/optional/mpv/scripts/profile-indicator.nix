@@ -12,66 +12,41 @@
       	local fps = mp.get_property_number("container-fps")
       	local profile = "None"
 
-      	if width == 3840 and path:find("Videos/Movies/") and fps > 31 then
-      		profile = "4k60"
+      	if height >= 2160 and path:find("Videos/Movies/") then
+      		profile = "4k"
       		ov:update()
-      	elseif width == 3840 and path:find("Videos/Movies/") and fps < 31 then
-      		profile = "4k30"
+      	elseif height >= 1440 and height < 2160 and path:find("Videos/Movies/") then
+      		profile = "2k"
       		ov:update()
-      	elseif width == 2560 and path:find("Videos/Movies/") and fps > 31 then
-      		profile = "2k60"
+      	elseif height >= 1080 and height < 1440 and path:find("Videos/Movies/") then
+      		profile = "fhd"
       		ov:update()
-      	elseif width == 2560 and path:find("Videos/Movies/") and fps < 31 then
-      		profile = "2k30"
+      	elseif height >= 720 and height < 1080 and path:find("Videos/Movies/") then
+      		profile = "hd"
       		ov:update()
-      	elseif width == 1920 and path:find("Videos/Movies/") and fps > 31 then
-      		profile = "fhd60"
-      		ov:update()
-      	elseif width == 1920 and path:find("Videos/Movies/") and fps < 31 then
-      		profile = "fhd30"
-      		ov:update()
-      	elseif width == 1280 and path:find("Videos/Movies/") and fps > 31 then
-      		profile = "hd30"
-      		ov:update()
-      	elseif width == 1280 and path:find("Videos/Movies/") and fps < 31 then
-      		profile = "hd30"
-      		ov:update()
-      	elseif width == 640 or width == 704 or width == 720 and path:find("Videos/Movies/") then
+      	elseif height < 720 and path:find("Videos/Movies/") then
       		profile = "sd"
       		ov:update()
       	--
-      	elseif width == 3840 and path:find("Videos/Anime/") and fps > 31 then
-      		profile = "anime4k60"
+      	elseif height >= 2160 and path:find("Videos/Anime/") then
+      		profile = "anime4k"
       		ov:update()
-      	elseif width == 3840 and path:find("Videos/Anime/") and fps < 31 then
-      		profile = "anime4k30"
+      	elseif height >= 1440 and height < 2160 and path:find("Videos/Anime/") then
+      		profile = "anime2k"
       		ov:update()
-      	elseif width == 2560 and path:find("Videos/Anime/") and fps > 31 then
-      		profile = "anime2k60"
+      	elseif height >= 1080 and height < 1440 and path:find("Videos/Anime/") then
+      		profile = "animefhd"
       		ov:update()
-      	elseif width == 2560 and path:find("Videos/Anime/") and fps < 31 then
-      		profile = "anime2k30"
+      	elseif height >= 720 and height < 1080 and path:find("Videos/Anime/") then
+      		profile = "animehd"
       		ov:update()
-      	elseif width == 1920 and path:find("Videos/Anime/") and fps > 31 then
-      		profile = "animefhd60"
-      		ov:update()
-      	elseif width == 1920 and path:find("Videos/Anime/") and fps < 31 then
-      		profile = "animefhd30"
-      		ov:update()
-      	elseif width == 1280 and path:find("Videos/Anime/") and fps > 31 then
-      		profile = "animehd30"
-      		ov:update()
-      	elseif width == 1280 and path:find("Videos/Anime/") and fps < 31 then
-      		profile = "animehd30"
-      		ov:update()
-      	elseif height == 480 and path:find("Videos/Anime/") then
-      		--		profile = "animesd"
+      	elseif height < 720 and path:find("Videos/Anime/") then
+      		profile = "animesd"
       		ov:update()
       	else
       		ov:remove()
       	end
-
-      	--	mp.osd_message("Applied Profile: " .. profile, 3)
+        mp.osd_message("Applied Profile: " .. profile, 3)
       end
 
       -- Register the function to run when a video is loaded
