@@ -3,18 +3,16 @@
     extraInput = ''
       MBTN_LEFT_DBL cycle pause; script-binding uosc/flash-pause-indicator
       MBTN_LEFT ignore
-      #MBTN_LEFT_DBL script-message-to show-text " "
-      TAB script-message-to uosc toggle-ui #@press
-      TAB script-message-to uosc toggle-ui #@release
       MBTN_RIGHT script-binding evafast/speedup #@press
       MBTN_RIGHT script-binding evafast/slowdown #@release
       MBTN_MID script-binding skip-key #@click
-      a script-binding skip-key
       MBTN_RIGHT script-binding uosc/menu-blurred #@click
+
       TAB script-binding stats/display-stats-toggle #@click
+      SPACE cycle pause
+      a script-binding skip-key
       g script-message playlist-view-toggle
 
-      space cycle pause
       h seek -5 exact; script-binding uosc/flash-timeline
       j frame-back-step; script-binding uosc/flash-timeline
       k frame-step; script-binding uosc/flash-timeline
@@ -30,8 +28,6 @@
       H add sub-delay -0.1
       L add sub-delay  0.1
       O script-binding uosc/show-in-directory
-      #Q ignore
-      ctrl+q quit
 
       ### UOSC Menu Config ###
       o script-binding uosc/open-file                                                 #! File > Open File
@@ -46,24 +42,16 @@
       # script-binding chapters/remove_chapter                                        #! Video > Chapters > Remove Chapters
       # script-binding chapters/edit_chapter                                          #! Video > Chapters > Edit Chapters
       # script-binding chapters/write_chapters                                        #! Video > Chapters > Save Chapters
-      # apply-profile 4k60;show-text "Profile: 4K60"                                  #! Video > Profiles > Movie > 4K60
-      # apply-profile 4k30;show-text "Profile: 4K30"                                  #! Video > Profiles > Movie > 4K30
-      # apply-profile 2k60;show-text "Profile: 2K60"                                  #! Video > Profiles > Movie > 2K60
-      # apply-profile 2k30;show-text "Profile: 2K30"                                  #! Video > Profiles > Movie > 2K30
-      # apply-profile fhd60;show-text "Profile: FHD60"                                #! Video > Profiles > Movie > FHD60
-      # apply-profile fhd30;show-text "Profile: FHD30"                                #! Video > Profiles > Movie > FHD30
-      # apply-profile hd60;show-text "Profile: HD60"                                  #! Video > Profiles > Movie > HD60
-      # apply-profile hd30;show-text "Profile: HD30"                                  #! Video > Profiles > Movie > HD30
-      # apply-profile sd;show-text "Profile: SD"                                      #! Video > Profiles > Movie > SD
-      # apply-profile anime4k60;show-text "Profile: Anime-4K60"                       #! Video > Profiles > Anime > 4K60
-      # apply-profile anime4k30;show-text "Profile: Anime-4K30"                       #! Video > Profiles > Anime > 4K30
-      # apply-profile anime2k60;show-text "Profile: Anime-2K60"                       #! Video > Profiles > Anime > 2K60
-      # apply-profile anime2k30;show-text "Profile: Anime-2K30"                       #! Video > Profiles > Anime > 2K30
-      # apply-profile animefhd60;show-text "Profile: Anime-FHD60"                     #! Video > Profiles > Anime > FHD60
-      # apply-profile animefhd30;show-text "Profile: Anime-FHD30"                     #! Video > Profiles > Anime > FHD30
-      # apply-profile animehd60;show-text "Profile: Anime-HD60"                       #! Video > Profiles > Anime > HD60
-      # apply-profile animehd30;show-text "Profile: Anime-HD30"                       #! Video > Profiles > Anime > HD30
-      # apply-profile animesd;show-text "Profile: Anime-SD"                           #! Video > Profiles > Anime > SD
+      # apply-profile 4k;show-text "Profile: 4K"                                      #! Video > Profiles > Movie-4K
+      # apply-profile 2k;show-text "Profile: 2K"                                      #! Video > Profiles > Movie-2K
+      # apply-profile fhd;show-text "Profile: FHD"                                    #! Video > Profiles > Movie-FHD
+      # apply-profile hd;show-text "Profile: HD"                                      #! Video > Profiles > Movie-HD
+      # apply-profile sd;show-text "Profile: SD"                                      #! Video > Profiles > Movie-SD
+      # apply-profile anime4k;show-text "Profile: Anime-4K"                           #! Video > Profiles > Anime-4K
+      # apply-profile anime2k;show-text "Profile: Anime-2K"                           #! Video > Profiles > Anime-2K
+      # apply-profile animefhd;show-text "Profile: Anime-FHD"                         #! Video > Profiles > Anime-FHD
+      # apply-profile animehd;show-text "Profile: Anime-HD"                           #! Video > Profiles > Anime-HD
+      # apply-profile animesd;show-text "Profile: Anime-SD"                           #! Video > Profiles > Anime-SD
       # script-binding uosc_video_settings/open-menu                                  #! Video > Video settings
       # script-binding uosc/video                                                     #! Video > Select Video Track
       # script-binding uosc/audio                                                     #! Audio > Select Audio Track
