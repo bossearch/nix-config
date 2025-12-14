@@ -40,9 +40,9 @@
       vo = "gpu";
 
       # interpolation
-      interpolation = "yes";
+      interpolation = "no";
       video-sync = "display-resample";
-      tscale = "sphinx";
+      tscale = "sphinx"; # or oversample
       tscale-blur = 0.6991556596428412;
       tscale-radius = 1.0; #lower (e.g. 0.955) = sharper; higher (e.g. 1.005) = smoother
       tscale-clamp = 0.0;
@@ -59,7 +59,7 @@
       slang = "ind,ina,id,Indonesia,en,eng,English";
       sub-color = "#FFFFFFFF";
       sub-font = "Noto Sans SemiBold";
-      sub-font-size = 40;
+      sub-font-size = 36;
       sub-border-color = "#B3000000";
       sub-border-size = 2;
       # sub-border-style = "outline-and-shadow";
@@ -97,23 +97,10 @@
       ytdl-format = "bestvideo[width<=?1920]+bestaudio/best";
     };
     profiles = {
-      #profiles
-      "4k60" = {
-        profile-desc = "4k60";
-        profile-cond = "(width == 3840 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] >= 31)";
-        profile-restore = "copy";
-        interpolation = "no";
-        deband = "no";
-        glsl-shader = [
-          "~/.config/mpv/shaders/KrigBilateral.glsl"
-          "~/.config/mpv/shaders/SSimDownscaler.glsl"
-        ];
-        linear-downscaling = "no";
-      };
-
-      "4k30" = {
-        profile-desc = "4k30";
-        profile-cond = "(width == 3840 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] < 31)";
+      # profiles
+      "4k" = {
+        profile-desc = "4k";
+        profile-cond = "(height >= 2160 and path:find('Videos/Movies/'))";
         profile-restore = "copy";
         deband = "no";
         glsl-shader = [
@@ -123,50 +110,117 @@
         linear-downscaling = "no";
       };
 
-      "2k60" = {
-        profile-desc = "2k60";
-        profile-cond = "(width == 2560 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] >= 31)";
-        profile-restore = "copy";
-        interpolation = "no";
-        deband = "no";
-        glsl-shader = "~/.config/mpv/shaders/KrigBilateral.glsl";
-      };
-
-      "2k30" = {
-        profile-desc = "2k60";
-        profile-cond = "(width == 2560 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] < 31)";
+      "2k" = {
+        profile-desc = "2k";
+        profile-cond = "(height >= 1440 and height < 2160 and path:find('Videos/Movies/'))";
         profile-restore = "copy";
         deband = "no";
         glsl-shader = "~/.config/mpv/shaders/KrigBilateral.glsl";
       };
 
-      "fhd60" = {
-        profile-desc = "fhd60";
-        profile-cond = "(width == 1920 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] >= 31)";
+      "fhd" = {
+        profile-desc = "fhd";
+        profile-cond = "(height >= 1080 and height < 1440 and path:find('Videos/Movies/'))";
         profile-restore = "copy";
-        interpolation = "no";
         glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSR.glsl"
           "~/.config/mpv/shaders/SSimSuperRes.glsl"
         ];
       };
-      "fhd30" = {
-        profile-desc = "fhd30";
-        profile-cond = "(width == 1920 and path:find('Videos/Movies/') and p[\"estimated-vf-fps\"] < 31)";
+
+      "hd" = {
+        profile-desc = "hd";
+        profile-cond = "(height >= 720 and height < 1080 and path:find('Videos/Movies/'))";
+        glsl-shader = [
+          "~/.config/mpv/shaders/KrigBilateral.glsl"
+          "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_enhance.glsl"
+          "~/.config/mpv/shaders/SSimSuperRes.glsl"
+        ];
+        scale-antiring = 0.6;
+        dscale-antiring = 0.6;
+        cscale-antiring = 0.6;
+      };
+
+      "sd" = {
+        profile-desc = "sd";
+        profile-cond = "(height < 720 and path:find('Videos/Movies/'))";
+        glsl-shader = [
+          "~/.config/mpv/shaders/KrigBilateral.glsl"
+          "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_enhance.glsl"
+          "~/.config/mpv/shaders/SSimSuperRes.glsl"
+        ];
+        scale-antiring = 0.8;
+        dscale-antiring = 0.8;
+        cscale-antiring = 0.8;
+      };
+
+      # anime profiles
+      "anime4k" = {
+        profile-desc = "anime4k";
+        profile-cond = "(height >= 2160 and path:find('Videos/Anime/'))";
         profile-restore = "copy";
-        glsl-shaders = [
+        deband = "no";
+        glsl-shader = [
+          "~/.config/mpv/shaders/KrigBilateral.glsl"
+          "~/.config/mpv/shaders/SSimDownscaler.glsl"
+        ];
+        linear-downscaling = "no";
+      };
+
+      "anime2k" = {
+        profile-desc = "anime2k";
+        profile-cond = "(height >= 1440 and height < 2160 and path:find('Videos/Anime/'))";
+        profile-restore = "copy";
+        deband = "no";
+        glsl-shader = "~/.config/mpv/shaders/KrigBilateral.glsl";
+      };
+
+      "animefhd" = {
+        profile-desc = "animefhd";
+        profile-cond = "(height >= 1080 and height < 1440 and path:find('Videos/Anime/'))";
+        profile-restore = "copy";
+        glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSR.glsl"
           "~/.config/mpv/shaders/SSimSuperRes.glsl"
         ];
       };
 
+      "animehd" = {
+        profile-desc = "animehd";
+        profile-cond = "(height >= 720 and height < 1080 and path:find('Videos/Anime/'))";
+        glsl-shader = [
+          "~/.config/mpv/shaders/KrigBilateral.glsl"
+          "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_anime_enhance.glsl"
+          "~/.config/mpv/shaders/A4K_Thin.glsl"
+          "~/.config/mpv/shaders/SSimSuperRes.glsl"
+        ];
+        scale-antiring = 0.6;
+        dscale-antiring = 0.6;
+        cscale-antiring = 0.6;
+      };
+
+      "animesd" = {
+        profile-desc = "animesd";
+        profile-cond = "(height < 720 and path:find('Videos/Anime/'))";
+        glsl-shader = [
+          "~/.config/mpv/shaders/KrigBilateral.glsl"
+          "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_anime_enhance.glsl"
+          "~/.config/mpv/shaders/A4K_Thick.glsl"
+          "~/.config/mpv/shaders/SSimSuperRes.glsl"
+        ];
+        scale-antiring = 0.8;
+        dscale-antiring = 0.8;
+        cscale-antiring = 0.8;
+      };
+
+      # other
       "lofi" = {
         profile-desc = "lofi";
         profile-cond = "path:find('Lofi/')";
         profile-restore = "copy";
-        audio-device = "pipewire/alsa_output.usb-GeneralPlus_USB_Audio_Device-00.analog-stereo";
+        audio-device = "pipewire/alsa_output.pci-0000_08_00.6.analog-stereo";
         volume = 0;
       };
     };
