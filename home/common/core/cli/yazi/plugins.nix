@@ -2,8 +2,8 @@
   mediainfo-plugins = pkgs.fetchFromGitHub {
     owner = "boydaihungst";
     repo = "mediainfo.yazi";
-    rev = "c6d0de764f6e667c1a7a49f8acc9030c02a1a45c";
-    sha256 = "sha256-CVHY66AcOC0STi+uDwbKe+HI3WN7MPgszlFHB479V/E=";
+    rev = "af8bdf47a1f4dcfefe433aa2134b04eb9c75a10b";
+    sha256 = "sha256-io3HyoUniWZu+0efZfbhXn8JoG5p2/lFeH/FguVvjSY=";
   };
 in {
   programs.yazi.plugins = {
