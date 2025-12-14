@@ -29,14 +29,15 @@
         "${pkgs.lua52Packages.dkjson}/share/lua/5.2/?.lua"
       ];
       scripts = with pkgs; [
-        mpvScripts.uosc
-        mpvScripts.sponsorblock
-        mpvScripts.youtube-upnext
-        mpvScripts.quality-menu
-        mpvScripts.thumbfast
-        mpvScripts.evafast
-        mpvScripts.chapterskip
         mpvScripts.autosubsync-mpv
+        mpvScripts.chapterskip
+        mpvScripts.evafast
+        mpvScripts.mpris
+        mpvScripts.quality-menu
+        mpvScripts.sponsorblock
+        mpvScripts.thumbfast
+        mpvScripts.uosc
+        mpvScripts.youtube-upnext
       ];
     };
   };
