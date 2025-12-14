@@ -10,8 +10,8 @@
     opener = {
       edit = [
         {
-          run = "nvim \"$@\"";
-          block = true;
+          run = "sh -c \"~/.config/yazi/opener.sh \"$@\"\"";
+          orphan = true;
           for = "unix";
         }
         {
@@ -22,7 +22,7 @@
       ];
       play = [
         {
-          run = "mpv --player-operation-mode=pseudo-gui --input-ipc-server=/tmp/mpv-socket \"$@\"";
+          run = "sh -c \"~/.config/hypr/scripts/assets/mpv.sh \"$@\"\"";
           orphan = true;
           for = "unix";
         }
