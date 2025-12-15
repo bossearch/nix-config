@@ -24,6 +24,7 @@ in {
           "libvirtd"
           "scanner" # for print/scan"
           "lp" # for print/scan"
+          "i2c"
         ])
       ];
       openssh.authorizedKeys.keyFiles = [
