@@ -116,6 +116,7 @@ in {
     #privacy {
       padding: 0px 0px 0px 10px;
     }
+    #custom-xdm,
     #custom-stoprec {
       padding: 0px 4px 0px 0px;
     }

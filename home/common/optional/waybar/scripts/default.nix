@@ -41,5 +41,6 @@
     ./utility/uptime.nix
     ./utility/virtualkeyboard.nix
     ./utility/wttr.nix
+    ./utility/xdm.nix
   ];
 }

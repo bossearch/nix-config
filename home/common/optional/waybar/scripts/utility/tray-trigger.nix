@@ -4,10 +4,20 @@
     text = ''
       #!/usr/bin/env bash
 
-      while pgrep "wl-screenrec" >/dev/null; do
-        sleep 1
-        pkill -SIGRTMIN+11 waybar
-      done
+      case "$1" in
+        wl-screenrec)
+          while pgrep "wl-screenrec" >/dev/null; do
+            sleep 1
+            pkill -SIGRTMIN+11 waybar
+          done
+          ;;
+        xdm)
+          pkill -SIGRTMIN+15 waybar
+          ;;
+        *)
+          exit 0
+          ;;
+      esac
     '';
   };
 }

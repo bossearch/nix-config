@@ -89,6 +89,7 @@ in {
         "modules" = [
           "privacy"
           "custom/stoprec"
+          "custom/xdm"
           "tray"
         ];
       };
@@ -376,12 +377,13 @@ in {
         "tooltip" = false;
       };
 
-      "custom/tor" = {
-        "format" = "{}";
-        "exec" = "~/.config/waybar/scripts/tor/tor-status.sh";
-        "on-click" = "~/.config/waybar/scripts/tor/tor-toggle.sh";
+      "custom/xdm" = {
+        "exec" = "pgrep -x xdm >/dev/null && echo '{\"text\": \"󰃘\"}'";
+        "format" = " <span color='#DEDEDE'>{}</span>";
+        "on-click" = "~/.config/waybar/scripts/utility/xdm.sh";
+        "on-click-right" = "pkill xdm & ~/.config/waybar/scripts/utility/tray-trigger.sh xdm";
         "return-type" = "json";
-        "signal" = 11;
+        "signal" = 15;
         "tooltip" = false;
       };
 
