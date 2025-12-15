@@ -80,8 +80,8 @@ stdenv.mkDerivation rec {
         mkdir -p $out/share/applications
         if [ -f usr/share/applications/xdm-app.desktop ]; then
           sed -i \
-            -e "s|Exec=env GTK_USE_PORTAL=1 /opt/xdman/xdm-app %U|Exec=$out/bin/xdm %U|" \
-            -e "s|Icon=/opt/xdman/xdm-logo.svg|Icon=$out/share/icons/hicolor/scalable/apps/xdm.svg|" \
+            -e "s|^Exec=.*|Exec=${stdenv.shell} -c 'xdm \& ~/.config/waybar/scripts/utility/tray-trigger.sh xdm'|" \
+            -e "s|^Icon=.*|Icon=$out/share/icons/hicolor/scalable/apps/xdm.svg|" \
             usr/share/applications/xdm-app.desktop
 
           mkdir -p $out/share/icons/hicolor/scalable/apps
