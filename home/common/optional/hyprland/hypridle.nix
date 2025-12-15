@@ -7,6 +7,9 @@ in {
   services.hypridle = {
     enable = enabled;
     settings = {
+      general = {
+        after_sleep_cmd = "sleep 3 && systemctl --user restart waybar";
+      };
       listener = [
         # HYPRLOCK TIMEOUT
         {
