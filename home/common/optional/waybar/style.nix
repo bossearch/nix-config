@@ -34,7 +34,7 @@ in {
 
     #launcher {
       /*group for launcher*/
-      color: @bblack;
+      color: @gray;
       background-color: @fg;
       border-radius: 8px;
       padding: 0px 5px 0px 0px;
@@ -93,14 +93,21 @@ in {
       background-color: transparent;
     }
 
+    #workspaces button.empty {
+      color: @bblack;
+    }
+
+    /* #workspaces button.visible { */
+    /*   color: @blue; */
+    /* } */
+
     #workspaces button.urgent {
       font-weight: bold;
       color: @yellow;
     }
 
     #workspaces button.active {
-      background: alpha(@active, 0.4);
-      color: @nwhite;
+      color: @bwhite;
       border-radius: 8px;
     }
 
@@ -137,15 +144,16 @@ in {
       color: @bwhite;
       border-radius: 8px;
     }
-    #custom-virtualkeyboard {
-      padding: 0px 0px 0px 6px;
-    }
     #custom-hyprpicker {
       padding: 0px 4px 0px 0px;
     }
-    #custom-lamp {
+    #custom-virtualkeyboard {
       padding: 0px 0px 0px 8px;
     }
+    #custom-lamp {
+      padding: 0px 2px 0px 4px;
+    }
+
 
     #monitor {
       /*group for ddcutil, pulseaudio, and internet*/

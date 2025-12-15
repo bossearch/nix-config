@@ -48,6 +48,7 @@ in {
         "on-click-middle" = "hyprctl dispatch togglespecialworkspace anonymous";
         "on-scroll-up" = "hyprctl dispatch togglespecialworkspace gamespace";
         "on-scroll-down" = "hyprctl dispatch togglespecialworkspace scratchpad";
+        "swap-icon-label" = false;
         "tooltip" = false;
       };
 
@@ -79,7 +80,6 @@ in {
           "group/screenshot"
           "custom/virtualkeyboard"
           "custom/magnifier"
-          "custom/hyprpicker"
           "custom/lamp"
         ];
       };
@@ -98,13 +98,14 @@ in {
         "orientation" = "inherit";
         "drawer" = {
           "transition-duration" = 500;
-          "transition-left-to-right" = true;
+          "transition-left-to-right" = false;
         };
         "modules" = [
           "custom/ssmonitor"
-          "custom/sswindow"
-          "custom/ssarea"
+          "custom/hyprpicker"
           "custom/ocr"
+          "custom/ssarea"
+          "custom/sswindow"
         ];
       };
 
@@ -112,7 +113,7 @@ in {
         "orientation" = "inherit";
         "drawer" = {
           "transition-duration" = 500;
-          "transition-right-to-left" = false;
+          "transition-left-to-right" = true;
         };
         "modules" = [
           "custom/launcher"
@@ -275,29 +276,34 @@ in {
         "on-click-right" = "~/.config/waybar/scripts/pavucontrol/cycle-input.sh";
         "on-click-middle" = "~/.config/waybar/scripts/pavucontrol/toggle-input.sh";
         "return-type" = "json";
-        "interval" = 10;
         "signal" = 14;
         "tooltip" = false;
       };
 
-      "battery" = {
-        "bat" = "BAT0";
-        "adapter" = "ADP0";
-        "interval" = 60;
-        "states" = {
-          "warning" = 30;
-          "critical" = 15;
-        };
-        "max-length" = 20;
-        "format" = "{icon} {capacity}%";
-        "format-warning" = "{icon} {capacity}%";
-        "format-critical" = "{icon} {capacity}%";
-        "format-charging" = "<span font-family='Font Awesome 6 Free'></span> {capacity}%";
-        "format-plugged" = "  {capacity}%";
-        "format-alt" = "{icon} {time}";
-        "format-full" = "  {capacity}%";
-        "format-icons" = [" " " " " " " " " "];
-      };
+      # "backlight" = {
+      #   "device" = "DP-3";
+      #   "format" = "{icon} {percent}%";
+      #   "format-icons" = ["" "" "" "" "" "" "" "" ""];
+      # };
+
+      # "battery" = {
+      #   "bat" = "BAT0";
+      #   "adapter" = "ADP0";
+      #   "interval" = 60;
+      #   "states" = {
+      #     "warning" = 30;
+      #     "critical" = 15;
+      #   };
+      #   "max-length" = 20;
+      #   "format" = "{icon} {capacity}%";
+      #   "format-warning" = "{icon} {capacity}%";
+      #   "format-critical" = "{icon} {capacity}%";
+      #   "format-charging" = "<span font-family='Font Awesome 6 Free'></span> {capacity}%";
+      #   "format-plugged" = "  {capacity}%";
+      #   "format-alt" = "{icon} {time}";
+      #   "format-full" = "  {capacity}%";
+      #   "format-icons" = [" " " " " " " " " "];
+      # };
 
       "custom/weather" = {
         "format" = "{}";
