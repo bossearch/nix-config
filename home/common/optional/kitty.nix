@@ -47,8 +47,8 @@ in {
         (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font Mono";
     };
     keybindings = {
-      "ctrl+KP_Add" = "change_font_size all +2.0";
-      "ctrl+KP_Subtract" = "change_font_size all -2.0";
+      "ctrl+plus" = "change_font_size all +2.0";
+      "ctrl+minus" = "change_font_size all -2.0";
       "ctrl+equal" = "change_font_size all 0";
       "0x1008ff57" = "copy_to_clipboard";
       "0x1008ff6d" = "paste_from_clipboard";
