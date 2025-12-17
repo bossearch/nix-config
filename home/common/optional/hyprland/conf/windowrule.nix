@@ -29,7 +29,7 @@
       if mymonitor
       then "1310 1080"
       else "1310 920";
-    portait =
+    portrait =
       if mymonitor
       then "982 1387"
       else "728 1027";
@@ -219,7 +219,7 @@ in {
     #zathura
     windowrule = float,class:(org.pwmt.zathura)
     windowrule = center 1,class:(org.pwmt.zathura)
-    windowrule = size ${size.portait},class:(org.pwmt.zathura)
+    windowrule = size ${size.portrait},class:(org.pwmt.zathura)
 
     #zenity
     windowrule = float,class:(zenity)
