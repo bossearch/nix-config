@@ -31,6 +31,7 @@
         to = 1764;
       }
     ];
+    UDPPorts = [4242];
     UDPPortsRanges = [
       {
         from = 1714;
