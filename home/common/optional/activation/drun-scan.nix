@@ -15,6 +15,7 @@
     "Steam Linux Runtime 3.0 (sniper)"
     "auto-cpufreq-gtk"
     "avahi-discover"
+    "blueman-adapters"
     "bssh"
     "btop"
     "bvnc"
@@ -116,8 +117,11 @@
   custom_apps=(
     "Alacritty:alacritty"
     "LocalSend:localsend"
+    "Waydroid:waydroid"
+    "blueman-manager:blueman"
     "com.mitchellh.ghostty:ghostty"
     "com.usebottles.bottles:bottles"
+    "de.feschber.LanMouse:lanmouse"
     "io.github.giantpinkrobots.varia:varia"
     "io.github.mpobaschnig.Vaults:vaults"
     "net.lutris.Lutris:lutris"
@@ -128,7 +132,6 @@
     "org.pulseaudio.pavucontrol:pavucontrol"
     "org.shotcut.Shotcut:shotcut"
     "vesktop:discord"
-    "Waydroid:waydroid"
   )
 
   custom_execs=(

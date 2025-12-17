@@ -9,6 +9,7 @@
     ../common/optional/hyprland
     ../common/optional/kdeconnect.nix
     ../common/optional/kitty.nix
+    ../common/optional/lanmouse.nix
     ../common/optional/minecraft.nix
     ../common/optional/mpv
     ../common/optional/nautilus.nix

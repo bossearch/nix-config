@@ -39,6 +39,7 @@
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lan-mouse.url = "github:feschber/lan-mouse";
   };
 
   outputs = {
