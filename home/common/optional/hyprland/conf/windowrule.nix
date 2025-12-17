@@ -29,7 +29,7 @@
       if mymonitor
       then "1310 1080"
       else "1310 920";
-    zathura =
+    portait =
       if mymonitor
       then "982 1387"
       else "728 1027";
@@ -63,12 +63,6 @@ in {
     #bottles
     windowrule = workspace special:gamespace, class:(com.usebottles.bottles)
     windowrule = opaque, class:(com.usebottles.bottles)
-    windowrule = workspace special:gamespace, title:(DNOrigins Launcher)
-    windowrule = center 1, title:(DNOrigins Launcher)
-    windowrule = opaque, title:(DNOrigins Launcher)
-    windowrule = workspace special:gamespace, title:(DNOrigins)
-    windowrule = center 1, title:(DNOrigins)
-    windowrule = opaque, title:(DNOrigins)
 
     #btop
     windowrule = float, class:(kitty),title:(btop)
@@ -79,6 +73,14 @@ in {
     windowrule = float, class:(kitty),title:(crkbd)
     windowrule = center 1, class:(kitty),title:(crkbd)
     windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
+
+    #dn
+    windowrule = workspace special:gamespace, title:(DNOrigins Launcher)
+    windowrule = center 1, title:(DNOrigins Launcher)
+    windowrule = opaque, title:(DNOrigins Launcher)
+    windowrule = workspace special:gamespace, title:(DNOrigins)
+    windowrule = center 1, title:(DNOrigins)
+    windowrule = opaque, title:(DNOrigins)
 
     #fastfetch
     windowrule = float, class:(kitty),title:(fastfetch)
@@ -118,6 +120,13 @@ in {
     windowrule = center 1, class:(localsend_app),title:(Open File)
     windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
 
+    #lutris
+    windowrule = workspace special:gamespace, class:(net.lutris.Lutris)
+    windowrule = opaque, class:(net.lutris.Lutris)
+    windowrule = float, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
+    windowrule = center 1, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
+    windowrule = size ${size."1/2"}, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
+
     #mainpicker
     windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
     windowrule = center 1, initialTitle:(MainPicker),title:(MainPicker)
@@ -153,9 +162,6 @@ in {
     windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
     windowrule = workspace special:gamespace, class:^(Minecraft\* )$, title:^(Minecraft\* )$
 
-    #waydroid
-    windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
-
     #spotify
     windowrule = workspace 6, class:(spotify),title:(Spotify Premium)
     windowrule = workspace 6, class:(spotify),title:(Spotify Free)
@@ -165,6 +171,9 @@ in {
     windowrule = workspace special:gamespace, class:(dota2)
     windowrule = float, class:(dota2),title:(Dota 2)
     windowrule = center 1, class:(dota2),title:(Dota 2)
+
+    # tor browser
+    windowrule = workspace 2, class:(Tor Browser),title:(Tor Browser)
 
     #transmission
     windowrule = workspace 4, class:(transmission-gtk),title:(Transmission)
@@ -198,6 +207,9 @@ in {
     windowrule = center 1, initialClass:(vesktop),initialTitle:(Discord Popout)
     windowrule = size ${size."3/4"}, initialClass:(vesktop),initialTitle:(Discord Popout)
 
+    #waydroid
+    windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
+
     #xdm
     windowrule = float, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
     windowrule = center 1, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
@@ -207,7 +219,7 @@ in {
     #zathura
     windowrule = float,class:(org.pwmt.zathura)
     windowrule = center 1,class:(org.pwmt.zathura)
-    windowrule = size ${size.zathura},class:(org.pwmt.zathura)
+    windowrule = size ${size.portait},class:(org.pwmt.zathura)
 
     #zenity
     windowrule = float,class:(zenity)
