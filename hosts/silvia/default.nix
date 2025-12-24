@@ -24,7 +24,7 @@
   ];
 
   port = {
-    TCPPorts = [80 443 53317];
+    TCPPorts = [80 443 6669 53317];
     TCPPortsRanges = [
       {
         from = 1714;
