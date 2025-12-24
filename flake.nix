@@ -39,7 +39,16 @@
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lan-mouse.url = "github:feschber/lan-mouse";
+    lan-mouse = {
+      url = "github:feschber/lan-mouse";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # My own program, packaged with nix
+    copas = {
+      url = "github:bossearch/copas";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {
