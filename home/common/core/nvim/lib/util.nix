@@ -157,6 +157,27 @@
           return wrap_text(tip, 60)
         end
 
+        -- fix fyler width
+        util.fyler_width = function(file_win)
+          vim.schedule(function()
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local buf = vim.api.nvim_win_get_buf(win)
+              if vim.bo[buf].filetype == "Fyler" then
+                fyler_win = win
+                break
+              end
+            end
+
+            if fyler_win and vim.api.nvim_win_is_valid(fyler_win) then
+              vim.api.nvim_win_set_option(fyler_win, "winfixwidth", true)
+            end
+
+            if vim.api.nvim_win_is_valid(file_win) then
+              vim.api.nvim_set_current_win(file_win)
+            end
+          end)
+        end
+
         -- palette --
         util.get_colorScheme = function()
           return{

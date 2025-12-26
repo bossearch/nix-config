@@ -28,16 +28,12 @@
       {
         event = ["FileType"];
         pattern = [
-          "DressingSelect"
-          "fugitive"
           "git"
           "help"
-          "lir"
           "lspinfo"
           "man"
           "notify"
           "qf"
-          "telescope"
           "health"
           "oil"
         ];
@@ -55,13 +51,10 @@
         event = ["BufWritePre"];
         callback.__raw = ''
           function(event)
-            -- Get the file path
             local file = vim.uv.fs_realpath(event.match) or event.match
-            -- Skip if the file is managed by oil.nvim (you can also check for filetype)
             if vim.bo.filetype == "oil" then
               return
             end
-            -- Create the directory if necessary
             vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
           end
         '';
@@ -100,6 +93,91 @@
         callback.__raw = ''
           function()
             require("lib.util").set_highlights()
+          end
+        '';
+      }
+
+      # auto open fyler
+      {
+        event = ["BufWinEnter"];
+        callback.__raw = ''
+          function(args)
+            local buf = args.buf or 0
+            if vim.bo[buf].buftype ~= "" then
+              return
+            end
+
+            local filename = vim.api.nvim_buf_get_name(buf)
+            if filename == "" then
+              return
+            end
+
+            local basename = vim.fn.fnamemodify(filename, ":t")
+            local exclude_names = { ".hm.log", ".rb.log" }
+            for _, name in ipairs(exclude_names) do
+              if basename == name then return end
+            end
+
+            local ft = vim.bo[buf].filetype
+            local ignore_filetypes = {
+              "help", "gitcommit", "gitrebase", "gitconfig", "notify",
+              "qf", "terminal", "toggleterm", "checkhealth", "lspinfo",
+              "snacks_dashboard", "Avante.*", "dapui_.*"
+            }
+            for _, pattern in ipairs(ignore_filetypes) do
+              if ft:match(pattern) then
+                return
+              end
+            end
+
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local win_buf = vim.api.nvim_win_get_buf(win)
+              if vim.bo[win_buf].filetype == "Fyler" then
+                return
+              end
+            end
+
+            local file_win = vim.api.nvim_get_current_win()
+            require("fyler").open({ dir = vim.fn.getcwd(), kind = "split_left" })
+
+            if package.loaded["lib.util"] then
+              require("lib.util").fyler_width(file_win)
+            end
+          end
+        '';
+      }
+
+      # auto refresh fyler if dir change
+      {
+        event = ["DirChanged"];
+        callback.__raw = ''
+          function()
+            local file_win = vim.api.nvim_get_current_win()
+            require("fyler").open({ dir = vim.fn.getcwd(), kind = "split_left" })
+            require("lib.util").fyler_width(file_win)
+          end
+        '';
+      }
+
+      # make qf split below others
+      {
+        event = ["FileType"];
+        pattern = ["qf"];
+        callback.__raw = ''
+          function()
+            vim.cmd("wincmd J")
+          end
+        '';
+      }
+
+      # hide undotree column
+      {
+        event = ["FileType"];
+        pattern = ["undotree"];
+        callback.__raw = ''
+          function()
+            vim.opt_local.signcolumn = "no"
+            vim.opt_local.numberwidth = 1
           end
         '';
       }
