@@ -8,7 +8,22 @@
       # buffers
       {
         key = "<S-h>";
-        action = "<cmd>bprevious<cr>";
+        action.__raw = ''
+          function()
+            local buf = vim.api.nvim_get_current_buf()
+            local ft = vim.bo[buf].filetype
+            local ignore_filetypes = {
+              "Fyler", "undotree", "Avante.*", "qf", "notify",
+              "terminal", "toggleterm", "checkhealth" , "lspinfo",
+            }
+            for _, pattern in ipairs(ignore_filetypes) do
+              if ft:match(pattern) then
+                return
+              end
+            end
+            vim.cmd("bprev")
+          end
+        '';
         options = {
           silent = true;
           noremap = true;
@@ -17,7 +32,22 @@
       }
       {
         key = "<S-l>";
-        action = "<cmd>bnext<cr>";
+        action.__raw = ''
+          function()
+            local buf = vim.api.nvim_get_current_buf()
+            local ft = vim.bo[buf].filetype
+            local ignore_filetypes = {
+              "Fyler", "undotree", "Avante.*", "qf", "notify",
+              "terminal", "toggleterm", "checkhealth" , "lspinfo",
+            }
+            for _, pattern in ipairs(ignore_filetypes) do
+              if ft:match(pattern) then
+                return
+              end
+            end
+            vim.cmd("bnext")
+          end
+        '';
         options = {
           silent = true;
           noremap = true;
@@ -206,6 +236,33 @@
           noremap = true;
           desc = "Prev Buffer";
         };
+      }
+      # terminal
+      {
+        key = "<C-t>";
+        action = "<cmd>close<cr>";
+        mode = "t";
+      }
+      # tmux-navigator
+      {
+        key = "<C-h>";
+        action = "<cmd>TmuxNavigateLeft<cr>";
+        mode = ["n" "v" "i"];
+      }
+      {
+        key = "<C-j>";
+        action = "<cmd>TmuxNavigateUp<cr>";
+        mode = ["n" "v" "i"];
+      }
+      {
+        key = "<C-k>";
+        action = "<cmd>TmuxNavigateDown<cr>";
+        mode = ["n" "v" "i"];
+      }
+      {
+        key = "<C-l>";
+        action = "<cmd>TmuxNavigateRight<cr>";
+        mode = ["n" "v" "i"];
       }
     ];
   };
