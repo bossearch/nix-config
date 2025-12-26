@@ -32,13 +32,11 @@
   }
   {
     __unkeyed = "<leader>wq";
-    __unkeyed-1 = "<cmd>q<cr>";
-    desc = "Quit Window";
-    mode = "n";
-  }
-  {
-    __unkeyed = "<leader>wbq";
-    __unkeyed-1 = "<cmd>bd<cr>";
+    __unkeyed-1.__raw = ''
+      function()
+        require("lib.util").smart_bdelete()
+      end
+    '';
     desc = "Quit Buffer";
     mode = "n";
   }

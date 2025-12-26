@@ -95,6 +95,8 @@
         -- startup-time --
         util.get_nvim_startup_time = function()
           local last_ms = nil
+          local last_started_line = nil
+
           local file = io.open("/tmp/nvim-startup.log", "r")
           if file then
             for line in file:lines() do
@@ -102,17 +104,21 @@
                 local ms = line:match("([%d%.]+)")
                 if ms and tonumber(ms) > 10 then
                   last_ms = ms
+                  last_started_line = line -- store the line exactly
                 end
               end
             end
             file:close()
           end
 
+          if last_started_line then
+            local new_file = io.open("/tmp/nvim-startup.log", "w")
+            new_file:write(last_started_line .. "\n")
+            new_file:close()
+          end
+
           if last_ms then
-            return string.format(
-              "%.2fms",
-              tonumber(last_ms)
-            )
+            return string.format("%.2fms", tonumber(last_ms))
           else
             return "???"
           end
@@ -141,20 +147,37 @@
             return table.concat(lines, "\n")
           end
 
-          -- Path to your tips file
           local tips_file = vim.fn.stdpath('config') .. '/lua/lib/tips.lua'
 
-          -- Try to load the tips list
           local ok, tips = pcall(dofile, tips_file)
           if not ok or type(tips) ~= "table" or #tips == 0 then
             return "No tips available!"
           end
 
-          -- Randomly select a tip
           math.randomseed(os.time() + math.random(1000000))
           local tip = tips[math.random(1, #tips)]
 
           return wrap_text(tip, 60)
+        end
+
+        -- smart buffer delete --
+        util.smart_bdelete = function()
+          if vim.bo.filetype == "Fyler" then
+            vim.cmd("TmuxNavigateRight")
+            return
+          end
+          if (vim.api.nvim_win_get_width(0) < (vim.o.columns - 37)) or
+            (vim.api.nvim_win_get_height(0) < 64) then
+              vim.cmd("close")
+          else
+            vim.cmd("bnext")
+            local alt_bufnr = tonumber(vim.fn.bufnr("#"))
+            if alt_bufnr > 0 and vim.api.nvim_buf_is_valid(alt_bufnr) then
+              vim.api.nvim_buf_delete(alt_bufnr, { force = false })
+            else
+              vim.cmd("quitall")
+            end
+          end
         end
 
         -- fix fyler width
@@ -290,6 +313,27 @@
           hl(0, "BlinkCmpKindUnit", { fg = p.base0F, bg = "NONE" })
           hl(0, "BlinkCmpKindColor", { fg = p.base0F, bg = "NONE" })
           hl(0, "BlinkCmpKindClass", { fg = p.base0F, bg = "NONE" })
+
+          hl(0, "FylerFSDirectoryIcon", { fg = p.base0D, bg = "NONE" })
+          hl(0, "FylerFSDirectoryName", { fg = p.base0D, bg = "NONE" })
+          hl(0, "FylerFSFile", { fg = p.base05, bg = "NONE" })
+          hl(0, "FylerIndentMarker", { fg = p.base03, bg = "NONE" })
+          hl(0, "FylerConfirmGreen", { fg = p.base0B, bg = "NONE" })
+          hl(0, "FylerConfirmRed", { fg = p.base08, bg = "NONE" })
+          hl(0, "FylerConfirmYellow", { fg = p.base0A, bg = "NONE" })
+          hl(0, "FylerConfirmGrey", { fg = p.base04, bg = "NONE" })
+          hl(0, "FylerBorder", { fg = p.base0F, bg = "NONE" })
+
+          hl(0, "AvanteTitle", { fg = p.base01, bg = p.base0B })
+          hl(0, "AvanteSubtitle", { fg = p.base01, bg = p.base0C })
+          hl(0, "AvanteThirdTitle", { fg = p.base01, bg = p.base03 })
+          hl(0, "AvanteReversedTitle", { fg = p.base0B, bg = p.base01 })
+          hl(0, "AvanteReversedSubtitle", { fg = p.base0C, bg = p.base01 })
+          hl(0, "AvanteReversedThirdTitle", { fg = p.base03, bg = p.base01 })
+          hl(0, "AvanteSidebarWinSeparator", { fg = p.base00, bg = p.base01 })
+          hl(0, "AvanteSidebarWinHorizontalSeparator", { fg = p.base01, bg = p.base01 })
+
+          hl(0, "SnacksPickerDir", { fg = p.base0D, bg = "NONE" })
         end
 
         return util
