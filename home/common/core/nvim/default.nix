@@ -11,7 +11,7 @@
       byteCompileLua = {
         enable = true;
         configs = true;
-        initLua = false;
+        initLua = true;
         luaLib = true;
         nvimRuntime = true;
         plugins = true;
@@ -21,6 +21,7 @@
         standalonePlugins = [
           "friendly-snippets" # needed for blink to access friendly-snippets
           "outline.nvim"
+          "fyler.nvim"
         ];
       };
     };
