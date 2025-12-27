@@ -2,12 +2,13 @@
   imports = [
     ../common/core
     ../common/optional/activation
+    ../common/optional/copas.nix
     ../common/optional/dunst
     ../common/optional/feh.nix
     ../common/optional/firefox
     ../common/optional/gowall.nix
     ../common/optional/hyprland
-    ../common/optional/kdeconnect.nix
+    # ../common/optional/kdeconnect.nix
     ../common/optional/kitty.nix
     ../common/optional/lanmouse.nix
     ../common/optional/minecraft.nix

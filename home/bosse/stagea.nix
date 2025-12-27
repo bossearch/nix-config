@@ -2,6 +2,7 @@
   imports = [
     ../common/core
     ../common/optional/activation
+    # ../common/optional/copas.nix
     ../common/optional/dunst
     # ../common/optional/feh.nix
     ../common/optional/firefox
