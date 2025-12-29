@@ -62,6 +62,10 @@
     bind = $meh, SPACE, cyclenext
     bind = $meh, ESCAPE, exec, ~/.config/hypr/scripts/swap-window.sh
 
+    # Group
+    bind = $hyper, SPACE, changegroupactive
+    bind = $hyper, ESCAPE, exec, ~/.config/hypr/scripts/toggle-group.sh
+
     # Switch workspaces with mainMod + [0-9]
     bind = $meh, H, workspace, 1
     bind = $meh, J, workspace, 2

@@ -5,6 +5,7 @@
     ./decoration.nix
     ./environtment.nix
     ./general.nix
+    ./group.nix
     ./input.nix
     ./keybindings.nix
     ./layout.nix
