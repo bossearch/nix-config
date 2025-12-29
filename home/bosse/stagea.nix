@@ -6,12 +6,12 @@
     ../common/optional/dunst
     # ../common/optional/feh.nix
     ../common/optional/firefox
+    # ../common/optional/gaming
     ../common/optional/gowall.nix
     ../common/optional/hyprland
     # ../common/optional/kdeconnect.nix
     ../common/optional/kitty.nix
     # ../common/optional/lanmouse.nix
-    # ../common/optional/minecraft.nix
     # ../common/optional/mpv
     ../common/optional/nautilus.nix
     # ../common/optional/nchat
@@ -25,7 +25,6 @@
     # ../common/optional/vaults.nix
     ../common/optional/vesktop
     ../common/optional/waybar
-    # ../common/optional/wine.nix
     # ../common/optional/zathura.nix
   ];
 
