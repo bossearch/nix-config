@@ -15,6 +15,9 @@
       graphics.enable32Bit = true;
       graphics.extraPackages = with pkgs; [
         rocmPackages.clr.icd
+        rocmPackages.hipblas
+        rocmPackages.hipblaslt
+        rocmPackages.rocwmma
       ];
       amdgpu = {
         opencl.enable = true;
