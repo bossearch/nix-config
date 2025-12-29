@@ -62,8 +62,8 @@
           {
             {
               "buffers",
-              show_filename_only = true,
-              hide_filename_extension = true,
+              show_filename_only = false,
+              hide_filename_extension = false,
               max_length = vim.o.columns * 2 / 3,
             },
             {
@@ -104,7 +104,7 @@
             -- },
           }
         '';
-        lualine_y = ["%l/%L:%c:%p%%" "filesize"];
+        lualine_y = ["%l/%L:%c:%p%%" "filesize" "encoding"];
         lualine_z.__raw = ''
           {
             {
