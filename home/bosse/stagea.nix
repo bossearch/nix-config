@@ -12,6 +12,7 @@
     # ../common/optional/kdeconnect.nix
     ../common/optional/kitty.nix
     # ../common/optional/lanmouse.nix
+    # ../common/optional/llm.nix
     # ../common/optional/mpv
     ../common/optional/nautilus.nix
     # ../common/optional/nchat
