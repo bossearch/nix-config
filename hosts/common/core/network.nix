@@ -5,7 +5,7 @@
   };
 
   # Make sure you don't have services.resolved.enable on.
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = true;
     # Settings reference:
     # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
@@ -47,8 +47,8 @@
     };
   };
 
-  # Make sure to load dnscrypt-proxy2 after network
-  systemd.services.dnscrypt-proxy2 = {
+  # Make sure to load dnscrypt-proxy after network
+  systemd.services.dnscrypt-proxy = {
     after = ["network-online.target"];
     wants = ["network-online.target"];
   };
