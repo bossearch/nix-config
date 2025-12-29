@@ -29,7 +29,7 @@
       ignorecase = true; # When the search query is lower-case, match both lower and upper-case
       inccommand = "split"; # Search and replace: preview changes in quickfix list
       jumpoptions = "view"; # restore position when jumping
-      laststatus = 2; # When to use a status line for the last window
+      laststatus = 3; # When to use a status line for the last window
       linebreak = true; # Wrap lines at convenient points
       list = true; # Show some invisible characters (tabs...
       mouse = "a"; # Enable mouse mode

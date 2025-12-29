@@ -6,8 +6,8 @@
     plugins.render-markdown = {
       enable = true;
       settings = {
-        enabled = false;
-        file_types = ["markdown"];
+        enabled = true;
+        file_types = ["markdown" "Avante"];
         code = {
           sign = false;
         };

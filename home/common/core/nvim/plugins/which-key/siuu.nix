@@ -1,8 +1,14 @@
 [
   {
-    __unkeyed = "<cr>/";
-    __unkeyed-1 = "<cmd>lua Snacks.explorer()<cr>";
-    desc = "Open Explorer";
+    __unkeyed = "<leader>a";
+    group = "Avante";
+    icon = "󰭻 ";
+    mode = ["n" "v"];
+  }
+  {
+    __unkeyed = "<leader><cr>";
+    group = "Siuu";
+    icon = "󰌑 ";
     mode = "n";
   }
   {

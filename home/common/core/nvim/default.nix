@@ -22,6 +22,7 @@
           "friendly-snippets" # needed for blink to access friendly-snippets
           "outline.nvim"
           "fyler.nvim"
+          "avante.nvim"
         ];
       };
     };
