@@ -11,9 +11,9 @@ in {
   default = [
     "buffer"
     "cmdline"
-    "copilot"
+    # "copilot"
     "dictionary"
-    "git"
+    # "git"
     "lsp"
     "path"
     "ripgrep"
