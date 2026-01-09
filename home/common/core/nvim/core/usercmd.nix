@@ -11,7 +11,7 @@
           '';
         };
       };
-      CopyAbsolutPath = {
+      CopyAbsolutePath = {
         command = {
           __raw = ''
             function()
