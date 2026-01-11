@@ -10,6 +10,10 @@
 
       mkdir -p "$(dirname "$SOCKET")"
 
+      if [ ! -f /tmp/nvim-startup.log ]; then
+        nvim --headless +q --startuptime /tmp/nvim-startup.log
+      fi
+
       # Check if tmux is installed
       if command -v tmux &>/dev/null; then
         TERM_TITLE=$(hyprctl activewindow | awk -F': ' '/title: / {print $2}')

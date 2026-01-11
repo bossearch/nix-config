@@ -33,9 +33,6 @@
       CPUTEMP_FILE="$HOME/.cache/${config.spec.userName}/cputemp"
       GPUTEMP_FILE="$HOME/.cache/${config.spec.userName}/gputemp"
       rm -f "$CPUTEMP_FILE" "$GPUTEMP_FILE"
-
-      rm -f /tmp/nvim-startup.log
-      nvim --headless +q --startuptime /tmp/nvim-startup.log
     '';
   };
 }
