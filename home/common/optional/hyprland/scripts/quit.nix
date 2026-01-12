@@ -19,6 +19,9 @@
       elif [[ "$focused_class" == "org.gnome.Nautilus" ]]; then
         nautilus --quit
 
+      elif [[ "$focused_class" == "steam" ]]; then
+        killall steam
+
       else
         hyprctl dispatch killactive
       fi
