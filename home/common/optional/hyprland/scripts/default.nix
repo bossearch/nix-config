@@ -6,12 +6,13 @@
     ./game-mode.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./playerctl
     ./load-buku.nix
+    ./playerctl
     ./quit.nix
     ./save-buku.nix
     ./startup-value.nix
     ./swap-window.nix
+    ./toggle-group.nix
     ./word-lookup.nix
   ];
 }
