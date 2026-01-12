@@ -7,6 +7,7 @@
   Vaults_dir = "${config.home.homeDirectory}/.local/share/Vaults/{Secrets,Lofi}";
 in {
   home.packages = with pkgs; [
+    gocryptfs
     vaults
   ];
 
