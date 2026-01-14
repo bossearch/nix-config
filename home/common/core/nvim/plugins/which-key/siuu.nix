@@ -12,47 +12,76 @@
     mode = "n";
   }
   {
-    __unkeyed = "<cr>f";
+    __unkeyed = "<leader><cr>/";
     __unkeyed-1.__raw = ''
       function()
-        vim.g.oil_open_in_buffer = false
-        require("oil").toggle_float()
+        local file_win = vim.api.nvim_get_current_win()
+        require("fyler").open({ dir = vim.fn.getcwd(), kind="split_left" })
+        require("lib.util").fyler_width(file_win)
       end
     '';
-    desc = "Open Oil On Floating Mode";
+    desc = "Toggle Explorer";
     mode = "n";
   }
   {
-    __unkeyed = "<cr>d";
+    __unkeyed = "<leader><cr>f";
     __unkeyed-1.__raw = ''
       function()
-        detail = not detail
-        if detail then
-          require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-        else
-          require("oil").set_columns({})
+        local fyler = require("fyler")
+
+        local had_split = false
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local cfg = vim.api.nvim_win_get_config(win)
+          if cfg.relative == "" and vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "Fyler" then
+            had_split = true
+            break
+          end
         end
+
+        local file_win = vim.api.nvim_get_current_win()
+        fyler.open({ dir = vim.fn.getcwd(), kind = "float" })
+
+        vim.defer_fn(function()
+          local float_win
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local cfg = vim.api.nvim_win_get_config(win)
+            if cfg.relative ~= "" and vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "Fyler" then
+              float_win = win
+              break
+            end
+          end
+          if not float_win then return end
+
+          vim.api.nvim_create_autocmd("WinClosed", {
+            once = true,
+            pattern = tostring(float_win),
+            callback = function()
+              if had_split then
+                fyler.open({ dir = vim.fn.getcwd(), kind = "split_left" })
+                require("lib.util").fyler_width(file_win)
+              end
+            end,
+          })
+        end, 10)
       end
     '';
-    desc = "Open Oil On Detail View";
+    desc = "Toggle Floating Explorer";
     mode = "n";
   }
   {
-    __unkeyed = "<cr><cr>";
+    __unkeyed = "<leader><CR><CR>";
     __unkeyed-1.__raw = ''
       function()
-        require("snacks").terminal.open("fish", {
+        require("snacks").terminal.toggle(nil, {
           win = {
-            width = 0.8,         -- Width of the terminal
-            height = 0.8,        -- Height of the terminal
-            border = "rounded",  -- Sharp border style (use "double" if preferred)
+            height = 0.16,
+            wo = { winbar = "" }
           },
-          cwd = vim.fn.getcwd(), -- Set the current working directory
-          auto_close = true,
+          cwd = vim.fn.getcwd(),
         })
       end
     '';
-    desc = "Toggle Terminal On Float";
+    desc = "Toggle Terminal";
     mode = "n";
   }
 ]
