@@ -11,6 +11,9 @@
     ./yazi
   ];
   home.packages = with pkgs; [
+    (pkgs.ouch.override {
+      enableUnfree = true;
+    })
     bc
     curl
     eza
@@ -23,7 +26,6 @@
     killall
     mediainfo
     moreutils
-    ouch
     poppler
     ripgrep
     taskwarrior3
