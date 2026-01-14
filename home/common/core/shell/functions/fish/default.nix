@@ -14,10 +14,11 @@ let
       ./greeting.nix
       ./notify.nix
       ./sy.nix
-      ./tmux-pane.nix
-      ./tmux-panekill.nix
-      ./tmux-tm.nix
-      ./tmux-tmkill.nix
+      ./tmux_navigate.nix
+      ./tmux_pane.nix
+      ./tmux_panekill.nix
+      ./tmux_tm.nix
+      ./tmux_tmkill.nix
     ];
 in
   merged
