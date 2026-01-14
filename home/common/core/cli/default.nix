@@ -17,6 +17,7 @@
     fd
     ffmpeg
     file
+    hyperfine
     imagemagick
     jq
     killall
