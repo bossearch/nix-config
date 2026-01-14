@@ -2,11 +2,16 @@
   notify = {
     onEvent = "fish_postexec";
     body = ''
+      # If the command starts with a space, exit immediately
+      if string match -q " *" $argv[1]
+          return
+      end
+
       # List of commands to exclude
       set -l exclude_cmds \
           nyaa \
           rb hm nix-shell \
-          fh fkill fif fzf fsys fgrep \
+          fkill fzf fsys fgrep \
           yy sy yazi \
           v vi vim nvim \
           man tmux tm fg \
