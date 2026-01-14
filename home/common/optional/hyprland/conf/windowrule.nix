@@ -21,6 +21,10 @@
       if mymonitor
       then "720 720"
       else "540 540";
+    "1/5" =
+      if mymonitor
+      then "480 288"
+      else "384 216";
     full =
       if mymonitor
       then "2540 1387"
@@ -160,7 +164,23 @@ in {
 
     #prismlauncher
     windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
-    windowrule = workspace special:gamespace, class:^(Minecraft\* )$, title:^(Minecraft\* )$
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(New Instance.*)
+    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(New Instance.*)
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Select a Java version.*)
+    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Select a Java version.*)
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download mods.*)
+    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download mods.*)
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download resource packs.*)
+    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download resource packs.*)
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download shader packs.*)
+    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download shader packs.*)
+    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Please wait.*)
+    windowrule = size ${size."1/5"}, class:(org.prismlauncher.PrismLauncher), title:(Please wait.*)
+
+    windowrule = workspace special:gamespace, title:(Minecraft.*)
+    windowrule = size ${size."3/4"}, title:(Minecraft.*)
+    windowrule = center 1, title:(Minecraft.*)
+    windowrule = opaque, title:(Minecraft.*)
 
     #spotify
     windowrule = workspace 6, class:(spotify),title:(Spotify Premium)
