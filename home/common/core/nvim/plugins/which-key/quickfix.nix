@@ -26,7 +26,13 @@
   }
   {
     __unkeyed = "<leader>q:";
-    __unkeyed-1 = ":cdo";
+    __unkeyed-1.__raw = ''
+      function()
+        vim.api.nvim_feedkeys(
+          vim.api.nvim_replace_termcodes(":cdo ", true, false, true), "c", false
+       )
+      end
+    '';
     desc = "Edit Quickfix List";
     mode = "n";
   }
