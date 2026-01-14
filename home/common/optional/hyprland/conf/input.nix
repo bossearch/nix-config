@@ -17,7 +17,6 @@
 
     # https://wiki.hyprland.org/Configuring/Variables/#gestures
     gestures {
-        workspace_swipe = false
     }
 
     # Example per-device config
@@ -41,6 +40,7 @@
     # keyboard
     device {
         name = foostan-corne
+        kb_options = lv3:ralt_switch
         repeat_rate = 30    # The repeat rate for held-down keys, in repeats per second.
         repeat_delay = 600  # Delay before a held-down key is repeated, in milliseconds.
     }

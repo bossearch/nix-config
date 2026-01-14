@@ -7,30 +7,28 @@
     # See https://wiki.hyprland.org/Configuring/Keywords/
     $mainMod = SUPER
     $secMod = CONTROL
-    $meh = CONTROL ALT SHIFT
-    $hyper = CONTROL SUPER ALT SHIFT
+    $meh = MOD5
+    $hyper = SUPER MOD5
     $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
     $fileManager = nautilus
     $browser = firefox
-    $mpv = ~/.config/hypr/scripts/assets/mpv.sh
     $drun = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/drun.sh"
     $run = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/run.sh"
     $emoji = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
     $clipboard = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
     $loadbuku = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/hypr/scripts/load-buku.sh"
-    $cheatsheet = ~/.config/qmk/cheatsheet-wrapper.sh
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
     bind = $hyper, code:49, exit # "`"
     bind = $mainMod, RETURN, exec, $terminal
     bind = $mainMod, code:61, exec, $browser # "/"
     bindr = $mainMod, code:48, exec, pkill $fileManager || $fileManager # "'"
-    bind = $mainMod, M, exec, $mpv
+    bind = $mainMod, M, exec, ~/.config/hypr/scripts/assets/mpv.sh
     bindr = $mainMod, SPACE, exec, pkill fzf || $drun
     bindr = $secMod, SPACE, exec, pkill fzf || $run
     bindr = $mainMod, code:60, exec, pkill fzf || $emoji # "."
     bindr = $mainMod, V, exec, pkill fzf || $clipboard
-    bind = $mainMod, code:59, exec, $cheatsheet # ","
+    bind = $mainMod, code:59, exec, ~/.config/qmk/cheatsheet-wrapper.sh # ","
     bind = $mainMod, T, exec, ~/.config/hypr/scripts/word-lookup.sh
     bind = $mainMod, R, exec, ~/.config/hypr/scripts/deepl-terjemah.sh
     bind = $mainMod, E, exec, ~/.config/hypr/scripts/deepl-translate.sh
@@ -85,10 +83,9 @@
     bind = $meh, RETURN, togglespecialworkspace, scratchpad
     bind = $hyper, RETURN, movetoworkspace, special:scratchpad
     bind = $meh, G, exec, ~/.config/hypr/scripts/game-mode.sh
-    bind = $hyper, G, exec, rm -rf ~/.cache/gamemode
+    bind = $hyper, G, exec, rm -rf ~/.cache/gamemode && notify-send "Game Mode" "File Deleted" -u low
     bind = $meh, T, togglespecialworkspace, gamespace
     bind = $hyper, T, movetoworkspace, special:gamespace
-    bind = $meh, P, togglespecialworkspace, anonymous
 
     # Scroll through existing workspaces with $meh + scroll
     bind = $meh, mouse_down, workspace, e+1
