@@ -46,4 +46,10 @@
     desc = "Rename File";
     mode = "n";
   }
+  {
+    __unkeyed = "<leader>nn";
+    __unkeyed-1 = "<cmd>lua Snacks.notifier.hide()<cr>";
+    desc = "Close Notification";
+    mode = "n";
+  }
 ]
