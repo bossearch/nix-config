@@ -14,6 +14,7 @@
     (pkgs.ouch.override {
       enableUnfree = true;
     })
+    age
     bc
     curl
     eza
@@ -28,6 +29,7 @@
     moreutils
     poppler
     ripgrep
+    ssh-to-age
     taskwarrior3
     toipe
     unzip
