@@ -14,16 +14,22 @@
 
       send_command() {
         local payload="$1"
-        local timeout="''${2:-0.1}"
+        local timeout="$2"
         echo -n "$payload" | socat -t"$timeout" - "UDP:$LAMP_IP:$PORT,so-reuseaddr" 2>/dev/null
       }
 
       update_local_status() {
         local raw_status
-        raw_status=$(send_command '{"method":"getPilot"}' 0.5)
+        raw_status=$(send_command '{"method":"getPilot"}' 0.2)
 
         if [[ -n "$raw_status" ]]; then
-          read -r state dim temp <<<"$(echo "$raw_status" | jq -r '.result | "\(.state), \(.dimming), \(.temp)"')"
+          read -r state dim temp <<<"$(jq -r '.result | "\(.state) \(.dimming) \(.temp)"' <<<"$raw_status")"
+        fi
+
+        if [[ "$state" == "false" ]]; then
+          echo "{\"percentage\": 0}"
+        else
+          echo "{\"percentage\": $dim}"
         fi
       }
 
@@ -49,24 +55,16 @@
           payload="{\"method\":\"setPilot\",\"params\":{\"temp\":$temp}}"
           ;;
         on)
-          state="true"
           payload='{"method":"setState","params":{"state":true}}'
           ;;
         off)
-          state="false"
           payload='{"method":"setState","params":{"state":false}}'
-          ;;
-        status)
-          update_local_status
-          echo "{\"percentage\": $dim, \"state\": $state, \"temp\": $temp}"
-          continue
           ;;
         *) continue ;;
         esac
 
         send_command "$payload" "0"
-
-        #NOTE: Periodically re-sync status in the background if needed
+        update_local_status
       done
     '';
   };
