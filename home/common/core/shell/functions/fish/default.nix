@@ -6,12 +6,13 @@ let
     [
       ./bd.nix
       ./expand.nix
-      ./error.nix
+      # ./error.nix
       ./fgrep.nix
       ./fkill.nix
       ./fsys.nix
       ./furl.nix
       ./greeting.nix
+      ./ignore_history.nix
       ./notify.nix
       ./sy.nix
       ./tmux_navigate.nix
