@@ -8,39 +8,46 @@
       LAMP_IP="192.168.18.14"
       PORT=38899
 
-      dim=0
-      temp=0
-      state="false"
-
       send_command() {
         local payload="$1"
         local timeout="$2"
         echo -n "$payload" | socat -t"$timeout" - "UDP:$LAMP_IP:$PORT,so-reuseaddr" 2>/dev/null
       }
 
-      update_local_status() {
-        local raw_status
-        raw_status=$(send_command '{"method":"getPilot"}' 0.2)
-
-        if [[ -n "$raw_status" ]]; then
-          read -r state dim temp <<<"$(jq -r '.result | "\(.state) \(.dimming) \(.temp)"' <<<"$raw_status")"
-        fi
-
-        if [[ "$state" == "false" ]]; then
-          echo "{\"percentage\": 0}"
+      lamp_status() {
+        local lamp_status
+        if lamp_status=$(send_command '{"method":"getPilot"}' 0.1); then
+          read -r state dim temp <<<"$(jq -r '.result | "\(.state) \(.dimming) \(.temp)"' <<<"$lamp_status")"
+          if [[ $state == "true" ]]; then
+            dim=$((dim))
+          elif [[ -z $state ]]; then
+            while [[ -z $state ]]; do
+              lamp_status=$(send_command '{"method":"getPilot"}' 0.1)
+              read -r state <<<"$(jq -r '.result | "\(.state)"' <<<"$lamp_status")"
+              if [[ $state == "true" ]]; then
+                read -r dim <<<"$(jq -r '.result | "\(.dimming)"' <<<"$lamp_status")"
+              fi
+              sleep 0.1
+            done
+            if [[ -z $dim ]]; then
+              dim=0
+            fi
+          elif [[ $state == "false" ]]; then
+            dim=0
+          fi
         else
-          echo "{\"percentage\": $dim}"
+          dim=0
         fi
+        echo '{"percentage":'"$dim"'}'
       }
 
-      mkdir -p "$(dirname "$RECEIVE_PIPE")"
-      [[ -p "$RECEIVE_PIPE" ]] || mkfifo "$RECEIVE_PIPE"
+      rm -rf "$RECEIVE_PIPE"
+      mkfifo "$RECEIVE_PIPE"
 
-      update_local_status
+      lamp_status
 
       while true; do
-        if ! read -r COMMAND <"$RECEIVE_PIPE"; then continue; fi
-
+        read -r COMMAND <"$RECEIVE_PIPE"
         case "$COMMAND" in
         +)
           ((dim = (dim + 10) > 100 ? 100 : dim + 10))
@@ -64,7 +71,7 @@
         esac
 
         send_command "$payload" "0"
-        update_local_status
+        lamp_status
       done
     '';
   };
