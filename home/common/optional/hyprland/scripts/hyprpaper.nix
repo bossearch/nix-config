@@ -10,51 +10,69 @@ in {
     executable = true;
     text = ''
       #!/usr/bin/env bash
-      set -e
+      set -euo pipefail
 
-      pushd ~/Pictures/gowall >/dev/null || exit
-
-      log_file="$HOME/.cache/${config.spec.userName}/daily-wallpaper.log"
-      mkdir -p "$(dirname "$log_file")"
-      echo "[daily-wallpaper] $(date): Internet connection check..." >"$log_file"
-
-      if ! ping -c 1 1.1.1.1 >/dev/null 2>&1; then
-        echo "Internet check failed. Aborting." >>"$log_file"
-        exit 1
-      else
-        echo "Internet is reachable." >>"$log_file"
-      fi
-
-      # restart waybar when internet is active
-      systemctl restart --user waybar.service || true
-
+      WALL_DIR="$HOME/Pictures/gowall"
+      CACHE_DIR="$HOME/.cache/bosse"
+      LOG_FILE="$CACHE_DIR/daily-wallpaper.log"
       DATE=$(date +%Y%m%d)
-      INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
-      OUTPUT_DIR="$HOME/.cache/${config.spec.userName}"
+      OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
 
-      if [ ! -f "$INPUT_WALL" ]; then
-        curl -s -A "Mozilla/5.0" 'https://www.reddit.com/r/wallpaper/top/.json?limit=5' |
-          jq -r '.data.children[] | select(.data.post_hint == "image") | .data.url' |
-          head -n 1 |
-          xargs -I {} sh -c "ext=\"\''${1##*.}\"; wget -q -O \"wall-\$(date +%Y%m%d).\$ext\" \"\$1\"" _ {};
-          echo "Wallpaper downloaded" >>"$log_file"
-      fi
+      mkdir -p "$WALL_DIR" "$CACHE_DIR"
 
-      if file wall-"''${DATE}".* | grep -qE 'image|bitmap'; then
-        echo "Wallpaper file is valid image." >> "$log_file"
+      > "$LOG_FILE"
+      exec > >(tee -a "$LOG_FILE") 2>&1
+      echo "--- [$(date '+%Y-%m-%d %H:%M:%S')] Script Started ---"
+
+      GATEWAY_IP=$(ip route | grep default | awk '{print $3}' | head -n 1)
+
+      if [[ -n "$GATEWAY_IP" ]]; then
+        if ! ping -c 1 -W 1 "$GATEWAY_IP" >/dev/null 2>&1; then
+          echo "Local gateway ($GATEWAY_IP) unreachable. Are you connected to Wi-Fi/Ethernet?"
+          exit 1
+        fi
+        echo "Local link to $GATEWAY_IP is up."
       else
-        echo "Invalid wallpaper file. Removing." >> "$log_file"
-        rm -f wall-"''${DATE}".*
+        echo "No default gateway found. Network might be down."
+        exit 1
       fi
 
-      INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -printf "%f\n" | head -n 1)
-      if [ -f "$INPUT_WALL" ]; then
-        gowall convert "$INPUT_WALL" -t ${theme} --output "$OUTPUT_DIR/hyprpaper.png"
-        cp "$OUTPUT_DIR/hyprpaper.png" "$OUTPUT_DIR/hyprlock.png"
-        echo "Wallpaper converted" >> "$log_file"
+      cd "$WALL_DIR"
+      INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -print -quit)
+
+      if [[ -z "$INPUT_WALL" ]]; then
+        echo "Fetching today's top wallpaper from Reddit..."
+        USER_AGENT="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0"
+        REDDIT_LINK="https://www.reddit.com/r/wallpaper/top/.json?limit=5"
+        JSON_DATA=$(curl -sH "$USER_AGENT" "$REDDIT_LINK")
+        IMG_URL=$(echo "$JSON_DATA" | jq -r '.data.children[] | select(.data.post_hint == "image") | .data.url' | head -n 1)
+
+        if [[ -n "$IMG_URL" && "$IMG_URL" != "null" ]]; then
+          EXT="''${IMG_URL##*.}"
+          EXT=$(echo "$EXT" | cut -d'?' -f1)
+          INPUT_WALL="wall-''${DATE}.''${EXT}"
+          curl -sL "$IMG_URL" -o "$INPUT_WALL"
+        else
+          echo "Error: Could not find a valid image URL on Reddit."
+          exit 1
+        fi
+      else
+        echo "Today's wallpaper already exist"
+        exit 0
       fi
 
-      popd >/dev/null || exit
+      MIME_TYPE=$(file --mime-type -b "$INPUT_WALL")
+      if [[ "$MIME_TYPE" == image/* ]]; then
+        echo "Validation successful: $MIME_TYPE"
+      else
+        echo "Validation failed: File is $MIME_TYPE. Deleting."
+        rm -f "$INPUT_WALL"
+        exit 1
+      fi
+
+      gowall convert "$INPUT_WALL" -t ${theme} --output "$OUTPUT_IMG"
+      cp "$OUTPUT_IMG" "$CACHE_DIR/hyprlock.png"
+      echo "Success"
     '';
   };
 }
