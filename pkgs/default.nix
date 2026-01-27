@@ -1,5 +1,6 @@
 {pkgs ? import <nixpkgs> {}, ...}: {
   # Packages with an actual source
+  seniorpw = pkgs.callPackage ./seniorpw {};
   sysboard = pkgs.callPackage ./sysboard {};
   varia = pkgs.callPackage ./varia {};
   # vaults = pkgs.callPackage ./vaults {};
