@@ -29,6 +29,7 @@
     moreutils
     poppler
     ripgrep
+    seniorpw
     ssh-to-age
     taskwarrior3
     toipe
