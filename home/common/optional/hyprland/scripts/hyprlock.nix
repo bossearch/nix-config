@@ -9,6 +9,10 @@
       rm "$SCREENSHOT_PATH"
       grim -l 0 -t png "$SCREENSHOT_PATH"
 
+      if pgrep -x senior-agent >/dev/null; then
+        pkill -x senior-agent
+      fi
+
       hyprlock &
       sleep 5
       cp "$CACHE_DIR/hyprpaper.png" "$CACHE_DIR/hyprlock.png"
