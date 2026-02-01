@@ -57,6 +57,9 @@
       set -gx fish_pager_color_prefix        'white' '--bold' '--underline'
       set -gx fish_pager_color_progress      'white' '--background=cyan'
     '';
+    shellAbbrs = {
+      pw = "senior";
+    };
     shellAliases = {
       v = "nvim --startuptime /tmp/nvim-startup.log";
       nvim = "nvim --startuptime /tmp/nvim-startup.log";
