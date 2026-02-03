@@ -1,18 +1,16 @@
 diff --git a/src/modules/hyprland/window.cpp b/src/modules/hyprland/window.cpp
-index 815fbad8..9d3107f6 100644
+index 815fbad8..7d485e8f 100644
 --- a/src/modules/hyprland/window.cpp
 +++ b/src/modules/hyprland/window.cpp
-@@ -21,10 +21,8 @@ Window::Window(const std::string& id, const Bar& bar, const Json::Value& config)
+@@ -21,7 +21,6 @@ Window::Window(const std::string& id, const Bar& bar, const Json::Value& config)
      : AAppIconLabel(config, "window", id, "{title}", 0, true), bar_(bar), m_ipc(IPC::inst()) {
    std::unique_lock<std::shared_mutex> windowIpcUniqueLock(windowIpcSmtx);
 
 -  modulesReady = true;
    separateOutputs_ = config["separate-outputs"].asBool();
 
-   m_ipc.registerForIPC("activewindow", this);
-   m_ipc.registerForIPC("closewindow", this);
-   m_ipc.registerForIPC("movewindow", this);
-@@ -46,10 +44,7 @@ Window::~Window() {
+   // register for hyprland ipc
+@@ -46,10 +45,7 @@ Window::~Window() {
  auto Window::update() -> void {
    std::shared_lock<std::shared_mutex> windowIpcShareLock(windowIpcSmtx);
 
@@ -24,7 +22,7 @@ index 815fbad8..9d3107f6 100644
 
    std::string label_text;
    if (!format_.empty()) {
-@@ -165,56 +160,73 @@ auto Window::Workspace::parse(const Json::Value& value) -> Window::Workspace {
+@@ -165,56 +161,81 @@ auto Window::Workspace::parse(const Json::Value& value) -> Window::Workspace {
  }
 
  auto Window::WindowData::parse(const Json::Value& value) -> Window::WindowData {
@@ -55,9 +53,11 @@ index 815fbad8..9d3107f6 100644
 -    workspace_ = getActiveWorkspace(this->bar_.output->name);
 -  } else {
 -    workspace_ = getActiveWorkspace();
++  // Get the currently focused window
 +  auto focusedWindow = m_ipc.getSocket1JsonReply("activewindow");
 +  bool hasFocusedWindow = focusedWindow.isObject() && focusedWindow["mapped"].asBool();
 +
++  // Determine if we're on a special workspace by checking the focused window's workspace
 +  bool isSpecialWorkspace = false;
 +  std::string specialWorkspaceName = "";
 +
@@ -70,30 +70,35 @@ index 815fbad8..9d3107f6 100644
 
 -  focused_ = true;
 -  if (workspace_.windows > 0) {
--    const auto clients = m_ipc.getSocket1JsonReply("clients");
--    if (clients.isArray()) {
--      auto activeWindow = std::ranges::find_if(
--          clients, [&](Json::Value window) { return window["address"] == workspace_.last_window; });
++  // Handle special workspace case
 +  if (isSpecialWorkspace) {
++    // Use the focused window's data directly
 +    windowData_ = WindowData::parse(focusedWindow);
 +    updateAppIconName(windowData_.class_name, windowData_.initial_class_name);
 +    focused_ = true;
-
--      if (activeWindow == std::end(clients)) {
--        focused_ = false;
--        return;
--      }
++
++    // Create a workspace object for this special workspace
 +    workspace_ = Workspace{
 +        .id = focusedWindow["workspace"]["id"].asInt(),
 +        .windows = 1, // We know at least this window exists
 +        .last_window = focusedWindow["address"].asString(),
 +        .last_window_title = focusedWindow["title"].asString()
 +    };
-
++
++    // Get all clients to compute workspace properties
+     const auto clients = m_ipc.getSocket1JsonReply("clients");
+     if (clients.isArray()) {
+-      auto activeWindow = std::ranges::find_if(
+-          clients, [&](Json::Value window) { return window["address"] == workspace_.last_window; });
+-
+-      if (activeWindow == std::end(clients)) {
+-        focused_ = false;
+-        return;
+-      }
+-
 -      windowData_ = WindowData::parse(*activeWindow);
 -      updateAppIconName(windowData_.class_name, windowData_.initial_class_name);
-+    const auto clients = m_ipc.getSocket1JsonReply("clients");
-+    if (clients.isArray()) {
++      // Filter windows that belong to this special workspace
        std::vector<Json::Value> workspaceWindows;
        std::ranges::copy_if(clients, std::back_inserter(workspaceWindows), [&](Json::Value window) {
 -        return window["workspace"]["id"] == workspace_.id && window["mapped"].asBool();
@@ -104,6 +109,7 @@ index 815fbad8..9d3107f6 100644
 +
 +      workspace_.windows = workspaceWindows.size();
 +
++      // Compute workspace properties
        swallowing_ = std::ranges::any_of(workspaceWindows, [&](Json::Value window) {
          return !window["swallowing"].isNull() && window["swallowing"].asString() != "0x0";
        });
@@ -126,7 +132,7 @@ index 815fbad8..9d3107f6 100644
        if (fullscreen_) {
          solo_ = true;
        }
-@@ -225,20 +237,68 @@ void Window::queryActiveWorkspace() {
+@@ -225,20 +246,70 @@ void Window::queryActiveWorkspace() {
          soloClass_ = "";
        }
      }
@@ -139,6 +145,7 @@ index 815fbad8..9d3107f6 100644
 -    solo_ = false;
 -    soloClass_ = "";
 +  }
++  // Handle regular workspace case
 +  else {
 +    if (separateOutputs_) {
 +      workspace_ = getActiveWorkspace(this->bar_.output->name);
@@ -176,6 +183,7 @@ index 815fbad8..9d3107f6 100644
 +            visibleWindows, [&](Json::Value window) { return window["floating"].asBool(); });
 +        fullscreen_ = windowData_.fullscreen;
 +
++        // Fullscreen windows look like they are solo
 +        if (fullscreen_) {
 +          solo_ = true;
 +        }
@@ -204,9 +212,3 @@ index 815fbad8..9d3107f6 100644
    dp.emit();
  }
 
-@@ -252,4 +312,4 @@ void Window::setClass(const std::string& classname, bool enable) {
-   }
- }
-
--}  // namespace waybar::modules::hyprland
-+}
