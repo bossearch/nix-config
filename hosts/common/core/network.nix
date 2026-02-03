@@ -25,7 +25,7 @@
       cache_max_ttl = 86400;
       cache_neg_min_ttl = 60;
       cache_neg_max_ttl = 600;
-      # Add this to test if dnscrypt-proxy is actually used to resolve DNS requests
+      # Add the DNS source types you want to use
       sources.public-resolvers = {
         urls = [
           "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
@@ -34,16 +34,14 @@
         cache_file = "/var/cache/dnscrypt-proxy/public-resolvers.md";
         minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
       };
-      sources.relays = {
-        urls = [
-          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md"
-          "https://download.dnscrypt.info/resolvers-list/v3/relays.md"
-        ];
-        cache_file = "/var/cache/dnscrypt-proxy/relays.md";
-        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
-      };
       listen_addresses = ["127.0.0.1:53" "[::1]:53"];
-      server_names = ["cloudflare-security" "cloudflare-security-ipv6"];
+      # DNSCrypt
+      # server_names = ["quad9-dnscrypt-ip4-filter-pri" "quad9-dnscrypt-ip6-filter-pri"];
+      server_names = ["adguard-dns" "adguard-dns-ipv6"];
+      # DOH
+      # server_names = ["cloudflare-security" "cloudflare-security-ipv6"];
+      # server_names = ["quad9-doh-ip4-port443-filter-pri" "quad9-doh-ip6-port443-filter-pri"];
+      # server_names = ["adguard-dns-doh" "adguard-dns-doh-ipv6"];
     };
   };
 
