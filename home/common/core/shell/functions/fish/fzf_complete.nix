@@ -51,7 +51,7 @@
         # 3. Multiple options
         set -l query
         set -l result
-        string join \n $complist \
+        printf '%s\n' $complist \
         | eval (__fzfcmd) (string escape --no-quoted -- $fzf_query) --print-query (__fzf_complete_opts) \
         | while read -l r
             if test -z "$query"
