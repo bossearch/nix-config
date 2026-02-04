@@ -215,6 +215,7 @@ in {
 
     #virt-manager
     windowrule = workspace 5, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
+    windowrule = workspace 5, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = float, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = center 1, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
     windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
