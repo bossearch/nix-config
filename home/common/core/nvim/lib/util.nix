@@ -167,7 +167,7 @@
             return
           end
           if (vim.api.nvim_win_get_width(0) < (vim.o.columns - 37)) or
-            (vim.api.nvim_win_get_height(0) < 64) then
+            (vim.api.nvim_win_get_height(0) < (vim.o.lines - 1)) then
               vim.cmd("close")
           else
             vim.cmd("bnext")
