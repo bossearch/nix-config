@@ -264,6 +264,41 @@
         action = "<cmd>TmuxNavigateRight<cr>";
         mode = ["n" "v" "i"];
       }
+      # hacky way to fix my typo when saving quiting
+      {
+        key = "q:";
+        action = ":q";
+        mode = ["n" "v"];
+      }
+      {
+        key = "q/";
+        action = "<Nop>";
+        mode = ["n" "v"];
+      }
+      {
+        key = "q?";
+        action = "<Nop>";
+        mode = ["n" "v"];
+      }
+      {
+        key = "<CR>";
+        action.__raw = ''
+          function()
+            local cmd = vim.fn.getcmdline()
+            if vim.fn.getcmdtype() == ':' then
+              if cmd == '@' then return '<C-u>w<CR>' end
+              if cmd == '@q' then return '<C-u>wq<CR>' end
+              if cmd == '@qa' then return '<C-u>wqa<CR>' end
+            end
+            return '<CR>'
+          end
+        '';
+        mode = "c";
+        options = {
+          expr = true;
+          replace_keycodes = true;
+        };
+      }
     ];
   };
 }
