@@ -100,9 +100,9 @@ in {
     windowrule = center 1, class:(firefox),title:(Library)
     windowrule = size ${size."1/2"}, class:(firefox),title:(Save Image)
     windowrule = focusonactivate on, InitialClass:(firefox),initialTitle:(Mozilla Firefox)
-    windowrule = opaque, class:(firefox),title:^(.*YouTube.*)$
-    windowrule = opaque, class:(firefox),title:^(.*IDLIX.*)$
-    windowrule = opaque, class:(firefox),title:^(.*Twitch.*)$
+    windowrule = opaque, class:(firefox),title:(.*YouTube.*)
+    windowrule = opaque, class:(firefox),title:(.*IDLIX.*)
+    windowrule = opaque, class:(firefox),title:(.*Twitch.*)
     windowrule = size ${size."1/2"}, class:(firefox),title:(File Upload)
 
     #fzf
@@ -141,11 +141,11 @@ in {
     windowrule = opaque, initialClass:(mpv)
 
     #nautilus
-    windowrule = workspace 3, initialClass:^org\.gnome\.Nautilus$,initialTitle:^Loading…$
+    windowrule = workspace 3, initialClass:(org.gnome.Nautilus),initialTitle:(Loading…)
     windowrule = float, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
     windowrule = center 1, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
     windowrule = opaque, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
-    windowrule = size ${size."1/2"}, title:^(Rename .* Files)$
+    windowrule = size ${size."1/2"}, title:(Rename.*)
 
     #nchat
     windowrule = workspace 6, class:(kitty),title:(nchat)
@@ -158,9 +158,9 @@ in {
 
     #pavucontrol
     # windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
-    windowrule = float, initialClass:^(org.pulseaudio.pavucontrol)$
-    windowrule = center 1, initialClass:^(org.pulseaudio.pavucontrol)$
-    windowrule = size ${size."1/2"}, initialClass:^(org.pulseaudio.pavucontrol)$
+    windowrule = float, initialClass:(org.pulseaudio.pavucontrol)
+    windowrule = center 1, initialClass:(org.pulseaudio.pavucontrol)
+    windowrule = size ${size."1/2"}, initialClass:(org.pulseaudio.pavucontrol)
 
     #prismlauncher
     windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
@@ -215,15 +215,15 @@ in {
 
     #virt-manager
     windowrule = workspace 5, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
-    windowrule = workspace 5, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = float, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = center 1, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
-    windowrule = opaque, class:(.virt-manager-wrapped), title:^(.*QEMU/KVM)$
+    windowrule = workspace 5, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
+    windowrule = float, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
+    windowrule = center 1, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
+    windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
+    windowrule = opaque, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
 
     #vesktop
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(vesktop)
-    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord)
+    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord.*)
     windowrule = float, initialClass:(vesktop),initialTitle:(Discord Popout)
     windowrule = center 1, initialClass:(vesktop),initialTitle:(Discord Popout)
     windowrule = size ${size."3/4"}, initialClass:(vesktop),initialTitle:(Discord Popout)
