@@ -20,7 +20,7 @@ in {
 
       mkdir -p "$WALL_DIR" "$CACHE_DIR"
 
-      > "$LOG_FILE"
+      : > "$LOG_FILE"
       exec > >(tee -a "$LOG_FILE") 2>&1
       echo "--- [$(date '+%Y-%m-%d %H:%M:%S')] Script Started ---"
 
