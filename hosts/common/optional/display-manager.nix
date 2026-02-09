@@ -25,11 +25,4 @@ in {
     };
   };
   systemd.services."getty@tty2".enable = true;
-
-  programs = {
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
-  };
 }
