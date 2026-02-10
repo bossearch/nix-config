@@ -15,7 +15,6 @@
       ./locale.nix
       ./network.nix
       ./nix.nix
-      #./proxy.nix
       ./rb.nix
       ./shell.nix
       ./ssh.nix
