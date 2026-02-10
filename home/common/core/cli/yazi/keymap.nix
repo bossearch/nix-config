@@ -142,17 +142,31 @@
         desc = "nixconfig/home.../waybar";
       }
       {
-        on = ["c" "d"];
         run = ''
           shell -- for f in "$@"; do
+            count=1
+            if [ -d "$f" ] && [ ! -L "$f" ]; then
+              base="$f"; ext=""
+            else
+              base="''${f%.*}"; ext="''${f##*.}"
+              if [ "$base" = "$ext" ]; then base="$f"; ext=""; else ext=".$ext"; fi
+            fi
+            target="''${base}_$count$ext"
+            while [ -e "$target" ]; do
+              count=$((count + 1))
+              target="''${base}_$count$ext"
+            done
             if [ -L "$f" ]; then
-              mv -- "$f" "$f.og"
-              cp -L --no-preserve=mode,ownership -- "$f.og" "$f"
-              chmod u+rw "$f"
+              mv -- "$f" "$target"
+              cp -pLR --no-preserve=mode,ownership -- "$target" "$f"
+              chmod -R u+rw "$f"
+            else
+              cp -a -- "$f" "$target"
             fi
           done
         '';
-        desc = "Keep symlink as .og and create real file in its place";
+        on = ["c" "d"];
+        desc = "Duplicate file,folder or symlink";
       }
     ];
   };
