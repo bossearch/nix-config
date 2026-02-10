@@ -72,6 +72,7 @@
       cp = "cp -i";
       c = "clear";
       cat = "bat --style=plain --theme=ansi";
+      yy = "yz";
       ".." = "cd ..";
       bridge-enable = "nmcli con up br0";
       bridge-disable = "nmcli con down br0";

@@ -1,7 +1,6 @@
 {
   imports = [
     ./keymap.nix
-    ./opener.nix
     ./plugins.nix
     ./settings.nix
     ./theme.nix

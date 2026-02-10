@@ -10,7 +10,7 @@
     opener = {
       edit = [
         {
-          run = "sh -c \"~/.config/yazi/opener.sh \"$@\"\"";
+          run = "sh -c \"echo \"$@\" > /tmp/yazi-edit-handoff; ya emit quit\" -- \"$@\"";
           orphan = true;
           for = "unix";
         }
