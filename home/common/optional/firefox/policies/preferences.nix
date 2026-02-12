@@ -137,6 +137,10 @@
     Value = false;
     Status = "default";
   };
+  "general.autoScroll" = {
+    Value = true;
+    Status = "default";
+  };
   "general.smoothScroll" = {
     Value = true;
     Status = "default";
