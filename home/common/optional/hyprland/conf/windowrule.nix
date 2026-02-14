@@ -223,7 +223,7 @@ in {
 
     #vesktop
     windowrule = workspace 6, initialClass:(vesktop),initialTitle:(vesktop)
-    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(Discord.*)
+    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(.*Discord.*)
     windowrule = float, initialClass:(vesktop),initialTitle:(Discord Popout)
     windowrule = center 1, initialClass:(vesktop),initialTitle:(Discord Popout)
     windowrule = size ${size."3/4"}, initialClass:(vesktop),initialTitle:(Discord Popout)
