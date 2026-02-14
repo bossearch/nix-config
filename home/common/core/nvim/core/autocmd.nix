@@ -143,6 +143,8 @@
             if package.loaded["lib.util"] then
               require("lib.util").fyler_width(file_win)
             end
+
+            vim.api.nvim_del_autocmd(args.id)
           end
         '';
       }
@@ -155,6 +157,21 @@
             local file_win = vim.api.nvim_get_current_win()
             require("fyler").open({ dir = vim.fn.getcwd(), kind = "split_left" })
             require("lib.util").fyler_width(file_win)
+          end
+        '';
+      }
+
+      # close fyler when quit nvim
+      {
+        event = ["QuitPre"];
+        callback.__raw = ''
+          function()
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local win_buf = vim.api.nvim_win_get_buf(win)
+              if vim.bo[win_buf].filetype == "Fyler" then
+                vim.api.nvim_win_close(win, true)
+              end
+            end
           end
         '';
       }
