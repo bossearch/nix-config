@@ -142,15 +142,26 @@
         desc = "nixconfig/home.../waybar";
       }
       {
+        on = ["c" "d"];
+        desc = "Duplicate file, folder or symlink";
         run = ''
           shell -- for f in "$@"; do
-            count=1
             if [ -d "$f" ] && [ ! -L "$f" ]; then
               base="$f"; ext=""
             else
-              base="''${f%.*}"; ext="''${f##*.}"
-              if [ "$base" = "$ext" ]; then base="$f"; ext=""; else ext=".$ext"; fi
+              fname="''${f##*/}"
+              case "''${fname#.}" in
+                *.*)
+                  base="''${f%.*}"
+                  ext=".''${f##*.}"
+                  ;;
+                *)
+                  base="$f"
+                  ext=""
+                  ;;
+              esac
             fi
+            count=1
             target="''${base}_$count$ext"
             while [ -e "$target" ]; do
               count=$((count + 1))
@@ -165,8 +176,6 @@
             fi
           done
         '';
-        on = ["c" "d"];
-        desc = "Duplicate file,folder or symlink";
       }
     ];
   };
