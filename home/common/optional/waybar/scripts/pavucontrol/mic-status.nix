@@ -15,13 +15,13 @@
       TWS_MIC="bluez_input.00:A4:1C:F9:15:84"
 
       if [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \" \"}"
+        echo "{\"text\": \"\"}"
       elif [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"  \"}"
+        echo "{\"text\": \"\"}"
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \" 󰂯\"}"
+        echo "{\"text\": \"󰂯\"}"
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"  󰂯\"}"
+        echo "{\"text\": \"󰂯\"}"
       fi
     '';
   };

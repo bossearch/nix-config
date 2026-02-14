@@ -7,7 +7,7 @@
       SCREENRECORD_TOOLTIP=$(cat "$HOME/.cache/${config.spec.userName}/screenrecord-tooltip")
 
       ICON_1="<span foreground=\\\"#${config.colorScheme.palette.base08}\\\"></span>"
-      ICON_2="<span foreground=\\\"#${config.colorScheme.palette.base07}\\\">󰻂</span>"
+      ICON_2="<span foreground=\\\"#FFFFFF\\\">󰻂</span>"
 
       PID=$(pgrep -o wl-screenrec) || exit 0
 

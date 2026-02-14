@@ -14,12 +14,12 @@
 
       # Toggle the temperature
       if [[ "$CURRENT_TEMP" == "6500" ]]; then
-        echo "  " >"$ICON_FILE"
+        echo "" >"$ICON_FILE"
         echo "2700" | tee "$TEMP_FILE" "$TEMP_SCROLL"
         pkill -SIGRTMIN+12 waybar
         hyprctl hyprsunset temperature 2700
       else
-        echo "  " >"$ICON_FILE"
+        echo "" >"$ICON_FILE"
         echo "6500" | tee "$TEMP_FILE" "$TEMP_SCROLL"
         pkill -SIGRTMIN+12 waybar
         hyprctl hyprsunset temperature 6500

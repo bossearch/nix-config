@@ -23,8 +23,9 @@
         if [[ ! -f $WTTR_FILE ]]; then
           echo "{\"text\": \" ⛓️‍💥 \"}"
           exit 0
+        else
+          weather_json=$(cat "$WTTR_FILE")
         fi
-        weather_json=$(cat "$WTTR_FILE")
       fi
 
       declare -A WEATHER_CODES=(

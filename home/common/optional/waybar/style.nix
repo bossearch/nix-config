@@ -22,13 +22,8 @@ in {
     @define-color blue #${config.colorScheme.palette.base0D};
     @define-color magenta #${config.colorScheme.palette.base0E};
     * {
-      font-family: CommitMono Nerd Font;
+      font-family: CommitMono Nerd Font Propo;
       font-size: 16px;
-      border-radius: 8px;
-    }
-
-    window#waybar {
-      background-color: @bg;
       border-radius: 8px;
     }
 
@@ -36,76 +31,51 @@ in {
       /*group for launcher*/
       color: @gray;
       background-color: @fg;
-      border-radius: 8px;
-      padding: 0px 5px 0px 0px;
     }
     #custom-launcher {
       color: @cyan;
-      padding: 0px 10px 0px 10px;
-    }
-    #custom-lock {
-      padding: 0 10px;
-    }
-    #custom-shutdown {
-      padding: 0px 9px 0px 10px;
-    }
-    #custom-reboot {
-      padding: 0 10px;
     }
 
     #task {
       /*group for cpu, gpu and memory*/
       background-color: @fg;
-      border-radius: 8px;
-      padding: 0 5px;
     }
     #cpu,
-    #temperature,
     #custom-cputemp {
       color: @red;
-      padding: 0 5px;
     }
     #custom-gpu,
-    #temperature.gpu,
     #custom-gputemp {
       color: @yellow;
-      padding: 0 5px;
     }
     #custom-memory {
       color: @green;
-      padding: 0 5px;
     }
 
     #custom-weather {
-      color: @bwhite;
       background-color: @fg;
-      padding: 0 6px;
+      color: @bwhite;
+      padding: 0 10px;
     }
 
     #workspaces {
-      border-radius: 8px;
       background-color: @fg;
     }
-
     #workspaces button {
-      padding: 0 5px;
-      color: @gray;
       background-color: transparent;
+      color: @gray;
+      padding: 0 6px;
     }
-
     #workspaces button.empty {
       color: @bblack;
     }
-
     /* #workspaces button.visible { */
     /*   color: @blue; */
     /* } */
-
     #workspaces button.urgent {
       font-weight: bold;
       color: @yellow;
     }
-
     #workspaces button.active {
       color: @bwhite;
       border-radius: 8px;
@@ -114,44 +84,42 @@ in {
     #window {
       color: @bwhite;
     }
+    window#waybar {
+      background-color: @bg;
+    }
 
     #customtray {
       /*group for stoprec and tray*/
-      color: @nwhite;
+      color: #FFFFFF;
       background-color: @fg;
     }
-    #privacy {
-      padding: 0px 0px 0px 10px;
-    }
-    #custom-xdm,
     #custom-stoprec {
-      padding: 0px 4px 0px 0px;
+      padding: 1px 6px 0px 8px;
+    }
+    #custom-xdm {
+      padding: 1px 6px 0px 8px;
+    }
+    #privacy {
+      padding: 0px 6px 0px 8px;
     }
     #tray {
-      padding: 0 10px;
+      padding: 0px 8px 0px 8px;
     }
     #tray > .passive {
       -gtk-icon-effect: dim;
     }
     #tray > .needs-attention {
       -gtk-icon-effect: highlight;
-      background-color: @green;
+      background-color: @yellow;
     }
 
     #utility {
       /*group for screenshot, virtualkeyboard,hyprpicker, and wiz*/
       background-color: @fg;
       color: @bwhite;
-      border-radius: 8px;
-    }
-    #custom-hyprpicker {
-      padding: 0px 4px 0px 0px;
-    }
-    #custom-virtualkeyboard {
-      padding: 0px 0px 0px 8px;
     }
     #custom-lamp {
-      padding: 0px 2px 0px 4px;
+      padding: 0px 0px 0px 6px;
     }
 
 
@@ -159,12 +127,9 @@ in {
       /*group for ddcutil, pulseaudio, and internet*/
       background-color: @fg;
       color: @blue;
-      border-radius: 8px;
     }
-
     #network {
       color: @magenta;
-      padding: 0 10px;
     }
     #network.disconnected {
       color: @red;
@@ -173,16 +138,13 @@ in {
     #clock {
       color: @bwhite;
       background-color: @fg;
-      border-radius: 8px;
-      padding: 0 10px;
     }
 
     #custom-notification {
       color: @bwhite;
       background-color: @fg;
-      border-radius: 8px;
-      padding: 0px 4.5px 0px 0px;
     }
+
     .modules-left > widget:first-child > #workspaces {
       margin-left: 0;
     }
