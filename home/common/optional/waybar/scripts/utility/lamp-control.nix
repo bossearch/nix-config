@@ -7,6 +7,7 @@
       RECEIVE_PIPE="$HOME/.cache/${config.spec.userName}/lamp-control"
       LAMP_IP="192.168.18.14"
       PORT=38899
+      export GTK_ICON_THEME=Papirus-Dark
 
       send_command() {
         local payload="$1"
@@ -17,7 +18,7 @@
       lamp_status() {
         local lamp_status
         if lamp_status=$(send_command '{"method":"getPilot"}' 0.1); then
-          read -r state dim temp <<<"$(jq -r '.result | "\(.state) \(.dimming) \(.temp)"' <<<"$lamp_status")"
+          read -r state scene temp dim <<<"$(jq -r '.result | "\(.state) \(.sceneId) \(.temp) \(.dimming)"' <<<"$lamp_status")"
           if [[ $state == "true" ]]; then
             dim=$((dim))
           elif [[ -z $state ]]; then
@@ -41,25 +42,41 @@
         echo '{"percentage":'"$dim"'}'
       }
 
-      rm -rf "$RECEIVE_PIPE"
-      mkfifo "$RECEIVE_PIPE"
-
       lamp_status
+
+      rm -f "$RECEIVE_PIPE"
+      mkfifo "$RECEIVE_PIPE"
 
       while true; do
         read -r COMMAND <"$RECEIVE_PIPE"
+
         case "$COMMAND" in
         +)
           ((dim = (dim + 10) > 100 ? 100 : dim + 10))
           payload="{\"method\":\"setPilot\",\"params\":{\"dimming\":$dim}}"
           ;;
         -)
-          ((dim = (dim - 10) < 10 ? 10 : dim - 10))
-          payload="{\"method\":\"setPilot\",\"params\":{\"dimming\":$dim}}"
+          if [[ $dim -gt "10" ]]; then
+            new_dimming=$((dim - 10))
+            payload="{\"method\":\"setPilot\",\"params\":{\"dimming\":$new_dimming}}"
+          else
+            if [[ $scene != 6 ]]; then
+              if ! hyprctl clients -j | jq -e '.[] | select(.class=="zenity" and .title=="Lamp Control")' >/dev/null; then
+                if zenity --question \
+                  --title="Lamp Control" \
+                  --text="Enable Low Power Mode?" \
+                  --icon=redshift-status-off \
+                  --width=200; then
+                  send_command '{"method":"setPilot","params":{"sceneId":6}}' "0"
+                fi
+              fi
+              sleep 1
+            fi
+          fi
           ;;
         toggle)
-          temp=$([[ "$temp" -eq 4200 ]] && echo 2700 || echo 4200)
-          payload="{\"method\":\"setPilot\",\"params\":{\"temp\":$temp}}"
+          temp_alt=$([[ "$temp" -eq 4200 ]] && echo 2700 || echo 4200)
+          payload="{\"method\":\"setPilot\",\"params\":{\"temp\":$temp_alt}}"
           ;;
         on)
           payload='{"method":"setState","params":{"state":true}}'
@@ -67,10 +84,26 @@
         off)
           payload='{"method":"setState","params":{"state":false}}'
           ;;
-        *) continue ;;
+        *)
+          continue
+          ;;
         esac
+        if [[ $scene == 6 ]]; then
+          temp_alt2=$([[ "$temp" -eq 4200 ]] && echo 4200 || echo 2700)
+          if [[ $COMMAND == "on" || $COMMAND == "off" ]]; then
+            send_command "{\"method\":\"setPilot\",\"params\":{\"temp\":$temp_alt2}}" "0"
+            send_command "$payload" "0"
+          elif [[ $COMMAND == "toggle" ]]; then
+            send_command "$payload" "0"
+          elif [[ $COMMAND == "+" ]]; then
+            send_command "{\"method\":\"setPilot\",\"params\":{\"temp\":$temp_alt2}}" "0"
+          elif [[ $COMMAND == "-" ]]; then
+            :
+          fi
+        else
+          send_command "$payload" "0"
+        fi
 
-        send_command "$payload" "0"
         lamp_status
       done
     '';
