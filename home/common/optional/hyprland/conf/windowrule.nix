@@ -79,12 +79,9 @@ in {
     windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
 
     #dn
-    windowrule = workspace special:gamespace, title:(DNOrigins Launcher)
-    windowrule = center 1, title:(DNOrigins Launcher)
-    windowrule = opaque, title:(DNOrigins Launcher)
-    windowrule = workspace special:gamespace, title:(DNOrigins)
-    windowrule = center 1, title:(DNOrigins)
-    windowrule = opaque, title:(DNOrigins)
+    windowrule = workspace special:gamespace, title:(DNOrigins.*)
+    windowrule = center 1, title:(DNOrigins.*)
+    windowrule = opaque, title:(DNOrigins.*)
 
     #fastfetch
     windowrule = float, class:(kitty),title:(fastfetch)
@@ -135,6 +132,11 @@ in {
     windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
     windowrule = center 1, initialTitle:(MainPicker),title:(MainPicker)
     windowrule = size ${size."1/4"}, initialTitle:(MainPicker),title:(MainPicker)
+
+    #magicchess
+    windowrule = workspace special:gamespace, class:(steam_app_default), title:(.*|Magic Chess: Go Go|MagicChessGoGo)
+    windowrule = center 1, class:(steam_app_default), title:(Magic Chess: Go Go|MagicChessGoGo)
+    windowrule = opaque, class:(steam_app_default), title:(Magic Chess: Go Go|MagicChessGoGo)
 
     #mpv
     windowrule = workspace 3, initialClass:(mpv)
