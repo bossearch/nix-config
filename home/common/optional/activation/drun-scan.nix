@@ -138,6 +138,7 @@
     "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec zsh'"
     "bottles:~/.nix-profile/bin/bottles"
     "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'"
+    "lutris:lutris -f"
     "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
     "spotify:spotify"
     "steam:/run/current-system/sw/bin/steam"
