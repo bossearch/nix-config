@@ -17,6 +17,8 @@
     $emoji = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
     $clipboard = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
     $loadbuku = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/hypr/scripts/load-buku.sh"
+    $pass = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/pass.sh password"
+    $otp = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/pass.sh otp"
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
     bind = $hyper, code:49, exit # "`"
@@ -55,6 +57,8 @@
     bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
     bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
     bind = $hyper, B, exec, ~/.config/hypr/scripts/save-buku.sh
+    bind = $meh, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $pass
+    bind = $hyper, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $otp
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
