@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: let
-  headless = config.spec.windowmanager == null;
+  headless = hosts.windowmanager == null;
 in {
   config = lib.mkIf (!headless) {
     fonts = {

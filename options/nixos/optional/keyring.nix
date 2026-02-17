@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: let
-  headless = config.spec.windowmanager == null;
+  headless = hosts.windowmanager == null;
 in {
   environment.systemPackages = with pkgs;
     if headless

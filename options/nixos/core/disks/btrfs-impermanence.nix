@@ -1,15 +1,15 @@
 {
-  config,
+  hosts,
   lib,
   ...
 }: let
-  enableSwap = config.spec.disko.swap != "0G" && config.spec.disko.swap != "" && config.spec.disko.swap != null;
+  enableSwap = hosts.disko.swap != "0G" && hosts.disko.swap != "" && hosts.disko.swap != null;
 in {
-  config = lib.mkIf (config.spec.disko.type == "btrfs-impermanence") {
+  config = lib.mkIf (hosts.disko.type == "btrfs-impermanence") {
     disko.devices = {
       disk.main = {
         type = "disk";
-        device = config.spec.disko.disk;
+        device = hosts.disko.disk;
         content = {
           type = "gpt";
           partitions = {
@@ -45,7 +45,7 @@ in {
                   "@swap" = lib.mkIf enableSwap {
                     mountpoint = "/swap";
                     mountOptions = ["noatime" "subvol=@swap"];
-                    swap.swapfile.size = config.spec.disko.swap;
+                    swap.swapfile.size = hosts.disko.swap;
                   };
                 };
               };

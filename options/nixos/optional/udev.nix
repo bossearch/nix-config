@@ -1,5 +1,5 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
@@ -31,7 +31,7 @@
     blocked=($(${pkgs.usbguard}/bin/usbguard list-devices | grep block | grep -oP 'id \K[0-9a-f]{4}:[0-9a-f]{4}' | tail -1))
 
     # Show Zenity dialog
-    choice=$(/run/wrappers/bin/su ${config.spec.username} -c "${pkgs.zenity}/bin/zenity --question \
+    choice=$(/run/wrappers/bin/su ${hosts.username} -c "${pkgs.zenity}/bin/zenity --question \
       --text='Do you trust the $DEVICE_VENDOR $DEVICE_NAME device?' --title='New Device Detected' \
       --ok-label='Allow' --cancel-label='Block'")
 
@@ -49,11 +49,11 @@ in {
   services.udev = {
     enable = true;
     packages = lib.mkMerge [
-      (lib.mkIf config.spec.udevqmk [pkgs.unstable.qmk-udev-rules])
+      (lib.mkIf hosts.udevqmk [pkgs.unstable.qmk-udev-rules])
     ];
 
     # mouse, keyboard, hub, monitor hub.
-    extraRules = lib.mkIf config.spec.usbguard ''
+    extraRules = lib.mkIf hosts.usbguard ''
       ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", \
       ENV{ID_VENDOR_ID}!="1b1c", ENV{ID_MODEL_ID}!="1b3e", \
       ENV{ID_VENDOR_ID}!="4653", ENV{ID_MODEL_ID}!="0001", \

@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: let
-  luks = lib.elem config.spec.disko.type [
+  luks = lib.elem hosts.disko.type [
     "btrfs-luks-impermanence"
     "btrfs-luks"
   ];

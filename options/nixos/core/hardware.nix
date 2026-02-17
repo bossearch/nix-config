@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: {
-  services.xserver.videoDrivers = lib.mkIf (config.spec.hostname == "silvia") ["amdgpu"];
+  services.xserver.videoDrivers = lib.mkIf (hosts.hostname == "silvia") ["amdgpu"];
 
   hardware = lib.mkMerge [
     {
@@ -12,7 +12,7 @@
       graphics.enable = true;
       graphics.enable32Bit = true;
     }
-    (lib.mkIf (config.spec.hostname == "silvia") {
+    (lib.mkIf (hosts.hostname == "silvia") {
       graphics.extraPackages = with pkgs; [
         rocmPackages.clr.icd
         rocmPackages.hipblas

@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   outputs,
   ...
 }: let
-  impermanence = lib.elem config.spec.disko.type [
+  impermanence = lib.elem hosts.disko.type [
     "btrfs-luks-impermanence"
     "btrfs-impermanence"
   ];
@@ -12,10 +12,10 @@
     if impermanence
     then "/persist/etc/ssh"
     else "/etc/ssh";
-  hosts = lib.attrNames outputs.nixosConfigurations;
+  hostList = lib.attrNames outputs.nixosConfigurations;
 in {
   services.openssh = {
-    enable = config.spec.ssh;
+    enable = hosts.ssh;
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
@@ -27,7 +27,7 @@ in {
       }
     ];
     # Each hosts public key
-    knownHosts = lib.genAttrs (lib.remove config.spec.hostname hosts) (hostname: {
+    knownHosts = lib.genAttrs (lib.remove hosts.hostname hostList) (hostname: {
       publicKeyFile = ../../../hosts/${hostname}/ssh_host_ed25519_key.pub;
     });
   };

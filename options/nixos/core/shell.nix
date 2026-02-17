@@ -1,10 +1,10 @@
 {
+  hosts,
   lib,
   pkgs,
-  config,
   ...
 }: let
-  shell = config.spec.shell;
+  shell = hosts.shell;
 in {
   programs.zsh.enable = shell == "zsh";
   programs.fish.enable = shell == "fish";

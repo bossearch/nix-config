@@ -154,4 +154,7 @@ in {
       };
     };
   };
+  config = {
+    _module.args.hosts = config.spec;
+  };
 }

@@ -1,10 +1,11 @@
 {
   config,
+  hosts,
   inputs,
   lib,
   ...
 }: let
-  impermanence = lib.elem config.spec.disko.type [
+  impermanence = lib.elem hosts.disko.type [
     "btrfs-luks-impermanence"
     "btrfs-impermanence"
   ];
@@ -82,7 +83,7 @@ in {
         files = [
           "/etc/machine-id"
         ];
-        users.${config.spec.username}.directories = ["."];
+        users.${hosts.username}.directories = ["."];
       };
     };
     system.activationScripts.persistent-dirs.text = (

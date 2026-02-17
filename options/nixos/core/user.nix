@@ -1,20 +1,21 @@
 {
   config,
+  hosts,
   lib,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   passwordFile =
-    if config.spec.sops
+    if hosts.sops
     then config.sops.secrets.passwd.path
-    else ../../${config.spec.hostname}/user_password_hash;
+    else ../../${hosts.hostname}/user_password_hash;
 in {
   # Define a user account.
-  sops.secrets.passwd.neededForUsers = lib.mkIf config.spec.sops true;
+  sops.secrets.passwd.neededForUsers = lib.mkIf hosts.sops true;
 
   users = {
     mutableUsers = false;
-    users.${config.spec.username} = {
+    users.${hosts.username} = {
       isNormalUser = true;
       extraGroups = lib.flatten [
         "wheel"
@@ -31,7 +32,7 @@ in {
         ])
       ];
       openssh.authorizedKeys.keyFiles = [
-        ../../../hosts/${config.spec.hostname}/id_${config.spec.hostname}.pub
+        ../../../hosts/${hosts.hostname}/id_${hosts.hostname}.pub
       ];
       hashedPasswordFile = passwordFile;
     };

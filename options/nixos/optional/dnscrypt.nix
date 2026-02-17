@@ -1,7 +1,7 @@
-{config, ...}: {
+{hosts, ...}: {
   # make sure you don't have services.resolved.enable on.
   services.dnscrypt-proxy = {
-    enable = config.spec.dnscrypt;
+    enable = hosts.dnscrypt;
     # settings reference:
     # https://github.com/dnscrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
     settings = {

@@ -1,13 +1,13 @@
 {
-  config,
+  hosts,
   inputs,
   ...
 }: let
   inherit (inputs.nix-colors.lib) schemeFromYAML;
   colorScheme =
     schemeFromYAML
-    "${config.spec.theme}"
-    (builtins.readFile ../../../modules/themes/${config.spec.theme}.yaml);
+    "${hosts.theme}"
+    (builtins.readFile ../../../modules/themes/${hosts.theme}.yaml);
 in {
   console = {
     earlySetup = true;

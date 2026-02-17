@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: {
-  config = lib.mkIf config.spec.pipewire {
+  config = lib.mkIf hosts.pipewire {
     environment.systemPackages = with pkgs; [
       playerctl
       pulseaudio

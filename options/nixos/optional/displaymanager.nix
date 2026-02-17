@@ -1,5 +1,5 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
@@ -15,13 +15,13 @@
     fi
   '';
 in {
-  config = lib.mkIf config.spec.displaymanager {
+  config = lib.mkIf hosts.displaymanager {
     services.greetd = {
       enable = true;
       settings = rec {
         initial_session = {
           command = fallbackScript;
-          user = config.spec.username;
+          user = hosts.username;
         };
         default_session = initial_session;
       };

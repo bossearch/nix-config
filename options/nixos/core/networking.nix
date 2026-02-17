@@ -1,35 +1,35 @@
 {
-  config,
+  hosts,
   lib,
   ...
 }: {
   config = lib.mkMerge [
     {
       networking = {
-        hostName = config.spec.hostname;
+        hostName = hosts.hostname;
         networkmanager.enable = true;
       };
     }
     {
       networking.firewall = {
-        enable = config.spec.networking.firewall.enable;
+        enable = hosts.networking.firewall.enable;
         allowPing = false;
         rejectPackets = true;
-        allowedTCPPorts = config.spec.networking.firewall.allTCPPorts;
-        allowedUDPPorts = config.spec.networking.firewall.allUDPPorts;
-        allowedTCPPortRanges = config.spec.networking.firewall.allTCPPortRanges;
-        allowedUDPPortRanges = config.spec.networking.firewall.allUDPPortRanges;
-        extraCommands = lib.concatStringsSep "\n" config.spec.networking.firewall.allExtraCmds;
-        trustedInterfaces = lib.mkIf config.spec.virtmanager ["virbr0"];
+        allowedTCPPorts = hosts.networking.firewall.allTCPPorts;
+        allowedUDPPorts = hosts.networking.firewall.allUDPPorts;
+        allowedTCPPortRanges = hosts.networking.firewall.allTCPPortRanges;
+        allowedUDPPortRanges = hosts.networking.firewall.allUDPPortRanges;
+        extraCommands = lib.concatStringsSep "\n" hosts.networking.firewall.allExtraCmds;
+        trustedInterfaces = lib.mkIf hosts.virtmanager ["virbr0"];
       };
     }
-    (lib.mkIf config.spec.dnscrypt {
+    (lib.mkIf hosts.dnscrypt {
       networking = {
         nameservers = ["127.0.0.1" "::1"];
         networkmanager.dns = "none";
       };
     })
-    (lib.mkIf config.spec.bridge {
+    (lib.mkIf hosts.bridge {
       networking.networkmanager.ensureProfiles.profiles = {
         "br0" = {
           connection = {

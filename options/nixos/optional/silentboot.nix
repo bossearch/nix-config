@@ -1,5 +1,5 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
@@ -8,7 +8,7 @@
     selected_themes = ["spinner_alt"];
   };
 in {
-  config = lib.mkIf config.spec.silentboot {
+  config = lib.mkIf hosts.silentboot {
     boot = {
       #silent boot
       kernelParams = [

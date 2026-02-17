@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: {
-  config = lib.mkIf config.spec.usbguard {
+  config = lib.mkIf hosts.usbguard {
     environment.systemPackages = with pkgs; [
       usbutils
       usbguard
@@ -20,7 +20,7 @@
       insertedDevicePolicy = "apply-policy"; # New devices require approval
 
       rules = lib.mkMerge [
-        (lib.mkIf (config.spec.hostname == "silvia") ''
+        (lib.mkIf (hosts.hostname == "silvia") ''
           allow id 1d6b:0002 serial "0000:08:00.3" with-interface 09:00:00
           allow id 1d6b:0003 serial "0000:08:00.3" with-interface 09:00:00
           allow id 1d6b:0002 serial "0000:08:00.4" with-interface 09:00:00
@@ -37,7 +37,7 @@
           allow id 4653:0001 with-interface { 03:01:01 03:00:00 }
           allow id 1b1c:1b3e serial "0A026035AF359CA25B23342BF5001BC6" with-interface { 03:01:02 03:00:00 }
         '')
-        (lib.mkIf (config.spec.hostname == "stagea") ''
+        (lib.mkIf (hosts.hostname == "stagea") ''
           allow id 1d6b:0002 serial "0000:02:00.0" with-interface 09:00:00
           allow id 1d6b:0003 serial "0000:02:00.0" with-interface 09:00:00
           allow id 0627:0001 serial "28754-0000:00:02.1:00.0-1" with-interface 03:00:00

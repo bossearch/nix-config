@@ -1,5 +1,5 @@
 {
-  config,
+  hosts,
   lib,
   outputs,
   ...
@@ -23,7 +23,7 @@
     (builtins.readDir ./.)
     ++ (builtins.attrValues outputs.nixosModules);
 
-  time.timeZone = "${config.spec.timezone}";
+  time.timeZone = "${hosts.timezone}";
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;

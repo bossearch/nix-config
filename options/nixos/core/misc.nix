@@ -1,14 +1,14 @@
 {
-  config,
+  hosts,
   lib,
   pkgs,
   ...
 }: {
   services = lib.mkMerge [
     {
-      fstrim.enable = config.spec.hostname == "silvia";
+      fstrim.enable = hosts.hostname == "silvia";
       gvfs = {
-        enable = config.spec.windowmanager != null;
+        enable = hosts.windowmanager != null;
         package = pkgs.gnome.gvfs;
       };
       udisks2 = {
@@ -17,7 +17,7 @@
         mountOnMedia = true;
       };
     }
-    (lib.mkIf (config.spec.hostname == "stagea") {
+    (lib.mkIf (hosts.hostname == "stagea") {
       spice-vdagentd.enable = true;
       qemuGuest.enable = true;
     })
@@ -28,7 +28,7 @@
     [
       "d /media 0755 root root -"
     ]
-    ++ lib.optionals (config.spec.hostname == "silvia") [
+    ++ lib.optionals (hosts.hostname == "silvia") [
       "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
     ];
 }

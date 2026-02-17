@@ -1,7 +1,7 @@
-{config, ...}: {
+{hosts, ...}: {
   hardware = {
     bluetooth = {
-      enable = config.spec.bluetooth;
+      enable = hosts.bluetooth;
       powerOnBoot = true;
       settings = {
         General = {
@@ -13,6 +13,6 @@
   };
 
   services = {
-    blueman.enable = config.spec.bluetooth;
+    blueman.enable = hosts.bluetooth;
   };
 }

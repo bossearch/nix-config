@@ -1,5 +1,5 @@
-{config, ...}: let
-  wm = config.spec.windowmanager;
+{hosts, ...}: let
+  wm = hosts.windowmanager;
 in {
   programs.hyprland = {
     enable = wm == "hyprland";

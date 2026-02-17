@@ -1,5 +1,6 @@
 {
   config,
+  hosts,
   inputs,
   lib,
   ...
@@ -9,10 +10,10 @@
   keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
 in {
   imports = [inputs.sops-nix.nixosModules.sops];
-  config = lib.mkIf config.spec.sops {
+  config = lib.mkIf hosts.sops {
     sops = {
       age.sshKeyPaths = map getKeyPath keys;
-      defaultSopsFile = ../../../hosts/${config.spec.hostname}/secrets.yaml;
+      defaultSopsFile = ../../../hosts/${hosts.hostname}/secrets.yaml;
     };
   };
 }

@@ -1,13 +1,13 @@
 {
-  config,
+  hosts,
   pkgs,
   ...
 }: {
   services.tor = {
-    enable = config.spec.proxychains;
+    enable = hosts.proxychains;
   };
   programs.proxychains = {
-    enable = config.spec.proxychains;
+    enable = hosts.proxychains;
     package = pkgs.proxychains-ng;
     proxyDNS = true;
     tcpReadTimeOut = 15000;

@@ -1,10 +1,10 @@
 {
-  config,
+  hosts,
   pkgs,
   ...
 }: {
   virtualisation.libvirtd = {
-    enable = config.spec.virtmanager;
+    enable = hosts.virtmanager;
     onBoot = "ignore";
     qemu = {
       package = pkgs.qemu_kvm;
@@ -12,7 +12,7 @@
       vhostUserPackages = with pkgs; [virtiofsd];
     };
   };
-  virtualisation.spiceUSBRedirection.enable = config.spec.virtmanager;
+  virtualisation.spiceUSBRedirection.enable = hosts.virtmanager;
 
-  programs.virt-manager.enable = config.spec.virtmanager;
+  programs.virt-manager.enable = hosts.virtmanager;
 }

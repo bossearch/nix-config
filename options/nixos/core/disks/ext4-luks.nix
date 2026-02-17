@@ -1,15 +1,15 @@
 {
-  config,
+  hosts,
   lib,
   ...
 }: let
-  enableSwap = config.spec.disko.swap != "0G" && config.spec.disko.swap != "" && config.spec.disko.swap != null;
+  enableSwap = hosts.disko.swap != "0G" && hosts.disko.swap != "" && hosts.disko.swap != null;
 in {
-  config = lib.mkIf (config.spec.disko.type == "ext4-luks") {
+  config = lib.mkIf (hosts.disko.type == "ext4-luks") {
     disko.devices = {
       disk.main = {
         type = "disk";
-        device = config.spec.disko.disk;
+        device = hosts.disko.disk;
         content = {
           type = "gpt";
           partitions = {
@@ -24,7 +24,7 @@ in {
               };
             };
             plainSwap = lib.mkIf enableSwap {
-              size = config.spec.disko.swap;
+              size = hosts.disko.swap;
               content = {
                 type = "swap";
                 discardPolicy = "both";
