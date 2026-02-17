@@ -49,8 +49,9 @@ in {
                 default = "ext4";
                 type = types.enum [
                   "btrfs-impermanence"
-                  "btrfs-luks"
                   "btrfs-luks-impermanence"
+                  "btrfs-luks"
+                  "ext4-luks"
                   "ext4"
                 ];
               };
@@ -59,10 +60,6 @@ in {
                 type = types.str;
               };
               swap = mkOption {
-                default = false;
-                type = types.bool;
-              };
-              swapSize = mkOption {
                 default = "";
                 type = types.str;
               };
@@ -155,13 +152,5 @@ in {
         };
       };
     };
-  };
-  config = {
-    assertions = [
-      {
-        assertion = !(config.spec.disko.swap) || (config.spec.disko.swapSize != "");
-        message = "If `spec.swap` is true, then `spec.swapSize` must be specified.";
-      }
-    ];
   };
 }

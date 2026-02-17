@@ -2,9 +2,10 @@
   config,
   lib,
   ...
-}: {
-  config = lib.mkIf (config.spec.disko.type
-    == "btrfs-impermanence") {
+}: let
+  enableSwap = config.spec.disko.swap != "0G" && config.spec.disko.swap != "" && config.spec.disko.swap != null;
+in {
+  config = lib.mkIf (config.spec.disko.type == "btrfs-impermanence") {
     disko.devices = {
       disk.main = {
         type = "disk";
@@ -41,10 +42,10 @@
                     mountpoint = "/nix";
                     mountOptions = ["noatime" "compress=zstd" "subvol=@nix"];
                   };
-                  "@swap" = lib.mkIf config.spec.disko.swap {
+                  "@swap" = lib.mkIf enableSwap {
                     mountpoint = "/swap";
                     mountOptions = ["noatime" "subvol=@swap"];
-                    swap.swapfile.size = config.spec.disko.swapSize;
+                    swap.swapfile.size = config.spec.disko.swap;
                   };
                 };
               };

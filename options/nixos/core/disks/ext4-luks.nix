@@ -5,7 +5,7 @@
 }: let
   enableSwap = config.spec.disko.swap != "0G" && config.spec.disko.swap != "" && config.spec.disko.swap != null;
 in {
-  config = lib.mkIf (config.spec.disko.type == "ext4") {
+  config = lib.mkIf (config.spec.disko.type == "ext4-luks") {
     disko.devices = {
       disk.main = {
         type = "disk";
@@ -31,12 +31,17 @@ in {
                 resumeDevice = true;
               };
             };
-            root = {
+            luks = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "luks";
+                name = "nixos";
+                settings.keyFile = "/key/luks.key";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/";
+                };
               };
             };
           };

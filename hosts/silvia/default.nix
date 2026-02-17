@@ -14,8 +14,7 @@
     disko = {
       type = "btrfs-luks-impermanence";
       disk = "/dev/nvme0n1";
-      swap = true;
-      swapSize = "32G";
+      swap = "32G";
     };
     networking = {
       bridge = true;

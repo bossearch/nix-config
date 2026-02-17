@@ -14,8 +14,7 @@
     disko = {
       type = "btrfs-impermanence";
       disk = "/dev/vda";
-      swap = false;
-      swapSize = "0G";
+      swap = "0G";
     };
     networking = {
       bridge = false;
