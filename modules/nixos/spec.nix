@@ -8,15 +8,30 @@ in {
   options.spec = mkOption {
     type = types.submodule {
       options = {
-        hostName = mkOption {
+        hostname = mkOption {
           default = lib.mkDefault "pc";
           type = types.str;
         };
-        userName = mkOption {
+        username = mkOption {
           default = lib.mkDefault "bosse";
           type = types.str;
         };
-        timeZone = mkOption {
+        shell = mkOption {
+          default = lib.mkDefault "bash";
+          type = lib.types.enum [
+            "bash"
+            "fish"
+            "zsh"
+          ];
+        };
+        locale = mkOption {
+          default = lib.mkDefault "en_US.UTF-8";
+          type = lib.types.enum [
+            "en_US.UTF-8"
+            "id_ID.UTF-8"
+          ];
+        };
+        timezone = mkOption {
           default = lib.mkDefault "Asia/Singapore";
           type = types.str;
         };
@@ -27,21 +42,116 @@ in {
             "tokyo-night-dark"
           ];
         };
-        disk = mkOption {
-          default = "/dev/vda";
-          type = types.str;
+        disko = mkOption {
+          type = types.submodule {
+            options = {
+              type = mkOption {
+                default = "ext4";
+                type = types.enum [
+                  "btrfs-impermanence"
+                  "btrfs-luks"
+                  "btrfs-luks-impermanence"
+                  "ext4"
+                ];
+              };
+              disk = mkOption {
+                default = "/dev/vda";
+                type = types.str;
+              };
+              swap = mkOption {
+                default = false;
+                type = types.bool;
+              };
+              swapSize = mkOption {
+                default = "";
+                type = types.str;
+              };
+            };
+          };
+          default = {};
         };
-        swap = mkOption {
+        networking = mkOption {
+          type = types.submodule {
+            options = {
+              bridge = mkOption {
+                default = false;
+                type = types.bool;
+              };
+              firewall = mkOption {
+                type = types.submodule {
+                  options = {
+                    enable = mkOption {
+                      default = false;
+                      type = types.bool;
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+        # optional modules
+        bluetooth = mkOption {
           default = false;
           type = types.bool;
         };
-        swapSize = mkOption {
-          default = "";
-          type = types.str;
-        };
-        impermanence = mkOption {
+        bridge = mkOption {
           default = false;
           type = types.bool;
+        };
+        displaymanager = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        dnscrypt = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        pipewire = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        proxychains = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        silentboot = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        sops = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        ssh = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        steam = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        udevqmk = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        usbguard = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        virtmanager = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        waydroid = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        windowmanager = mkOption {
+          default = lib.mkDefault "hyprland";
+          type = lib.types.enum [
+            "hyprland"
+          ];
         };
       };
     };
@@ -49,7 +159,7 @@ in {
   config = {
     assertions = [
       {
-        assertion = !(config.spec.swap) || (config.spec.swapSize != "");
+        assertion = !(config.spec.disko.swap) || (config.spec.disko.swapSize != "");
         message = "If `spec.swap` is true, then `spec.swapSize` must be specified.";
       }
     ];

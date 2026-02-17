@@ -5,7 +5,7 @@
 }: let
   inherit (lib) mkOption types;
 
-  p = config.port;
+  p = config.spec.networking.firewall.port;
 
   declaredTCPPorts = p.TCPPorts or [];
   declaredUDPPorts = p.UDPPorts or [];
@@ -13,7 +13,7 @@
   declaredUDPPortRanges = p.UDPPortsRanges or [];
   declaredExtraCmds = lib.optional (p.extra != null && p.extra != "") p.extra;
 in {
-  options = {
+  options.spec.networking.firewall = {
     port = mkOption {
       type = types.submodule {
         options = {

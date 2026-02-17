@@ -1,54 +1,59 @@
 {
   imports = [
-    ./../common/core
-    ./../common/users
-    ./../common/disks
-    ./../common/disks/btrfs-luks-impermanence.nix
-    ./../common/optional/bluetooth.nix
-    ./../common/optional/bridge.nix
-    ./../common/optional/font.nix
-    ./../common/optional/graphics.nix
-    ./../common/optional/greetd.nix
-    ./../common/optional/impermanence.nix
-    ./../common/optional/luks-key.nix
-    ./../common/optional/misc.nix
-    ./../common/optional/nix-ld.nix
-    ./../common/optional/pipewire.nix
-    ./../common/optional/silent-boot.nix
-    ./../common/optional/steam.nix
-    ./../common/optional/udev.nix
-    ./../common/optional/usbguard.nix
-    ./../common/optional/virt-manager.nix
-    ./../common/optional/waydroid.nix
+    ../../options/nixos
     ./hardware-configuration.nix
   ];
 
-  port = {
-    TCPPorts = [80 443 6669 53317];
-    TCPPortsRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    UDPPorts = [4242];
-    UDPPortsRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-  };
-
   spec = {
-    hostName = "silvia";
-    userName = "bosse";
-    timeZone = "Asia/Singapore";
+    hostname = "silvia";
+    username = "bosse";
+    shell = "fish";
+    locale = "en_US.UTF-8";
+    timezone = "Asia/Singapore";
     theme = "tokyo-night-dark";
-    disk = "/dev/nvme0n1";
-    swap = true;
-    swapSize = "32G";
-    impermanence = true;
+    disko = {
+      type = "btrfs-luks-impermanence";
+      disk = "/dev/nvme0n1";
+      swap = true;
+      swapSize = "32G";
+    };
+    networking = {
+      bridge = true;
+      firewall = {
+        enable = true;
+        port = {
+          TCPPorts = [80 443 6669 53317];
+          TCPPortsRanges = [
+            {
+              from = 1714;
+              to = 1764;
+            }
+          ];
+          UDPPorts = [4242];
+          UDPPortsRanges = [
+            {
+              from = 1714;
+              to = 1764;
+            }
+          ];
+        };
+      };
+    };
+    # optional
+    bluetooth = true;
+    displaymanager = true;
+    dnscrypt = true;
+    pipewire = true;
+    proxychains = false;
+    silentboot = true;
+    sops = true;
+    ssh = true;
+    steam = true;
+    udevqmk = true;
+    usbguard = true;
+    virtmanager = true;
+    waydroid = false;
+    windowmanager = "hyprland";
   };
 
   # Do not change these future me !

@@ -1,0 +1,34 @@
+{
+  config,
+  lib,
+  outputs,
+  ...
+}: {
+  imports =
+    lib.foldlAttrs
+    (
+      acc: name: type:
+        acc
+        ++ (
+          if name == "default.nix"
+          then []
+          else if type == "regular" && lib.hasSuffix ".nix" name
+          then [./${name}]
+          else if type == "directory"
+          then [./${name}]
+          else []
+        )
+    )
+    []
+    (builtins.readDir ./.)
+    ++ (builtins.attrValues outputs.nixosModules);
+
+  time.timeZone = "${config.spec.timezone}";
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+    };
+  };
+}
