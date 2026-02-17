@@ -1,4 +1,3 @@
 {
-  ports = import ./ports.nix;
-  spec = import ./spec.nix;
+  default = import ./spec.nix;
 }

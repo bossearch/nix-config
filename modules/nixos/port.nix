@@ -4,14 +4,7 @@
   ...
 }: let
   inherit (lib) mkOption types;
-
   p = config.spec.networking.firewall.port;
-
-  declaredTCPPorts = p.TCPPorts or [];
-  declaredUDPPorts = p.UDPPorts or [];
-  declaredTCPPortRanges = p.TCPPortsRanges or [];
-  declaredUDPPortRanges = p.UDPPortsRanges or [];
-  declaredExtraCmds = lib.optional (p.extra != null && p.extra != "") p.extra;
 in {
   options.spec.networking.firewall = {
     port = mkOption {
@@ -20,15 +13,11 @@ in {
           TCPPorts = mkOption {
             type = types.listOf types.port;
             default = [];
-            description = "Allowed individual TCP ports.";
           };
-
           UDPPorts = mkOption {
             type = types.listOf types.port;
             default = [];
-            description = "Allowed individual UDP ports.";
           };
-
           TCPPortsRanges = mkOption {
             type = types.listOf (types.submodule {
               options = {
@@ -37,9 +26,7 @@ in {
               };
             });
             default = [];
-            description = "TCP port ranges.";
           };
-
           UDPPortsRanges = mkOption {
             type = types.listOf (types.submodule {
               options = {
@@ -48,51 +35,48 @@ in {
               };
             });
             default = [];
-            description = "UDP port ranges.";
           };
-
           extra = mkOption {
             type = types.str;
             default = ''
               iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW \
               -m limit --limit 3/min --limit-burst 3 -j ACCEPT
             '';
-            description = "Extra iptables commands.";
           };
         };
       };
       default = {};
-      description = "Declarative firewall port and iptables entries.";
     };
 
+    # These are "derived" options. They collect the data for easy use elsewhere.
     allTCPPorts = mkOption {
       type = types.listOf types.port;
       readOnly = true;
-      default = declaredTCPPorts;
+      default = p.TCPPorts;
     };
 
     allUDPPorts = mkOption {
       type = types.listOf types.port;
       readOnly = true;
-      default = declaredUDPPorts;
+      default = p.UDPPorts;
     };
 
     allTCPPortRanges = mkOption {
       type = types.listOf (types.attrsOf types.port);
       readOnly = true;
-      default = declaredTCPPortRanges;
+      default = p.TCPPortsRanges;
     };
 
     allUDPPortRanges = mkOption {
       type = types.listOf (types.attrsOf types.port);
       readOnly = true;
-      default = declaredUDPPortRanges;
+      default = p.UDPPortsRanges;
     };
 
     allExtraCmds = mkOption {
       type = types.listOf types.str;
       readOnly = true;
-      default = declaredExtraCmds;
+      default = lib.optional (p.extra != null && p.extra != "") p.extra;
     };
   };
 }

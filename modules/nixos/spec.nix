@@ -5,6 +5,7 @@
 }: let
   inherit (lib) mkOption types;
 in {
+  imports = [./port.nix];
   options.spec = mkOption {
     type = types.submodule {
       options = {
