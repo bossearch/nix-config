@@ -1,8 +1,8 @@
 {hosts, ...}: let
-  wm = hosts.windowmanager;
+  enabled = hosts.gui.enable && (hosts.gui.windowmanager == "hyprland");
 in {
   programs.hyprland = {
-    enable = wm == "hyprland";
+    enable = enabled;
     withUWSM = true;
     xwayland.enable = true;
   };

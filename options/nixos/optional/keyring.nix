@@ -3,26 +3,24 @@
   lib,
   pkgs,
   ...
-}: let
-  headless = hosts.windowmanager == null;
-in {
+}: {
   environment.systemPackages = with pkgs;
-    if headless
+    if !hosts.gui.enable
     then [gnupg pinentry-curses]
     else [gnome-keyring libsecret polkit_gnome];
 
-  services.gnome.gnome-keyring.enable = !headless;
+  services.gnome.gnome-keyring.enable = !hosts.gui.enable;
 
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
     pinentryPackage =
-      if headless
+      if !hosts.gui.enable
       then pkgs.pinentry-curses
       else pkgs.pinentry-gnome3;
   };
 
-  systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf (!headless) {
+  systemd.user.services.polkit-gnome-authentication-agent-1 = lib.mkIf (!hosts.gui.enable) {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = ["graphical-session.target"];
     after = ["graphical-session.target"];

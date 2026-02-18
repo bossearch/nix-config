@@ -8,7 +8,7 @@
     {
       fstrim.enable = hosts.hostname == "silvia";
       gvfs = {
-        enable = hosts.windowmanager != null;
+        enable = hosts.gui.enable;
         package = pkgs.gnome.gvfs;
       };
       udisks2 = {

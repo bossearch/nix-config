@@ -97,10 +97,6 @@ in {
           default = false;
           type = types.bool;
         };
-        displaymanager = mkOption {
-          default = false;
-          type = types.bool;
-        };
         dnscrypt = mkOption {
           default = false;
           type = types.bool;
@@ -145,11 +141,27 @@ in {
           default = false;
           type = types.bool;
         };
-        windowmanager = mkOption {
-          default = lib.mkDefault "hyprland";
-          type = lib.types.enum [
-            "hyprland"
-          ];
+        gui = mkOption {
+          type = types.submodule {
+            options = {
+              enable = mkOption {
+                default = false;
+                type = types.bool;
+              };
+              displaymanager = mkOption {
+                default = lib.mkDefault "greetd";
+                type = lib.types.enum [
+                  "greetd"
+                ];
+              };
+              windowmanager = mkOption {
+                default = lib.mkDefault "hyprland";
+                type = lib.types.enum [
+                  "hyprland"
+                ];
+              };
+            };
+          };
         };
       };
     };

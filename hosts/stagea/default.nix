@@ -26,8 +26,12 @@
       };
     };
     # optional
+    gui = {
+      enable = true;
+      displaymanager = "greetd";
+      windowmanager = "hyprland";
+    };
     bluetooth = false;
-    displaymanager = true;
     dnscrypt = false;
     pipewire = true;
     proxychains = false;
@@ -39,7 +43,6 @@
     usbguard = false;
     virtmanager = false;
     waydroid = false;
-    windowmanager = "hyprland";
   };
 
   # Do not change these future me !
