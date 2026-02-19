@@ -10,15 +10,15 @@ in {
     type = types.submodule {
       options = {
         hostname = mkOption {
-          default = lib.mkDefault "pc";
+          default = "pc";
           type = types.str;
         };
         username = mkOption {
-          default = lib.mkDefault "bosse";
+          default = "bosse";
           type = types.str;
         };
         shell = mkOption {
-          default = lib.mkDefault "bash";
+          default = "bash";
           type = types.enum [
             "bash"
             "fish"
@@ -26,18 +26,18 @@ in {
           ];
         };
         locale = mkOption {
-          default = lib.mkDefault "en_US.UTF-8";
+          default = "en_US.UTF-8";
           type = types.enum [
             "en_US.UTF-8"
             "id_ID.UTF-8"
           ];
         };
         timezone = mkOption {
-          default = lib.mkDefault "Asia/Singapore";
+          default = "Asia/Singapore";
           type = types.str;
         };
         theme = mkOption {
-          default = lib.mkDefault "tokyo-night-dark";
+          default = "tokyo-night-dark";
           type = types.enum [
             "catppuccin-mocha"
             "tokyo-night-dark"
@@ -99,15 +99,17 @@ in {
                 type = types.bool;
               };
               displaymanager = mkOption {
-                default = lib.mkDefault "greetd";
+                default = "greetd";
                 type = types.enum [
                   "greetd"
+                  "none"
                 ];
               };
               windowmanager = mkOption {
-                default = lib.mkDefault "hyprland";
+                default = "hyprland";
                 type = types.enum [
                   "hyprland"
+                  "none"
                 ];
               };
             };

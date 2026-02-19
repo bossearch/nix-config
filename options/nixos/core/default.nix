@@ -12,9 +12,7 @@
         ++ (
           if name == "default.nix"
           then []
-          else if type == "regular" && lib.hasSuffix ".nix" name
-          then [./${name}]
-          else if type == "directory"
+          else if type == "regular" || type == "directory"
           then [./${name}]
           else []
         )

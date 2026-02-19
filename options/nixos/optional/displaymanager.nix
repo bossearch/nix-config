@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: let
-  enabled = hosts.gui.enable && (hosts.gui.displaymanager == "greetd");
-
   fallbackScript = pkgs.writeShellScript "start-desktop" ''
     # Make sure shell itself doesn't print anything either
     exec 1>/dev/null 2>&1
@@ -17,7 +15,7 @@
   '';
 in {
   services.greetd = {
-    enable = enabled;
+    enable = hosts.gui.displaymanager == "greetd";
     settings = rec {
       initial_session = {
         command = fallbackScript;
@@ -26,5 +24,5 @@ in {
       default_session = initial_session;
     };
   };
-  systemd.services."getty@tty2".enable = enabled;
+  systemd.services."getty@tty2".enable = hosts.gui.displaymanager == "greetd";
 }
