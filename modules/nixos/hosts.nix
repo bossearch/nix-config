@@ -6,7 +6,7 @@
   inherit (lib) mkOption types;
 in {
   imports = [./port.nix];
-  options.spec = mkOption {
+  options.hosts = mkOption {
     type = types.submodule {
       options = {
         hostname = mkOption {
@@ -19,7 +19,7 @@ in {
         };
         shell = mkOption {
           default = lib.mkDefault "bash";
-          type = lib.types.enum [
+          type = types.enum [
             "bash"
             "fish"
             "zsh"
@@ -27,7 +27,7 @@ in {
         };
         locale = mkOption {
           default = lib.mkDefault "en_US.UTF-8";
-          type = lib.types.enum [
+          type = types.enum [
             "en_US.UTF-8"
             "id_ID.UTF-8"
           ];
@@ -38,12 +38,13 @@ in {
         };
         theme = mkOption {
           default = lib.mkDefault "tokyo-night-dark";
-          type = lib.types.enum [
+          type = types.enum [
             "catppuccin-mocha"
             "tokyo-night-dark"
           ];
         };
         disko = mkOption {
+          default = {};
           type = types.submodule {
             options = {
               type = mkOption {
@@ -66,9 +67,9 @@ in {
               };
             };
           };
-          default = {};
         };
         networking = mkOption {
+          default = {};
           type = types.submodule {
             options = {
               bridge = mkOption {
@@ -89,6 +90,29 @@ in {
           };
         };
         # optional modules
+        gui = mkOption {
+          default = {};
+          type = types.submodule {
+            options = {
+              enable = mkOption {
+                default = false;
+                type = types.bool;
+              };
+              displaymanager = mkOption {
+                default = lib.mkDefault "greetd";
+                type = types.enum [
+                  "greetd"
+                ];
+              };
+              windowmanager = mkOption {
+                default = lib.mkDefault "hyprland";
+                type = types.enum [
+                  "hyprland"
+                ];
+              };
+            };
+          };
+        };
         bluetooth = mkOption {
           default = false;
           type = types.bool;
@@ -141,32 +165,10 @@ in {
           default = false;
           type = types.bool;
         };
-        gui = mkOption {
-          type = types.submodule {
-            options = {
-              enable = mkOption {
-                default = false;
-                type = types.bool;
-              };
-              displaymanager = mkOption {
-                default = lib.mkDefault "greetd";
-                type = lib.types.enum [
-                  "greetd"
-                ];
-              };
-              windowmanager = mkOption {
-                default = lib.mkDefault "hyprland";
-                type = lib.types.enum [
-                  "hyprland"
-                ];
-              };
-            };
-          };
-        };
       };
     };
   };
   config = {
-    _module.args.hosts = config.spec;
+    _module.args.hosts = config.hosts;
   };
 }

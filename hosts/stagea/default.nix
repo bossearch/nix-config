@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
   ];
 
-  spec = {
+  hosts = {
     hostname = "stagea";
     username = "bosse";
     shell = "fish";

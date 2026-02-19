@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkOption types;
-  p = config.spec.networking.firewall.port;
+  p = config.hosts.networking.firewall.port;
 in {
-  options.spec.networking.firewall = {
+  options.hosts.networking.firewall = {
     port = mkOption {
       type = types.submodule {
         options = {

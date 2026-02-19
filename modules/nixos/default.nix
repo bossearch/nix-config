@@ -1,3 +1,3 @@
 {
-  default = import ./spec.nix;
+  default = import ./hosts.nix;
 }
