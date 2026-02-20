@@ -7,7 +7,7 @@
   colorScheme =
     schemeFromYAML
     "${hosts.theme}"
-    (builtins.readFile ../../../modules/themes/${hosts.theme}.yaml);
+    (builtins.readFile ../../../themes/${hosts.theme}.yaml);
 in {
   console = {
     earlySetup = true;
