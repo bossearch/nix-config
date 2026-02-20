@@ -102,18 +102,20 @@
       # Main Desktop
       "bosse@silvia" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
-        modules = [./home/bosse/silvia.nix];
+        modules = [./homes/bosse/silvia.nix];
         extraSpecialArgs = {
           inherit inputs outputs;
+          hosts = self.nixosConfigurations.silvia.config.hosts;
         };
       };
 
       # Virtual Machine
       "bosse@stagea" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
-        modules = [./home/bosse/stagea.nix];
+        modules = [./homes/bosse/stagea.nix];
         extraSpecialArgs = {
           inherit inputs outputs;
+          hosts = self.nixosConfigurations.stagea.config.hosts;
         };
       };
     };

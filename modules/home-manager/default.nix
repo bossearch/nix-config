@@ -1,4 +1,4 @@
 {
-  monitors = import ./monitors.nix;
-  spec = import ./spec.nix;
+  default = import ./homes.nix;
+  hosts = import ../nixos/hosts.nix;
 }

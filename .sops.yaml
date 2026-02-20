@@ -3,7 +3,7 @@ keys:
     - &silvia age1kxfx525c9x5x5ylt9yehc0223r6zv4pkhsjwgdhdx8dq7k8x94ksmy4vcq
     - &stagea age1p74ghnw9x3yt55kawaeaaz8cmrmthlg4j8rd4qqv5dsz8s7jqusshjz4xq
 creation_rules:
-  - path_regex: home/bosse/secrets.ya?ml$
+  - path_regex: homes/bosse/secrets.ya?ml$
     key_groups:
     - age:
       - *silvia
