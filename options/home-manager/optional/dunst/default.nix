@@ -1,6 +1,7 @@
 {
   config,
   homes,
+  mylib,
   pkgs,
   ...
 }: let
@@ -9,10 +10,8 @@
   base07 = "#${config.colorScheme.palette.base07}";
   base08 = "#${config.colorScheme.palette.base08}";
 in {
-  imports = [
-    ./dunstsound.nix
-    ./sound.nix
-  ];
+  imports = mylib.autoimport ./.;
+
   services.dunst = {
     enable = homes.dunst;
     iconTheme = {

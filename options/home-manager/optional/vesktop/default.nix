@@ -1,12 +1,12 @@
 {
   homes,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [
-    ./theme.nix
-  ];
+  imports = mylib.autoimport ./.;
+
   home.packages = lib.mkIf homes.vesktop (with pkgs; [
     vesktop
   ]);

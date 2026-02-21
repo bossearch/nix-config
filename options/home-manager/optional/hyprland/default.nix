@@ -2,18 +2,13 @@
   homes,
   hosts,
   lib,
+  mylib,
   pkgs,
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
 in {
-  imports = [
-    ./conf
-    ./scripts
-    ./hypridle.nix
-    ./hyprpaper.nix
-    ./hyprlock.nix
-  ];
+  imports = mylib.autoimport ./.;
 
   wayland.windowManager.hyprland = {
     enable = enabled;

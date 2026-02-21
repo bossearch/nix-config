@@ -2,6 +2,7 @@
   config,
   homes,
   lib,
+  mylib,
   pkgs,
   ...
 }: let
@@ -23,7 +24,8 @@
   base0E = "#${config.colorScheme.palette.base0E}";
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
-  imports = [./daily-wallpaper.nix];
+  imports = mylib.autoimport ./.;
+
   config = lib.mkIf homes.gowall {
     home.activation.gowalldir = lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [ ! -d "${Gowall_dir}" ];  then

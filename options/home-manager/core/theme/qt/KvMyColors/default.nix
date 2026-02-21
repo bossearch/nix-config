@@ -2,6 +2,7 @@
   config,
   hosts,
   lib,
+  mylib,
   ...
 }: let
   base00 = "#${config.colorScheme.palette.base00}";
@@ -13,7 +14,8 @@
   base0D = "#${config.colorScheme.palette.base0D}";
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
-  imports = [./KvMyColors.nix];
+  imports = mylib.autoimport ./.;
+
   home.file.".config/Kvantum/KvMyColors/KvMyColors.kvconfig" = lib.mkIf hosts.gui.enable {
     text = ''
       [%General]

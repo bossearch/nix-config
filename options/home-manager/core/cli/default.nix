@@ -1,24 +1,12 @@
 {
   hosts,
-  lib,
+  mylib,
   pkgs,
   ...
 }: let
   shell = hosts.shell;
 in {
-  imports =
-    lib.foldlAttrs
-    (
-      acc: name: type:
-        acc
-        ++ (
-          if type == "directory" && name != "uair"
-          then [./${name}]
-          else []
-        )
-    )
-    []
-    (builtins.readDir ./.);
+  imports = mylib.autoimport ./.;
 
   home.packages = with pkgs; [
     (pkgs.ouch.override {

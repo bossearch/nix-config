@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [inputs.copas.homeManagerModules.default];
+
   programs.copas = {
     enable = homes.copas;
     systemd = true;

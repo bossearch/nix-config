@@ -1,14 +1,11 @@
 {
   hosts,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [
-    ./lsfg.nix
-    ./lutris.nix
-    ./minecraft.nix
-  ];
+  imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf hosts.gui.enable (with pkgs; [
     mangohud

@@ -1,15 +1,13 @@
 {
   hosts,
   lib,
+  mylib,
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
 in {
-  imports = [
-    ./player-seek.nix
-    ./player-skip.nix
-    ./player-toggle.nix
-  ];
+  imports = mylib.autoimport ./.;
+
   home.file.".config/hypr/scripts/playerctl/playerctl.sh" = lib.mkIf enabled {
     executable = true;
     text = ''

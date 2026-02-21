@@ -11,6 +11,7 @@
   ];
 in {
   imports = [inputs.impermanence.nixosModules.impermanence];
+
   config = lib.mkIf impermanence {
     environment.persistence = {
       "/persist" = {

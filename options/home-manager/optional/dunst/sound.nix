@@ -4,6 +4,6 @@
   ...
 }: {
   home.file.".config/dunst/sound" = lib.mkIf homes.dunst {
-    source = ./assets;
+    source = ./.assets;
   };
 }

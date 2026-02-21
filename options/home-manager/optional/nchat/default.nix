@@ -1,10 +1,11 @@
 {
   homes,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [./conf];
+  imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf homes.nchat [
     pkgs.unstable.nchat

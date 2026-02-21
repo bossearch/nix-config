@@ -1,6 +1,7 @@
 {
   config,
   hosts,
+  mylib,
   pkgs,
   ...
 }: let
@@ -9,7 +10,8 @@
     then "cpu proc gpu0"
     else "cpu proc";
 in {
-  imports = [./base16.nix];
+  imports = mylib.autoimport ./.;
+
   programs.btop = {
     enable = true;
     package = pkgs.btop-rocm;

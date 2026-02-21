@@ -7,9 +7,9 @@
   kittyfish = homes.kitty && hosts.shell == "fish";
 in {
   imports = [
+    ./completions.nix
+    ./fzf_complete.nix
     ./starship.nix
-    ./functions/fish/fzf_complete.nix
-    ./functions/fish/completions.nix
   ];
   programs.fish = {
     enable = hosts.shell == "fish";
@@ -85,7 +85,7 @@ in {
       bridge-disable = "nmcli con down br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
     };
-    functions = import ./functions/fish;
+    functions = import ./.functions;
   };
   programs.kitty.shellIntegration = {
     enableFishIntegration = kittyfish;

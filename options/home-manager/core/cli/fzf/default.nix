@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  mylib,
+  ...
+}: let
   base00 = "#${config.colorScheme.palette.base00}";
   base01 = "#${config.colorScheme.palette.base01}";
   base02 = "#${config.colorScheme.palette.base02}";
@@ -12,7 +16,8 @@
   base0E = "#${config.colorScheme.palette.base0E}";
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
-  imports = [./extra];
+  imports = mylib.autoimport ./.;
+
   programs.fzf = {
     enable = true;
     defaultCommand = "fd --type f --strip-cwd-prefix --hidden --follow --color=auto";

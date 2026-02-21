@@ -1,10 +1,6 @@
-{
-  imports = [
-    ./keymap.nix
-    ./plugins.nix
-    ./settings.nix
-    ./theme.nix
-  ];
+{mylib, ...}: {
+  imports = mylib.autoimport ./.;
+
   programs.yazi = {
     enable = true;
     initLua = ''

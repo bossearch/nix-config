@@ -2,9 +2,11 @@
   homes,
   hosts,
   lib,
+  mylib,
   ...
 }: {
-  imports = [./extras];
+  imports = mylib.autoimport ./.;
+
   home.file.".mozilla/firefox/${hosts.username}/chrome/userChrome.css" = lib.mkIf homes.firefox.enable {
     text = ''
       @import url(extras/custom-button.css);

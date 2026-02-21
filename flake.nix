@@ -73,6 +73,7 @@
           };
         }
     );
+    mylib = import ./libs {inherit lib;};
   in {
     inherit lib;
     nixosModules = import ./modules/nixos;
@@ -86,14 +87,14 @@
       silvia = lib.nixosSystem {
         modules = [./hosts/silvia];
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs mylib;
         };
       };
       # Virtual Machine
       stagea = lib.nixosSystem {
         modules = [./hosts/stagea];
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs mylib;
         };
       };
     };
@@ -104,7 +105,7 @@
         pkgs = pkgsFor.x86_64-linux;
         modules = [./homes/bosse/silvia.nix];
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs mylib;
           hosts = self.nixosConfigurations.silvia.config.hosts;
         };
       };
@@ -114,7 +115,7 @@
         pkgs = pkgsFor.x86_64-linux;
         modules = [./homes/bosse/stagea.nix];
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs mylib;
           hosts = self.nixosConfigurations.stagea.config.hosts;
         };
       };

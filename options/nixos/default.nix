@@ -1,16 +1,10 @@
-{lib, ...}: {
+{
+  mylib,
+  outputs,
+  ...
+}: {
   imports =
-    [./core]
-    ++ lib.foldlAttrs
-    (
-      acc: name: type:
-        acc
-        ++ (
-          if type == "regular" && lib.hasSuffix ".nix" name
-          then [(./optional + "/${name}")]
-          else []
-        )
-    )
-    []
-    (builtins.readDir ./optional);
+    (mylib.autoimport ./core)
+    ++ (mylib.autoimport ./optional)
+    ++ (builtins.attrValues outputs.nixosModules);
 }

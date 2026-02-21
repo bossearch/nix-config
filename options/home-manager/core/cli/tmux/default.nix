@@ -1,8 +1,10 @@
-{pkgs, ...}: {
-  imports = [
-    ./mythemux.nix
-    ./theme.nix
-  ];
+{
+  mylib,
+  pkgs,
+  ...
+}: {
+  imports = mylib.autoimport ./.;
+
   programs.tmux = {
     enable = true;
     baseIndex = 1;

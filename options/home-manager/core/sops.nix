@@ -9,6 +9,7 @@
   cacheDir = "${config.home.homeDirectory}/.cache/${hosts.username}";
 in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
+
   config = lib.mkIf hosts.sops {
     home.packages = with pkgs; [
       sops

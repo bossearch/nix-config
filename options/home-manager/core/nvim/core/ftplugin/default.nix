@@ -1,17 +1,5 @@
-{lib, ...}: {
-  imports =
-    lib.foldlAttrs
-    (
-      acc: name: type:
-        acc
-        ++ (
-          if type == "regular" && name != "default.nix"
-          then [./${name}]
-          else []
-        )
-    )
-    []
-    (builtins.readDir ./.);
+{mylib, ...}: {
+  imports = mylib.autoimport ./.;
 
   programs.nixvim = {
     filetype = {

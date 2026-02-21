@@ -1,12 +1,12 @@
 {
   hosts,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [
-    ./assets
-  ];
+  imports = mylib.autoimport ./.;
+
   home.packages = lib.mkIf hosts.udevqmk [
     pkgs.unstable.qmk
   ];

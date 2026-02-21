@@ -1,5 +1,6 @@
 {
   imports = [./toggle.nix];
+
   programs.nixvim.plugins.snacks = {
     enable = true;
     lazyLoad = {

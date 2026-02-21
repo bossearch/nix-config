@@ -1,14 +1,11 @@
 {
   homes,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [
-    ./scripts
-    ./modules.nix
-    ./style.nix
-  ];
+  imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf homes.waybar (with pkgs; [
     ddcutil

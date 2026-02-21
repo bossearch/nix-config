@@ -1,6 +1,3 @@
-{
-  imports = [
-    ./mpv.nix
-    ./tty.nix
-  ];
+{mylib, ...}: {
+  imports = mylib.autoimport ./.;
 }

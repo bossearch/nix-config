@@ -1,10 +1,14 @@
-{inputs, ...}: {
-  imports = [
-    inputs.nixvim.homeModules.nixvim
-    ./core
-    ./lib
-    ./plugins
-  ];
+{
+  inputs,
+  mylib,
+  ...
+}: {
+  imports =
+    [
+      inputs.nixvim.homeModules.nixvim
+    ]
+    ++ (mylib.autoimport ./.);
+
   programs.nixvim = {
     enable = true;
     performance = {

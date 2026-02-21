@@ -2,11 +2,11 @@
   homes,
   hosts,
   lib,
+  mylib,
   ...
 }: {
-  imports = [
-    ./chrome
-  ];
+  imports = mylib.autoimport ./.;
+
   home.file.".mozilla/firefox/${hosts.username}/user.js" = lib.mkIf homes.firefox.enable {
     text = ''
       //

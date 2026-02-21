@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  time.timeZone = "${hosts.timezone}";
+
   services = lib.mkMerge [
     {
       fstrim.enable = hosts.hostname == "silvia";

@@ -3,6 +3,7 @@
   hosts,
   lib,
   pkgs,
+  mylib,
   ...
 }: let
   pkgsCursor =
@@ -15,10 +16,7 @@
     then 24
     else 22;
 in {
-  imports = [
-    ./gtk
-    ./qt
-  ];
+  imports = mylib.autoimport ./.;
 
   home = lib.mkIf hosts.gui.enable {
     packages = with pkgs; [

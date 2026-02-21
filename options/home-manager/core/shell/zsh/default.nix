@@ -1,15 +1,14 @@
 {
   homes,
   hosts,
+  mylib,
   pkgs,
   ...
 }: let
   kittyzsh = homes.kitty && hosts.shell == "zsh";
 in {
-  imports = [
-    ./.p10k.nix
-    ./functions/zsh
-  ];
+  imports = mylib.autoimport ./.;
+
   programs.zsh = {
     enable = hosts.shell == "zsh";
     dotDir = ".config/zsh";

@@ -2,18 +2,19 @@
   homes,
   hosts,
   lib,
+  mylib,
   pkgs,
   ...
 }: {
-  imports = [./my-custom-fox];
+  imports = mylib.autoimport ./.;
+
   home.packages = lib.mkIf homes.firefox.enable (with pkgs; [
     xdm
   ]);
 
   programs.firefox = {
     enable = homes.firefox.enable;
-    # policies = import ./policies;
-    policies = import ./policies {inherit homes;};
+    policies = import ./.policies {inherit homes;};
     profiles.${hosts.username} = {
       id = 0;
       isDefault = true;

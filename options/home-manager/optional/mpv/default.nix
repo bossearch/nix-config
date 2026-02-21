@@ -45,7 +45,7 @@
       yt-dlp
     ];
     file.".config/mpv/fonts" = {
-      source = ./fonts;
+      source = ./.fonts;
       recursive = true;
     };
   };

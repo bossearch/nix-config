@@ -1,13 +1,10 @@
 {
   hosts,
   lib,
+  mylib,
   ...
 }: {
-  imports = [
-    ./KvMyColors
-    ./kdeglobals.nix
-    ./qt5ct.nix
-  ];
+  imports = mylib.autoimport ./.;
 
   home.file.".config/Kvantum/kvantum.kvconfig" = lib.mkIf hosts.gui.enable {
     text = ''
