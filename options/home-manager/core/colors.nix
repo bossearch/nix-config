@@ -1,8 +1,10 @@
 {
   hosts,
+  mylib,
   inputs,
   ...
 }: let
+  themePath = mylib.at "themes/${hosts.theme}.yaml";
   nix-colors = inputs.nix-colors;
 in {
   imports = [
@@ -12,5 +14,5 @@ in {
   colorScheme =
     nix-colors.lib.schemeFromYAML
     "${hosts.theme}"
-    (builtins.readFile ../../../themes/${hosts.theme}.yaml);
+    (builtins.readFile themePath);
 }

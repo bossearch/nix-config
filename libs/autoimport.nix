@@ -5,7 +5,7 @@
         acc
         ++ lib.optional (
           (type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix")
-          || (type == "directory" && !lib.hasPrefix "." name)
+          || (type == "directory" && !(lib.hasPrefix "." name))
         ) (path + "/${name}")
     ) [] (builtins.readDir path);
 }

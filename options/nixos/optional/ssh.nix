@@ -1,6 +1,7 @@
 {
   hosts,
   lib,
+  mylib,
   outputs,
   ...
 }: let
@@ -28,7 +29,7 @@ in {
     ];
     # Each hosts public key
     knownHosts = lib.genAttrs (lib.remove hosts.hostname hostList) (hostname: {
-      publicKeyFile = ../../../hosts/${hostname}/ssh_host_ed25519_key.pub;
+      publicKeyFile = mylib.at "hosts/${hostname}/ssh_host_ed25519_key.pub";
     });
   };
 }

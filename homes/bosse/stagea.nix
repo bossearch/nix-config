@@ -1,6 +1,6 @@
-{
+{mylib, ...}: {
   imports = [
-    ../../options/home-manager
+    (mylib.at "options/home-manager")
   ];
 
   homes = {

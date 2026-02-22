@@ -2,13 +2,14 @@
   config,
   hosts,
   lib,
+  mylib,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   passwordFile =
     if hosts.sops
     then config.sops.secrets.passwd.path
-    else ../../${hosts.hostname}/user_password_hash;
+    else mylib.at "user_password_hash";
 in {
   # Define a user account.
   sops.secrets.passwd.neededForUsers = lib.mkIf hosts.sops true;
@@ -32,7 +33,7 @@ in {
         ])
       ];
       openssh.authorizedKeys.keyFiles = [
-        ../../../hosts/${hosts.hostname}/id_${hosts.hostname}.pub
+        (mylib.at "hosts/${hosts.hostname}/id_${hosts.hostname}.pub")
       ];
       hashedPasswordFile = passwordFile;
     };

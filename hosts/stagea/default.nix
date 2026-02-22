@@ -1,6 +1,6 @@
-{
+{mylib, ...}: {
   imports = [
-    ../../options/nixos
+    (mylib.at "options/nixos")
     ./hardware-configuration.nix
   ];
 

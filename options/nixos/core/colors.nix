@@ -1,13 +1,15 @@
 {
   hosts,
   inputs,
+  mylib,
   ...
 }: let
   inherit (inputs.nix-colors.lib) schemeFromYAML;
+  themePath = mylib.at "themes/${hosts.theme}.yaml";
   colorScheme =
     schemeFromYAML
     "${hosts.theme}"
-    (builtins.readFile ../../../themes/${hosts.theme}.yaml);
+    (builtins.readFile themePath);
 in {
   console = {
     earlySetup = true;

@@ -3,6 +3,7 @@
   hosts,
   inputs,
   lib,
+  mylib,
   pkgs,
   ...
 }: let
@@ -17,7 +18,7 @@ in {
 
     sops = {
       age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-      defaultSopsFile = ../../../homes/${hosts.username}/secrets.yaml;
+      defaultSopsFile = mylib.at "homes/${hosts.username}/secrets.yaml";
       secrets = {
         "Latitude" = {};
         "Longitude" = {};

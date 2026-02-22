@@ -3,6 +3,7 @@
   hosts,
   inputs,
   lib,
+  mylib,
   ...
 }: let
   isEd25519 = k: k.type == "ed25519";
@@ -13,6 +14,6 @@ in {
 
   sops = lib.mkIf hosts.sops {
     age.sshKeyPaths = map getKeyPath keys;
-    defaultSopsFile = ../../../hosts/${hosts.hostname}/secrets.yaml;
+    defaultSopsFile = mylib.at "hosts/${hosts.hostname}/secrets.yaml";
   };
 }
