@@ -18,7 +18,7 @@ in {
       echo "󰂞" >"$DUNST_ICON_FILE"
 
       HYPRSUNSET_ICON_FILE="$HOME/.cache/${hosts.username}/hyprsunset-icon"
-      echo "  " >"$HYPRSUNSET_ICON_FILE"
+      echo "" >"$HYPRSUNSET_ICON_FILE"
       HYPRSUNSET_TEMP_FILE="$HOME/.cache/${hosts.username}/temperature"
       HYPRSUNSET_TEMP_SCROLL="$HOME/.cache/${hosts.username}/temp-scroll"
       echo "6500" | tee "$HYPRSUNSET_TEMP_FILE" "$HYPRSUNSET_TEMP_SCROLL"
