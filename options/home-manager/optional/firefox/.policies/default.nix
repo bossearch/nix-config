@@ -1,7 +1,7 @@
 {homes, ...}: {
   BlockAboutProfiles = true;
   DisableFeedbackCommands = true;
-  DisableFirefoxAccounts = true;
+  DisableFirefoxAccounts = false;
   DisableFirefoxStudies = true;
   DisableSetDesktopBackground = true;
   DisableTelemetry = true;
