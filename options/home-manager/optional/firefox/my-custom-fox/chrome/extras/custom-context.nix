@@ -15,10 +15,7 @@
       #context_playSelectedTabs,
       #context_toggleMuteTab,
       #context_toggleMuteSelectedTabs,
-      #context_unloadTab,
-
-      #context_askChat,
-      #context_askChat + menuseparator,
+      #context_duplicateTabs + menuseparator,
 
       #context_bookmarkTab,
       #context_moveTabOptions,
@@ -33,8 +30,6 @@
       #context-savelink,
       #context-sep-selectall,
       #context-sep-screenshots,
-      /*#context-ask-chat,*/
-      #context-ask-chat + menuseparator,
       #context-viewsource,
 
       /*image*/

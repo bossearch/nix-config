@@ -18,6 +18,10 @@
     ];
     firefox = {
       enable = true;
+      verticaltab = {
+        enable = false;
+        position = "left";
+      };
       allowlist = [
         "https://accounts.google.com"
         "https://bossearch.github.io"

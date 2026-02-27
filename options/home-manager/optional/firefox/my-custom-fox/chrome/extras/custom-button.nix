@@ -7,12 +7,21 @@
   home.file.".mozilla/firefox/${hosts.username}/chrome/extras/custom-button.css" = lib.mkIf homes.firefox.enable {
     text = ''
       /* Removes the annoying rainbow thing from the hamburger  */
-      #appMenu-fxa-separator{border-image:none !important;}
+      #appMenu-fxa-status2,
+      #appMenu-fxa-separator {
+        display: none !important;
+      }
 
       /* Removes X buttons and spaces */
       .titlebar-buttonbox-container { display: none !important; }
       .titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"]{display: none !important}
       #tabbrowser-tabs{border-inline-start-width: 0!important}
+
+      /* Removes back and forward buttons */
+      #back-button,
+      #forward-button {
+        display:none !important;
+      }
 
       /* Removes shield buttons in the urlbar */
       #tracking-protection-icon-container { display: none !important; }

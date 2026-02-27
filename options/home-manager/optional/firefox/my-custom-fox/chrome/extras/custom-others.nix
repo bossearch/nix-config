@@ -13,6 +13,7 @@
       /* This is a hack that only "kinda" works! */
       /* Changes sidebar header to appear as small "notch" at the top of the sidebar. Hovering it will show full sidebar so you can have access to sidebar switcher button. The caveat is that you need to click the switcher button TWICE - otherwise the header and switcher popup will hide themselver as soon as cursor is moved on top of the switcher popup. */
 
+      /*
       #sidebar-header{
         display: flex;
         position: absolute;
@@ -43,6 +44,7 @@
       #sidebar-spacer{
         flex-grow: 1;
       }
+      */
 
       /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_statuspanel_when_fullscreen.css made available under Mozilla Public License v. 2.0
       See the above repository for updates as well as full license text. */

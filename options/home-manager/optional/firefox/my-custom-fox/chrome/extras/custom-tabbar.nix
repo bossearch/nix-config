@@ -48,6 +48,30 @@
       #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([multiselected])
         > .tab-stack
         > .tab-background:-moz-lwtheme { outline-color: var(--toolbarseparator-color) !important; }
+
+      /* all tab menu */
+      #allTabsMenu-searchTabs,
+      #allTabsMenu-closeDuplicateTabs,
+      #allTabsMenu-containerTabsButton,
+      #allTabsMenu-containerTabsButton + toolbarseparator,
+      h2.subview-subheader:nth-child(8) {
+        display: none !important;
+      }
+
+      /* vertical-tab */
+      #tabbrowser-tabs[orient="vertical"] {
+        &:not([expanded]) {
+          .tab-close-button {
+            opacity: 0 !important;
+          }
+        }
+      }
+
+      #tabbrowser-arrowscrollbox[orient="vertical"] >
+      #tabbrowser-arrowscrollbox-periphery >
+      #tabs-newtab-button {
+        display: none !important;
+      }
     '';
   };
 }

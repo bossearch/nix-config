@@ -7,12 +7,24 @@
     Value = true;
     Status = "default";
   };
+  "browser.newtabpage.activity-stream.feeds.topsites" = {
+    Value = false;
+    Status = "default";
+  };
+  "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = {
+    Value = false;
+    Status = "default";
+  };
   "browser.ping-centre.telemetry" = {
     Value = false;
     Status = "default";
   };
   "browser.preferences.defaultPerformanceSettings.enabled" = {
     Value = false;
+    Status = "default";
+  };
+  "browser.preferences.experimental.hidden" = {
+    Value = true;
     Status = "default";
   };
   "browser.search.separatePrivateDefault" = {
@@ -28,6 +40,10 @@
     Value = 3;
     Status = "default";
     Type = "number";
+  };
+  "browser.tabs.groups.smart.userEnabled" = {
+    Value = false;
+    Status = "default";
   };
   "browser.tabs.hoverPreview.enabled" = {
     Value = false;
@@ -52,11 +68,7 @@
     Status = "default";
     Type = "string";
   };
-  "browser.uiCustomization.state" = {
-    Value = "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_20fc2e06-e3e4-4b2b-812b-ab431220cada_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"newtaboverride_agenedia_com-browser-action\",\"_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action\",\"side-view_mozilla_org-browser-action\",\"_84c8edb0-65ca-43a5-bc53-0e80f41486e1_-browser-action\",\"extension_one-tab_com-browser-action\"],\"nav-bar\":[\"back-button\",\"stop-reload-button\",\"forward-button\",\"vertical-spacer\",\"urlbar-container\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"reset-pbm-toolbar-button\",\"unified-extensions-button\",\"addon_darkreader_org-browser-action\",\"78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"xdm-v8-browser-helper_subhra74_github_io-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"reset-pbm-toolbar-button\",\"developer-button\",\"_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action\",\"side-view_mozilla_org-browser-action\",\"newtaboverride_agenedia_com-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_84c8edb0-65ca-43a5-bc53-0e80f41486e1_-browser-action\",\"addon_darkreader_org-browser-action\",\"extension_one-tab_com-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action\",\"screenshot-button\",\"_20fc2e06-e3e4-4b2b-812b-ab431220cada_-browser-action\",\"xdm-v8-browser-helper_subhra74_github_io-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"vertical-tabs\",\"PersonalToolbar\",\"unified-extensions-area\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":23,\"newElementCount\":4}";
-    Status = "default";
-    Type = "string";
-  };
+
   "browser.uidensity" = {
     Value = 1;
     Status = "default";
@@ -72,6 +84,10 @@
     Status = "default";
     Type = "string";
   };
+  "browser.urlbar.shortcuts.actions" = {
+    Value = false;
+    Status = "default";
+  };
   "browser.urlbar.shortcuts.bookmarks" = {
     Value = false;
     Status = "default";
@@ -85,6 +101,10 @@
     Status = "default";
   };
   "browser.urlbar.suggest.engines" = {
+    Value = false;
+    Status = "default";
+  };
+  "browser.urlbar.suggest.quickactions" = {
     Value = false;
     Status = "default";
   };
@@ -137,6 +157,11 @@
     Value = false;
     Status = "default";
   };
+  "extensions.webextensions.restrictedDomains" = {
+    Value = "";
+    Status = "default";
+    Type = "string";
+  };
   "general.autoScroll" = {
     Value = true;
     Status = "default";
@@ -144,6 +169,11 @@
   "general.smoothScroll" = {
     Value = true;
     Status = "default";
+  };
+  "general.smoothScroll.currentVelocityWeighting" = {
+    Value = "1";
+    Status = "default";
+    Type = "string";
   };
   "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = {
     Value = 12;
@@ -178,11 +208,6 @@
     Value = 250;
     Status = "default";
     Type = "number";
-  };
-  "general.smoothScroll.currentVelocityWeighting" = {
-    Value = "1";
-    Status = "default";
-    Type = "string";
   };
   "general.smoothScroll.stopDecelerationWeighting" = {
     Value = "1";
@@ -240,11 +265,11 @@
     Status = "default";
   };
   "privacy.userContext.ui.enabled" = {
-    Value = true;
+    Value = false;
     Status = "default";
   };
   "toolkit.legacyUserProfileCustomizations.stylesheets" = {
-    Value = true;
+    Value = false;
     Status = "default";
   };
 }

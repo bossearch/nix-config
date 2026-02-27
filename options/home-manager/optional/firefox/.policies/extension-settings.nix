@@ -13,6 +13,7 @@
         "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
+        "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
       ];
       "selectedFilterLists" = [
         "user-filters"
@@ -34,16 +35,17 @@
         "easylist-notifications"
         "easylist-annoyances"
         "ublock-annoyances"
-        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+        "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt"
+        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
         "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Dandelion Sprout's Anti-Malware List.txt"
-        "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
+        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt"
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds-ublock.txt"
         "https://raw.githubusercontent.com/iam-py-test/my_filters_001/main/antimalware.txt"
-        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt"
-        "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-        "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt"
         "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
+        "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
+        "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
+        "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
       ];
       "hiddenSettings" = {};
       "whitelist" = [

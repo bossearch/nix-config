@@ -108,6 +108,24 @@ in {
                 default = false;
                 type = types.bool;
               };
+              verticaltab = mkOption {
+                default = {};
+                type = types.submodule {
+                  options = {
+                    enable = mkOption {
+                      default = false;
+                      type = types.bool;
+                    };
+                    position = mkOption {
+                      default = "left";
+                      type = types.enum [
+                        "left"
+                        "right"
+                      ];
+                    };
+                  };
+                };
+              };
               allowlist = lib.mkOption {
                 type = types.listOf types.str;
                 default = [];

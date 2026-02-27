@@ -17,7 +17,11 @@
       }
     ];
     firefox = {
-      enable = false;
+      enable = true;
+      verticaltab = {
+        enable = true;
+        position = "left";
+      };
       allowlist = [];
     };
     game = {
