@@ -1,4 +1,23 @@
-{
+{hosts, ...}: let
+  keyboard =
+    if hosts.hostname == "silvia"
+    then ''
+      device {
+          name = foostan-corne
+          kb_options = lv3:ralt_switch
+          repeat_rate = 30    # The repeat rate for held-down keys, in repeats per second.
+          repeat_delay = 600  # Delay before a held-down key is repeated, in milliseconds.
+      }
+    ''
+    else ''
+      device {
+          name = at-translated-set-2-keyboard
+          kb_options = lv3:ralt_switch
+          repeat_rate = 30    # The repeat rate for held-down keys, in repeats per second.
+          repeat_delay = 600  # Delay before a held-down key is repeated, in milliseconds.
+      }
+    '';
+in {
   wayland.windowManager.hyprland.extraConfig = ''
     #############
     ### INPUT ###
@@ -38,11 +57,6 @@
       }
 
     # keyboard
-    device {
-        name = at-translated-set-2-keyboard
-        kb_options = lv3:ralt_switch
-        repeat_rate = 30    # The repeat rate for held-down keys, in repeats per second.
-        repeat_delay = 600  # Delay before a held-down key is repeated, in milliseconds.
-    }
+    ${keyboard}
   '';
 }
