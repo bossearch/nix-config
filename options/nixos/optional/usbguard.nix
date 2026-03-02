@@ -34,7 +34,7 @@
           allow id 8087:0aa7 with-interface { e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 }
 
           allow id 2109:2815 with-interface { 09:00:01 09:00:02 }
-          allow id 4653:0001 with-interface { 03:01:01 03:00:00 }
+          allow id 4653:0001
           allow id 1b1c:1b3e serial "0A026035AF359CA25B23342BF5001BC6" with-interface { 03:01:02 03:00:00 }
         '')
         (lib.mkIf (hosts.hostname == "stagea") ''

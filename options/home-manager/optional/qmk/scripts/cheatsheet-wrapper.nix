@@ -4,13 +4,14 @@
   lib,
   ...
 }: let
+  enabled = hosts.gui.enable && hosts.udevqmk;
   mymonitor = builtins.all (m: m.height == 1440) homes.monitor;
   position =
     if mymonitor
     then "1280 720"
     else "960 540";
 in {
-  home.file.".config/qmk/cheatsheet-wrapper.sh" = lib.mkIf hosts.gui.enable {
+  home.file.".config/qmk/cheatsheet-wrapper.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash

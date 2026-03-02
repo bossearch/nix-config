@@ -88,8 +88,6 @@
     bind = $hyper, RETURN, movetoworkspace, special:scratchpad
     bind = $meh, G, exec, ~/.config/hypr/scripts/game-mode.sh
     bind = $hyper, G, exec, rm -rf ~/.cache/gamemode && notify-send "Game Mode" "File Deleted" -u low
-    bind = $meh, T, togglespecialworkspace, gamespace
-    bind = $hyper, T, movetoworkspace, special:gamespace
 
     # Scroll through existing workspaces with $meh + scroll
     bind = $meh, mouse_down, workspace, e+1

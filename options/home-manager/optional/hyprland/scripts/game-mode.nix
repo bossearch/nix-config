@@ -53,15 +53,17 @@ in {
         if [ "$current_workspace" != "special:gamespace" ]; then
           hyprctl dispatch togglespecialworkspace gamespace
         fi
+        ~/.config/qmk/crkbd-toggle-game.py 1
         apply_gamemode
         touch "$gamemode_file"
         notify-send -a game_on "Game Mode" "Activated"
       }
 
       deactivate_gamemode() {
-        # if [ "$current_workspace" = "special:gamespace" ]; then
-        #   hyprctl dispatch togglespecialworkspace gamespace
-        # fi
+        if [ "$current_workspace" = "special:gamespace" ]; then
+          hyprctl dispatch togglespecialworkspace gamespace
+        fi
+        ~/.config/qmk/crkbd-toggle-game.py 0
         hyprctl reload
         rm -f "$gamemode_file"
         notify-send -a game_off "Game Mode" "Deactivated"

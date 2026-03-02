@@ -2,8 +2,10 @@
   hosts,
   lib,
   ...
-}: {
-  home.file.".config/qmk/crkbd-cheatsheet.sh" = lib.mkIf hosts.gui.enable {
+}: let
+  enabled = hosts.gui.enable && hosts.udevqmk;
+in {
+  home.file.".config/qmk/crkbd-cheatsheet.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       qwr="
