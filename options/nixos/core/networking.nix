@@ -8,6 +8,8 @@
       networking = {
         hostName = hosts.hostname;
         networkmanager.enable = true;
+        nameservers = lib.mkIf hosts.dnscrypt ["127.0.0.1" "::1"];
+        networkmanager.dns = lib.mkIf hosts.dnscrypt "none";
       };
     }
     {
@@ -23,13 +25,7 @@
         trustedInterfaces = lib.mkIf hosts.virtmanager ["virbr0"];
       };
     }
-    (lib.mkIf hosts.dnscrypt {
-      networking = {
-        nameservers = ["127.0.0.1" "::1"];
-        networkmanager.dns = "none";
-      };
-    })
-    (lib.mkIf hosts.bridge {
+    (lib.mkIf hosts.networking.bridge {
       networking.networkmanager.ensureProfiles.profiles = {
         "br0" = {
           connection = {
