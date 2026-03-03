@@ -44,6 +44,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Third party programs, not packaged with nix
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+
     # My own program, packaged with nix
     copas = {
       url = "github:bossearch/copas";
