@@ -57,7 +57,7 @@
     nautilus = true;
     nchat = false;
     neomutt = false;
-    newsboat = false;
+    newsboat = true;
     nyaa = true;
     obsidian = true;
     spicetify = true;
