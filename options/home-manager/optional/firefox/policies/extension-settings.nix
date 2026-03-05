@@ -13,7 +13,6 @@
         "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-        "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
       ];
       "selectedFilterLists" = [
         "user-filters"
@@ -45,7 +44,6 @@
         "https://raw.githubusercontent.com/liamengland1/miscfilters/master/antipaywall.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
         "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-        "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
       ];
       "hiddenSettings" = {};
       "whitelist" = [

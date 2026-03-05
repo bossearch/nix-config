@@ -45,6 +45,7 @@
   /* all tab menu */
   #allTabsMenu-searchTabs,
   #allTabsMenu-closeDuplicateTabs,
+  #allTabsMenu-syncedTabs,
   #allTabsMenu-containerTabsButton,
   #allTabsMenu-containerTabsButton + toolbarseparator,
   h2.subview-subheader:nth-child(8) {

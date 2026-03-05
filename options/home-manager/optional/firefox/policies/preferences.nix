@@ -261,7 +261,7 @@
     Status = "default";
   };
   "privacy.userContext.enabled" = {
-    Value = true;
+    Value = false;
     Status = "default";
   };
   "privacy.userContext.ui.enabled" = {

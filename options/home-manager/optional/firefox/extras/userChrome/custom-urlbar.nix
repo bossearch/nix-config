@@ -7,15 +7,14 @@
         then {
           left = "0px";
           right = "8px";
-          top = "-29px";
+          top = "-38px";
         }
         else {
           left = "8px";
           right = "0px";
-          top = "-29px";
+          top = "-38px";
         };
       navigator-toolbox = ''
-        margin-top: -9px;
         padding: 6px;
       '';
       vertical-spacer = ''
@@ -30,7 +29,7 @@
         right = "8px";
         top = "-67px";
       };
-      navigator-toolbox = "margin-top: calc(-1 * var(--uc-toolbox-height));";
+      navigator-toolbox = "";
       vertical-spacer = "";
     };
 in ''
@@ -50,37 +49,28 @@ in ''
     opacity: 1 !important;
   }
 
-  /* work but you need to hover on correct place which is on urlbar box area */
+  /* Hide navigator-toolbox */
+  #navigator-toolbox {
+    opacity: 0;
+    ${css.navigator-toolbox}
+  }
+
+  /* Show navigator-toolbox */
+  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) {
+    opacity: 1 !important;
+  }
+
+  /* Hide urlbar */
   #urlbar{
     opacity: 0;
+    pointer-events: none;
   }
 
-  #navigator-toolbox {
-    transition: margin-top 0.2s ease-in-out, opacity 0.2s ease-in-out !important;
-    ${css.navigator-toolbox}
-    opacity: 0;
-  }
-
-  /* Prevent toolbox from showing when opening a new tab */
-  /*#navigator-toolbox:has(#urlbar:focus-within) {*/
-  /*  margin-top: calc(-1 * var(--uc-toolbox-height)) !important;*/
-  /*  opacity: 0 !important;*/
-  /*}*/
-
-  /* Show toolbox when hovered or focused */
-  #navigator-toolbox:hover,
-  #navigator-toolbox:focus-within {
-    margin-top: 0px !important;
+  /* Show urlbar */
+  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) #urlbar {
     opacity: 1 !important;
-  }
-
-  /* show url bar when hovering or focus on navigator-toolbox and nav-bar*/
-  #navigator-toolbox:hover #urlbar,
-  #navigator-toolbox:focus-within #urlbar,
-  #nav-bar:hover #urlbar,
-  #nav-bar:focus-within #urlbar {
-    opacity: 1 !important;
-    transition: opacity 0.1s ease-in-out !important;
+    pointer-events: auto !important;
+    transition: opacity 0.2s cubic-bezier(1, 0, 1, 0) !important;
   }
 
   /* Shift the web content up when the toolbox is hidden */
@@ -94,23 +84,21 @@ in ''
     overflow: hidden;
   }
 
-  #navigator-toolbox:hover ~ #browser,
-  #navigator-toolbox:focus-within ~ #browser,
-  #nav-bar:hover #urlbar ~ #browser,
-  #nav-bar:focus-within #urlbar ~ #browser {
+  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) ~ #browser,
+  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) #urlbar ~ #browser {
     margin-top: 0px !important;
+    transition: margin-top 0.2s ease-in-out !important;
   }
 
-  /* Prevent only navigator-toolbox hidden when moving tabs sadly not work on multiple windows */
+  /* Prevent tab-bar hidden when moving tabs sadly not work on multiple windows */
   #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) {
-    margin-top: 0px !important;
-    transition: margin-top 0.2s ease-in-out, opacity 0.2s ease-in-out;
     opacity: 1 !important;
   }
-  #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) #nav-bar,
+  #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) #nav-bar {
+    margin-top: 32px !important;
+  }
   #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) #urlbar {
     opacity: 0 !important;
   }
-
   ${css.vertical-spacer}
 ''
