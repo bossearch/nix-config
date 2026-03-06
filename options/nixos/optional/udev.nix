@@ -75,8 +75,9 @@ in {
           RUN+="${automatedusbguard} $env{DEVNAME}"
         '')
 
-        (lib.optional (hosts.udevqmk && hosts.hostname != "stagea") ''
+        (lib.optional (hosts.udevqmk && hosts.hostname == "silvia") ''
           # raw-hid for corne
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="0001", MODE="0666", TAG+="uaccess"
           KERNEL=="hidraw*", ATTRS{idVendor}== "4653", ATTRS{idProduct}=="0001", MODE="0666", TAG+="uaccess"
         '')
       ]
