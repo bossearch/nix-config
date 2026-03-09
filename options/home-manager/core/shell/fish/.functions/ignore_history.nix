@@ -4,7 +4,7 @@
     body = ''
       set -l ignore_list \
           pw senior \
-          yy sy c fish \
+          yy sy c fish fsys \
           TmuxNavigateDown TmuxNavigateLeft TmuxNavigateRight TmuxNavigateUp
 
       set -l cleaned_cmd (string trim -- $argv[1])

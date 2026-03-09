@@ -35,6 +35,8 @@ in {
       bind -M default --erase ! . '$'
       bind -M default \ce edit_command_buffer
       bind -M insert \ce edit_command_buffer
+      bind -M default \cz 'jobs -q; and fg >/dev/null 2>&1; commandline -f repaint'
+      bind -M insert \cz 'jobs -q; and fg >/dev/null 2>&1; commandline -f repaint'
 
       set -gx fish_color_autosuggestion      brblack
       set -gx fish_color_cancel              -r
