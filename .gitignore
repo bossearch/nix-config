@@ -1,3 +1,4 @@
 hashedPasswordFile
-.nixos.log
-.hm.log
+*.log
+*.md
+!README.md

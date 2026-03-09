@@ -57,7 +57,7 @@ in {
       '';
       async = true;
       max_items = 4;
-      min_keyword_length = 3;
+      min_keyword_length = 6;
       score_offset = dictionary_score;
       opts = {
         dictionary_files.__raw = ''

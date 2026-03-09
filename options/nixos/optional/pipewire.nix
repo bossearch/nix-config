@@ -17,5 +17,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
     };
+    security.rtkit.enable = true;
   };
 }
