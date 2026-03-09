@@ -10,10 +10,9 @@ in {
     text = ''
       #!/usr/bin/env bash
 
-      # Get the class of the currently focused window
-      focused_class=$(hyprctl activewindow | awk '/class:/ {print $2}')
+      focused_class=$(hyprctl activewindow -j | jq -r '.class')
+      focused_title=$(hyprctl activewindow -j | jq -r '.title')
 
-      # If the class is "Waydroid", stop the Waydroid session
       if [[ "$focused_class" == "Waydroid" ]]; then
         waydroid session stop
 
@@ -27,6 +26,12 @@ in {
 
       elif [[ "$focused_class" == "steam" ]]; then
         killall steam
+
+      elif [[ "$focused_class" == "steam_app_default" ]] &&
+        [[ -z "$focused_title" ||
+          "$focused_title" == "Magic Chess: Go Go" ||
+          "$focused_title" == "MagicChessGoGo" ]]; then
+        pkill -f mcgg
 
       else
         hyprctl dispatch killactive
