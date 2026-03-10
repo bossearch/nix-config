@@ -35,13 +35,15 @@ in {
   xdg.portal = {
     enable = enabled;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
     config.hyprland = {
-      default = ["wlr" "gtk"];
+      default = ["hyprland" "gtk"];
     };
   };
 
-  services.hyprsunset.enable = enabled;
+  services = {
+    hyprsunset.enable = enabled;
+    hyprpolkitagent.enable = enabled;
+  };
 }
