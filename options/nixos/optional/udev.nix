@@ -17,7 +17,7 @@ in {
       #   pkgs.libu2f-host
       # ]
       # ++ (
-      lib.optionals hosts.udevqmk [pkgs.unstable.qmk-udev-rules]
+      lib.optionals hosts.udevqmk [pkgs.qmk-udev-rules]
       # )
       ;
 

@@ -8,7 +8,7 @@
   imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf homes.nchat [
-    pkgs.unstable.nchat
+    pkgs.nchat
   ];
 
   xdg.desktopEntries.nchat = lib.mkIf homes.nchat {

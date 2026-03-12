@@ -7,7 +7,6 @@
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
-  hyprshutdown = pkgs.unstable.hyprshutdown;
 in {
   imports = mylib.autoimport ./.;
 

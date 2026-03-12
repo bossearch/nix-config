@@ -5,7 +5,7 @@
 }: {
   programs.neomutt = {
     enable = homes.neomutt;
-    package = pkgs.unstable.neomutt;
+    package = pkgs.neomutt;
     vimKeys = true;
   };
 }
