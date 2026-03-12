@@ -35,12 +35,8 @@
         echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:"$MPV_SOCKET"
         sleep 1
 
-        HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
-        hyprctl --batch "$HYPRCMDS"
-        sleep 1
-
-        ddcutil setvcp D6 05
-        systemctl --quiet --no-warn poweroff
+        systemd-run --user --remain-after-exit \
+          bash -c "hyprshutdown -p 'ddcutil setvcp D6 05; poweroff' -t 'Shutting down...'"
       fi
     '';
   };

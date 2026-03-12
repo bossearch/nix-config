@@ -35,11 +35,8 @@
         echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:"$MPV_SOCKET"
         sleep 1
 
-        HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
-        hyprctl --batch "$HYPRCMDS"
-        sleep 1
-
-        systemctl --quiet --no-warn reboot
+        systemd-run --user --remain-after-exit \
+          bash -c "hyprshutdown -p 'reboot' -t 'Rebooting...'"
       fi
     '';
   };

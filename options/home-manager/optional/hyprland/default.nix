@@ -7,6 +7,7 @@
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  hyprshutdown = pkgs.unstable.hyprshutdown;
 in {
   imports = mylib.autoimport ./.;
 
@@ -25,7 +26,9 @@ in {
   home.packages = lib.mkIf enabled (with pkgs; [
     cliphist
     hyprpicker
+    hyprshutdown
     hyprsunset
+    hyprtoolkit
     localsend
     wev
     wl-clipboard
