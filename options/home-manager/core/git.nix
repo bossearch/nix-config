@@ -5,14 +5,13 @@
 
   programs.git = {
     enable = true;
+    package = pkgs.git.override {withLibsecret = true;};
     settings = {
       user = {
         name = "bossearch";
         email = "yudha.bosse@gmail.com";
       };
-      credential.helper = "${
-        pkgs.git.override {withLibsecret = true;}
-      }/bin/git-credential-libsecret";
+      credential.helper = "libsecret";
     };
   };
 }
