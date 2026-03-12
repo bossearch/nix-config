@@ -46,6 +46,14 @@
     '';
 in ''
   ${builtins.readFile "${inputs.betterfox}/user.js"}
+  user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+  user_pref("devtools.chrome.enabled", true);
+  user_pref("devtools.debugger.remote-enabled", true);
+  user_pref("devtools.debugger.prompt-connection", false);
+  user_pref("mousewheel.default.delta_multiplier_y", 250);
+  user_pref("toolkit.telemetry.reportingpolicy.firstRun", false);
+  user_pref("toolkit.telemetry.shutdownPingSender.enabledFirstsession", false);
+  user_pref("webgl.disabled", true);
   ${doh}
   ${sidebar}
 ''

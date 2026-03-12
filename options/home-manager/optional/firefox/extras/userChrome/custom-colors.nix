@@ -1,4 +1,21 @@
-{config, ...}: ''
+{
+  config,
+  homes,
+  ...
+}: let
+  conditional =
+    if homes.firefox.verticaltab.enable
+    then ''
+      --toolbar-field-background-color: var(--background) !important;
+      --toolbar-field-focus-background-color: var(--background) !important;
+      --toolbox-bgcolor-inactive: var(--foreground-alpha) !important;
+      --toolbox-bgcolor: var(--foreground) !important;
+    ''
+    else ''
+      --toolbar-field-background-color: var(--foreground) !important;
+      --toolbar-field-focus-background-color: var(--foreground) !important;
+    '';
+in ''
   :root {
     --foreground-alpha: #${config.colorScheme.palette.base01}cc;
     --foreground: #${config.colorScheme.palette.base01};
@@ -38,14 +55,13 @@
     --tabpanel-background-color: var(--background) !important;
     --toolbar-bgcolor: var(--background) !important;
     --toolbar-color: var(--white) !important;
-    --toolbar-field-background-color: var(--foreground) !important;
     --toolbar-field-color: var(--white) !important;
-    --toolbar-field-focus-background-color: var(--foreground) !important;
     --toolbar-field-focus-border-color: var(--cyan) !important;
     --toolbar-field-focus-color: var(--white) !important;
     --toolbarbutton-active-background: var(--foreground) !important;
     --toolbarbutton-hover-background: var(--bbackground) !important;
     --toolbarbutton-icon-fill: var(--white) !important;
+    ${conditional}
   }
 
   /*
