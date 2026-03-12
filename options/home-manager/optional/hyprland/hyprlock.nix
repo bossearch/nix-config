@@ -63,7 +63,7 @@ in {
           text = "cmd[update:1000] echo \"$(date +'%A, %-d %B')\"";
           color = "rgb(${base07})";
           font_size = 22;
-          font_family = "Extra Bold";
+          font_family = "Noto Sans ExtraBold";
           position = "0, 400";
           halign = "center";
           valign = "center";
@@ -74,7 +74,7 @@ in {
           text = "$TIME";
           color = "rgb(${base07})";
           font_size = 95;
-          font_family = "Extra Bold";
+          font_family = "Noto Sans ExtraBold";
           position = "0, 300";
           halign = "center";
           valign = "center";
