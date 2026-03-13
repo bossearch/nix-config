@@ -15,8 +15,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "System64fumo";
     repo = "sysboard";
-    rev = "90ceddb67bcf3a609e7892bc67e8c7ca806b85bc";
-    sha256 = "sha256-bK4izhMzt9ZwlyQodyZWv9JEiFpbsh8XtluWcWmOIao=";
+    rev = "1a032fb4dd76f3f5496955d293eab2ea90f7fc15";
+    sha256 = "sha256-wSx1YyzZvcuCscSSQi+nrvvIh0iFjLDQgnBXN80KfFU=";
   };
   postPatch = ''
     substituteInPlace Makefile \
@@ -50,6 +50,5 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/System64fumo/sysboard";
     license = licenses.wtfpl;
     platforms = platforms.linux;
-    maintainers = with maintainers; [];
   };
 })

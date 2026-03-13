@@ -13,18 +13,18 @@
 in
   rustPlatform.buildRustPackage rec {
     pname = "seniorpw";
-    version = "0.8.2";
+    version = "0.8.4";
 
     src = fetchFromGitLab {
       owner = "retirement-home";
       repo = pname;
       rev = version;
-      hash = "sha256-t/MZfWSAYAF+tFBE6mrcvR4g/uxEdIys0D+S7UwDB6I=";
+      hash = "sha256-ygRUx8XN1+dpPca3ZSeV+PCxOvdzAx0CqKdGeR0cFN0=";
     };
 
     sourceRoot = "source/src/seniorpw";
 
-    cargoHash = "sha256-CvqUPA56CF7oG9fkA1+asNsKzXpTFOapIe+Dg4RLabc=";
+    cargoHash = "sha256-xslnYaxSdo+2xoddPsFHPrIr1cvOdSLzgZH7t3kKA0Y=";
 
     nativeBuildInputs = [
       git
