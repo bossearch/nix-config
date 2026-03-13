@@ -18,8 +18,8 @@ in {
       inputs;
   };
 
-  unstable = final: _: {
-    unstable = import inputs.nixpkgs-unstable {
+  stable = final: _: {
+    stable = import inputs.nixpkgs-stable {
       system = final.system;
       config = {
         allowUnfree = true;
@@ -35,9 +35,9 @@ in {
     };
 
   modifications = final: prev: {
-    waybar = addPatches prev.waybar [
-      ./waybar-hyprland-window.diff
-    ];
+    # waybar = addPatches prev.waybar [
+    #   ./waybar-hyprland-window.diff
+    # ];
     vimPlugins =
       prev.vimPlugins
       // {
