@@ -14,6 +14,9 @@
     else ''
       --toolbar-field-background-color: var(--foreground) !important;
       --toolbar-field-focus-background-color: var(--foreground) !important;
+      --toolbox-bgcolor-inactive: var(--foreground-alpha) !important;
+      --toolbox-bgcolor: var(--foreground) !important;
+
     '';
 in ''
   :root {
@@ -61,6 +64,7 @@ in ''
     --toolbarbutton-active-background: var(--foreground) !important;
     --toolbarbutton-hover-background: var(--bbackground) !important;
     --toolbarbutton-icon-fill: var(--white) !important;
+    --toolbox-textcolor: var(--white) !important;
     ${conditional}
   }
 
