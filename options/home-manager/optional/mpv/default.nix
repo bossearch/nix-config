@@ -16,15 +16,9 @@
   programs.mpv = {
     enable = homes.mpv;
     package = pkgs.mpv.override {
-      mpv = pkgs.mpv-unwrapped.override {
+      mpv-unwrapped = pkgs.mpv-unwrapped.override {
         vapoursynthSupport = true;
       };
-      extraMakeWrapperArgs = [
-        "--prefix"
-        "LUA_PATH"
-        ";"
-        "${pkgs.lua52Packages.dkjson}/share/lua/5.2/?.lua"
-      ];
       scripts = with pkgs; [
         mpvScripts.autosubsync-mpv
         mpvScripts.chapterskip
@@ -35,6 +29,12 @@
         mpvScripts.thumbfast
         mpvScripts.uosc
         mpvScripts.youtube-upnext
+      ];
+      extraMakeWrapperArgs = [
+        "--prefix"
+        "LUA_PATH"
+        ";"
+        "${pkgs.lua52Packages.dkjson}/share/lua/5.2/?.lua"
       ];
     };
   };
