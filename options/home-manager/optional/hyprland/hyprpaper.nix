@@ -13,9 +13,11 @@ in {
       splash = false;
       preload = "${config.home.homeDirectory}/.cache/${hosts.username}/hyprpaper.png";
       wallpaper =
-        map (
-          m: "${m.name}, ${config.home.homeDirectory}/.cache/${hosts.username}/hyprpaper.png"
-        )
+        map (m: {
+          monitor = m.name;
+          path = "${config.home.homeDirectory}/.cache/${hosts.username}/hyprpaper.png";
+          fit_mode = "cover";
+        })
         homes.monitor;
     };
   };
