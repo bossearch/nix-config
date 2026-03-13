@@ -56,201 +56,144 @@ in {
     # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
 
     #alacritty
-    windowrule = workspace 1, initialTitle:(Alacritty)
+    windowrule = workspace 1, match:initial_title (Alacritty)
 
     #blueman
     # windowrule = workspace 4, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-    windowrule = float, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-    windowrule = center 1, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
-    windowrule = size ${size."1/3-3:2"}, class:(.blueman-manager-wrapped),title:(Bluetooth Devices)
+    windowrule = float on, center 1, size ${size."1/3-3:2"}, match:class (.blueman-manager-wrapped), match:title (Bluetooth Devices)
 
     #bottles
-    windowrule = workspace special:gamespace, class:(com.usebottles.bottles)
-    windowrule = opaque, class:(com.usebottles.bottles)
+    windowrule = workspace special:gamespace, opaque on, match:class (com.usebottles.bottles)
 
     #btop
-    windowrule = float, class:(kitty),title:(btop)
-    windowrule = center 1, class:(kitty),title:(btop)
-    windowrule = size ${size."3/4"}, class:(kitty),title:(btop)
+    windowrule = float on, center 1, size ${size."3/4"}, match:class (kitty), match:title (btop)
 
     #crkbd
-    windowrule = float, class:(kitty),title:(crkbd)
-    windowrule = center 1, class:(kitty),title:(crkbd)
-    windowrule = size ${size.crkbd}, class:(kitty),title:(crkbd)
+    windowrule = float on, center 1, size ${size.crkbd}, match:class (kitty), match:title (crkbd)
 
     #dn
-    windowrule = workspace special:gamespace, title:(DNOrigins.*)
-    windowrule = center 1, title:(DNOrigins.*)
-    windowrule = opaque, title:(DNOrigins.*)
+    windowrule = workspace special:gamespace, center 1, opaque on, match:title (DNOrigins.*)
 
     #fastfetch
-    windowrule = float, class:(kitty),title:(fastfetch)
-    windowrule = center 1, class:(kitty),title:(fastfetch)
-    windowrule = size ${size.about}, class:(kitty),title:(fastfetch)
+    windowrule = float on, center 1, size ${size.about}, match:class (kitty), match:title (fastfetch)
 
     #feh
-    windowrule = float, class:(feh)
-    windowrule = center 1, class:(feh)
+    windowrule = float on, center 1, match:class (feh)
 
     #firefox
-    windowrule = float, class:(firefox),title:(Library)
-    windowrule = center 1, class:(firefox),title:(Library)
-    windowrule = size ${size."1/2"}, class:(firefox),title:(Save Image)
-    windowrule = focusonactivate on, InitialClass:(firefox),initialTitle:(Mozilla Firefox)
-    windowrule = opaque, class:(firefox),title:(.*YouTube.*)
-    windowrule = opaque, class:(firefox),title:(.*IDLIX.*)
-    windowrule = opaque, class:(firefox),title:(.*Twitch.*)
-    windowrule = size ${size."1/2"}, class:(firefox),title:(File Upload)
+    windowrule = float on, center 1, match:class (firefox), match:title (Library)
+    windowrule = size ${size."1/2"}, match:class (firefox), match:title (Save Image)
+    windowrule = focus_on_activate on, match:initial_class (firefox), match:initial_title (Mozilla Firefox)
+    windowrule = opaque on, match:class (firefox), match:title (.*YouTube.*)
+    windowrule = opaque on, match:class (firefox), match:title (.*IDLIX.*)
+    windowrule = opaque on, match:class (firefox), match:title (.*Twitch.*)
+    windowrule = size ${size."1/2"}, match:class (firefox), match:title (File Upload)
 
     #fzf
-    windowrule = float, class:(kitty),title:(fzf)
-    windowrule = center 1, class:(kitty),title:(fzf)
-    windowrule = size ${size."1/4"}, class:(kitty),title:(fzf)
-    windowrule = float, class:(kitty),title:(mousefzf)
-    windowrule = center 1, class:(kitty),title:(mousefzf)
-    windowrule = size ${size."1/2"}, class:(kitty),title:(mousefzf)
+    windowrule = float on, center 1, size ${size."1/4"}, match:class (kitty), match:title (fzf)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (kitty), match:title (mousefzf)
 
     #obsidian
-    windowrule = workspace 5, initialClass:(obsidian)
+    windowrule = workspace 5, match:initial_class (obsidian)
 
     #kitty
-    windowrule = workspace 1, initialTitle:(kitty)
+    windowrule = workspace 1, match:initial_title (kitty)
 
     #localsend
-    windowrule = float, class:(localsend_app),title:(Open File)
-    windowrule = center 1, class:(localsend_app),title:(Open File)
-    windowrule = size ${size."1/2"}, class:(localsend_app),title:(Open File)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (localsend_app), match:title (Open File)
 
     #lutris
-    windowrule = workspace special:gamespace, class:(net.lutris.Lutris)
-    windowrule = opaque, class:(net.lutris.Lutris)
-    windowrule = float, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
-    windowrule = center 1, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
-    windowrule = size ${size."1/2"}, class:(net.lutris.Lutris),title:(Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
+    windowrule = workspace special:gamespace, opaque on, match:class (net.lutris.Lutris)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (net.lutris.Lutris), match:title (Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
 
     #mainpicker
-    windowrule = float, initialTitle:(MainPicker),title:(MainPicker)
-    windowrule = center 1, initialTitle:(MainPicker),title:(MainPicker)
-    windowrule = size ${size."1/4"}, initialTitle:(MainPicker),title:(MainPicker)
+    windowrule = float on, center 1, size ${size."1/4"}, match:initial_title (MainPicker), match:title (MainPicker)
 
     #magicchess
-    windowrule = workspace special:gamespace, class:(steam_app_default), title:(.*|Magic Chess: Go Go|MagicChessGoGo)
-    windowrule = center 1, class:(steam_app_default), title:(Magic Chess: Go Go|MagicChessGoGo)
-    windowrule = opaque, class:(steam_app_default), title:(Magic Chess: Go Go|MagicChessGoGo)
+    windowrule = workspace special:gamespace, match:class (steam_app_default), match:title (.*|Magic Chess: Go Go|MagicChessGoGo)
+    windowrule = center 1, opaque on, match:class (steam_app_default), match:title (Magic Chess: Go Go|MagicChessGoGo)
 
     #mpv
-    windowrule = workspace 3, initialClass:(mpv)
-    windowrule = opaque, initialClass:(mpv)
+    windowrule = workspace 3, opaque on, match:initial_class (mpv)
 
     #nautilus
-    windowrule = workspace 3, initialClass:(org.gnome.Nautilus),initialTitle:(Loading…)
-    windowrule = float, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
-    windowrule = center 1, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
-    windowrule = opaque, InitialClass:(org.gnome.NautilusPreviewer),class:(org.gnome.NautilusPreviewer)
-    windowrule = size ${size."1/2"}, title:(Rename.*)
+    windowrule = workspace 3, match:initial_class (org.gnome.Nautilus), match:initial_title (Loading…)
+    windowrule = float on, center 1, opaque on, match:initial_class (org.gnome.NautilusPreviewer), match:class (org.gnome.NautilusPreviewer)
+    windowrule = size ${size."1/2"}, match:title (Rename.*)
 
     #nchat
-    windowrule = workspace 6, class:(kitty),title:(nchat)
+    windowrule = workspace 6, match:class (kitty), match:title (nchat)
 
     #nmtui
     # windowrule = workspace 4, class:(kitty),title:(nmtui)
-    windowrule = float, class:(kitty),title:(nmtui)
-    windowrule = center 1, class:(kitty),title:(nmtui)
-    windowrule = size ${size."1/2-1:1"}, class:(kitty),title:(nmtui)
+    windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (kitty), match:title (nmtui)
 
     #pavucontrol
     # windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)
-    windowrule = float, initialClass:(org.pulseaudio.pavucontrol)
-    windowrule = center 1, initialClass:(org.pulseaudio.pavucontrol)
-    windowrule = size ${size."1/2"}, initialClass:(org.pulseaudio.pavucontrol)
+    windowrule = float on, center 1, size ${size."1/2"}, match:initial_class (org.pulseaudio.pavucontrol)
 
     #prismlauncher
-    windowrule = workspace special:gamespace, class:(org.prismlauncher.PrismLauncher)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(New Instance.*)
-    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(New Instance.*)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Select a Java version.*)
-    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Select a Java version.*)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download mods.*)
-    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download mods.*)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download resource packs.*)
-    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download resource packs.*)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Download shader packs.*)
-    windowrule = size ${size."1/2"}, class:(org.prismlauncher.PrismLauncher), title:(Download shader packs.*)
-    windowrule = center 1, class:(org.prismlauncher.PrismLauncher), title:(Please wait.*)
-    windowrule = size ${size."1/5"}, class:(org.prismlauncher.PrismLauncher), title:(Please wait.*)
+    windowrule = workspace special:gamespace, match:class (org.prismlauncher.PrismLauncher)
+    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (New Instance.*)
+    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Select a Java version.*)
+    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download mods.*)
+    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download resource packs.*)
+    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download shader packs.*)
+    windowrule = center 1, size ${size."1/5"}, match:class (org.prismlauncher.PrismLauncher), match:title (Please wait.*)
 
-    windowrule = workspace special:gamespace, title:(Minecraft.*)
-    windowrule = size ${size."3/4"}, title:(Minecraft.*)
-    windowrule = center 1, title:(Minecraft.*)
-    windowrule = opaque, title:(Minecraft.*)
+    windowrule = workspace special:gamespace, size ${size."3/4"}, center 1, opaque on, match:title (Minecraft.*)
 
     #spotify
-    windowrule = workspace 6, class:(spotify),title:(Spotify Premium)
-    windowrule = workspace 6, class:(spotify),title:(Spotify Free)
+    windowrule = workspace 6, match:class (spotify), match:title (Spotify Premium)
+    windowrule = workspace 6, match:class (spotify), match:title (Spotify Free)
 
     #steam
-    windowrule = workspace special:gamespace, class:(steam)
-    windowrule = workspace special:gamespace, class:(dota2)
-    windowrule = float, class:(dota2),title:(Dota 2)
-    windowrule = center 1, class:(dota2),title:(Dota 2)
+    windowrule = workspace special:gamespace, match:class (steam)
+    windowrule = workspace special:gamespace, match:class (dota2)
+    windowrule = float on, center 1, match:class (dota2), match:title (Dota 2)
 
     # tor browser
-    windowrule = workspace 2, class:(Tor Browser),title:(Tor Browser)
+    windowrule = workspace 2, match:class (Tor Browser), match:title (Tor Browser)
 
     #transmission
-    windowrule = workspace 4, class:(transmission-gtk),title:(Transmission)
-    windowrule = float, class:(transmission-gtk),title:(Open a Torrent)
-    windowrule = center 1, class:(transmission-gtk),title:(Open a Torrent)
-    windowrule = size ${size."1/2"}, class:(transmission-gtk),title:(Open a Torrent)
+    windowrule = workspace 4, match:class (transmission-gtk), match:title (Transmission)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (transmission-gtk), match:title (Open a Torrent)
 
     #uget
-    windowrule = workspace 2, class:(uget-gtk),title:(uGet - New Download)
-    windowrule = workspace 4, class:(uget-gtk),title:(uGet)
-    windowrule = float, class:(uget-gtk),title:(uGet - New Download)
-    windowrule = center 1, class:(uget-gtk),title:(uGet - New Download)
+    windowrule = workspace 2, float on, center 1, match:class (uget-gtk), match:title (uGet - New Download)
+    windowrule = workspace 4, match:class (uget-gtk), match:title (uGet)
 
     #vaults
-    windowrule = workspace 3, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
-    windowrule = float, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
-    windowrule = center 1, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
-    windowrule = size ${size."1/3-3:2"}, class:(io.github.mpobaschnig.Vaults),title:(Vaults)
+    windowrule = workspace 3, float on, center 1, size ${size."1/3-3:2"}, match:class (io.github.mpobaschnig.Vaults), match:title (Vaults)
 
     #virt-manager
-    windowrule = workspace 5, class:(.virt-manager-wrapped), title:(Virtual Machine Manager)
-    windowrule = workspace 5, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
-    windowrule = float, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
-    windowrule = center 1, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
-    windowrule = size ${size.full}, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
-    windowrule = opaque, class:(.virt-manager-wrapped), title:(.*QEMU/KVM)
+    windowrule = workspace 5, match:class (.virt-manager-wrapped), match:title (Virtual Machine Manager)
+    windowrule = workspace 5, float on, center 1, size ${size.full}, opaque on, match:class (.virt-manager-wrapped), match:title (.*QEMU/KVM)
 
     #vesktop
-    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(vesktop)
-    windowrule = workspace 6, initialClass:(vesktop),initialTitle:(.*Discord.*)
-    windowrule = float, initialClass:(vesktop),initialTitle:(Discord Popout)
-    windowrule = center 1, initialClass:(vesktop),initialTitle:(Discord Popout)
-    windowrule = size ${size."3/4"}, initialClass:(vesktop),initialTitle:(Discord Popout)
+    windowrule = workspace 6, match:initial_class (vesktop), match:initial_title (vesktop)
+    windowrule = workspace 6, match:initial_class (vesktop), match:initial_title (.*Discord.*)
+    windowrule = float on, center 1, size ${size."3/4"}, match:initial_class (vesktop), match:initial_title (Discord Popout)
 
     #waydroid
-    windowrule = workspace special:gamespace, class:(Waydroid), title:(Waydroid)
+    windowrule = workspace special:gamespace, match:class (Waydroid), match:title (Waydroid)
 
     #xdm
-    windowrule = float, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
-    windowrule = center 1, class:(Xdm-app), title:(Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
-    windowrule = size ${size."1/3-3:2"}, class:(Xdm-app), title:(Xtreme Download Manager|Settings)
-    windowrule = size ${size."1/4"}, class:(Xdm-app), title:(New Download|Download Complete|.*%.*)
+    windowrule = float on, center 1, match:class (Xdm-app), match:title (Xtreme Download Manager|Settings|New Download|Download Complete|.*%.*)
+    windowrule = size ${size."1/3-3:2"}, match:class (Xdm-app), match:title (Xtreme Download Manager|Settings)
+    windowrule = size ${size."1/4"}, match:class (Xdm-app), match:title (New Download|Download Complete|.*%.*)
+
+    #xdg-desktop-portal-hyprland
+    windowrule = float on, center 1, size ${size."1/4"}, match:title (Select what to share)
 
     #zathura
-    windowrule = float,class:(org.pwmt.zathura)
-    windowrule = center 1,class:(org.pwmt.zathura)
-    windowrule = size ${size.portrait},class:(org.pwmt.zathura)
+    windowrule = float on, center 1, size ${size.portrait}, match:class (org.pwmt.zathura)
 
     #zenity
-    windowrule = float,class:(zenity)
-    windowrule = center 1,class:(zenity)
-    windowrule = rounding 18,class:(zenity)
+    windowrule = float on, center 1, rounding 18, match:class (zenity)
 
     #misc
-    windowrule = suppressevent maximize, class:.* # You'll probably like this.
+    windowrule = suppress_event maximize, match:class .* # You'll probably like this.
 
     # Workspaces
     workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: kitty -T scratchpad

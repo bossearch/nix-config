@@ -24,10 +24,6 @@
         }
     }
 
-    layerrule = blur, waybar
-    layerrule = blurpopups, waybar
-    layerrule = ignorezero, waybar
-    # layerrule = ignorealpha 1, waybar
-    # layerrule = abovelock true, waybar
+    layerrule = blur on, blur_popups on, ignore_alpha 0, match:namespace waybar
   '';
 }
