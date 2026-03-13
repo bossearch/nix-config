@@ -4,13 +4,21 @@
     ### AUTOSTART ###
     #################
 
+    # 1. Session Setup
+    exec-once = uwsm finalize
+    exec-once = uwsm app -- systemctl --user restart xdg-desktop-portal
+
+    # 2. Core Services
     exec-once = hyprlock --immediate --no-fade-in
-    exec-once = ~/.config/hypr/scripts/startup-value.sh
-    exec-once = ~/.config/gowall/daily-wallpaper.sh
-    exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    exec-once = hyprpaper
     exec-once = blueman-applet
+
+    # 3. Clipboard Management
     exec-once = cliphist wipe
     exec-once = wl-paste --watch cliphist store
-    exec-once = hyprpaper
+
+    # 4. Custom Scripts
+    exec-once = ~/.config/hypr/scripts/startup-value.sh
+    exec-once = ~/.config/gowall/daily-wallpaper.sh
   '';
 }

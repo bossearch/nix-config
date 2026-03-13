@@ -41,11 +41,18 @@ in {
 
   xdg.portal = {
     enable = enabled;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
-    config.hyprland = {
-      default = ["hyprland" "gtk"];
+    config = {
+      common.default = ["gtk"];
+      hyprland = {
+        default = ["hyprland" "gtk"];
+        "org.freedesktop.impl.portal.Screencast" = ["hyprland"];
+        "org.freedesktop.impl.portal.Screenshot" = ["hyprland"];
+      };
     };
   };
 
