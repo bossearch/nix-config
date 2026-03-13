@@ -87,8 +87,8 @@ in {
     nerd-fonts.${fontPkgName}
   ]);
 
-  fonts.fontconfig = lib.mkIf (hosts.gui.enable) {
-    enable = true;
+  fonts.fontconfig = {
+    enable = hosts.gui.enable;
     defaultFonts = {
       emoji = ["Noto Color Emoji"];
       sansSerif = ["Noto Sans" "Noto Color Emoji"];
