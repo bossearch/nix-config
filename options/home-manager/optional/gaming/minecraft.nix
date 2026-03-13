@@ -14,7 +14,7 @@
         [
           wayland
         ]
-        ++ (with pkgs.xorg; [
+        ++ (with pkgs; [
           libXcursor
           libXrandr
           libXi

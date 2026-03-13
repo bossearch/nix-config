@@ -8,7 +8,7 @@
   programs.lutris = {
     enable = homes.game.lutris;
     extraPackages = with pkgs; [gamescope gamemode];
-    winePackages = [pkgs.wineWowPackages.staging];
+    winePackages = [pkgs.wineWow64Packages.staging];
   };
 
   home.activation = lib.mkIf homes.game.lutris {
