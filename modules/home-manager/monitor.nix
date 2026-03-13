@@ -37,6 +37,10 @@ in {
             type = types.bool;
             default = true;
           };
+          hdr = mkOption {
+            type = types.bool;
+            default = true;
+          };
           workspace = mkOption {
             type = types.nullOr types.str;
             default = null;

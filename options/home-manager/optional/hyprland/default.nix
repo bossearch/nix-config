@@ -16,7 +16,12 @@ in {
     settings = {
       monitor =
         map (
-          m: "${m.name},${toString m.width}x${toString m.height}@${toString m.refreshRate},0x0,1"
+          m: let
+            bitdepth =
+              if m.hdr
+              then "10"
+              else "8";
+          in "${m.name}, ${toString m.width}x${toString m.height}@${toString m.refreshRate}, 0x0, 1, bitdepth, ${bitdepth}"
         )
         homes.monitor;
     };

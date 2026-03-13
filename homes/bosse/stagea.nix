@@ -14,6 +14,7 @@
         height = 1080;
         refreshRate = 60;
         primary = true;
+        hdr = false;
       }
     ];
     firefox = {
@@ -53,5 +54,5 @@
   };
 
   # Do not change these future me !
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11";
 }

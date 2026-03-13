@@ -6,85 +6,13 @@
 }: let
   inherit (lib) mkOption types;
 in {
-  imports = [./monitor.nix];
+  imports = [
+    ./monitor.nix
+    ./nerdfont.nix
+  ];
   options.homes = mkOption {
     type = types.submodule {
       options = {
-        nerdfont = mkOption {
-          default = "CommitMono";
-          type = types.enum [
-            "0xProto"
-            "3270"
-            "AdwaitaMono"
-            "Agave"
-            "AnonymicePro"
-            "Arimo"
-            "AtkynsonMono"
-            "AurulentSansM"
-            "BigBlueTerm"
-            "BitstromWera"
-            "BlexMono"
-            "CaskaydiaCove"
-            "CaskaydiaMono"
-            "CodeNewRoman"
-            "ComicShannsMono"
-            "CommitMono"
-            "Cousine"
-            "D2CodingLigature"
-            "DaddyTimeMono"
-            "DejaVuSansM"
-            "DepartureMono"
-            "DroidSansM"
-            "EnvyCodeR"
-            "FantasqueSansM"
-            "FiraCode"
-            "FiraMono"
-            "GeistMono"
-            "GoMono"
-            "GoHuFont"
-            "Hack"
-            "Hasklug"
-            "HeavyData"
-            "Hurmit"
-            "iMWriting"
-            "Inconsolata"
-            "InconsolataGo"
-            "Inconsolata LGC"
-            "IntoneMono"
-            "Iosevka"
-            "IosevkaTerm"
-            "IosevkaTermSlab"
-            "JetBrainsMono"
-            "Lekton"
-            "LiterationMono"
-            "Lilex"
-            "MartianMono"
-            "MesloLG"
-            "Monaspice"
-            "Monofur"
-            "Monoid"
-            "Mononoki"
-            "M+"
-            "Noto"
-            "OpenDyslexic"
-            "Overpass"
-            "ProFont"
-            "ProggyClean"
-            "RecMono"
-            "RobotoMono"
-            "ShureTechMono"
-            "SauceCodePro"
-            "SpaceMono"
-            "Symbols"
-            "Terminess"
-            "Tinos"
-            "Ubuntu"
-            "UbuntuMono"
-            "UbuntuSans"
-            "VictorMono"
-            "ZedMono"
-          ];
-        };
         cursor = mkOption {
           default = "macOS";
           type = types.enum [
@@ -98,7 +26,6 @@ in {
             "Papirus-Light"
           ];
         };
-        ## move buku as firefox submodule
         # optional modules
         firefox = mkOption {
           default = {};
