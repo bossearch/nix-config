@@ -14,5 +14,12 @@
         allow_session_lock_restore = true
         vfr = true
     }
+
+    # fix wash out color on some apps
+    render {
+        cm_sdr_eotf = 2
+        cm_fs_passthrough = 0
+    }
+
   '';
 }

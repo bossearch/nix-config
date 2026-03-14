@@ -39,6 +39,7 @@
     "kitty-open"
     "ktelnetservice6"
     "nautilus-autorun-software"
+    "net.lutris.Lutris1"
     "nixos-manual"
     "nvim"
     "openstreetmap-geo-handler"
@@ -140,10 +141,11 @@
   custom_execs=(
     "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec zsh'"
     "bottles:~/.nix-profile/bin/bottles"
+    "discord:vesktop --use-gl=desktop"
     "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'"
     "lutris:lutris -f"
     "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
-    "spotify:spotify"
+    "spotify:spotify --use-gl=desktop"
     "steam:/run/current-system/sw/bin/steam"
   )
 
