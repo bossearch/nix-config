@@ -9,7 +9,7 @@
   passwordFile =
     if hosts.sops
     then config.sops.secrets.passwd.path
-    else mylib.at "hashedPasswordFile";
+    else mylib.at ".passwd";
 in {
   # Define a user account.
   sops.secrets.passwd.neededForUsers = lib.mkIf hosts.sops true;
