@@ -1,5 +1,5 @@
 {
-  yz = ''
+  yy = ''
     set -l tmp (mktemp -t "yazi-cwd.XXXXX")
     set -l edit_handoff "/tmp/yazi-edit-handoff"
     rm -f "$edit_handoff"
