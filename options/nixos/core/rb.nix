@@ -58,15 +58,15 @@
     esac
 
     # Show your changes
-    git diff -U0 --no-prefix '*.nix' ':!home/*' ':!modules/home-manager/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
+    git diff -U0 --no-prefix '*.nix' ':!home/*' ':!modules/home-manager/*' ':!options/home-manager/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
       -e 's/^(diff --git .*)/\n\x1b[1m\1\x1b[0m/' \
       -e 's/^(\+)(.*)/\x1b[32m+\2\x1b[0m/' \
       -e 's/^(-)(.*)/\x1b[31m-\2\x1b[0m/'
     echo ""
-    git status --short '*.nix' ':!home/*' ':!modules/home-manager/*'
+    git status --short '*.nix' ':!home/*' ':!modules/home-manager/*' ':!options/home-manager/*'
 
     # Stage all changes
-    git add '*.*' ':!home/*' ':!modules/home-manager/*'
+    git add '*.*' ':!home/*' ':!modules/home-manager/*' ':!options/home-manager/*'
 
     trap 'tput cnorm; echo -e "\nAborted by user."; exit 1' SIGINT
     read -r -p "Are you sure you want to proceed? (y/N): " confirm
@@ -94,7 +94,7 @@
       while ps -p "$pid" &>/dev/null; do
         for i in $(seq 0 $((''${#spin} - 1))); do
           local last_log
-          last_log=$(tail -n 1 .nixos.log | cut -c 1-$max_width) # Get the last line from the log file
+          last_log=$(tail -n 1 .rb.log | cut -c 1-$max_width) # Get the last line from the log file
           echo -ne "\r\033[K\e[33m[''${spin:$i:1}]\e[0m $last_log"
           sleep $delay
         done
@@ -104,7 +104,7 @@
     }
 
     # Run nixos-rebuild in the background
-    sudo nixos-rebuild "$OPTIONS" --flake ".#$HOSTNAME" &>.nixos.log &
+    sudo nixos-rebuild "$OPTIONS" --flake ".#$HOSTNAME" &>.rb.log &
     rebuild_pid=$!
 
     # Start spinner animation
@@ -113,7 +113,7 @@
 
     # Check exit status
     if wait $rebuild_pid; then
-      CURRENT=$(nixos-rebuild list-generations | grep current | tr -s ' ' | tr -d '*')
+      CURRENT=$(nixos-rebuild list-generations | awk '$NF == "True" { sub(/:[0-9][0-9]$/, "", $3); print $2 " " $3 " : id " $1 " -> NixOS: " $4 " | Kernel: " $5}')
       echo -e "\e[32mDone\e[0m - \e[1m$CURRENT\e[0m"
       notify-send -e "NixOS Rebuild ($OPTIONS)" "Done" --icon=dialog-information
     else
@@ -121,11 +121,11 @@
       git reset -q
 
       echo ""
-      cat .nixos.log | grep --color error
+      cat .rb.log | grep --color error
       echo ""
 
       if read -r -p "Open log? (y/N): " confirm && [[ $confirm == [yY] ]]; then
-        nvim .nixos.log
+        bat --style=plain --theme=ansi .rb.log
       fi
 
       popd >/dev/null
