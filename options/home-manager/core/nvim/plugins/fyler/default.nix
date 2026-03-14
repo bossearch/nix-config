@@ -3,21 +3,39 @@
     extraPlugins = [pkgs.vimPlugins.fyler-nvim];
     extraConfigLua = ''
       require("fyler").setup({
-        close_on_select = false,
-        default_explorer = true,
-        git_status = { enabled = false },
-        track_current_buffer = true,
-        icon = {
-          directory_collapsed = "󰉋",
-          directory_empty = "",
-          directory_expanded  = "",
+        integrations = {
+          icon = "mini_icons",
         },
-        win = {
-          kind_presets = {
-            split_left = {
-              width = "36abs",
-            }
-          }
+        views = {
+          finder = {
+            win = {
+              border = "rounded",
+              kind = "split_left",
+              kinds = {
+                ["split_left"] = {
+                  width = "36",
+                  win_opts = {
+                    winfixwidth = true,
+                    number = true,
+                    relativenumber = true,
+                  },
+                },
+              },
+            },
+            close_on_select = false,
+            default_explorer = true,
+            columns_order = { "diagnostic", "git" },
+            columns = {
+              git = { enabled = true },
+              diagnostic = { enabled = false },
+            },
+            follow_current_file = true,
+            icon = {
+              directory_collapsed = "󰉋",
+              directory_empty = "",
+              directory_expanded = "",
+            },
+          },
         },
       })
     '';

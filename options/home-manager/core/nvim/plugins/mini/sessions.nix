@@ -35,7 +35,6 @@
         function()
           local file_win = vim.api.nvim_get_current_win()
           require("fyler").open({ dir = vim.fn.getcwd(), kind="split_left" })
-          require("lib.util").fyler_width(file_win)
         end
       '';
       delete = null;

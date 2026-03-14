@@ -150,18 +150,13 @@
 
               for _, win in ipairs(vim.api.nvim_list_wins()) do
                 local win_buf = vim.api.nvim_win_get_buf(win)
-                if vim.bo[win_buf].filetype == "Fyler" then
+                if vim.bo[win_buf].filetype == "fyler" then
                   return
                 end
               end
 
               local file_win = vim.api.nvim_get_current_win()
               require("fyler").open({ dir = vim.fn.getcwd(), kind = "split_left" })
-
-              if package.loaded["lib.util"] then
-                require("lib.util").fyler_width(file_win)
-              end
-
               vim.api.nvim_del_autocmd(args.id)
             end
           '';
@@ -174,7 +169,21 @@
             function()
               local file_win = vim.api.nvim_get_current_win()
               require("fyler").open({ dir = vim.fn.getcwd(), kind = "split_left" })
-              require("lib.util").fyler_width(file_win)
+            end
+          '';
+        }
+
+        # unfocus fyler when open
+        {
+          event = ["FileType"];
+          pattern = ["fyler"];
+          callback.__raw = ''
+            function()
+              local win_id = vim.api.nvim_get_current_win()
+              local config = vim.api.nvim_win_get_config(win_id)
+              if config.relative == "" then
+                vim.cmd("wincmd p")
+              end
             end
           '';
         }
@@ -186,7 +195,7 @@
             function()
               for _, win in ipairs(vim.api.nvim_list_wins()) do
                 local win_buf = vim.api.nvim_win_get_buf(win)
-                if vim.bo[win_buf].filetype == "Fyler" then
+                if vim.bo[win_buf].filetype == "fyler" then
                   vim.api.nvim_win_close(win, true)
                 end
               end

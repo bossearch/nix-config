@@ -23,10 +23,11 @@
       combinePlugins = {
         enable = true;
         standalonePlugins = [
-          "friendly-snippets" # needed for blink to access friendly-snippets
-          "outline.nvim"
-          "fyler.nvim"
           "avante.nvim"
+          "friendly-snippets" # needed for blink to access friendly-snippets
+          "fyler.nvim"
+          "nvim-treesitter"
+          "outline.nvim"
         ];
       };
     };
