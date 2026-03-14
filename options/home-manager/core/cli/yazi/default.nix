@@ -1,8 +1,14 @@
-{mylib, ...}: {
+{
+  mylib,
+  pkgs,
+  ...
+}: {
   imports = mylib.autoimport ./.;
 
   programs.yazi = {
     enable = true;
+    package = pkgs.stable.yazi;
+    shellWrapperName = "";
     initLua = ''
       require("full-border"):setup({
         type = ui.Border.ROUNDED,
