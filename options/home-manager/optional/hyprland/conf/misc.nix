@@ -21,5 +21,10 @@
         cm_fs_passthrough = 0
     }
 
+    cursor {
+        zoom_rigid = true
+        zoom_detached_camera = false
+        enable_hyprcursor = true
+    }
   '';
 }
