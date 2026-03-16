@@ -10,8 +10,8 @@
   base01-rgba = "rgba(${toRGBString config.colorScheme.palette.base01},0.5)";
 in {
   programs.waybar.style = ''
-    @define-color bg ${base00-rgba};
-    @define-color fg ${base01-rgba};
+    @define-color bg ${base01-rgba};
+    @define-color fg ${base00-rgba};
     @define-color bblack #${config.colorScheme.palette.base03};
     @define-color gray #${config.colorScheme.palette.base04};
     @define-color nwhite #${config.colorScheme.palette.base05};

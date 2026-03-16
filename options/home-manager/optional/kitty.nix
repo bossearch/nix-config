@@ -85,27 +85,27 @@ in {
       mouse_map middle release ungrabbed paste_from_selection
       # vim:ft=kitty
 
-      background ${base00}
+      background ${base01}
       foreground ${base07}
       selection_background ${base02}
       selection_foreground ${base07}
       url_color ${base0F}
       cursor ${base07}
-      cursor_text_color ${base00}
+      cursor_text_color ${base01}
 
       # Tabs
       active_tab_background ${base0D}
-      active_tab_foreground ${base01}
+      active_tab_foreground ${base00}
       inactive_tab_background ${base03}
       inactive_tab_foreground ${base04}
-      #tab_bar_background ${base01}
+      #tab_bar_background ${base00}
 
       # Windows
       active_border_color ${base0D}
       inactive_border_color ${base03}
 
       # normal
-      color0 ${base01}
+      color0 ${base00}
       color1 ${base08}
       color2 ${base0B}
       color3 ${base0A}

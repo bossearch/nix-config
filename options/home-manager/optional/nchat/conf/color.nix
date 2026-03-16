@@ -14,7 +14,7 @@
 in {
   home.file.".config/nchat/color.conf" = lib.mkIf homes.nchat {
     text = ''
-      default_color_bg=0x${base00}
+      default_color_bg=0x${base01}
       default_color_fg=0x${base07}
       dialog_attr=
       dialog_attr_selected=reverse
@@ -42,7 +42,7 @@ in {
       history_text_attr_selected=reverse
       history_text_quoted_color_bg=
       history_text_quoted_color_fg=0x${base05}
-      history_text_reaction_color_bg=0x${base01}
+      history_text_reaction_color_bg=0x${base00}
       history_text_reaction_color_fg=gray
       history_text_recv_color_bg=
       history_text_recv_color_fg=

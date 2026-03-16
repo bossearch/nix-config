@@ -56,9 +56,9 @@ in {
       ];
 
       # Color settings
-      colors.primary.background = base00;
+      colors.primary.background = base01;
       colors.primary.foreground = base07;
-      colors.normal.black = base01;
+      colors.normal.black = base00;
       colors.normal.red = base08;
       colors.normal.green = base0B;
       colors.normal.yellow = base0A;

@@ -14,7 +14,7 @@ in {
   console = {
     earlySetup = true;
     colors = with colorScheme.palette; [
-      base00
+      base01
       base08
       base0B
       base0A

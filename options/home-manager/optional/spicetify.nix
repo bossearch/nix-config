@@ -7,7 +7,7 @@
 }: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
-  base00 = config.colorScheme.palette.base00;
+  base01 = config.colorScheme.palette.base01;
   base02 = config.colorScheme.palette.base02;
   base05 = config.colorScheme.palette.base05;
   base07 = config.colorScheme.palette.base07;
@@ -30,13 +30,13 @@ in {
     customColorScheme = {
       accent = base0B;
       accent-active = base0B;
-      accent-inactive = base00;
+      accent-inactive = base01;
       banner = base0B;
       border-active = base0B;
       border-inactive = base02;
       header = base07;
       highlight = base02;
-      main = base00;
+      main = base01;
       notification = base0D;
       notification-error = base08;
       subtext = base07;

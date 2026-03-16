@@ -1,5 +1,5 @@
 {config, ...}: let
-  base00 = "#${config.colorScheme.palette.base00}";
+  base01 = "#${config.colorScheme.palette.base01}";
   base03 = "#${config.colorScheme.palette.base03}";
   base07 = "#${config.colorScheme.palette.base07}";
   base08 = "#${config.colorScheme.palette.base08}";
@@ -11,7 +11,7 @@ in {
   home.file.".config/btop/themes/base16.theme" = {
     text = ''
       # Main bg
-      theme[main_bg]=${base00}
+      theme[main_bg]=${base01}
 
       # Main text color
       theme[main_fg]=${base07}

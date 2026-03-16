@@ -29,7 +29,7 @@ in {
 
       # Find
       find_keyword = {
-        fg = base01;
+        fg = base00;
         bg = base09;
         bold = true;
       };
@@ -83,7 +83,7 @@ in {
       };
       inactive = {
         fg = base02;
-        bg = base00;
+        bg = base01;
       };
     };
 
@@ -97,17 +97,17 @@ in {
 
       # Mode
       mode_normal = {
-        fg = base01;
+        fg = base00;
         bg = base0D;
         bold = true;
       };
       mode_select = {
-        fg = base01;
+        fg = base00;
         bg = base0E;
         bold = true;
       };
       mode_unset = {
-        fg = base01;
+        fg = base00;
         bg = base0E;
         bold = true;
       };
@@ -117,7 +117,7 @@ in {
         fg = base05;
         bold = true;
       };
-      progress_normal = {fg = base00;};
+      progress_normal = {fg = base01;};
       progress_error = {fg = base08;};
 
       # Permissions
@@ -164,7 +164,7 @@ in {
 
     which = {
       cols = 3;
-      mask = {bg = base01;};
+      mask = {bg = base00;};
       cand = {fg = base0C;};
       rest = {fg = base0D;};
       desc = {fg = base0E;};

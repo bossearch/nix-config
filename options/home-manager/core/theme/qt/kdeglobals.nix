@@ -59,8 +59,8 @@ in {
       ForegroundVisited=${base0F-rgb}
 
       [Colors:Complementary]
-      BackgroundAlternate=${base00-rgb}
-      BackgroundNormal=${base01-rgb}
+      BackgroundAlternate=${base01-rgb}
+      BackgroundNormal=${base00-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0D-rgb}
       ForegroundActive=${base0D-rgb}
@@ -73,8 +73,8 @@ in {
       ForegroundVisited=${base0F-rgb}
 
       [Colors:Header]
-      BackgroundAlternate=${base00-rgb}
-      BackgroundNormal=${base01-rgb}
+      BackgroundAlternate=${base01-rgb}
+      BackgroundNormal=${base00-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0D-rgb}
       ForegroundActive=${base0D-rgb}
@@ -87,8 +87,8 @@ in {
       ForegroundVisited=${base0F-rgb}
 
       [Colors:Header][Inactive]
-      BackgroundAlternate=${base00-rgb}
-      BackgroundNormal=${base01-rgb}
+      BackgroundAlternate=${base01-rgb}
+      BackgroundNormal=${base00-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0C-rgb}
       ForegroundActive=${base0C-rgb}
@@ -115,8 +115,8 @@ in {
       ForegroundVisited=${base05-rgb}
 
       [Colors:Tooltip]
-      BackgroundAlternate=${base01-rgb}
-      BackgroundNormal=${base01-rgb}
+      BackgroundAlternate=${base00-rgb}
+      BackgroundNormal=${base00-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0D-rgb}
       ForegroundActive=${base0D-rgb}
@@ -129,8 +129,8 @@ in {
       ForegroundVisited=${base0F-rgb}
 
       [Colors:View]
-      BackgroundAlternate=${base00-rgb}
-      BackgroundNormal=${base00-rgb}
+      BackgroundAlternate=${base01-rgb}
+      BackgroundNormal=${base01-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0D-rgb}
       ForegroundActive=${base0D-rgb}
@@ -143,8 +143,8 @@ in {
       ForegroundVisited=${base0F-rgb}
 
       [Colors:Window]
-      BackgroundAlternate=${base00-rgb}
-      BackgroundNormal=${base01-rgb}
+      BackgroundAlternate=${base01-rgb}
+      BackgroundNormal=${base00-rgb}
       DecorationFocus=${base0D-rgb}
       DecorationHover=${base0D-rgb}
       ForegroundActive=${base0D-rgb}

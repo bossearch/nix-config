@@ -153,8 +153,8 @@ in {
           /* background and dark colors */
           --bg-1: hsl(${hue-blue}, 22%, 25%); /* dark buttons when clicked */
           --bg-2: hsl(${hue-blue}, 21%, 19%); /* dark buttons */
-          --bg-3: ${base01}; /* spacing, secondary elements */
-          --bg-4: ${base00}; /* main background color */
+          --bg-3: ${base00}; /* spacing, secondary elements */
+          --bg-4: ${base01}; /* main background color */
           --hover: hsla(${hue-blue}, 22%, 41%, 0.125); /* channels and buttons when hovered */
           --active: hsla(${hue-blue}, 22%, 41%, 0.267); /* channels and buttons when clicked or selected */
           --active-2: hsla(${hue-blue}, 22%, 41%, 0.333); /* extra state for transparent buttons */

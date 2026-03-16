@@ -14,10 +14,10 @@
 in {
   home.file.".config/hypr/hyprtoolkit.conf" = lib.mkIf enabled {
     text = ''
-      background = 0xFF${base01}
-      base = 0xFF${base00}
+      background = 0xFF${base00}
+      base = 0xFF${base01}
       text = 0xFF${base07}
-      alternate_base = 0xFF${base00}
+      alternate_base = 0xFF${base01}
       bright_text = 0xFF${base06}
       accent = 0xFF${base0F}
       accent_secondary = 0xFF${base0F}

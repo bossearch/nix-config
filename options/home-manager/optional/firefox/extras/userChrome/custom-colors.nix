@@ -20,9 +20,9 @@
     '';
 in ''
   :root {
-    --foreground-alpha: #${config.colorScheme.palette.base01}cc;
-    --foreground: #${config.colorScheme.palette.base01};
-    --background: #${config.colorScheme.palette.base00};
+    --foreground-alpha: #${config.colorScheme.palette.base00}cc;
+    --foreground: #${config.colorScheme.palette.base00};
+    --background: #${config.colorScheme.palette.base01};
     --bbackground: #${config.colorScheme.palette.base02};
     --red: #${config.colorScheme.palette.base08};
     --white: #${config.colorScheme.palette.base07};

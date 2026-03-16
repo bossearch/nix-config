@@ -91,14 +91,14 @@ in {
       transient_groove=false
 
       [GeneralColors]
-      window.color=${base00}
-      base.color=${base01}
-      alt.base.color=${base01}
+      window.color=${base01}
+      base.color=${base00}
+      alt.base.color=${base00}
       button.color=${base02}
       light.color=${base03}
       mid.light.color=${base03}
-      dark.color=${base01}
-      mid.color=${base01}
+      dark.color=${base00}
+      mid.color=${base00}
       highlight.color=${base0D}
       inactive.highlight.color=${base0D}
       text.color=${base05}
@@ -106,7 +106,7 @@ in {
       button.text.color=${base05}
       disabled.text.color=${base04}
       tooltip.text.color=${base05}
-      highlight.text.color=${base01}
+      highlight.text.color=${base00}
       link.color=${base0F}
       link.visited.color=${base0D}
 
@@ -117,7 +117,7 @@ in {
       frame=true
       interior=true
       text.iconspacing=3
-      text.toggle.color=${base01}
+      text.toggle.color=${base00}
 
       [RadioButton]
       inherits=PanelButtonCommand
@@ -146,8 +146,8 @@ in {
       frame.element=button
       text.normal.color=${base05}
       text.focus.color=${base05}
-      text.press.color=${base01}
-      text.toggle.color=${base01}
+      text.press.color=${base00}
+      text.toggle.color=${base00}
 
       [PanelButtonTool]
       inherits=PanelButtonCommand
@@ -331,8 +331,8 @@ in {
       indicator.element=arrow
       text.normal.color=${base05}
       text.focus.color=${base05}
-      text.press.color=${base01}
-      text.toggle.color=${base01}
+      text.press.color=${base00}
+      text.toggle.color=${base00}
       text.bold=false
 
       [Scrollbar]
@@ -376,8 +376,8 @@ in {
       text.margin=0
       text.normal.color=${base05}
       text.focus.color=${base05}
-      text.press.color=${base01}
-      text.toggle.color=${base01}
+      text.press.color=${base00}
+      text.toggle.color=${base00}
       text.bold=false
       frame.expansion=18
 
@@ -388,8 +388,8 @@ in {
       frame.element=menu
       interior.element=menu
       inherits=PanelButtonCommand
-      text.press.color=${base01}
-      text.toggle.color=${base01}
+      text.press.color=${base00}
+      text.toggle.color=${base00}
       text.bold=false
       frame.top=3
       frame.bottom=3

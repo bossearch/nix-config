@@ -40,9 +40,9 @@ in {
           dots_size = 0.2;
           dots_spacing = 0.2;
           dots_center = true;
-          outer_color = "rgba(${base01}CC)";
-          inner_color = "rgba(${base00}CC)";
-          check_color = "rgb(${base01})";
+          outer_color = "rgba(${base00}CC)";
+          inner_color = "rgba(${base01}CC)";
+          check_color = "rgb(${base00})";
           fail_color = "rgb(${base08})";
           font_color = "rgb(${base07})";
           font_family = "${homes.nerdfont} Nerd Font";

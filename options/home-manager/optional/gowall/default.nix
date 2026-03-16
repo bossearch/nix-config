@@ -41,8 +41,8 @@ in {
       themes:
         - name: "palette"
           colors:
-            - "${base00}"
             - "${base01}"
+            - "${base00}"
             - "${base02}"
             - "${base03}"
             - "${base04}"

@@ -1,5 +1,5 @@
 {config, ...}: let
-  base01 = config.colorScheme.palette.base01;
+  base00 = config.colorScheme.palette.base00;
   base03 = config.colorScheme.palette.base03;
 in {
   wayland.windowManager.hyprland.extraConfig = ''
@@ -15,7 +15,7 @@ in {
         border_size = 2
 
         # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-        col.active_border = rgb(${base01})
+        col.active_border = rgb(${base00})
         col.inactive_border = rgb(${base03})
 
         # Set to true enable resizing windows by clicking and dragging on borders and gaps

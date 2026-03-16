@@ -34,8 +34,8 @@ in {
     colors = {
       fg = base07;
       "fg+" = base05;
-      bg = base00;
-      "bg+" = base01;
+      bg = base01;
+      "bg+" = base00;
       hl = base0B;
       "hl+" = base0B;
       info = base02;
@@ -44,7 +44,7 @@ in {
       spinner = base08;
       pointer = base08;
       header = base0A;
-      gutter = base00;
+      gutter = base01;
       border = base0F;
       separator = base09;
       scrollbar = base0F;

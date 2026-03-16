@@ -18,9 +18,9 @@ in {
       #!/usr/bin/env bash
 
       declare -A THEME=(
-        ["background"]="${base00}"
+        ["background"]="${base01}"
         ["foreground"]="${base05}"
-        ["black"]="${base01}"
+        ["black"]="${base00}"
         ["blue"]="${base0D}"
         ["green"]="${base0B}"
         ["white"]="${base07}"

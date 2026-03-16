@@ -21,7 +21,7 @@ in {
     settings = {
       global = {
         font = "${homes.nerdfont} Nerd Font 14";
-        background = base00;
+        background = base01;
         foreground = base07;
         monitor = 0;
         follow = "mouse";
@@ -75,25 +75,25 @@ in {
       };
       urgency_low = {
         timeout = 2;
-        background = base00;
+        background = base01;
         foreground = base07;
-        frame_color = base01;
+        frame_color = base00;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_normal = {
         timeout = 3;
-        background = base00;
+        background = base01;
         foreground = base07;
-        frame_color = base01;
+        frame_color = base00;
         icon = "dialog-information";
         script = "~/.config/dunst/dunstsound.sh";
       };
       urgency_critical = {
         timeout = 4;
-        background = base00;
+        background = base01;
         foreground = base08;
-        frame_color = base01;
+        frame_color = base00;
         icon = "dialog-warning";
         script = "~/.config/dunst/dunstsound.sh";
       };
