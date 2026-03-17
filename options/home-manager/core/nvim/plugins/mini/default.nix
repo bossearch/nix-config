@@ -1,4 +1,5 @@
 {
+  imports = [./base16.nix];
   programs.nixvim.plugins.mini = {
     enable = true;
     lazyLoad = {
@@ -13,7 +14,6 @@
       icons = {};
       surround = import ./surround.nix;
       ai = import ./ai.nix;
-      base16 = import ./base16.nix;
       pairs = import ./pairs.nix;
       sessions = import ./sessions.nix;
       splitjoin = import ./splitjoin.nix;

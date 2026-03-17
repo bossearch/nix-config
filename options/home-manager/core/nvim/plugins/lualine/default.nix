@@ -1,45 +1,19 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins.lualine = {
     enable = true;
+    package = pkgs.vimPlugins.lualine-nvim;
     lazyLoad = {
       settings = {
         event = ["BufReadPre" "BufNewFile"];
       };
     };
     luaConfig.pre = ''
-      local palette = require("lib.util").get_colorScheme()
-      local custom_lualine_theme = {
-        normal = {
-          a = { fg = palette.base00, bg = palette.base0D, gui = 'bold' },
-          b = { fg = palette.base0D, bg = palette.base02 },
-          c = { fg = palette.base05, bg = palette.base01 },
-        },
-        insert = {
-          a = { fg = palette.base00, bg = palette.base0B, gui = 'bold' },
-          b = { fg = palette.base0B, bg = palette.base02 },
-        },
-        visual = {
-          a = { fg = palette.base00, bg = palette.base0E, gui = 'bold' },
-          b = { fg = palette.base0E, bg = palette.base02 },
-        },
-        replace = {
-          a = { fg = palette.base00, bg = palette.base08, gui = 'bold' },
-          b = { fg = palette.base08, bg = palette.base02 },
-        },
-        command = {
-          a = { fg = palette.base00, bg = palette.base0A, gui = 'bold' },
-          b = { fg = palette.base0A, bg = palette.base02 },
-        },
-        inactive = {
-          a = { fg = palette.base03, bg = palette.base00 },
-          b = { fg = palette.base03, bg = palette.base00 },
-          c = { fg = palette.base03, bg = palette.base01 },
-        },
-      }
+      local p = _G.MiniBase16.config.palette
     '';
     settings = {
       options = {
-        theme.__raw = ''custom_lualine_theme'';
+        # theme.__raw = ''my_theme'';
+        theme = "16color";
         globalstatus = true;
         disabled_filetypes = {statusline = ["dashboard" "alpha"];};
         section_separators = {
@@ -86,12 +60,12 @@
             {
               require("noice").api.status.command.get,
               cond = require("noice").api.status.command.has,
-              color = { fg = palette.base09 },
+              color = { fg = p.base09 },
             },
             {
               require("noice").api.status.mode.get,
               cond = require("noice").api.status.mode.has,
-              color = { fg = palette.base0E },
+              color = { fg = p.base0E },
             },
             -- {
             --   function()

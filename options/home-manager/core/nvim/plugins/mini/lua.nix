@@ -1,7 +1,4 @@
 {
-  pre = ''
-    local palette = require("lib.util").get_colorScheme()
-  '';
   post = ''
     local pairs = require("mini.pairs")
     local opts = pairs.config or {}

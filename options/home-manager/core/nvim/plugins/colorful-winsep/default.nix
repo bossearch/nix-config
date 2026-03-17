@@ -2,10 +2,6 @@
   programs.nixvim.plugins.colorful-winsep = {
     enable = true;
     settings = {
-      highlight.__raw = ''
-        require("lib.util").get_colorScheme().base0F
-      '';
-      # This plugin will not be activated for filetype in the following table.
       excluded_ft = [
         "packer"
         "TelescopePrompt"

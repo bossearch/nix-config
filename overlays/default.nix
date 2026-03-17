@@ -41,8 +41,11 @@ in {
     vimPlugins =
       prev.vimPlugins
       // {
-        nui-nvim = addPatches prev.vimPlugins.nui-nvim [
-          # ./nui-nvim-tbl-islist.diff
+        lualine-nvim = addPatches prev.vimPlugins.lualine-nvim [
+          ./lualine-16color.diff
+        ];
+        mini-base16 = addPatches prev.vimPlugins.mini-base16 [
+          ./mini-base16.diff
         ];
       };
   };

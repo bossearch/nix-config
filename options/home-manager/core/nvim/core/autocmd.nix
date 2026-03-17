@@ -93,16 +93,6 @@
           desc = "Set colorcolumn for git commit messages";
         }
 
-        # Set custom hl for mini.base16
-        {
-          event = ["VimEnter"];
-          callback.__raw = ''
-            function()
-              require("lib.util").set_highlights()
-            end
-          '';
-        }
-
         # make qf split below others
         {
           event = ["FileType"];

@@ -1,0 +1,93 @@
+diff --git a/lua/lualine/themes/16color.lua b/lua/lualine/themes/16color.lua
+index fe093a3..a640ef6 100644
+--- a/lua/lualine/themes/16color.lua
++++ b/lua/lualine/themes/16color.lua
+@@ -1,38 +1,58 @@
+--- Copyright (c) 2020-2021 shadmansaleh
+--- MIT license, see LICENSE for more details.
+--- Credit itchyny, jackno (lightline)
+--- stylua: ignore
+-local colors = {
+-  black   = '#000000',
+-  maroon  = '#800000',
+-  green   = '#008000',
+-  olive   = '#808000',
+-  navy    = '#000080',
+-  purple  = '#800080',
+-  teal    = '#008080',
+-  silver  = '#c0c0c0',
+-  gray    = '#808080',
+-  red     = '#ff0000',
+-  lime    = '#00ff00',
+-  yellow  = '#ffff00',
+-  blue    = '#0000ff',
+-  fuchsia = '#ff00ff',
+-  aqua    = '#00ffff',
+-  white   = '#ffffff',
++local p = _G.MiniBase16.config.palette
++
++local x_styles = {
++  x_2 = { fg = p.base09, bg = p.base00, gui = 'nocombine' },
++  x_3 = { fg = p.base0E, bg = p.base00, gui = 'nocombine' },
++  x_4 = { fg = p.base08, bg = p.base00, gui = 'nocombine' },
+ }
+
+ return {
+   normal = {
+-    a = { fg = colors.white, bg = colors.blue, gui = 'bold' },
+-    b = { fg = colors.white, bg = colors.gray },
+-    c = { fg = colors.silver, bg = colors.black },
++    a = { fg = p.base01, bg = p.base0D, gui = 'bold' },
++    b = { fg = p.base0D, bg = p.base02 },
++    c = { fg = p.base05, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
++  },
++  insert = {
++    a = { fg = p.base01, bg = p.base0B, gui = 'bold' },
++    b = { fg = p.base0B, bg = p.base02 },
++    c = { fg = p.base05, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
++  },
++  visual = {
++    a = { fg = p.base01, bg = p.base0E, gui = 'bold' },
++    b = { fg = p.base0E, bg = p.base02 },
++    c = { fg = p.base05, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
++  },
++  replace = {
++    a = { fg = p.base01, bg = p.base08, gui = 'bold' },
++    b = { fg = p.base08, bg = p.base02 },
++    c = { fg = p.base05, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
++  },
++  command = {
++    a = { fg = p.base01, bg = p.base0A, gui = 'bold' },
++    b = { fg = p.base0A, bg = p.base02 },
++    c = { fg = p.base05, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
++  },
++  terminal = {
++    a = { fg = p.base01, bg = p.base0A, gui = 'bold' }, -- Usually same as command
++    b = { fg = p.base0A, bg = p.base02 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
+   },
+-  insert = { a = { fg = colors.white, bg = colors.green, gui = 'bold' } },
+-  visual = { a = { fg = colors.white, bg = colors.purple, gui = 'bold' } },
+-  replace = { a = { fg = colors.white, bg = colors.red, gui = 'bold' } },
+   inactive = {
+-    a = { fg = colors.silver, bg = colors.gray, gui = 'bold' },
+-    b = { fg = colors.gray, bg = colors.black },
+-    c = { fg = colors.silver, bg = colors.black },
++    a = { fg = p.base03, bg = p.base01 },
++    b = { fg = p.base03, bg = p.base01 },
++    c = { fg = p.base03, bg = p.base00 },
++    x_2 = x_styles.x_2,
++    x_3 = x_styles.x_3,
+   },
+ }
