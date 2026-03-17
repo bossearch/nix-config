@@ -1,4 +1,5 @@
 {
+  config,
   homes,
   hosts,
   lib,
@@ -15,7 +16,7 @@
     inherit hosts pkgs;
   };
   themeSync = import ./theme-sync.nix {
-    inherit hosts lib pkgs;
+    inherit config hosts lib pkgs;
     theme = theme;
     monitor = homes.monitor;
   };
