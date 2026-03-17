@@ -1,4 +1,9 @@
-{hosts, ...}: ''
+{
+  hosts,
+  pkgs,
+  ...
+}:
+pkgs.writeShellScript "drun-scan" ''
   # Output file for the app names and Exec commands
   output_file="$HOME/.cache/${hosts.username}/drun.txt"
 
@@ -65,6 +70,7 @@
     "org.pwmt.zathura-ps"
     "org.pwmt.zathura-djvu"
     "org.pwmt.zathura-pdf-mupdf"
+    "org.quickshell"
     "polkit-gnome-authentication-agent-1"
     "qt5ct"
     "qv4l2"
@@ -149,11 +155,15 @@
     "steam:/run/current-system/sw/bin/steam"
   )
 
+  manual_apps=(
+    "tor-browser:nix-shell -p tor-browser --run tor-browser"
+  )
+
   readarray -t applications < <(find \
     ~/.local/share/applications \
     ~/.nix-profile/share/applications \
     /run/current-system/sw/share/applications \
-    /etc/profiles/per-user/$USER/share/applications \
+    /etc/profiles/per-user/"$USER"/share/applications \
     -name '*.desktop' 2>/dev/null)
 
   for path in "''${applications[@]}"; do
@@ -196,11 +206,22 @@
 
     # Skip entries without an Exec command
     if [ -n "$exec_command" ]; then
-
       if ! grep -q "^$name|" "$output_file"; then
+
         # Save the name and Exec command to the output file
         echo "$name|$exec_command" >>"$output_file"
       fi
     fi
+
+    # Append manual apps that aren't backed by .desktop files
+    for entry in "''${manual_apps[@]}"; do
+      m_name=$(echo "$entry" | cut -d ':' -f 1)
+      m_exec=$(echo "$entry" | cut -d ':' -f 2-) # Use - to catch everything after first colon
+
+      # Only add if it doesn't already exist in the file
+      if ! grep -q "^$m_name|" "$output_file"; then
+        echo "$m_name|$m_exec" >> "$output_file"
+      fi
+    done
   done
 ''
