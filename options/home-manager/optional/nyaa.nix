@@ -17,9 +17,9 @@ in {
 
   programs.nyaa = {
     enable = homes.nyaa;
+    package = pkgs.nyaa;
     default_theme = "palette";
     default_source = "Nyaa";
-    # download_client = "RunCommand";
     download_client = "Transmission";
     timeout = 30;
     scroll_padding = 3;

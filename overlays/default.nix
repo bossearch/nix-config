@@ -8,8 +8,8 @@ in {
     inputs =
       builtins.mapAttrs (
         _: flake: let
-          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
-          packages = (flake.packages or {}).${final.system} or {};
+          legacyPackages = (flake.legacyPackages or {}).${final.stdenv.hostPlatform.system} or {};
+          packages = (flake.packages or {}).${final.stdenv.hostPlatform.system} or {};
         in
           if legacyPackages != {}
           then legacyPackages
@@ -20,7 +20,7 @@ in {
 
   stable = final: _: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config = {
         allowUnfree = true;
         allowUnfreePredicate = _: true;
