@@ -10,7 +10,7 @@
     enableSSHSupport = true;
     pinentryPackage =
       if hosts.gui.enable
-      then pkgs.pinentry-gnome3
-      else pkgs.pinentry-curses;
+      then pkgs.pinentry-qt
+      else pkgs.pinentry-tty;
   };
 }
