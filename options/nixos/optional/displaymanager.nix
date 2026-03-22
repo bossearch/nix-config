@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  autoLoginCmd = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop >/dev/null 2>&1";
+  autoLoginCmd = "${pkgs.hyprland}/bin/start-hyprland >/dev/null 2>&1";
 
   isGreetd = hosts.gui.enable && hosts.gui.displaymanager == "greetd";
   isGetty = hosts.gui.enable && hosts.gui.displaymanager == "none";
@@ -12,10 +12,10 @@
   ttyCheck =
     if hosts.shell == "fish"
     then ''
-      if test (tty) = "/dev/tty1"
+      if test -z "$WAYLAND_DISPLAY" -a "$XDG_VTNR" = 1
     ''
     else ''
-      if [ "$(tty)" = "/dev/tty1" ]; then
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
     '';
 
   ttyEnd =

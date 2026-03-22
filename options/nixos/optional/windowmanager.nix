@@ -3,7 +3,6 @@
 in {
   programs.hyprland = {
     enable = enabled;
-    withUWSM = true;
     xwayland.enable = true;
   };
 }
