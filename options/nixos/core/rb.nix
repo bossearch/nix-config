@@ -58,7 +58,7 @@
     esac
 
     # Show your changes
-    git diff -U0 --no-prefix '*.nix' ':!home/*' ':!modules/home-manager/*' ':!options/home-manager/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
+    git diff -U0 --no-prefix '*.nix' ':!homes/*' ':!modules/home-manager/*' ':!options/home-manager/*' | rg '^(?:diff --git |(?:\+[^+]|-[^-]))' | sed -E \
       -e 's/^(diff --git .*)/\n\x1b[1m\1\x1b[0m/' \
       -e 's/^(\+)(.*)/\x1b[32m+\2\x1b[0m/' \
       -e 's/^(-)(.*)/\x1b[31m-\2\x1b[0m/'
