@@ -6,9 +6,9 @@
   ...
 }: let
   boxes =
-    if hosts.hostname == "silvia"
-    then "cpu proc gpu0"
-    else "cpu proc";
+    if hosts.hostname == "stagea"
+    then "cpu proc mem net"
+    else "cpu proc gpu0 mem net";
 in {
   imports = mylib.autoimport ./.;
 
@@ -23,6 +23,8 @@ in {
       proc_sorting = "memory";
       shown_boxes = boxes;
       vim_keys = true;
+      swap_disk = false;
+      show_io_stat = false;
     };
   };
 }
