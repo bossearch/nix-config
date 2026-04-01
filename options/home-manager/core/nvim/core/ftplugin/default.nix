@@ -8,7 +8,7 @@
       };
       filename.__raw = ''
         {
-          [".nixos.log"] = "apache",
+          [".rb.log"] = "apache",
           [".hm.log"] = "apache",
         }
       '';
