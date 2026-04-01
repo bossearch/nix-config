@@ -13,6 +13,7 @@ pkgs.writeShellScript "drun-scan" ''
 
   # List of apps to exclude (add full .desktop filenames here)
   exclude_apps=(
+    "breezestyleconfig"
     "Dota 2"
     "Stardew Valley"
     "Steam Linux Runtime 1.0 (scout)"
@@ -40,6 +41,7 @@ pkgs.writeShellScript "drun-scan" ''
     "google-maps-geo-handler"
     "java-java17-openjdk"
     "java-java21-openjdk"
+    "kcm_breezedecoration"
     "kcm_kdeconnect"
     "kitty-open"
     "ktelnetservice6"
@@ -73,6 +75,7 @@ pkgs.writeShellScript "drun-scan" ''
     "org.quickshell"
     "polkit-gnome-authentication-agent-1"
     "qt5ct"
+    "qt6ct"
     "qv4l2"
     "qvidcap"
     "qwant-maps-geo-handler"
