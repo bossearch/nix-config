@@ -23,12 +23,13 @@
               },
             },
             close_on_select = false,
-            default_explorer = true,
-            columns_order = { "diagnostic", "git" },
             columns = {
               git = { enabled = true },
               diagnostic = { enabled = false },
             },
+            columns_order = { "diagnostic", "git" },
+            default_explorer = true,
+            delete_to_trash = true,
             follow_current_file = true,
             icon = {
               directory_collapsed = "󰉋",
