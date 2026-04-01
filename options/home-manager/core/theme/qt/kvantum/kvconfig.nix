@@ -1,10 +1,11 @@
 {
   config,
+  homes,
   hosts,
   lib,
-  mylib,
   ...
 }: let
+  enabled = hosts.gui.enable && homes.qtstyle == "kvantum";
   base00 = "#${config.colorScheme.palette.base00}";
   base01 = "#${config.colorScheme.palette.base01}";
   base02 = "#${config.colorScheme.palette.base02}";
@@ -14,12 +15,10 @@
   base0D = "#${config.colorScheme.palette.base0D}";
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
-  imports = mylib.autoimport ./.;
-
-  home.file.".config/Kvantum/KvMyColors/KvMyColors.kvconfig" = lib.mkIf hosts.gui.enable {
+  home.file.".config/Kvantum/KvMyColors/KvMyColors.kvconfig" = lib.mkIf enabled {
     text = ''
       [%General]
-      author=elkrien based on Arc Dark style
+      author=https://github.com/nix-community/stylix/blob/master/modules/qt/kvconfig.mustache
       combo_focus_rect=true
       spread_menuitems=true
       left_tabs=true

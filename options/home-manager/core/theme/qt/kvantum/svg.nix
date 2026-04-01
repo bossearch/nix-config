@@ -1,9 +1,11 @@
 {
   config,
   hosts,
+  homes,
   lib,
   ...
 }: let
+  enabled = hosts.gui.enable && homes.qtstyle == "kvantum";
   base00 = "#${config.colorScheme.palette.base00}";
   base01 = "#${config.colorScheme.palette.base01}";
   base02 = "#${config.colorScheme.palette.base02}";
@@ -14,7 +16,7 @@
   base0D = "#${config.colorScheme.palette.base0D}";
   base0E = "#${config.colorScheme.palette.base0E}";
 in {
-  home.file.".config/Kvantum/KvMyColors/KvMyColors.svg" = lib.mkIf hosts.gui.enable {
+  home.file.".config/Kvantum/KvMyColors/KvMyColors.svg" = lib.mkIf enabled {
     text = ''
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="845" height="695" version="1">
        <defs>
