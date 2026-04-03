@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  security.polkit.enable = true;
+
   services.gnome.gnome-keyring.enable = hosts.gui.enable;
 
   programs.gnupg.agent = {
