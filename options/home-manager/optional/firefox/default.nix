@@ -4,14 +4,9 @@
   hosts,
   inputs,
   lib,
-  pkgs,
   ...
 }: {
   imports = [./extras/activation.nix];
-
-  home.packages = lib.mkIf homes.firefox.enable (with pkgs; [
-    xdm
-  ]);
 
   programs.firefox = {
     enable = homes.firefox.enable;
