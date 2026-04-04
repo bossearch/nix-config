@@ -170,7 +170,6 @@ in {
         "orientation" = "inherit";
         "modules" = [
           "custom/stoprec"
-          "custom/xdm"
           "privacy"
           "tray"
         ];
@@ -182,16 +181,6 @@ in {
         "exec" = "~/.config/waybar/scripts/screenrecord/tray.sh";
         "on-click" = "~/.config/waybar/scripts/screenrecord/stoprec.sh";
         "signal" = 11;
-      };
-
-      "custom/xdm" = {
-        "exec" = "pgrep -x xdm >/dev/null && echo '{\"text\": \"󰃘\"}'";
-        "format" = "<span color='#DEDEDE'>{}</span>";
-        "on-click" = "~/.config/waybar/scripts/utility/xdm.sh";
-        "on-click-right" = "pkill xdm & ~/.config/waybar/scripts/utility/tray-trigger.sh xdm";
-        "return-type" = "json";
-        "signal" = 15;
-        "tooltip" = false;
       };
 
       "privacy" = {

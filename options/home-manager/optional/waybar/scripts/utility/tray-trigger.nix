@@ -15,9 +15,6 @@
             pkill -SIGRTMIN+11 waybar
           done
           ;;
-        xdm)
-          pkill -SIGRTMIN+15 waybar
-          ;;
         *)
           exit 0
           ;;

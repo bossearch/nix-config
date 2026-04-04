@@ -97,9 +97,6 @@ in {
     #custom-stoprec {
       padding: 1px 6px 0px 8px;
     }
-    #custom-xdm {
-      padding: 1px 6px 0px 8px;
-    }
     #privacy {
       padding: 0px 6px 0px 8px;
     }
