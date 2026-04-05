@@ -37,7 +37,7 @@
 
         "modules-left" = [
           "group/launcher"
-          "group/task"
+          "group/resource"
           "custom/weather"
           "hyprland/workspaces"
         ];
@@ -49,11 +49,11 @@
         "modules-right" = [
           "group/customtray"
           "group/utility"
-          "group/monitor"
+          "group/control"
           # "backlight"
           # "battery"
           "clock"
-          "custom/notification"
+          "custom/notify"
         ];
       };
     };

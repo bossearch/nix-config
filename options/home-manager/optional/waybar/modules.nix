@@ -32,7 +32,7 @@ in {
       };
 
       "custom/launcher" = {
-        "exec" = "~/.config/waybar/scripts/utility/uptime.sh";
+        "exec" = "~/.config/waybar/scripts/launcher/uptime.sh";
         "format" = "  ";
         "interval" = 60;
         "on-click" = "~/.config/waybar/scripts/launcher/launcher-left.sh";
@@ -49,18 +49,17 @@ in {
 
       "custom/shutdown" = {
         "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/utility/shutdown.sh";
+        "on-click" = "~/.config/waybar/scripts/launcher/shutdown.sh";
         "tooltip" = false;
       };
 
       "custom/reboot" = {
         "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/utility/reboot.sh";
+        "on-click" = "~/.config/waybar/scripts/launcher/reboot.sh";
         "tooltip" = false;
       };
 
-      # resource monitor
-      "group/task" = {
+      "group/resource" = {
         "orientation" = "inherit";
         "modules" = [
           "cpu"
@@ -79,8 +78,8 @@ in {
       };
 
       "custom/cputemp" = {
-        "exec" = "~/.config/waybar/scripts/temp/cputemp.sh";
-        "format" = "{}°C ";
+        "exec" = "~/.config/waybar/scripts/resource/cputemp.sh";
+        "format" = "{}° ";
         "interval" = 5;
         "on-click" = "kitty -T btop btop";
         "return-type" = "json";
@@ -97,8 +96,8 @@ in {
       };
 
       "custom/gputemp" = {
-        "exec" = "~/.config/waybar/scripts/temp/gputemp.sh";
-        "format" = "{}°C ";
+        "exec" = "~/.config/waybar/scripts/resource/gputemp.sh";
+        "format" = "{}° ";
         "interval" = 5;
         "on-click" = "kitty -T btop btop";
         "return-type" = "json";
@@ -107,10 +106,10 @@ in {
 
       "custom/memory" = {
         "interval" = 5;
-        "format" = "  {} ";
+        "format" = "  {}% ";
         "on-click" = "kitty -T btop btop";
         "return-type" = "json";
-        "exec" = "~/.config/waybar/scripts/utility/memhog.sh";
+        "exec" = "~/.config/waybar/scripts/resource/memory.sh";
       };
 
       # weather
@@ -118,7 +117,7 @@ in {
         "format" = "{}";
         "tooltip" = true;
         "interval" = 3600;
-        "exec" = "~/.config/waybar/scripts/utility/wttr.sh";
+        "exec" = "~/.config/waybar/scripts/tray/wttr.sh";
         "return-type" = "json";
       };
 
@@ -178,8 +177,8 @@ in {
       "custom/stoprec" = {
         "format" = "{}";
         "return-type" = "json";
-        "exec" = "~/.config/waybar/scripts/screenrecord/tray.sh";
-        "on-click" = "~/.config/waybar/scripts/screenrecord/stoprec.sh";
+        "exec" = "~/.config/waybar/scripts/tray/screenrecord-tray.sh";
+        "on-click" = "~/.config/waybar/scripts/tray/screenrecord-stop.sh";
         "signal" = 11;
       };
 
@@ -225,11 +224,11 @@ in {
           "transition-left-to-right" = false;
         };
         "modules" = [
-          "custom/ssmonitor"
+          "custom/monitor"
           "custom/hyprpicker"
           "custom/ocr"
-          "custom/ssarea"
-          "custom/sswindow"
+          "custom/area"
+          "custom/window"
         ];
       };
 
@@ -241,28 +240,28 @@ in {
 
       "custom/ocr" = {
         "format" = " 󱄽 ";
-        "on-click" = "~/.config/waybar/scripts/screenshot/ocr.sh";
+        "on-click" = "~/.config/waybar/scripts/utility/ocr.sh";
         "tooltip" = false;
       };
 
-      "custom/sswindow" = {
-        "format" = " 󰘔 ";
-        "on-click" = "~/.config/waybar/scripts/screenshot/sswindow.sh";
-        "on-click-right" = "~/.config/waybar/scripts/screenrecord/recwindow.sh";
-        "tooltip" = false;
-      };
-
-      "custom/ssarea" = {
+      "custom/area" = {
         "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/screenshot/ssarea.sh";
-        "on-click-right" = "~/.config/waybar/scripts/screenrecord/recarea.sh";
+        "on-click" = "~/.config/waybar/scripts/utility/screenshot/area.sh";
+        "on-click-right" = "~/.config/waybar/scripts/utility/screenrecord/area.sh";
         "tooltip" = false;
       };
 
-      "custom/ssmonitor" = {
+      "custom/monitor" = {
         "format" = " 󰹑 ";
-        "on-click" = "~/.config/waybar/scripts/screenshot/ssmonitor.sh";
-        "on-click-right" = "~/.config/waybar/scripts/screenrecord/recmonitor.sh";
+        "on-click" = "~/.config/waybar/scripts/utility/screenshot/monitor.sh";
+        "on-click-right" = "~/.config/waybar/scripts/utility/screenrecord/monitor.sh";
+        "tooltip" = false;
+      };
+
+      "custom/window" = {
+        "format" = " 󰘔 ";
+        "on-click" = "~/.config/waybar/scripts/utility/screenshot/window.sh";
+        "on-click-right" = "~/.config/waybar/scripts/utility/screenrecord/window.sh";
         "tooltip" = false;
       };
 
@@ -295,8 +294,7 @@ in {
         "tooltip" = false;
       };
 
-      # quick control
-      "group/monitor" = {
+      "group/control" = {
         "orientation" = "inherit";
         "modules" = [
           "custom/ddcutil"
@@ -310,7 +308,7 @@ in {
       "custom/ddcutil" = {
         "format" = " {icon}{percentage}% ";
         "format-icons" = [" " " " " " " " " " " " " " " " " "];
-        "exec" = "bash -c '~/.config/waybar/scripts/utility/ddcutil.sh'";
+        "exec" = "bash -c '~/.config/waybar/scripts/control/ddcutil.sh'";
         "return-type" = "json";
         "on-scroll-up" = "echo '+' > ~/.cache/${hosts.username}/ddcutil";
         "on-scroll-down" = "echo '-' > ~/.cache/${hosts.username}/ddcutil";
@@ -322,9 +320,9 @@ in {
       "custom/hyprsunset" = {
         "format" = "{} ";
         "exec" = "cat ~/.cache/${hosts.username}/hyprsunset-icon";
-        "on-click" = "~/.config/waybar/scripts/hyprsunset/hyprsunset.sh";
-        "on-scroll-up" = "~/.config/waybar/scripts/hyprsunset/scroll-up.sh";
-        "on-scroll-down" = "~/.config/waybar/scripts/hyprsunset/scroll-down.sh";
+        "on-click" = "~/.config/waybar/scripts/control/hyprsunset/hyprsunset.sh";
+        "on-scroll-up" = "~/.config/waybar/scripts/control/hyprsunset/scroll-up.sh";
+        "on-scroll-down" = "~/.config/waybar/scripts/control/hyprsunset/scroll-down.sh";
         "signal" = 12;
         "tooltip" = false;
       };
@@ -344,8 +342,8 @@ in {
           "bluez_output.00_A4_1C_F9_15_84.1-muted" = "󰂲 ";
         };
         "on-click" = "pavucontrol";
-        "on-click-right" = "~/.config/waybar/scripts/pavucontrol/cycle-output.sh";
-        "on-click-middle" = "~/.config/waybar/scripts/pavucontrol/toggle-output.sh";
+        "on-click-right" = "~/.config/waybar/scripts/control/output/cycle-output.sh";
+        "on-click-middle" = "~/.config/waybar/scripts/control/output/toggle-output.sh";
         "scroll-step" = 5;
         "smooth-scrolling-threshold" = 2;
         "tooltip" = false;
@@ -354,10 +352,10 @@ in {
 
       "custom/mic" = {
         "format" = " {} ";
-        "exec" = "~/.config/waybar/scripts/pavucontrol/mic-status.sh";
+        "exec" = "~/.config/waybar/scripts/control/input/mic-status.sh";
         "on-click" = "pavucontrol";
-        "on-click-right" = "~/.config/waybar/scripts/pavucontrol/cycle-input.sh";
-        "on-click-middle" = "~/.config/waybar/scripts/pavucontrol/toggle-input.sh";
+        "on-click-right" = "~/.config/waybar/scripts/control/input/cycle-input.sh";
+        "on-click-middle" = "~/.config/waybar/scripts/control/input/toggle-input.sh";
         "return-type" = "json";
         "signal" = 14;
         "tooltip" = false;

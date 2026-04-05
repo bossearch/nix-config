@@ -37,7 +37,7 @@ in {
       color: @cyan;
     }
 
-    #task {
+    #resource {
       /*group for cpu, gpu and memory*/
       background-color: @fg;
     }
@@ -121,7 +121,7 @@ in {
     }
 
 
-    #monitor {
+    #control {
       /*group for ddcutil, pulseaudio, and internet*/
       background-color: @fg;
       color: @blue;
@@ -138,7 +138,7 @@ in {
       background-color: @fg;
     }
 
-    #custom-notification {
+    #custom-notify {
       color: @bwhite;
       background-color: @fg;
     }
