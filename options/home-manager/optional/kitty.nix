@@ -56,6 +56,7 @@ in {
       "ctrl+equal" = "change_font_size all 0";
       "0x1008ff57" = "copy_to_clipboard";
       "0x1008ff6d" = "paste_from_clipboard";
+      "no_op" = "show_scrollback";
     };
     environment = {
       "TERM" = "xterm-256color";
