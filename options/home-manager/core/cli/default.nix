@@ -50,9 +50,4 @@ in {
     enableFishIntegration = shell == "fish";
     enableZshIntegration = shell == "zsh";
   };
-  programs.fzf = {
-    enableBashIntegration = shell == "bash";
-    enableFishIntegration = shell == "fish";
-    enableZshIntegration = shell == "zsh";
-  };
 }

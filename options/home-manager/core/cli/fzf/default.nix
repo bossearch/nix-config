@@ -1,5 +1,6 @@
 {
   config,
+  hosts,
   mylib,
   ...
 }: let
@@ -15,6 +16,7 @@
   base0B = "#${config.colorScheme.palette.base0B}";
   base0E = "#${config.colorScheme.palette.base0E}";
   base0F = "#${config.colorScheme.palette.base0F}";
+  shell = hosts.shell;
 in {
   imports = mylib.autoimport ./.;
 
@@ -53,5 +55,8 @@ in {
       preview-border = base09;
       preview-scrollbar = base09;
     };
+    enableBashIntegration = shell == "bash";
+    enableFishIntegration = shell == "fish";
+    enableZshIntegration = shell == "zsh";
   };
 }
