@@ -26,6 +26,13 @@ in {
             "Papirus-Light"
           ];
         };
+        qtstyle = mkOption {
+          default = "breeze";
+          type = types.enum [
+            "breeze"
+            "kvantum"
+          ];
+        };
         # optional modules
         firefox = mkOption {
           default = {};

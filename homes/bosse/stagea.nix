@@ -7,6 +7,7 @@
     nerdfont = "CommitMono";
     cursor = "macOS";
     icon = "Papirus-Dark";
+    qtstyle = "breeze";
     monitor = [
       {
         name = "Virtual-1";
