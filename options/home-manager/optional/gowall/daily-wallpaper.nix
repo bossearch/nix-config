@@ -18,7 +18,7 @@ in {
       set -euo pipefail
 
       WALL_DIR="$HOME/Pictures/gowall"
-      CACHE_DIR="$HOME/.cache/bosse"
+      CACHE_DIR="$HOME/.cache/${hosts.username}"
       LOG_FILE="$CACHE_DIR/daily-wallpaper.log"
       DATE=$(date +%Y%m%d)
       OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
