@@ -1,21 +1,14 @@
 {
   config,
   homes,
-  inputs,
   ...
-}: let
-  nix-colors = inputs.nix-colors;
-  toRGBString = nix-colors.lib.conversions.hexToRGBString ",";
-  base00-rgba = "rgba(${toRGBString config.colorScheme.palette.base00},0.7)";
-  base01-rgba = "rgba(${toRGBString config.colorScheme.palette.base01},0.5)";
-in {
+}: {
   programs.waybar.style = ''
-    @define-color bg ${base01-rgba};
-    @define-color fg ${base00-rgba};
+    @define-color bg #${config.colorScheme.palette.base01};
+    @define-color fg #${config.colorScheme.palette.base00};
     @define-color bblack #${config.colorScheme.palette.base03};
     @define-color gray #${config.colorScheme.palette.base04};
-    @define-color nwhite #${config.colorScheme.palette.base05};
-    @define-color bwhite #${config.colorScheme.palette.base07};
+    @define-color white #${config.colorScheme.palette.base07};
     @define-color red #${config.colorScheme.palette.base08};
     @define-color yellow #${config.colorScheme.palette.base0A};
     @define-color green #${config.colorScheme.palette.base0B};
@@ -31,7 +24,7 @@ in {
     #launcher {
       /*group for launcher*/
       color: @gray;
-      background-color: @fg;
+      background: alpha(@fg, 0.7);
     }
     #custom-launcher {
       color: @cyan;
@@ -39,7 +32,7 @@ in {
 
     #resource {
       /*group for cpu, gpu and memory*/
-      background-color: @fg;
+      background: alpha(@fg, 0.7);
     }
     #cpu,
     #custom-cputemp {
@@ -54,16 +47,15 @@ in {
     }
 
     #custom-weather {
-      background-color: @fg;
-      color: @bwhite;
-      padding: 0 10px;
+      color: #DFDFDF;
+      padding: 0px 10px 0px 0px;
     }
 
     #workspaces {
-      background-color: @fg;
+      background: alpha(@fg, 0.7);
     }
     #workspaces button {
-      background-color: transparent;
+      background: transparent;
       color: @gray;
       padding: 0 6px;
     }
@@ -78,21 +70,21 @@ in {
       color: @yellow;
     }
     #workspaces button.active {
-      color: @bwhite;
+      color: @white;
       border-radius: 8px;
     }
 
     #window {
-      color: @bwhite;
+      color: #DFDFDF;
+      padding: 2px 0px 0px 0px;
     }
     window#waybar {
-      background-color: @bg;
+      background: alpha(@bg, 0.5);
     }
 
     #customtray {
       /*group for stoprec and tray*/
-      color: #FFFFFF;
-      background-color: @fg;
+      color: #DFDFDF;
     }
     #custom-stoprec {
       padding: 1px 6px 0px 8px;
@@ -108,13 +100,13 @@ in {
     }
     #tray > .needs-attention {
       -gtk-icon-effect: highlight;
-      background-color: @yellow;
+      background: @yellow;
     }
 
     #utility {
       /*group for screenshot, virtualkeyboard,hyprpicker, and wiz*/
-      background-color: @fg;
-      color: @bwhite;
+      background: alpha(@fg, 0.7);
+      color: @white;
     }
     #custom-lamp {
       padding: 0px 0px 0px 6px;
@@ -123,7 +115,7 @@ in {
 
     #control {
       /*group for ddcutil, pulseaudio, and internet*/
-      background-color: @fg;
+      background: alpha(@fg, 0.7);
       color: @blue;
     }
     #network {
@@ -134,13 +126,13 @@ in {
     }
 
     #clock {
-      color: @bwhite;
-      background-color: @fg;
+      color: @white;
+      background: alpha(@fg, 0.7);
     }
 
     #custom-notify {
-      color: @bwhite;
-      background-color: @fg;
+      color: @white;
+      background: alpha(@fg, 0.7);
     }
 
     .modules-left > widget:first-child > #workspaces {
@@ -151,8 +143,9 @@ in {
       margin-right: 0;
     }
     tooltip {
-      background: @bg;
-      border: 1px solid @fg;
+      background: alpha(@bg, 0.5);
+      border: 2px solid alpha(@fg, 0.7);
+      color: #DFDFDF;
     }
   '';
 }
