@@ -37,18 +37,16 @@
 
         "modules-left" = [
           "group/launcher"
-          "group/resource"
-          "custom/weather"
           "hyprland/workspaces"
-        ];
-
-        "modules-center" = [
+          "custom/chevron"
           "hyprland/window"
         ];
 
         "modules-right" = [
           "group/customtray"
+          "custom/weather"
           "group/utility"
+          "group/resource"
           "group/control"
           # "backlight"
           # "battery"

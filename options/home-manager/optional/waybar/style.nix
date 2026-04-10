@@ -26,7 +26,8 @@
       color: @gray;
       background: alpha(@fg, 0.7);
     }
-    #custom-launcher {
+    #custom-launcher,
+    #custom-chevron {
       color: @cyan;
     }
 

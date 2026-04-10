@@ -125,43 +125,60 @@ in {
       "hyprland/workspaces" = {
         "active-only" = false;
         "all-outputs" = true;
-        "format" = "{icon}";
-        "show-special" = false;
+        "format" = "<sub>{icon}</sub> {windows}";
+        "format-window-separator" = " ";
         "on-click" = "activate";
-        "on-scroll-up" = "hyprctl dispatch workspace e+1";
         "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        "persistent-workspaces" = {
-          "1" = [];
-          "2" = [];
-          "3" = [];
-          "4" = [];
-          "5" = [];
-          "6" = [];
+        "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        "show-special" = false;
+        "window-rewrite-default" = "";
+        "window-rewrite" = {
+          "class<.blueman-manager-wrapped>" = "";
+          "class<.virt-manager-wrapped>" = "󰢔";
+          "class<Tor Browser>" = "";
+          "class<alacritty>" = "";
+          "class<firefox>" = "";
+          "class<foot>" = "";
+          "class<gcr-prompter>" = "";
+          "class<io.github.mpobaschnig.Vaults>" = "󰩪";
+          "class<kitty>" = "";
+          "class<localsend_app>" = "󰈪";
+          "class<mpv>" = "";
+          "class<net.lutris.lutris>" = "";
+          "class<obsidian>" = "";
+          "class<org.gnome.nautilus>" = "";
+          "class<org.prismlauncher.PrismLauncher>" = "󰍳";
+          "class<org.pulseaudio.pavucontrol>" = "";
+          "class<spotify>" = "";
+          "class<steam>" = "";
+          "class<transmission-gtk>" = "󰛴";
+          "class<vesktop>" = "";
+          "class<zenity>" = "󰟶";
+          "title<btop>" = "";
+          "title<crkbd>" = "󰌌";
+          "title<fastfetch>" = "󰋼";
+          "title<fzf>" = "󱁴";
+          "title<mousefzf>" = "󱁴";
+          "title<newsboat>" = "";
+          "title<nmtui>" = "󰀂";
         };
-        "format-icons" = {
-          "1" = "一";
-          "2" = "二";
-          "3" = "三";
-          "4" = "四";
-          "5" = "五";
-          "6" = "六";
-        };
+      };
+
+      "custom/chevron" = {
+        "format" = " ❯ ";
+        "tooltip" = false;
       };
 
       #window title
       "hyprland/window" = {
         "format" = "{}";
-        "max-length" = length;
+        "rewrite" = {
+          "(.*) — Mozilla Firefox" = "$1";
+        };
         # "separate-outputs"= true;
-        "icon" = true;
-        "icon-size" = 16;
-        "on-click" = "~/.config/hypr/scripts/quit.sh";
-        "on-click-right" = "hyprctl dispatch setprop active opaque toggle";
-        "on-click-middle" = "hyprctl dispatch togglespecialworkspace anonymous";
-        "on-scroll-up" = "hyprctl dispatch togglespecialworkspace gamespace";
-        "on-scroll-down" = "hyprctl dispatch togglespecialworkspace scratchpad";
-        "swap-icon-label" = false;
+        "icon" = false;
         "tooltip" = false;
+        "on-click" = "~/.config/hypr/scripts/quit.sh";
       };
 
       # tray modules
@@ -372,8 +389,8 @@ in {
       # clock and date
       "clock" = {
         "interval" = 1;
-        "format" = "<span color='${base08}'>  </span>{:%H:%M:%S} ";
-        "format-alt" = "<span color='${base08}'>  </span>{:%a %d/%b/%y} ";
+        "format" = "  <b>{:%H:%M:%S}</b> ";
+        "format-alt" = "  <b>{:%a %d/%b/%y}</b> ";
         "tooltip-format" = "\n<span size='12pt'>{calendar}</span>";
         "calendar" = {
           "mode" = "year";
@@ -395,8 +412,7 @@ in {
         "smooth-scrolling-threshold" = 5;
       };
 
-      # notification-icon
-      "custom/notification" = {
+      "custom/notify" = {
         "format" = " {} ";
         "exec" = "cat ~/.cache/${hosts.username}/notification-icon";
         "on-click" = "~/.config/waybar/scripts/dunst/dunsticon.sh";
