@@ -66,16 +66,16 @@ in {
     windowrule = workspace special:gamespace, opaque on, match:class (com.usebottles.bottles)
 
     #btop
-    windowrule = float on, center 1, size ${size."3/4"}, match:class (kitty), match:title (btop)
+    windowrule = float on, center 1, size ${size."3/4"}, match:class (footclient), match:title (btop)
 
     #crkbd
-    windowrule = float on, center 1, size ${size.crkbd}, match:class (kitty), match:title (crkbd)
+    windowrule = float on, center 1, size 1310 1080, match:class (footclient), match:title (crkbd)
 
     #dn
     windowrule = workspace special:gamespace, center 1, opaque on, match:title (DNOrigins.*)
 
     #fastfetch
-    windowrule = float on, center 1, size ${size.about}, match:class (kitty), match:title (fastfetch)
+    windowrule = float on, center 1, size ${size.about}, match:class (footclient), match:title (fastfetch)
 
     #feh
     windowrule = float on, center 1, match:class (feh)
@@ -89,9 +89,12 @@ in {
     windowrule = opaque on, match:class (firefox), match:title (.*Twitch.*)
     windowrule = size ${size."1/2"}, match:class (firefox), match:title (File Upload)
 
+    #foot
+    windowrule = workspace 1, match:initial_title (foot)
+
     #fzf
-    windowrule = float on, center 1, size ${size."1/4"}, match:class (kitty), match:title (fzf)
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (kitty), match:title (mousefzf)
+    windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (fzf)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (mousefzf)
 
     #obsidian
     windowrule = workspace 5, match:initial_class (obsidian)
@@ -126,7 +129,7 @@ in {
 
     #nmtui
     # windowrule = workspace 4, class:(kitty),title:(nmtui)
-    windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (kitty), match:title (nmtui)
+    windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (footclient), match:title (nmtui)
 
     #pavucontrol
     # windowrule = workspace 4, initialClass:(org.pulseaudio.pavucontrol)

@@ -12,13 +12,12 @@
     $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
     $fileManager = nautilus
     $browser = firefox
-    $drun = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/drun.sh"
-    $run = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/run.sh"
-    $emoji = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/emoji.sh; kitty @ close-window"
-    $clipboard = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/clipboard.sh; kitty @ close-window"
-    $loadbuku = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/hypr/scripts/load-buku.sh"
-    $pass = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/pass.sh password"
-    $otp = kitty -T fzf -o cursor_trail=0 fish -c "~/.config/fzf/extra/pass.sh otp"
+    $drun = footclient -T fzf ~/.config/fzf/extra/drun.sh
+    $run = footclient -T fzf ~/.config/fzf/extra/run.sh
+    $emoji = footclient -T fzf ~/.config/fzf/extra/emoji.sh
+    $clipboard = footclient -T fzf ~/.config/fzf/extra/clipboard.sh
+    $pass = footclient -T fzf ~/.config/fzf/extra/pass.sh password
+    $otp = footclient -T fzf ~/.config/fzf/extra/pass.sh otp
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
     bind = $hyper, code:49, exit # "`"

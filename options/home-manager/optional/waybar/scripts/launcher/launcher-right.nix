@@ -14,7 +14,10 @@ in {
     text = ''
       #!/usr/bin/env bash
       hyprctl dispatch movecursor ${position}
-      kitty -T mousefzf -o font_size=24 -o cursor_trail=0 fish -c "~/.config/fzf/extra/drun.sh"
+      footclient -o "main.font=${homes.nerdfont} Nerd Font:size=24" \
+        -o "main.font-bold=${homes.nerdfont} Nerd Font:style=bold:size=24" \
+        -o "main.line-height=29" \
+        -T mousefzf ~/.config/fzf/extra/drun.sh
     '';
   };
 }

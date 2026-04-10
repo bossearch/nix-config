@@ -1,4 +1,5 @@
 {
+  config,
   homes,
   hosts,
   lib,
@@ -10,13 +11,15 @@
     if mymonitor
     then "1280 720"
     else "960 540";
+  base01 = "${config.colorScheme.palette.base01}";
+  base07 = "${config.colorScheme.palette.base07}";
 in {
   home.file.".config/qmk/cheatsheet-wrapper.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash
       hyprctl dispatch movecursor ${position}
-      kitty -T crkbd -o cursor="#1a1b26" -o cursor_trail=0 -e ~/.config/qmk/crkbd-cheatsheet.sh
+      footclient -o "colors-dark.cursor=${base07} ${base01}" -T crkbd ~/.config/qmk/crkbd-cheatsheet.sh
     '';
   };
 }

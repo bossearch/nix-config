@@ -74,14 +74,14 @@ in {
         "interval" = 5;
         "format" = "  {usage}% ";
         "max-length" = 15;
-        "on-click" = "kitty -T btop btop";
+        "on-click" = "footclient -T btop btop";
       };
 
       "custom/cputemp" = {
         "exec" = "~/.config/waybar/scripts/resource/cputemp.sh";
         "format" = "{}° ";
         "interval" = 5;
-        "on-click" = "kitty -T btop btop";
+        "on-click" = "footclient -T btop btop";
         "return-type" = "json";
         "tooltip" = true;
       };
@@ -91,7 +91,7 @@ in {
         "interval" = 5;
         "format" = "  {}% ";
         "max-length" = 15;
-        "on-click" = "kitty -T btop btop";
+        "on-click" = "footclient -T btop btop";
         "tooltip" = false;
       };
 
@@ -99,7 +99,7 @@ in {
         "exec" = "~/.config/waybar/scripts/resource/gputemp.sh";
         "format" = "{}° ";
         "interval" = 5;
-        "on-click" = "kitty -T btop btop";
+        "on-click" = "footclient -T btop btop";
         "return-type" = "json";
         "tooltip" = true;
       };
@@ -107,7 +107,7 @@ in {
       "custom/memory" = {
         "interval" = 5;
         "format" = "  {}% ";
-        "on-click" = "kitty -T btop btop";
+        "on-click" = "footclient -T btop btop";
         "return-type" = "json";
         "exec" = "~/.config/waybar/scripts/resource/memory.sh";
       };
@@ -364,7 +364,7 @@ in {
       "network" = {
         "format-wifi" = " 󰖩 {signalStrength}%";
         "format-ethernet" = "  ";
-        "on-click" = "kitty -T nmtui nmtui";
+        "on-click" = "footclient -T nmtui bash -c 'sleep 0.1 && nmtui'";
         "format-disconnected" = " Disconnected  ";
         "tooltip" = false;
       };
