@@ -2,6 +2,7 @@
   config,
   homes,
   hosts,
+  lib,
   ...
 }: let
   base00 = "${config.colorScheme.palette.base00}";
@@ -101,5 +102,14 @@ in {
         regex = "(((https?://|mailto:|ftp://|file:|ssh:|ssh://|git://|tel:|magnet:|ipfs://|ipns://|gemini://|gopher://|news:)|www\.)([0-9a-zA-Z:/?#@!$&*+,;=.~_%^\-]+|\([]\[\"0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\)|\[[\(\)\"0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\]|\"[]\[\(\)0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\"|'[]\[\(\)0-9a-zA-Z:/?#@!$&*+,;=.~_%^\-]*')+([0-9a-zA-Z/#@$&*+=~_%^\-]|\([]\[\"0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\)|\[[\(\)\"0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\]|\"[]\[\(\)0-9a-zA-Z:/?#@!$&'*+,;=.~_%^\-]*\"|'[]\[\(\)0-9a-zA-Z:/?#@!$&*+,;=.~_%^\-]*'))";
       };
     };
+  };
+  home.file.".config/foot/footclient.sh" = lib.mkIf config.programs.foot.enable {
+    executable = true;
+    text = ''
+      #!/usr/bin/env ${hosts.shell}
+
+      dbus-update-activation-environment --systemd FZF_DEFAULT_OPTS
+      systemctl --user restart foot.service
+    '';
   };
 }
