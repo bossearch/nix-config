@@ -44,10 +44,6 @@
       vapoursynth-mvtools
       yt-dlp
     ];
-    file.".config/mpv/fonts" = {
-      source = ./.fonts;
-      recursive = true;
-    };
   };
 
   xdg.desktopEntries.mpv = lib.mkIf homes.mpv {
