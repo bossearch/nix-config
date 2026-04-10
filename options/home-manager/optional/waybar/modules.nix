@@ -299,15 +299,16 @@ in {
       };
 
       "custom/lamp" = {
+        "exec" = "~/.config/assets/scripts/lamp-control/get-lamp.sh dim";
         "format" = "{icon} ";
         "format-icons" = ["󰹐" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
-        "exec" = "~/.config/waybar/scripts/utility/lamp-control.sh";
-        "on-click" = "echo 'on' > ~/.cache/${hosts.username}/lamp-control";
-        "on-click-middle" = "echo 'toggle' > ~/.cache/${hosts.username}/lamp-control";
-        "on-click-right" = "echo 'off' > ~/.cache/${hosts.username}/lamp-control";
-        "on-scroll-down" = "echo '-' > ~/.cache/${hosts.username}/lamp-control";
-        "on-scroll-up" = "echo '+' > ~/.cache/${hosts.username}/lamp-control";
+        "on-click" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh state";
+        "on-click-middle" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh temp";
+        "on-click-right" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh cozy";
+        "on-scroll-down" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh -";
+        "on-scroll-up" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh +";
         "return-type" = "json";
+        "signal" = 15;
         "tooltip" = false;
       };
 
