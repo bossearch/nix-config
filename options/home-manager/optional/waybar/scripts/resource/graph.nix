@@ -144,7 +144,7 @@
 
       graph+="$x_axis"
 
-      echo "$graph"
+      echo "<span foreground=\\\"#DFDFDF\\\">$graph</span>"
     '';
   };
 }

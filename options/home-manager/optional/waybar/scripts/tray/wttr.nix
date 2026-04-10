@@ -136,7 +136,7 @@
         ((i++))
       done <<<"$days"
 
-      echo "{\"text\": \"$text\", \"tooltip\": \"$tooltip\"}"
+      echo "{\"text\": \"$text\", \"tooltip\": \"<span foreground=\\\"#DFDFDF\\\">$tooltip</span>\"}"
     '';
   };
 }

@@ -31,7 +31,7 @@
 
       parts="''${parts#"''${parts%%[! ]*}"}"
 
-      echo "{\"tooltip\": \"Uptime: $parts\"}"
+      echo "{\"tooltip\": \"<span foreground=\\\"#DFDFDF\\\">Uptime: $parts</span>\"}"
     '';
   };
 }
