@@ -14,7 +14,7 @@
   xdg.desktopEntries.nchat = lib.mkIf homes.nchat {
     type = "Application";
     name = "nchat";
-    exec = "kitty -T nchat nchat";
+    exec = "footclient -T nchat nchat";
     comment = "Open nchat with kitty";
   };
 }
