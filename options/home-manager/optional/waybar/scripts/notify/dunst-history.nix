@@ -3,8 +3,10 @@
   hosts,
   lib,
   ...
-}: {
-  home.file.".config/waybar/scripts/dunst/history.sh" = lib.mkIf homes.waybar {
+}: let
+  enabled = homes.waybar && (homes.notify == "dunst");
+in {
+  home.file.".config/waybar/scripts/notify/dunst-history.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash

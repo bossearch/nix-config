@@ -1,18 +1,20 @@
 {
   config,
-  hosts,
   homes,
+  hosts,
   ...
 }: let
-  length =
-    if builtins.all (m: m.width == 2560) homes.monitor
-    then 120
-    else 60;
   base07 = "#${config.colorScheme.palette.base07}";
   base08 = "#${config.colorScheme.palette.base08}";
   base0A = "#${config.colorScheme.palette.base0A}";
   base0B = "#${config.colorScheme.palette.base0B}";
   base0D = "#${config.colorScheme.palette.base0D}";
+  notification =
+    if homes.notify == "dunst"
+    then "~/.config/waybar/scripts/notify/dunst-history.sh"
+    else if homes.notify == "swaync"
+    then "swaync-client -t -sw"
+    else "";
 in {
   programs.waybar.settings = {
     mainBar = {
@@ -285,7 +287,6 @@ in {
       "custom/virtualkeyboard" = {
         "format" = "  ";
         "on-click" = "~/.config/waybar/scripts/utility/virtualkeyboard.sh";
-        "on-click-right" = "pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard";
         "tooltip" = false;
       };
 
@@ -293,8 +294,7 @@ in {
         "format" = " 󱈅 ";
         "on-scroll-up" = "current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2}') && hyprctl keyword cursor:zoom_factor $(echo \"$current + 0.5\" | bc)";
         "on-scroll-down" = "current=$(hyprctl getoption cursor:zoom_factor | head -n 1 | awk '{print $2}') && hyprctl keyword cursor:zoom_factor $(echo \"$current - 0.5\" | bc)";
-        "on-click-right" = "hyprctl keyword cursor:zoom_factor 1";
-        "on-click" = "hyprctl keyword cursor:zoom_factor 2";
+        "on-click" = "~/.config/waybar/scripts/utility/magnifier.sh";
         "tooltip" = false;
       };
 
@@ -415,10 +415,9 @@ in {
 
       "custom/notify" = {
         "format" = " {} ";
-        "exec" = "cat ~/.cache/${hosts.username}/notification-icon";
-        "on-click" = "~/.config/waybar/scripts/dunst/dunsticon.sh";
-        "on-click-right" = "~/.config/waybar/scripts/dunst/history.sh";
-        "on-click-middle" = "dunstctl close-all";
+        "exec" = "cat ~/.cache/${hosts.username}/notify-icon";
+        "on-click" = ".config/waybar/scripts/notify/notify-icon.sh";
+        "on-click-right" = "${notification}";
         "signal" = 10;
         "tooltip" = false;
       };

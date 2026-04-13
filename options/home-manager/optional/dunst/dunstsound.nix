@@ -9,7 +9,7 @@
     text = ''
       #!/usr/bin/env bash
 
-      VOLUME_FILE="$HOME/.cache/${hosts.username}/volume"
+      VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
       CURRENT_VOLUME=$(cat "$VOLUME_FILE")
 
       if [ "$DUNST_URGENCY" = "CRITICAL" ]; then

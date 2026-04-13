@@ -2,7 +2,14 @@
   config,
   homes,
   ...
-}: {
+}: let
+  launcher =
+    if homes.notify == "dunst"
+    then "launcher"
+    else if homes.notify == "swaync"
+    then "custom-launcher"
+    else "";
+in {
   programs.waybar.style = ''
     @define-color bg #${config.colorScheme.palette.base01};
     @define-color fg #${config.colorScheme.palette.base00};
@@ -21,8 +28,7 @@
       border-radius: 8px;
     }
 
-    #launcher {
-      /*group for launcher*/
+    #${launcher} {
       color: @gray;
       background: alpha(@fg, 0.7);
     }

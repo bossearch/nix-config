@@ -11,11 +11,11 @@ in {
       #!/usr/bin/env bash
       mkdir -p "$HOME/.cache/${hosts.username}"
 
-      DUNST_VOLUME_FILE="$HOME/.cache/${hosts.username}/volume"
-      echo "65536" >"$DUNST_VOLUME_FILE"
+      NOTIFY_VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
+      echo "65536" >"NOTIFY_VOLUME_FILE"
 
-      DUNST_ICON_FILE="$HOME/.cache/${hosts.username}/notification-icon"
-      echo "󰂞" >"$DUNST_ICON_FILE"
+      NOTIFY_ICON_FILE="$HOME/.cache/${hosts.username}/notify-icon"
+      echo "󰂞" >"$NOTIFY_ICON_FILE"
 
       HYPRSUNSET_ICON_FILE="$HOME/.cache/${hosts.username}/hyprsunset-icon"
       echo "" >"$HYPRSUNSET_ICON_FILE"
