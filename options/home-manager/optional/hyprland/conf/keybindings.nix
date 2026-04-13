@@ -34,7 +34,6 @@
     bind = $mainMod, R, exec, ~/.config/hypr/scripts/deepl-terjemah.sh
     bind = $mainMod, E, exec, ~/.config/hypr/scripts/deepl-translate.sh
     bind = $mainMod, L, exec, ~/.config/hypr/scripts/hyprlock.sh
-    bind = $mainMod, B, exec, $loadbuku
 
     bind = $meh, Q, exec, ~/.config/waybar/scripts/screenshot/ssmonitor.sh
     bind = $hyper, Q, exec, ~/.config/waybar/scripts/screenrecord/recmonitor.sh
@@ -55,7 +54,6 @@
     bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
     bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
     bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
-    bind = $hyper, B, exec, ~/.config/hypr/scripts/save-buku.sh
     bind = $meh, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $pass
     bind = $hyper, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $otp
 
