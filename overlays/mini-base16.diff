@@ -1,5 +1,5 @@
 diff --git a/lua/mini/base16.lua b/lua/mini/base16.lua
-index 9cd57f5..ef36514 100644
+index 9cd57f5..00a858f 100644
 --- a/lua/mini/base16.lua
 +++ b/lua/mini/base16.lua
 @@ -467,34 +467,34 @@ H.apply_palette = function(palette, use_cterm)
@@ -39,7 +39,7 @@ index 9cd57f5..ef36514 100644
    hi('Directory',      {fg=p.base0D, bg=nil,      attr=nil,            sp=nil})
    hi('EndOfBuffer',    {fg=p.base03, bg=nil,      attr=nil,            sp=nil})
    hi('ErrorMsg',       {fg=p.base08, bg=nil,      attr=nil,            sp=nil})
-   hi('FloatBorder',    {link='NormalFloat'})
+-  hi('FloatBorder',    {link='NormalFloat'})
 -  hi('FoldColumn',     {fg=p.base0C, bg=p.base01, attr=nil,            sp=nil})
 -  hi('Folded',         {fg=p.base03, bg=p.base01, attr=nil,            sp=nil})
 -  hi('IncSearch',      {fg=p.base01, bg=p.base09, attr=nil,            sp=nil})
@@ -47,6 +47,7 @@ index 9cd57f5..ef36514 100644
 -  hi('LineNr',         {fg=p.base03, bg=p.base01, attr=nil,            sp=nil})
 -  hi('LineNrAbove',    {fg=p.base03, bg=p.base01, attr=nil,            sp=nil})
 -  hi('LineNrBelow',    {fg=p.base03, bg=p.base01, attr=nil,            sp=nil})
++  hi('FloatBorder',    {fg=p.base0F, bg=nil,      attr=nil,            sp=nil})
 +  hi('FoldColumn',     {fg=p.base0C, bg=p.base00, attr=nil,            sp=nil})
 +  hi('Folded',         {fg=p.base03, bg=p.base00, attr=nil,            sp=nil})
 +  hi('IncSearch',      {fg=p.base00, bg=p.base09, attr=nil,            sp=nil})
@@ -65,7 +66,7 @@ index 9cd57f5..ef36514 100644
 -  hi('NormalFloat',    {fg=p.base05, bg=p.base01, attr=nil,            sp=nil})
 -  hi('NormalNC',       {fg=p.base05, bg=p.base00, attr=nil,            sp=nil})
 +  hi('Normal',         {fg=p.base05, bg=p.base01, attr=nil,            sp=nil})
-+  hi('NormalFloat',    {fg=p.base0F, bg=p.base00, attr=nil,            sp=nil})
++  hi('NormalFloat',    {fg=p.base05, bg=p.base00, attr=nil,            sp=nil})
 +  hi('NormalNC',       {fg=p.base05, bg=p.base01, attr=nil,            sp=nil})
    hi('OkMsg',          {fg=p.base0B, bg=nil,      attr=nil,            sp=nil})
 -  hi('Pmenu',          {fg=p.base05, bg=p.base01, attr=nil,            sp=nil})
@@ -120,7 +121,7 @@ index 9cd57f5..ef36514 100644
 -  hi('WinSeparator',   {fg=p.base02, bg=p.base02, attr=nil,            sp=nil})
 +  hi('WinBarNC',       {fg=p.base03, bg=p.base00, attr=nil,            sp=nil})
 +  hi('WinSeparator',   {fg=p.base00, bg='NONE', attr=nil,            sp=nil})
-
+ 
    -- Standard syntax (affects treesitter)
    hi('Boolean',        {fg=p.base09, bg=nil,      attr=nil, sp=nil})
 @@ -556,7 +556,7 @@ H.apply_palette = function(palette, use_cterm)
@@ -140,14 +141,14 @@ index 9cd57f5..ef36514 100644
 +  hi('Todo',           {fg=p.base0A, bg=p.base00, attr=nil, sp=nil})
    hi('Type',           {fg=p.base0A, bg=nil,      attr=nil, sp=nil})
    hi('Typedef',        {fg=p.base0A, bg=nil,      attr=nil, sp=nil})
-
+ 
 @@ -621,13 +621,13 @@ H.apply_palette = function(palette, use_cterm)
    hi('DiagnosticHint',  {fg=p.base0D, bg=nil, attr=nil, sp=nil})
    hi('DiagnosticInfo',  {fg=p.base0C, bg=nil, attr=nil, sp=nil})
    hi('DiagnosticOk',    {fg=p.base0B, bg=nil, attr=nil, sp=nil})
 -  hi('DiagnosticWarn',  {fg=p.base0E, bg=nil, attr=nil, sp=nil})
 +  hi('DiagnosticWarn',  {fg=p.base0A, bg=nil, attr=nil, sp=nil})
-
+ 
 -  hi('DiagnosticFloatingError', {fg=p.base08, bg=p.base01, attr=nil, sp=nil})
 -  hi('DiagnosticFloatingHint',  {fg=p.base0D, bg=p.base01, attr=nil, sp=nil})
 -  hi('DiagnosticFloatingInfo',  {fg=p.base0C, bg=p.base01, attr=nil, sp=nil})
@@ -158,7 +159,7 @@ index 9cd57f5..ef36514 100644
 +  hi('DiagnosticFloatingInfo',  {fg=p.base0C, bg=p.base00, attr=nil, sp=nil})
 +  hi('DiagnosticFloatingOk',    {fg=p.base0B, bg=p.base00, attr=nil, sp=nil})
 +  hi('DiagnosticFloatingWarn',  {fg=p.base0A, bg=p.base00, attr=nil, sp=nil})
-
+ 
    hi('DiagnosticSignError', {link='DiagnosticFloatingError'})
    hi('DiagnosticSignHint',  {link='DiagnosticFloatingHint'})
 @@ -639,7 +639,7 @@ H.apply_palette = function(palette, use_cterm)
@@ -167,7 +168,7 @@ index 9cd57f5..ef36514 100644
    hi('DiagnosticUnderlineOk',    {fg=nil, bg=nil, attr='underline', sp=p.base0B})
 -  hi('DiagnosticUnderlineWarn',  {fg=nil, bg=nil, attr='underline', sp=p.base0E})
 +  hi('DiagnosticUnderlineWarn',  {fg=nil, bg=nil, attr='underline', sp=p.base0A})
-
+ 
    -- Built-in LSP
    hi('LspReferenceText',  {fg=nil, bg=p.base02, attr=nil, sp=nil})
 @@ -716,14 +716,14 @@ H.apply_palette = function(palette, use_cterm)
@@ -176,7 +177,7 @@ index 9cd57f5..ef36514 100644
      hi('MiniClueSeparator',           {link='DiagnosticFloatingInfo'})
 -    hi('MiniClueTitle',               {fg=p.base0D, bg=p.base01, attr='bold', sp=nil})
 +    hi('MiniClueTitle',               {fg=p.base0D, bg=p.base00, attr='bold', sp=nil})
-
+ 
      hi('MiniCmdlinePeekBorder', {link='FloatBorder'})
      hi('MiniCmdlinePeekLineNr', {link='DiagnosticSignWarn'})
      hi('MiniCmdlinePeekNormal', {link='NormalFloat'})
@@ -184,13 +185,13 @@ index 9cd57f5..ef36514 100644
      hi('MiniCmdlinePeekSign',   {link='DiagnosticSignHint'})
 -    hi('MiniCmdlinePeekTitle',  {fg=p.base0D, bg=p.base01, attr='bold', sp=nil})
 +    hi('MiniCmdlinePeekTitle',  {fg=p.base0D, bg=p.base00, attr='bold', sp=nil})
-
+ 
      hi('MiniCompletionActiveParameter',    {link='LspSignatureActiveParameter'})
      hi('MiniCompletionDeprecated',         {link='DiagnosticDeprecated'})
 @@ -743,9 +743,9 @@ H.apply_palette = function(palette, use_cterm)
      hi('MiniDepsTitleSame',     {link='DiffText'})
      hi('MiniDepsTitleUpdate',   {link='DiffAdd'})
-
+ 
 -    hi('MiniDiffSignAdd',        {fg=p.base0B, bg=p.base01, attr=nil, sp=nil})
 -    hi('MiniDiffSignChange',     {fg=p.base0E, bg=p.base01, attr=nil, sp=nil})
 -    hi('MiniDiffSignDelete',     {fg=p.base08, bg=p.base01, attr=nil, sp=nil})
@@ -208,7 +209,7 @@ index 9cd57f5..ef36514 100644
 -    hi('MiniFilesTitleFocused',   {fg=p.base0D, bg=p.base01, attr='bold', sp=nil})
 +    hi('MiniFilesTitle',          {fg=p.base0D, bg=p.base00, attr=nil,    sp=nil})
 +    hi('MiniFilesTitleFocused',   {fg=p.base0D, bg=p.base00, attr='bold', sp=nil})
-
+ 
 -    hi('MiniHipatternsFixme', {fg=p.base00, bg=p.base08, attr='bold', sp=nil})
 -    hi('MiniHipatternsHack',  {fg=p.base00, bg=p.base0E, attr='bold', sp=nil})
 -    hi('MiniHipatternsNote',  {fg=p.base00, bg=p.base0D, attr='bold', sp=nil})
@@ -217,19 +218,19 @@ index 9cd57f5..ef36514 100644
 +    hi('MiniHipatternsHack',  {fg=p.base01, bg=p.base0E, attr='bold', sp=nil})
 +    hi('MiniHipatternsNote',  {fg=p.base01, bg=p.base0D, attr='bold', sp=nil})
 +    hi('MiniHipatternsTodo',  {fg=p.base01, bg=p.base0C, attr='bold', sp=nil})
-
+ 
      hi('MiniIconsAzure',  {fg=p.base0D, bg=nil, attr=nil, sp=nil})
      hi('MiniIconsBlue',   {fg=p.base0F, bg=nil, attr=nil, sp=nil})
 @@ -783,11 +783,11 @@ H.apply_palette = function(palette, use_cterm)
      hi('MiniJump', {link='SpellRare'})
-
+ 
      hi('MiniJump2dDim',        {link='Comment'})
 -    hi('MiniJump2dSpot',       {fg=p.base07, bg=p.base01, attr='bold,nocombine', sp=nil})
 -    hi('MiniJump2dSpotAhead',  {fg=p.base06, bg=p.base00, attr='nocombine',      sp=nil})
 +    hi('MiniJump2dSpot',       {fg=p.base07, bg=p.base00, attr='bold,nocombine', sp=nil})
 +    hi('MiniJump2dSpotAhead',  {fg=p.base06, bg=p.base01, attr='nocombine',      sp=nil})
      hi('MiniJump2dSpotUnique', {link='MiniJump2dSpot'})
-
+ 
 -    hi('MiniMapNormal',      {fg=p.base05, bg=p.base01, attr=nil, sp=nil})
 +    hi('MiniMapNormal',      {fg=p.base05, bg=p.base00, attr=nil, sp=nil})
      hi('MiniMapSymbolCount', {fg=p.base0C, bg=nil,      attr=nil, sp=nil})
@@ -237,7 +238,7 @@ index 9cd57f5..ef36514 100644
      hi('MiniMapSymbolView',  {fg=p.base0F, bg=nil,      attr=nil, sp=nil})
 @@ -800,8 +800,8 @@ H.apply_palette = function(palette, use_cterm)
      hi('MiniOperatorsExchangeFrom', {link='IncSearch'})
-
+ 
      hi('MiniPickBorder',        {link='FloatBorder'})
 -    hi('MiniPickBorderBusy',    {fg=p.base0E, bg=p.base01, attr=nil,         sp=nil})
 -    hi('MiniPickBorderText',    {fg=p.base0D, bg=p.base01, attr='bold',      sp=nil})
@@ -254,11 +255,11 @@ index 9cd57f5..ef36514 100644
 -    hi('MiniPickPromptPrefix',  {fg=p.base0B, bg=p.base01, attr=nil,         sp=nil})
 +    hi('MiniPickPromptCaret' ,  {fg=p.base0B, bg=p.base00, attr=nil,         sp=nil})
 +    hi('MiniPickPromptPrefix',  {fg=p.base0B, bg=p.base00, attr=nil,         sp=nil})
-
+ 
      hi('MiniSnippetsCurrent',        {fg=nil, bg=nil, attr='underdouble', sp=p.base0E})
      hi('MiniSnippetsCurrentReplace', {fg=nil, bg=nil, attr='underdouble', sp=p.base08})
 @@ -834,26 +834,26 @@ H.apply_palette = function(palette, use_cterm)
-
+ 
      hi('MiniStatuslineDevinfo',     {fg=p.base04, bg=p.base02, attr=nil,    sp=nil})
      hi('MiniStatuslineFileinfo',    {link='MiniStatuslineDevinfo'})
 -    hi('MiniStatuslineFilename',    {fg=p.base03, bg=p.base01, attr=nil,    sp=nil})
@@ -276,9 +277,9 @@ index 9cd57f5..ef36514 100644
 +    hi('MiniStatuslineModeOther',   {fg=p.base01, bg=p.base03, attr='bold', sp=nil})
 +    hi('MiniStatuslineModeReplace', {fg=p.base01, bg=p.base0E, attr='bold', sp=nil})
 +    hi('MiniStatuslineModeVisual',  {fg=p.base01, bg=p.base0B, attr='bold', sp=nil})
-
+ 
      hi('MiniSurround', {link='IncSearch'})
-
+ 
      hi('MiniTablineCurrent',         {fg=p.base05, bg=p.base02, attr='bold', sp=nil})
      hi('MiniTablineFill',            {link='Normal'})
 -    hi('MiniTablineHidden',          {fg=p.base04, bg=p.base01, attr=nil,    sp=nil})
@@ -293,7 +294,7 @@ index 9cd57f5..ef36514 100644
 +    hi('MiniTablineTabpagesection',  {fg=p.base00, bg=p.base0A, attr='bold', sp=nil})
 +    hi('MiniTablineTrunc',           {fg=p.base05, bg=p.base00, attr='bold', sp=nil})
 +    hi('MiniTablineVisible',         {fg=p.base05, bg=p.base00, attr='bold', sp=nil})
-
+ 
      hi('MiniTestEmphasis', {fg=nil,      bg=nil, attr='bold', sp=nil})
      hi('MiniTestFail',     {fg=p.base08, bg=nil, attr='bold', sp=nil})
 @@ -870,8 +870,8 @@ H.apply_palette = function(palette, use_cterm)
@@ -305,11 +306,11 @@ index 9cd57f5..ef36514 100644
 +    hi('BufferLineTab',                 {fg=p.base01, bg=p.base0A, attr=nil,    sp=nil})
 +    hi('BufferLineTabSelected',         {fg=p.base01, bg=p.base0A, attr='bold', sp=nil})
    end
-
+ 
    if H.has_integration('anuvyklack/hydra.nvim') then
 @@ -888,7 +888,7 @@ H.apply_palette = function(palette, use_cterm)
    end
-
+ 
    if H.has_integration('folke/lazy.nvim') then
 -    hi('LazyButton',       {fg=nil, bg=p.base01, attr=nil,    sp=nil})
 +    hi('LazyButton',       {fg=nil, bg=p.base00, attr=nil,    sp=nil})
@@ -327,7 +328,7 @@ index 9cd57f5..ef36514 100644
 +    hi('WhichKeySeparator', {fg=p.base0B, bg=p.base00, attr=nil, sp=nil})
      hi('WhichKeyValue',     {fg=p.base03, bg=nil,      attr=nil, sp=nil})
    end
-
+ 
 @@ -1015,8 +1015,8 @@ H.apply_palette = function(palette, use_cterm)
      hi('CmpItemAbbrDeprecated', {fg=p.base03, bg=nil,      attr=nil,    sp=nil})
      hi('CmpItemAbbrMatch',      {fg=p.base0A, bg=nil,      attr='bold', sp=nil})
@@ -336,12 +337,12 @@ index 9cd57f5..ef36514 100644
 -    hi('CmpItemMenu',           {fg=p.base05, bg=p.base01, attr=nil,    sp=nil})
 +    hi('CmpItemKind',           {fg=p.base0F, bg=p.base00, attr=nil,    sp=nil})
 +    hi('CmpItemMenu',           {fg=p.base05, bg=p.base00, attr=nil,    sp=nil})
-
+ 
      hi('CmpItemKindClass',         {link='Type'})
      hi('CmpItemKindColor',         {link='Special'})
 @@ -1060,35 +1060,35 @@ H.apply_palette = function(palette, use_cterm)
    end
-
+ 
    if H.has_integration('justinmk/vim-sneak') then
 -    hi('Sneak',      {fg=p.base00, bg=p.base0E, attr=nil,    sp=nil})
 -    hi('SneakScope', {fg=p.base00, bg=p.base07, attr=nil,    sp=nil})
@@ -350,7 +351,7 @@ index 9cd57f5..ef36514 100644
 +    hi('SneakScope', {fg=p.base01, bg=p.base07, attr=nil,    sp=nil})
 +    hi('SneakLabel', {fg=p.base01, bg=p.base0E, attr='bold', sp=nil})
    end
-
+ 
    -- 'kevinhwang91/nvim-bqf'
    if H.has_integration('kevinhwang91/nvim-bqf') then
      hi('BqfPreviewFloat', {link='NormalFloat'})
@@ -359,28 +360,28 @@ index 9cd57f5..ef36514 100644
 +    hi('BqfPreviewTitle', {fg=p.base0D, bg=p.base00, attr=nil, sp=nil})
 +    hi('BqfSign',         {fg=p.base0C, bg=p.base00, attr=nil, sp=nil})
    end
-
+ 
    -- 'kevinhwang91/nvim-ufo'
    -- Everything works correctly out of the box
-
+ 
    if H.has_integration('lewis6991/gitsigns.nvim') then
 -    hi('GitSignsAdd',             {fg=p.base0B, bg=p.base01, attr=nil, sp=nil})
 +    hi('GitSignsAdd',             {fg=p.base0F, bg=p.base00, attr=nil, sp=nil})
      hi('GitSignsAddLn',           {link='GitSignsAdd'})
      hi('GitSignsAddInline',       {link='GitSignsAdd'})
-
+ 
 -    hi('GitSignsChange',          {fg=p.base0E, bg=p.base01, attr=nil, sp=nil})
 +    hi('GitSignsChange',          {fg=p.base0D, bg=p.base00, attr=nil, sp=nil})
      hi('GitSignsChangeLn',        {link='GitSignsChange'})
      hi('GitSignsChangeInline',    {link='GitSignsChange'})
-
+ 
 -    hi('GitSignsDelete',          {fg=p.base08, bg=p.base01, attr=nil, sp=nil})
 +    hi('GitSignsDelete',          {fg=p.base08, bg=p.base00, attr=nil, sp=nil})
      hi('GitSignsDeleteLn',        {link='GitSignsDelete'})
      hi('GitSignsDeleteInline',    {link='GitSignsDelete'})
-
+ 
 -    hi('GitSignsUntracked',       {fg=p.base0D, bg=p.base01, attr=nil, sp=nil})
-+    hi('GitSignsUntracked',       {fg=p.base0F, bg=p.base00, attr=nil, sp=nil})
++    hi('GitSignsUntracked',       {fg=p.base04, bg=p.base00, attr=nil, sp=nil})
      hi('GitSignsUntrackedLn',     {link='GitSignsUntracked'})
      hi('GitSignsUntrackedInline', {link='GitSignsUntracked'})
    end
@@ -426,7 +427,7 @@ index 9cd57f5..ef36514 100644
 -    hi('NeoTreeTabSeparatorInactive', {fg=p.base01, bg=p.base01, attr=nil,    sp=nil})
 +    hi('NeoTreeTabSeparatorInactive', {fg=p.base00, bg=p.base00, attr=nil,    sp=nil})
    end
-
+ 
    if H.has_integration('nvim-telescope/telescope.nvim') then
      hi('TelescopeBorder',         {fg=p.base0F, bg=nil,      attr=nil,    sp=nil})
      hi('TelescopeMatching',       {fg=p.base0A, bg=nil,      attr=nil,    sp=nil})
@@ -435,7 +436,7 @@ index 9cd57f5..ef36514 100644
 +    hi('TelescopeMultiSelection', {fg=nil,      bg=p.base00, attr='bold', sp=nil})
 +    hi('TelescopeSelection',      {fg=nil,      bg=p.base00, attr='bold', sp=nil})
    end
-
+ 
    if H.has_integration('nvim-tree/nvim-tree.lua') then
 @@ -1200,7 +1200,7 @@ H.apply_palette = function(palette, use_cterm)
      hi('NvimTreeRootFolder',   {link='NvimTreeGitRenamed'})
@@ -444,11 +445,11 @@ index 9cd57f5..ef36514 100644
 -    hi('NvimTreeWindowPicker', {fg=p.base05, bg=p.base01, attr="bold",           sp=nil})
 +    hi('NvimTreeWindowPicker', {fg=p.base05, bg=p.base00, attr="bold",           sp=nil})
    end
-
+ 
    if H.has_integration('OXY2DEV/helpview.nvim') then
 @@ -1215,37 +1215,37 @@ H.apply_palette = function(palette, use_cterm)
    end
-
+ 
    if H.has_integration('OXY2DEV/markview.nvim') then
 -    hi('MarkviewPalette0',     {fg=p.base0E, bg=p.base00, attr=nil, sp=nil})
 +    hi('MarkviewPalette0',     {fg=p.base0E, bg=p.base01, attr=nil, sp=nil})
@@ -499,10 +500,10 @@ index 9cd57f5..ef36514 100644
 +    hi('MarkviewPalette7Bg',   {fg=nil,      bg=p.base01, attr=nil, sp=nil})
      hi('MarkviewPalette7Sign', {fg=p.base0F, bg=nil,      attr=nil, sp=nil})
    end
-
+ 
 @@ -1295,10 +1295,10 @@ H.apply_palette = function(palette, use_cterm)
    end
-
+ 
    if H.has_integration('rlane/pounce.nvim') then
 -    hi('PounceMatch',      {fg=p.base00, bg=p.base05, attr='bold,nocombine', sp=nil})
 -    hi('PounceGap',        {fg=p.base00, bg=p.base03, attr='bold,nocombine', sp=nil})
@@ -513,12 +514,12 @@ index 9cd57f5..ef36514 100644
 +    hi('PounceAccept',     {fg=p.base01, bg=p.base08, attr='bold,nocombine', sp=nil})
 +    hi('PounceAcceptBest', {fg=p.base01, bg=p.base0B, attr='bold,nocombine', sp=nil})
    end
-
+ 
    if H.has_integration('romgrk/barbar.nvim') then
 @@ -1309,23 +1309,23 @@ H.apply_palette = function(palette, use_cterm)
      hi('BufferCurrentSign',   {link='BufferCurrent'})
      hi('BufferCurrentTarget', {fg=p.base0E, bg=p.base02, attr='bold', sp=nil})
-
+ 
 -    hi('BufferInactive',       {fg=p.base04, bg=p.base01, attr=nil,    sp=nil})
 -    hi('BufferInactiveIcon',   {fg=nil,      bg=p.base01, attr=nil,    sp=nil})
 +    hi('BufferInactive',       {fg=p.base04, bg=p.base00, attr=nil,    sp=nil})
@@ -529,12 +530,12 @@ index 9cd57f5..ef36514 100644
      hi('BufferInactiveSign',   {link='BufferInactive'})
 -    hi('BufferInactiveTarget', {fg=p.base0E, bg=p.base01, attr='bold', sp=nil})
 +    hi('BufferInactiveTarget', {fg=p.base0E, bg=p.base00, attr='bold', sp=nil})
-
+ 
      hi('BufferOffset',      {link='Normal'})
 -    hi('BufferTabpages',    {fg=p.base01, bg=p.base0A, attr='bold', sp=nil})
 +    hi('BufferTabpages',    {fg=p.base00, bg=p.base0A, attr='bold', sp=nil})
      hi('BufferTabpageFill', {link='Normal'})
-
+ 
 -    hi('BufferVisible',       {fg=p.base05, bg=p.base01, attr='bold', sp=nil})
 -    hi('BufferVisibleIcon',   {fg=nil,      bg=p.base01, attr=nil,    sp=nil})
 +    hi('BufferVisible',       {fg=p.base05, bg=p.base00, attr='bold', sp=nil})
@@ -546,10 +547,10 @@ index 9cd57f5..ef36514 100644
 -    hi('BufferVisibleTarget', {fg=p.base0E, bg=p.base01, attr='bold', sp=nil})
 +    hi('BufferVisibleTarget', {fg=p.base0E, bg=p.base00, attr='bold', sp=nil})
    end
-
+ 
    -- stevearc/aerial.nvim
 @@ -1333,24 +1333,130 @@ H.apply_palette = function(palette, use_cterm)
-
+ 
    if H.has_integration('williamboman/mason.nvim') then
      hi('MasonError',                       {fg=p.base08, bg=nil,      attr=nil,    sp=nil})
 -    hi('MasonHeader',                      {fg=p.base00, bg=p.base0D, attr='bold', sp=nil})
@@ -679,7 +680,7 @@ index 9cd57f5..ef36514 100644
 +    hi('ColorfulWinSep', { fg = p.base0F, bg = p.base01 })
    end
    -- stylua: ignore end
-
+ 
    -- Terminal colors
 -  vim.g.terminal_color_0 = palette.base00
 +  vim.g.terminal_color_0 = palette.base01
