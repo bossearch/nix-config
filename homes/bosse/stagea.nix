@@ -31,9 +31,9 @@
       lutris = false;
       prismlauncher = false;
     };
+    notify = "swaync";
     alacritty = false;
     copas = false;
-    dunst = true;
     feh = false;
     gowall = false;
     kdeconnect = false;

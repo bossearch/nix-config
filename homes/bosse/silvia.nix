@@ -46,9 +46,9 @@
       lutris = true;
       prismlauncher = true;
     };
-    alacritty = false;
+    notify = "swaync";
+    alacritty = true;
     copas = true;
-    dunst = true;
     feh = true;
     gowall = true;
     kdeconnect = false;

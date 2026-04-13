@@ -13,7 +13,7 @@ in {
   imports = mylib.autoimport ./.;
 
   services.dunst = {
-    enable = homes.dunst;
+    enable = homes.notify == "dunst";
     iconTheme = {
       name = homes.icon;
       package = pkgs.papirus-icon-theme;

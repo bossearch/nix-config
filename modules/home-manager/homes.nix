@@ -86,6 +86,13 @@ in {
             };
           };
         };
+        notify = mkOption {
+          default = "dunst";
+          type = types.enum [
+            "dunst"
+            "swaync"
+          ];
+        };
         llm = mkOption {
           default = false;
           type = types.bool;
@@ -178,7 +185,6 @@ in {
     homes = lib.mkIf (!hosts.gui.enable) {
       alacritty = lib.mkForce false;
       copas = lib.mkForce false;
-      dunst = lib.mkForce false; #*
       feh = lib.mkForce false;
       firefox.enable = lib.mkForce false; #*
       game = {
@@ -192,6 +198,7 @@ in {
       lanmouse = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
+      notify = lib.mkForce "none";
       nyaa = lib.mkForce false;
       obsidian = lib.mkForce false;
       spicetify = lib.mkForce false;

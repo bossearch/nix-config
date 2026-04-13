@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.file.".config/dunst/dunstsound.sh" = lib.mkIf homes.dunst {
+  home.file.".config/dunst/dunstsound.sh" = lib.mkIf (homes.notify == "dunst") {
     executable = true;
     text = ''
       #!/usr/bin/env bash
