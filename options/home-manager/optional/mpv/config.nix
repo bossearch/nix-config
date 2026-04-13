@@ -67,7 +67,7 @@
       sub-fix-timing = "yes";
       # blend-subtitles = "yes";
       # sub-ass-override = "yes";
-      sub-ass-override = "strip";
+      sub-ass-override = "force";
       # sub-ass-line-spacing = 3.6;
       demuxer-mkv-subtitle-preroll = "yes";
 
