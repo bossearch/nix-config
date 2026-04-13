@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  run = pkgs.writeShellScript "usbguard-launcher.sh" ''
+  service = pkgs.writeShellScript "usbguard-service" ''
     ESCAPED_PATH=$(${pkgs.systemd}/bin/systemd-escape "$1")
     ${pkgs.systemd}/bin/systemctl --machine=${hosts.username}@.host --user start "usbguard-prompt@$ESCAPED_PATH.service"
   '';
@@ -30,12 +30,12 @@ in {
           ENV{ID_VENDOR_ID}!="4653", ENV{ID_MODEL_ID}!="0001", \
           ENV{ID_VENDOR_ID}!="2109", ENV{ID_MODEL_ID}!="2815", \
           ENV{ID_VENDOR_ID}!="05e3", ENV{ID_MODEL_ID}!="0610", \
-          RUN+="${run} $env{DEVNAME}"
+          RUN+="${service} $env{DEVNAME}"
         '')
 
         (lib.optional (hosts.usbguard && hosts.hostname == "stagea") ''
           ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{DEVNAME}!="", \
-          RUN+="${run} $env{DEVNAME}"
+          RUN+="${service} $env{DEVNAME}"
         '')
 
         (lib.optional (hosts.udevqmk && hosts.hostname == "silvia") ''

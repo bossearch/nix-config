@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  automatedusbguard = pkgs.writeShellScript "automatedusbguard.sh" ''
+  prompt = pkgs.writeShellScript "usbguard-prompt" ''
     DEVICE_PATH="$1"
     LOCKFILE="/tmp/usbguard_lock_$(echo "$DEVICE_PATH" | tr '/' '_')"
 
@@ -75,7 +75,7 @@ in {
       description = "USBGuard User Prompt for %i";
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${automatedusbguard} %I";
+        ExecStart = "${prompt} %I";
         RemainAfterExit = false;
       };
     };
