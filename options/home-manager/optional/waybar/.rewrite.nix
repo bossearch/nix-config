@@ -1,0 +1,30 @@
+{
+  "class<.blueman-manager-wrapped>" = "";
+  "class<.virt-manager-wrapped>" = "󰢔";
+  "class<Tor Browser>" = "";
+  "class<alacritty>" = "";
+  "class<firefox>" = "";
+  "class<foot>" = "";
+  "class<gcr-prompter>" = "";
+  "class<io.github.mpobaschnig.Vaults>" = "󰩪";
+  "class<kitty>" = "";
+  "class<localsend_app>" = "󰈪";
+  "class<mpv>" = "";
+  "class<net.lutris.lutris>" = "";
+  "class<obsidian>" = "";
+  "class<org.gnome.nautilus>" = "";
+  "class<org.prismlauncher.PrismLauncher>" = "󰍳";
+  "class<org.pulseaudio.pavucontrol>" = "";
+  "class<spotify>" = "";
+  "class<steam>" = "";
+  "class<transmission-gtk>" = "󰛴";
+  "class<vesktop>" = "";
+  "class<zenity>" = "󰟶";
+  "title<btop>" = "";
+  "title<crkbd>" = "󰌌";
+  "title<fastfetch>" = "󰋼";
+  "title<fzf>" = "󱁴";
+  "title<mousefzf>" = "󱁴";
+  "title<newsboat>" = "";
+  "title<nmtui>" = "󰀂";
+}
