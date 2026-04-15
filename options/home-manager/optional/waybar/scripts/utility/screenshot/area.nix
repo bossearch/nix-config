@@ -8,22 +8,18 @@
     text = ''
       #!/usr/bin/env bash
 
-      set -e
-
-      # Ensure the screenshots directory exists
       mkdir -p ~/Pictures/Screenshots
-
-      # Define the filename with the current date and time
-      FILENAME="$HOME/Pictures/Screenshots/Area-$(date +%F_%T).png"
-
-      # Use slurp to select an area
+      FILENAME="$HOME/Pictures/Screenshots/$(date +%F_%T)-Area.png"
       GEOMETRY=$(slurp)
 
-      # Start screenshot the area
-      grim -g "$GEOMETRY" - | wl-copy && wl-paste > $FILENAME
+      if [ -z "$GEOMETRY" ]; then
+        notify-send -e -u critical "Screenshot Area" "Error: No area selected" -i camera-photo
+        exit 1
+      fi
 
-      # Notify the user that the Screenshot has done
-      notify-send -a screenshot "Screenshot saved to $FILENAME" -t 3000
+      grim -g "$GEOMETRY" - | wl-copy >"$FILENAME"
+
+      notify-send -a screenshot "Screenshot Area" "File saved to $FILENAME" -i camera-photo
     '';
   };
 }
