@@ -32,6 +32,8 @@ pkgs.writeShellScript "drun-scan" ''
     "electron31"
     "electron32"
     "feh"
+    "foot-server"
+    "footclient"
     "fish"
     "gcr-prompter"
     "gcr-viewer"
