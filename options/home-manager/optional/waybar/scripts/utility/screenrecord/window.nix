@@ -9,40 +9,34 @@
     text = ''
       #!/usr/bin/env bash
 
-      set -e
-
       mkdir -p ~/Videos//Screenrecords
-
       TRAY="$HOME/.config/waybar/scripts/tray/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/utility/screenrecord/playback.sh"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${hosts.username}/screenrecord-tooltip"
       WINDOW=$(hyprctl -j activewindow)
-      TITLE=$(echo "$WINDOW" | jq -r '.initialTitle')
-      X=$(echo "$WINDOW" | jq '.at[0]')
-      Y=$(echo "$WINDOW" | jq '.at[1]')
-      WIDTH=$(echo "$WINDOW" | jq '.size[0]')
-      HEIGHT=$(echo "$WINDOW" | jq '.size[1]')
-      FILENAME="$HOME/Videos/Screenrecords/$TITLE-$(date +%F_%T).mp4"
+      DATA=$(echo "$WINDOW" | jq -e -r '.initialTitle, .at[0], .at[1], .size[0], .size[1] | select(. != null)')
 
-      if [ -z "$TITLE" ] || [ -z "$X" ] || [ -z "$Y" ] || [ -z "$WIDTH" ] || [ -z "$HEIGHT" ]; then
-        echo "Error: Could not retrieve active window information."
+      if [ "$(echo "$DATA" | wc -l)" -ne 5 ]; then
+        notify-send -e -u critical "Screenrecord Window" "Error: Could not retrieve active window information." -i camera-video
         exit 1
       fi
+
+      read -r TITLE X Y WIDTH HEIGHT <<<"$(echo "$DATA" | tr '\n' ' ')"
+
+      FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-$TITLE.mp4"
 
       GEOMETRY="''${X},''${Y} ''${WIDTH}x''${HEIGHT}"
 
       read -r BUTTON COMMAND < <("$PLAYBACK")
-      echo "Button code: $BUTTON"
-      echo "wl-screenrec $COMMAND"
 
       if [[ "$BUTTON" -eq 0 ]]; then
-        echo "Screenrecording on $TITLE" > "$SCREENRECORD_TOOLTIP"
-        notify-send -a screenrecord "Screenrecording on $TITLE Will start in 3 seconds " -t 2500
+        echo "Screenrecording on $TITLE Window" > "$SCREENRECORD_TOOLTIP"
+        notify-send -e -a screenrecord "Screenrecord Window" "On $TITLE Will start in 3 seconds " -t 2500 -i camera-video
         sleep 3
         eval "wl-screenrec $COMMAND --low-power=off --no-damage -g \"$GEOMETRY\" -f \"$FILENAME\" & $TRAY"
-        trap 'dunstify "Screenrecord saved to $FILENAME" -t 3000' EXIT
+        trap 'notify-send "Screenrecord Window" "File saved to $FILENAME" -i camera-video' EXIT
       else
-        notify-send -a screenrecord --urgency=critical "Screenrecord Cancelled"
+        notify-send -e -u critical "Screenrecord Window" "Error: Cancelled" -i camera-video
         exit 0
       fi
 
