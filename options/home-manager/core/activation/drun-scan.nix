@@ -130,7 +130,7 @@ pkgs.writeShellScript "drun-scan" ''
     "yazi"
   )
 
-  custom_apps=(
+  custom_name=(
     "Alacritty:alacritty"
     "LocalSend:localsend"
     "Waydroid:waydroid"
@@ -149,18 +149,19 @@ pkgs.writeShellScript "drun-scan" ''
     "vesktop:discord"
   )
 
-  custom_execs=(
-    "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec zsh'"
+  custom_exec=(
+    "alacritty:alacritty -e bash -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
     "bottles:~/.nix-profile/bin/bottles"
     "discord:vesktop --use-gl=desktop"
-    "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec fish'"
+    "firefox:firefox"
+    "kitty:kitty bash -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
     "lutris:lutris -f"
     "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
     "spotify:spotify --use-gl=desktop"
     "steam:/run/current-system/sw/bin/steam"
   )
 
-  manual_apps=(
+  custom_app=(
     "tor-browser:nix-shell -p tor-browser --run tor-browser"
   )
 
@@ -174,7 +175,6 @@ pkgs.writeShellScript "drun-scan" ''
   for path in "''${applications[@]}"; do
     name=$(basename "$path" .desktop)
 
-    # Skip apps in the exclude list (using pattern matching)
     exclude=false
     for pattern in "''${exclude_apps[@]}"; do
       if [[ "$name" == $pattern ]]; then
@@ -186,8 +186,8 @@ pkgs.writeShellScript "drun-scan" ''
     if [ "$exclude" = true ]; then
       continue
     fi
-    # Change the name for specific apps
-    for app in "''${custom_apps[@]}"; do
+
+    for app in "''${custom_name[@]}"; do
       old_name=$(echo "$app" | cut -d ':' -f 1)
       new_name=$(echo "$app" | cut -d ':' -f 2)
       if [[ "$name" == "$old_name" ]]; then
@@ -196,11 +196,9 @@ pkgs.writeShellScript "drun-scan" ''
       fi
     done
 
-    # Extract the Exec command from the .desktop file
     exec_command=$(grep '^Exec=' "$path" | tail -1 | sed 's/^Exec=//' | sed 's/%.*//')
 
-    # Change the Exec command for specific apps
-    for exec in "''${custom_execs[@]}"; do
+    for exec in "''${custom_exec[@]}"; do
       app_name=$(echo "$exec" | cut -d ':' -f 1)
       custom_command=$(echo "$exec" | cut -d ':' -f 2)
       if [[ "$name" == "$app_name" ]]; then
@@ -209,21 +207,15 @@ pkgs.writeShellScript "drun-scan" ''
       fi
     done
 
-    # Skip entries without an Exec command
     if [ -n "$exec_command" ]; then
       if ! grep -q "^$name|" "$output_file"; then
-
-        # Save the name and Exec command to the output file
         echo "$name|$exec_command" >>"$output_file"
       fi
     fi
 
-    # Append manual apps that aren't backed by .desktop files
-    for entry in "''${manual_apps[@]}"; do
+    for entry in "''${custom_app[@]}"; do
       m_name=$(echo "$entry" | cut -d ':' -f 1)
-      m_exec=$(echo "$entry" | cut -d ':' -f 2-) # Use - to catch everything after first colon
-
-      # Only add if it doesn't already exist in the file
+      m_exec=$(echo "$entry" | cut -d ':' -f 2)
       if ! grep -q "^$m_name|" "$output_file"; then
         echo "$m_name|$m_exec" >> "$output_file"
       fi
