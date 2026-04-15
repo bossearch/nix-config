@@ -22,10 +22,14 @@ in {
     @define-color cyan #${config.colorScheme.palette.base0C};
     @define-color blue #${config.colorScheme.palette.base0D};
     @define-color magenta #${config.colorScheme.palette.base0E};
+
     * {
       font-family: ${homes.nerdfont} Nerd Font Propo;
       font-size: 16px;
       border-radius: 8px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+
     }
 
     #${launcher} {
@@ -149,10 +153,14 @@ in {
     .modules-right > widget:last-child > #workspaces {
       margin-right: 0;
     }
+
     tooltip {
       background: alpha(@bg, 0.5);
       border: 2px solid alpha(@fg, 0.7);
       color: #DFDFDF;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+
     }
   '';
 }

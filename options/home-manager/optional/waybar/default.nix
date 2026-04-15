@@ -39,12 +39,12 @@ in {
     systemd.target = "hyprland-session.target";
     settings = {
       mainBar = {
-        "height" = 32;
+        "height" = 34;
         "layer" = "top";
-        "margin-top" = 4;
-        "margin-left" = 8;
-        "margin-bottom" = -3;
+        "margin-top" = 0;
         "margin-right" = 8;
+        "margin-bottom" = 0;
+        "margin-left" = 8;
         "fixef-center" = "true";
         "spacing" = 4;
 

@@ -390,8 +390,7 @@ in {
       # clock and date
       "clock" = {
         "interval" = 1;
-        "format" = "  <b>{:%H:%M:%S}</b> ";
-        "format-alt" = "  <b>{:%a %d/%b/%y}</b> ";
+        "format" = "<small><b> {0:%a, %d/%b/%y} \n    {0:%H:%M:%S}</b></small>";
         "tooltip-format" = "\n<span size='12pt'>{calendar}</span>";
         "calendar" = {
           "mode" = "year";
