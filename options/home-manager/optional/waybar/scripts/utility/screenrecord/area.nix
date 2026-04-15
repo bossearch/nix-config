@@ -1,9 +1,13 @@
 {
+  config,
   homes,
   hosts,
   lib,
   ...
-}: {
+}: let
+  background = "#${config.colorScheme.palette.base00}33";
+  border = "#${config.colorScheme.palette.base05}ff";
+in {
   home.file.".config/waybar/scripts/utility/screenrecord/area.sh" = lib.mkIf homes.waybar {
     executable = true;
     text = ''
@@ -14,7 +18,8 @@
       PLAYBACK="$HOME/.config/waybar/scripts/utility/screenrecord/playback.sh"
       FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-Area.mp4"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${hosts.username}/screenrecord-tooltip"
-      GEOMETRY=$(slurp)
+      GEOMETRY=$(slurp -d -F "${homes.nerdfont}" -b "${background}" -c "${border}")
+      GEOMETRY_NEW=$(echo "$GEOMETRY" | sed 's/\(.*\) \(.*\)/"\1" size "\2"/')
 
       if [ -z "$GEOMETRY" ]; then
         notify-send -e -u critical "Screenrecord Area" "Error: No area selected" -i camera-video
