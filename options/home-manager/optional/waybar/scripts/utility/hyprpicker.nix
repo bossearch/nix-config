@@ -8,7 +8,6 @@
     text = ''
       #!/usr/bin/env bash
       hyprctl --batch "\
-      keyword decoration:blur:enabled 0;\
       keyword decoration:active_opacity 1;\
       keyword decoration:inactive_opacity 1"
 
