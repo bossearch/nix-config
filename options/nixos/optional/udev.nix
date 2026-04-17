@@ -5,8 +5,15 @@
   ...
 }: let
   service = pkgs.writeShellScript "usbguard-service" ''
-    ESCAPED_PATH=$(${pkgs.systemd}/bin/systemd-escape "$1")
-    ${pkgs.systemd}/bin/systemctl --machine=${hosts.username}@.host --user start "usbguard-prompt@$ESCAPED_PATH.service"
+    DEVICE_PATH="$1"
+    ESCAPED_PATH=$(${pkgs.systemd}/bin/systemd-escape "$DEVICE_PATH")
+    USER_ID=$(id -u ${hosts.username})
+
+    runuser -u ${hosts.username} -- env \
+      XDG_RUNTIME_DIR=/run/user/$USER_ID \
+      DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USER_ID/bus \
+      DISPLAY=:0 \
+      ${pkgs.systemd}/bin/systemctl --user start "usbguard-prompt@$ESCAPED_PATH.service"
   '';
 in {
   services.udev = {
