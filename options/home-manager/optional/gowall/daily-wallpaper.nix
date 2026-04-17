@@ -23,7 +23,8 @@ in {
       DATE=$(date +%Y%m%d)
       OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
 
-      mkdir -p "$WALL_DIR" "$CACHE_DIR"
+      mkdir -p "$WALL_DIR"
+      sleep 10
 
       : > "$LOG_FILE"
       exec > >(tee -a "$LOG_FILE") 2>&1
