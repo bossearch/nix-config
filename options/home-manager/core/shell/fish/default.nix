@@ -81,10 +81,10 @@ in {
       cp = "cp -i";
       c = "clear";
       cat = "bat --style=plain --theme=ansi";
-      ".." = "cd ..";
       bridge-enable = "nmcli con up br0";
       bridge-disable = "nmcli con down br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
+      nyaa = "setsid --fork transmission-gtk >/dev/null 2>&1 </dev/null; command nyaa $argv";
     };
     functions = import ./.functions;
   };
