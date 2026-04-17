@@ -10,11 +10,12 @@
   pkgs,
 }: let
   langs = [
-    (import ./md {inherit lib pkgs;})
     (import ./bash.nix {inherit lib pkgs;})
     (import ./c.nix {inherit lib pkgs;})
+    (import ./fish.nix)
     (import ./kt.nix {inherit lib pkgs;})
     (import ./lua.nix {inherit lib pkgs;})
+    (import ./md {inherit lib pkgs;})
     (import ./nix.nix {inherit hosts lib pkgs;})
   ];
   mergeAttrs = attrsList: builtins.foldl' lib.recursiveUpdate {} attrsList;
