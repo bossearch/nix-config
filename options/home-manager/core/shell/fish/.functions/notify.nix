@@ -53,7 +53,7 @@
       end
 
       if type -q notify-send
-          notify-send -u $urgency "$cmd" "$message" --app-name=fish
+          notify-send -u $urgency "$cmd" "$message" --app-name=fish -i utilities-terminal
       end
     '';
   };
