@@ -7,7 +7,7 @@
 
   programs.yazi = {
     enable = true;
-    package = pkgs.stable.yazi;
+    package = pkgs.stable.yazi; # 25.5.31
     shellWrapperName = "";
     initLua = ''
       require("full-border"):setup({
