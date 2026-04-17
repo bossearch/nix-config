@@ -17,6 +17,7 @@
     (import ./lua.nix {inherit lib pkgs;})
     (import ./md {inherit lib pkgs;})
     (import ./nix.nix {inherit hosts lib pkgs;})
+    (import ./qml.nix {inherit lib pkgs;})
   ];
   mergeAttrs = attrsList: builtins.foldl' lib.recursiveUpdate {} attrsList;
 in
