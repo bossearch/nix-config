@@ -6,6 +6,11 @@
   ...
 }: let
   hide = "swaync-client -cp -sw &&";
+  layer = pkgs.writeShellScript "swaync-layer" ''
+    while hyprctl layers | grep -q "namespace: swaync-control-center"; do
+        sleep 0.1
+    done
+  '';
   volume = "--volume=$(cat ~/.cache/${hosts.username}/notify-volume)";
 in {
   imports = mylib.autoimport ./.;
@@ -108,7 +113,7 @@ in {
             }
             {
               label = "";
-              command = "${hide} sleep 0.3 && ~/.config/hypr/scripts/hyprlock.sh";
+              command = "${hide} ${layer} && ~/.config/hypr/scripts/hyprlock.sh";
             }
             {
               label = "";
@@ -151,15 +156,15 @@ in {
             actions = [
               {
                 label = "󰹑";
-                command = "${hide} sleep 0.3 && ~/.config/waybar/scripts/utility/screenshot/monitor.sh";
+                command = "${hide} ${layer} && ~/.config/waybar/scripts/utility/screenshot/monitor.sh";
               }
               {
                 label = "󰘔";
-                command = "${hide} sleep 0.3 && ~/.config/waybar/scripts/utility/screenshot/window.sh";
+                command = "${hide} ${layer} && ~/.config/waybar/scripts/utility/screenshot/window.sh";
               }
               {
                 label = "";
-                command = "${hide} sleep 0.3 && ~/.config/waybar/scripts/utility/screenshot/area.sh";
+                command = "${hide} ${layer} && ~/.config/waybar/scripts/utility/screenshot/area.sh";
               }
             ];
           };
