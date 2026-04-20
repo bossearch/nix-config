@@ -32,8 +32,8 @@ in {
       PLAYERCTL_FILE="$HOME/.cache/${hosts.username}/player"
       echo "spotify" >"$PLAYERCTL_FILE"
 
-      SWAP_SPECIAL_FILE="$HOME/.cache/bosse/swap-special"
-      SWAP_NORMAL_FILE="$HOME/.cache/bosse/swap-normal"
+      SWAP_SPECIAL_FILE="$HOME/.cache/${hosts.username}/swap-special"
+      SWAP_NORMAL_FILE="$HOME/.cache/${hosts.username}/swap-normal"
       rm -f "$SWAP_SPECIAL_FILE" "$SWAP_NORMAL_FILE"
 
       CPUTEMP_FILE="$HOME/.cache/${hosts.username}/cputemp"
