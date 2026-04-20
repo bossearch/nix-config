@@ -21,9 +21,6 @@ in {
           pkill mpv
         fi
 
-      elif [[ "$focused_class" == "org.gnome.Nautilus" ]]; then
-        nautilus --quit
-
       elif [[ "$focused_class" == "steam" ]]; then
         killall steam
 
