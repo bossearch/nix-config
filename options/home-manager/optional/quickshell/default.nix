@@ -7,7 +7,7 @@
   quickshell = with pkgs;
     inputs.quickshell.packages.${system}.default.withModules [
       kdePackages.qtsvg
-      libsForQt5.qt5.qtwayland
+      # libsForQt5.qt5.qtwayland
       kdePackages.qtwayland
       kdePackages.qt5compat
     ];
