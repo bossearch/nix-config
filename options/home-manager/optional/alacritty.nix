@@ -1,6 +1,7 @@
 {
   config,
   homes,
+  pkgs,
   ...
 }: let
   base00 = "#${config.colorScheme.palette.base00}";
@@ -18,25 +19,62 @@
 in {
   programs.alacritty = {
     enable = homes.alacritty;
+    package = pkgs.alacritty-graphics;
     settings = {
-      general.live_config_reload = true;
-      env.TERM = "xterm-256color";
-      window.decorations = "None";
-      window.padding.x = 0;
-      window.padding.y = 0;
-      window.dynamic_padding = true;
-      window.dynamic_title = true;
-      window.option_as_alt = "Both";
-      font.normal.family = "${homes.nerdfont} Nerd Font Mono";
-      font.bold.family = "${homes.nerdfont} Nerd Font Mono";
-      font.italic.family = "${homes.nerdfont} Nerd Font Mono";
-      font.bold_italic.family = "${homes.nerdfont} Nerd Font Mono";
-      font.offset.x = 0;
-      font.offset.y = 0;
-      font.size = 12;
-      font.builtin_box_drawing = true;
+      colors = {
+        bright = {
+          black = base03;
+          red = base08;
+          green = base0B;
+          yellow = base0A;
+          blue = base0D;
+          magenta = base0E;
+          cyan = base0C;
+          white = base07;
+        };
+        cursor = {
+          text = base01;
+          cursor = base07;
+        };
+        indexed_colors = [
+          {
+            index = 16;
+            color = base0E;
+          }
+          {
+            index = 17;
+            color = base0F;
+          }
+        ];
+        normal = {
+          black = base00;
+          red = base08;
+          green = base0B;
+          yellow = base0A;
+          blue = base0D;
+          magenta = base0E;
+          cyan = base0C;
+          white = base05;
+        };
+        primary = {
+          background = base01;
+          foreground = base07;
+        };
+      };
       cursor.style = "block";
-      terminal.osc52 = "CopyPaste";
+      env.TERM = "xterm-256color";
+      font = {
+        normal.family = "${homes.nerdfont} Nerd Font";
+        bold.family = "${homes.nerdfont} Nerd Font";
+        italic.family = "${homes.nerdfont} Nerd Font";
+        bold_italic.family = "${homes.nerdfont} Nerd Font";
+        offset = {
+          x = 0;
+          y = 2;
+        };
+        size = 12;
+        builtin_box_drawing = true;
+      };
       keyboard.bindings = [
         {
           key = "+";
@@ -54,36 +92,15 @@ in {
           action = "ResetFontSize";
         }
       ];
-
-      # Color settings
-      colors.primary.background = base01;
-      colors.primary.foreground = base07;
-      colors.normal.black = base00;
-      colors.normal.red = base08;
-      colors.normal.green = base0B;
-      colors.normal.yellow = base0A;
-      colors.normal.blue = base0D;
-      colors.normal.magenta = base0E;
-      colors.normal.cyan = base0C;
-      colors.normal.white = base05;
-      colors.bright.black = base03;
-      colors.bright.red = base08;
-      colors.bright.green = base0B;
-      colors.bright.yellow = base0A;
-      colors.bright.blue = base0D;
-      colors.bright.magenta = base0E;
-      colors.bright.cyan = base0C;
-      colors.bright.white = base07;
-      colors.indexed_colors = [
-        {
-          index = 16;
-          color = base0E;
-        }
-        {
-          index = 17;
-          color = base0F;
-        }
-      ];
+      terminal.osc52 = "CopyPaste";
+      window = {
+        decorations = "None";
+        padding.x = 0;
+        padding.y = 0;
+        dynamic_padding = true;
+        dynamic_title = true;
+        option_as_alt = "Both";
+      };
     };
   };
 }
