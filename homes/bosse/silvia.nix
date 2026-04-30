@@ -10,7 +10,7 @@
     qtstyle = "breeze";
     monitor = [
       {
-        name = "DP-3";
+        name = "DP-1";
         width = 2560;
         height = 1440;
         refreshRate = 165;
