@@ -31,7 +31,7 @@ in {
     extraRules = lib.concatStringsSep "\n" (
       lib.flatten [
         (lib.optional (hosts.usbguard && hosts.hostname == "silvia") ''
-          # usbguard rules
+          # usbguard rules for mouse, keyboard, usbhub, and usbhub monitor
           ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", \
           ENV{ID_VENDOR_ID}!="1b1c", ENV{ID_MODEL_ID}!="1b3e", \
           ENV{ID_VENDOR_ID}!="4653", ENV{ID_MODEL_ID}!="0001", \

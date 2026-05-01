@@ -27,7 +27,7 @@
       --width=200 \
       --ok-label="Allow" \
       --cancel-label="Block"; then
-    /run/wrappers/bin/pkexec ${pkgs.usbguard}/bin/usbguard allow-device "$BLOCKED_ID"
+    /run/wrappers/bin/pkexec /run/current-system/sw/bin/usbguard allow-device "$BLOCKED_ID"
     fi
   '';
 in {
