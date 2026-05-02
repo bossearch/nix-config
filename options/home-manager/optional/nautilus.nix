@@ -24,6 +24,7 @@ in {
         nautilus
         dconf
         sushi
+        veracrypt
       ];
       file = {
         ".config/gtk-3.0/bookmarks".text = ''
@@ -32,6 +33,7 @@ in {
           file://${config.home.homeDirectory}/Documents Documents
           file://${config.home.homeDirectory}/Pictures Pictures
           file://${config.home.homeDirectory}/Videos Videos
+          file://${config.home.homeDirectory}/Shared Shared
         '';
         ".config/user-dirs.dirs".text = ''
           XDG_DESKTOP_DIR="$HOME/Desktop"
@@ -39,6 +41,7 @@ in {
           XDG_DOWNLOAD_DIR="$HOME/Downloads"
           XDG_PICTURES_DIR="$HOME/Pictures"
           XDG_VIDEOS_DIR="$HOME/Videos"
+          XDG_PUBLICSHARE_DIR="$HOME/Shared"
         '';
       };
     })

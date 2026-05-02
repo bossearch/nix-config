@@ -6,7 +6,7 @@
   "class<firefox>" = "";
   "class<foot>" = "";
   "class<gcr-prompter>" = "";
-  "class<io.github.mpobaschnig.Vaults>" = "󰩪";
+  "class<veracrypt>" = "󰌆";
   "class<kitty>" = "";
   "class<localsend_app>" = "󰈪";
   "class<mpv>" = "";
