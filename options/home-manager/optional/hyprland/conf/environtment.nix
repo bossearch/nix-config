@@ -4,7 +4,7 @@
     ### ENVIRONTMENT ###
     ####################
 
-    # See https://wiki.hyprland.org/Configuring/Environment-variables/
+    # See https://wiki.hypr.land/Configuring/Environment-variables/
 
     env = QT_QPA_PLATFORM,wayland;xcb
     env = QT_QPA_PLATFORMTHEME,qt5ct

@@ -4,7 +4,7 @@
     ### ANIMATIONS ###
     ##################
 
-    # https://wiki.hyprland.org/Configuring/Variables/#animations
+    # https://wiki.hypr.land/Configuring/Variables/#animations
     animations {
         enabled = true
 

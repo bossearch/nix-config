@@ -4,7 +4,7 @@
     ### DECORATION AND BLUR ###
     ###########################
 
-    # https://wiki.hyprland.org/Configuring/Variables/#decoration
+    # https://wiki.hypr.land/Configuring/Variables/#decoration
     decoration {
         rounding = 8
         # Change transparency of focused and unfocused windows

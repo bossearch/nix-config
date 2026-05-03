@@ -52,8 +52,7 @@ in {
     ### WINDOWS AND WORKSPACES ###
     ##############################
 
-    # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-    # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
+    # See https://wiki.hypr.land/Configuring/Window-Rules/ for more
 
     #alacritty
     windowrule = workspace 1, match:initial_title (Alacritty)
@@ -198,6 +197,7 @@ in {
     #misc
     windowrule = suppress_event maximize, match:class .* # You'll probably like this.
 
+    # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
     # Workspaces
     workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: kitty -T scratchpad
     workspace = special:gamespace, on-created-empty: hyprctl dispatch togglespecialworkspace "gamespace"

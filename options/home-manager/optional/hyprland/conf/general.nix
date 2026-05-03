@@ -7,21 +7,21 @@ in {
     ### GENERAL ###
     ###############
 
-    # https://wiki.hyprland.org/Configuring/Variables/#general
+    # https://wiki.hypr.land/Configuring/Variables/#general
     general {
         gaps_in = 4
         gaps_out = 8
 
         border_size = 2
 
-        # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
+        # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
         col.active_border = rgb(${base00})
         col.inactive_border = rgb(${base03})
 
         # Set to true enable resizing windows by clicking and dragging on borders and gaps
-    #    resize_on_border = true
+        # resize_on_border = true
 
-        # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+        # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
         allow_tearing = false
 
         layout = master

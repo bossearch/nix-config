@@ -23,7 +23,7 @@ in {
     ### INPUT ###
     #############
 
-    # https://wiki.hyprland.org/Configuring/Variables/#input
+    # https://wiki.hypr.land/Configuring/Variables/#input
     input {
         kb_layout = us
         follow_mouse = 2
@@ -34,12 +34,12 @@ in {
         }
     }
 
-    # https://wiki.hyprland.org/Configuring/Variables/#gestures
+    # https://wiki.hypr.land/Configuring/Variables/#gestures
     gestures {
     }
 
     # Example per-device config
-    # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
+    # See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
     # mice
     device {
         name = bosse’s-magic-mouse

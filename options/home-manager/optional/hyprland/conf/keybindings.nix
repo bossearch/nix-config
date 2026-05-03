@@ -4,7 +4,7 @@
     ### KEYBINDINGS ###
     ###################
 
-    # See https://wiki.hyprland.org/Configuring/Keywords/
+    # See https://wiki.hypr.land/Configuring/Keywords/
     $mainMod = SUPER
     $secMod = CONTROL
     $meh = MOD5
