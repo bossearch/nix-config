@@ -17,7 +17,7 @@ in {
     ### AUTOSTART ###
     #################
 
-    exec-once = hyprlock --immediate --no-fade-in
+    exec-once = hyprlock --immediate-render --no-fade-in
     exec-once = hyprpaper
     exec-once = blueman-applet
 
