@@ -14,5 +14,10 @@
     master {
       mfact = 0.5
     }
+
+    # See https://wiki.hypr.land/Configuring/Scrolling-Layout/
+    scrolling {
+      direction = right
+    }
   '';
 }
