@@ -27,7 +27,7 @@ in {
     input {
         kb_layout = us
         follow_mouse = 2
-        focus_on_close = 1
+        focus_on_close = 0
         float_switch_override_focus = 0
         touchpad {
             natural_scroll = false
