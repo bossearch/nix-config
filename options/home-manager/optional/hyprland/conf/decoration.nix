@@ -22,8 +22,13 @@
             # if you want heavy blur, you need to up the passes.
             # the more passes, the more you can up the size without noticing artifacts.
         }
+        shadow {
+            enabled = false
+        }
     }
 
-    layerrule = blur on, blur_popups on, ignore_alpha 0, match:namespace waybar
+    layerrule = blur on, blur_popups on, ignore_alpha 0, xray on, match:namespace waybar
+    layerrule = blur on, ignore_alpha 0, match:namespace swaync-control-center
+    layerrule = blur on, ignore_alpha 0.5, match:namespace swaync-notification-window
   '';
 }
