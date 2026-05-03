@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+  base00 = config.colorScheme.palette.base00;
+in {
   wayland.windowManager.hyprland.extraConfig = ''
     ############
     ### MISC ###
@@ -10,9 +12,11 @@
     }
 
     misc {
-    #    focus_on_activate = true
+        # focus_on_activate = true
         allow_session_lock_restore = true
         vfr = true
+        disable_hyprland_logo = true
+        background_color = 0xFF${base00}
     }
 
     # fix wash out color on some apps
