@@ -56,7 +56,7 @@ in {
       "ctrl+equal" = "change_font_size all 0";
       "0x1008ff57" = "copy_to_clipboard";
       "0x1008ff6d" = "paste_from_clipboard";
-      "no_op" = "show_scrollback";
+      "ctrl+shift+h" = "no_op";
     };
     environment = {
       "TERM" = "xterm-256color";
@@ -69,7 +69,6 @@ in {
       bold_italic_font auto
       font_size 12.0
 
-      # modify_font cell_width 150%
       modify_font cell_height ${height}
       modify_font underline_thickness 120%
 
