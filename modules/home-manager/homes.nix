@@ -141,10 +141,6 @@ in {
           default = false;
           type = types.bool;
         };
-        lanmouse = mkOption {
-          default = false;
-          type = types.bool;
-        };
         mpv = mkOption {
           default = false;
           type = types.bool;
@@ -195,7 +191,6 @@ in {
       gowall = lib.mkForce false; #*
       kdeconnect = lib.mkForce false;
       kitty = lib.mkForce false;
-      lanmouse = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
       notify = lib.mkForce "none";

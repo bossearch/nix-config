@@ -53,7 +53,6 @@
     gowall = true;
     kdeconnect = false;
     kitty = true;
-    lanmouse = true;
     llm = true;
     mpv = true;
     nautilus = true;

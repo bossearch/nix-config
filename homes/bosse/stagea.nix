@@ -38,7 +38,6 @@
     gowall = false;
     kdeconnect = false;
     kitty = true;
-    lanmouse = false;
     llm = false;
     mpv = false;
     nautilus = false;
