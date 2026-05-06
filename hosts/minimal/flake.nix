@@ -6,12 +6,27 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
-    mkMinimal = host: disk: swap: swapSize:
+    mkMinimal = user: host: type: disk: swap:
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          hosts = {
+            username = user;
+            hostname = host;
+            disko = {
+              inherit type disk swap;
+            };
+          };
+        };
+
         modules = let
           luksKeyModule =
             if builtins.pathExists ./luks-key.nix
@@ -24,42 +39,18 @@
         in
           [
             inputs.disko.nixosModules.disko
-            ({lib, ...}: let
-              inherit (lib) mkOption types;
-            in {
-              options.spec = mkOption {
-                type = types.submodule {
-                  options = {
-                    disk = mkOption {
-                      type = types.str;
-                    };
-                    swap = mkOption {
-                      type = types.bool;
-                    };
-                    swapSize = mkOption {
-                      type = types.str;
-                    };
-                  };
-                };
-              };
-            })
-            ({...}: {
-              spec.disk = disk;
-              spec.swap = swap;
-              spec.swapSize = swapSize;
-            })
-
             ./disko.nix
             ./hardware-configuration.nix
+            ./impermanence.nix
             ./minimal.nix
-            ({...}: {networking.hostName = host;})
+            ({hosts, ...}: {networking.hostName = hosts.hostname;})
           ]
           ++ luksKeyModule ++ wifiModule;
       };
   in {
     nixosConfigurations = {
-      silvia = mkMinimal "silvia" "/dev/nvme0n1" true "32G";
-      stagea = mkMinimal "stagea" "/dev/vda" false "0G";
+      silvia = mkMinimal "bosse" "silvia" "btrfs-luks-impermanence" "/dev/nvme0n1" "32G";
+      stagea = mkMinimal "bosse" "stagea" "btrfs-impermanence" "/dev/vda" "0G";
     };
   };
 }

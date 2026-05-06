@@ -1,5 +1,5 @@
-{
-  users.users.bosse = {
+{hosts, ...}: {
+  users.users.${hosts.username} = {
     initialPassword = import ./password.nix;
     isNormalUser = true;
     extraGroups = ["wheel"];
@@ -16,7 +16,7 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
-  services.getty.autologinUser = "bosse";
+  services.getty.autologinUser = "${hosts.username}";
 
   boot = {
     # Use systemd bootload
