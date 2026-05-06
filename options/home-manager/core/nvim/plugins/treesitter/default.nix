@@ -1,15 +1,50 @@
-{
+{config, ...}: {
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;
+      grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        bash
+        c
+        c_sharp
+        cairo
+        cmake
+        cpp
+        css
+        diff
+        fish
+        git_config
+        git_rebase
+        gitattributes
+        gitcommit
+        gitignore
+        glsl
+        html
+        java
+        javascript
+        json
+        kotlin
+        lua
+        make
+        markdown
+        nix
+        python
+        regex
+        tmux
+        toml
+        udev
+        vim
+        vimdoc
+        xml
+        yaml
+        zsh
+      ];
+      highlight.enable = true;
+      indent.enable = true;
+      # folding.enable = true;
       lazyLoad = {
         settings = {
           event = ["BufReadPre" "BufNewFile"];
         };
-      };
-      settings = {
-        highlight.enable = true;
-        indent.enable = true;
       };
     };
     treesitter-context = {
