@@ -19,12 +19,13 @@
   services.getty.autologinUser = "${hosts.username}";
 
   boot = {
-    # Use systemd bootload
     loader.systemd-boot.enable = true;
     loader.systemd-boot.consoleMode = "max";
     loader.efi.canTouchEfiVariables = true;
     loader.timeout = 1;
   };
+
+  programs.git.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
