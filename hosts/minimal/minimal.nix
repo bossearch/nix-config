@@ -25,7 +25,10 @@
     loader.timeout = 1;
   };
 
-  programs.git.enable = true;
+  programs = {
+    git.enable = true;
+    dconf.enable = true;
+  };
 
   nix.settings.experimental-features = [
     "nix-command"
