@@ -9,7 +9,7 @@ in {
     disko.devices = {
       disk.main = {
         type = "disk";
-        device = hosts.disk;
+        device = hosts.disko.disk;
         content = {
           type = "gpt";
           partitions = {
