@@ -30,7 +30,7 @@ in {
 
       if [[ "$BUTTON" -eq 0 ]]; then
         echo "Screenrecording on $GEOMETRY Area" > "$SCREENRECORD_TOOLTIP"
-        notify-send -e -a screenrecord "Screenrecord Area" "On $GEOMETRY will start in 3 seconds" -t 2500 -i camera-video
+        notify-send -e -a screenrecord "Screenrecord Area" "On $GEOMETRY_NEW will start in 3 seconds" -t 2500 -i camera-video
         sleep 3
         eval "wl-screenrec $COMMAND --low-power=off --no-damage -g \"$GEOMETRY\" -f \"$FILENAME\" & $TRAY"
         trap 'notify-send "Screenrecord Area" "File saved to $FILENAME" -i camera-video' EXIT
