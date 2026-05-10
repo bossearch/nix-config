@@ -35,6 +35,7 @@
         "https://mail.google.com"
         "https://proton.me"
         "https://reddit.com"
+        "https://shopee.co.id"
         "https://start.duckduckgo.com"
         "https://tokopedia.com"
         "https://twitch.tv"
