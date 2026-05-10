@@ -21,7 +21,7 @@
 
       FILENAME="$HOME/Pictures/Screenshots/$(date +%F_%T)-$TITLE.png"
 
-      grim -g "''${X},''${Y} ''${WIDTH}x''${HEIGHT}" - | wl-copy >"$FILENAME"
+      grim -g "''${X},''${Y} ''${WIDTH}x''${HEIGHT}" - | wl-copy && wl-paste >"$FILENAME"
 
       notify-send -a screenshot "Screenshot Window" "File saved to $FILENAME" -i camera-photo
     '';

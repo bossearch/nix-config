@@ -21,7 +21,7 @@ in {
         exit 1
       fi
 
-      grim -g "$GEOMETRY" - | wl-copy >"$FILENAME"
+      grim -g "$GEOMETRY" - | wl-copy && wl-paste >"$FILENAME"
 
       notify-send -a screenshot "Screenshot Area" "File saved to $FILENAME" -i camera-photo
     '';

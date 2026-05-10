@@ -12,7 +12,7 @@
       OUTPUT=$(hyprctl -j monitors | jq -r '.[0].name')
       FILENAME="$HOME/Pictures/Screenshots/$(date +%F_%T)-$OUTPUT.png"
 
-      grim - | wl-copy >"$FILENAME"
+      grim - | wl-copy && wl-paste >"$FILENAME"
 
       notify-send -a screenshot "Screenshot Monitor" "File saved to $FILENAME" -i camera-photo
     '';
