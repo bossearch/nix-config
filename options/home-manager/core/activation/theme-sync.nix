@@ -20,8 +20,6 @@ in
   pkgs.writeShellScript "theme-sync" ''
     set -euo pipefail
     CACHE_DIR="$HOME/.cache/${hosts.username}"
-    mkdir -p "$CACHE_DIR"
-
     HOST_THEME="${hosts.theme}"
     GOWALL_THEME="${theme}"
     THEME_FILE="$CACHE_DIR/theme"

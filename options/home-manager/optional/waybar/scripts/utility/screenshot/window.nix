@@ -8,7 +8,6 @@
     text = ''
       #!/usr/bin/env bash
 
-      mkdir -p ~/Pictures/Screenshots
       WINDOW=$(hyprctl -j activewindow)
       DATA=$(echo "$WINDOW" | jq -e -r '.initialTitle, .at[0], .at[1], .size[0], .size[1] | select(. != null)')
 

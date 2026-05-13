@@ -22,8 +22,6 @@ in {
       LOG_FILE="$CACHE_DIR/daily-wallpaper.log"
       DATE=$(date +%Y%m%d)
       OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
-
-      mkdir -p "$WALL_DIR"
       sleep 10
 
       : > "$LOG_FILE"

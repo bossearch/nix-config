@@ -12,7 +12,6 @@ in {
     text = ''
       #!/usr/bin/env bash
 
-      mkdir -p ~/Pictures/Screenshots
       FILENAME="$HOME/Pictures/Screenshots/$(date +%F_%T)-Area.png"
       GEOMETRY=$(slurp -d -F "${homes.nerdfont}" -b "${background}" -c "${border}")
 

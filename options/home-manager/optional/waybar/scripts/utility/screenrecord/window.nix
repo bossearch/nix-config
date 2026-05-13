@@ -9,7 +9,6 @@
     text = ''
       #!/usr/bin/env bash
 
-      mkdir -p ~/Videos//Screenrecords
       TRAY="$HOME/.config/waybar/scripts/tray/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/utility/screenrecord/playback.sh"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${hosts.username}/screenrecord-tooltip"

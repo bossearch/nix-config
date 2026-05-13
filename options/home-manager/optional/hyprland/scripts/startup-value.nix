@@ -9,8 +9,6 @@ in {
     executable = true;
     text = ''
       #!/usr/bin/env bash
-      mkdir -p "$HOME/.cache/${hosts.username}"
-
       NOTIFY_VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
       echo "65536" >"NOTIFY_VOLUME_FILE"
 

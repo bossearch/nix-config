@@ -13,7 +13,6 @@ in {
     text = ''
       #!/usr/bin/env bash
 
-      mkdir -p ~/Videos//Screenrecords
       TRAY="$HOME/.config/waybar/scripts/tray/tray-trigger.sh wl-screenrec"
       PLAYBACK="$HOME/.config/waybar/scripts/utility/screenrecord/playback.sh"
       FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-Area.mp4"

@@ -6,9 +6,7 @@
 pkgs.writeShellScript "drun-scan" ''
   # Output file for the app names and Exec commands
   output_file="$HOME/.cache/${hosts.username}/drun.txt"
-
   rm -f "$output_file"
-  mkdir -p "$(dirname "$output_file")"
   touch "$output_file"
 
   # List of apps to exclude (add full .desktop filenames here)
