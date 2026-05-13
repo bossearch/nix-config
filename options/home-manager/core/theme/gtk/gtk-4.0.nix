@@ -23,6 +23,18 @@
 in {
   home.file.".config/gtk-4.0/gtk.css" = lib.mkIf hosts.gui.enable {
     text = ''
+      /* fix zenity dialog */
+      messagedialog {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      messagedialog .dialog-action-box {
+        background-color: transparent;
+      }
+      messagedialog .dialog-action-box .linked:not(.vertical) > button, .app-notification button, popover.background.menu button {
+        color: ${base07};
+      }
+
       @define-color accent_color ${base0D};
       @define-color accent_bg_color ${base0D};
       @define-color accent_fg_color ${base01};
