@@ -9,7 +9,7 @@
     $secMod = CONTROL
     $meh = MOD5
     $hyper = SUPER MOD5
-    $terminal = kitty sh -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
+    $terminal = kitty bash -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
     $fileManager = nautilus
     $browser = firefox
     $drun = footclient -T fzf ~/.config/fzf/extra/drun.sh
@@ -18,9 +18,11 @@
     $clipboard = footclient -T fzf ~/.config/fzf/extra/clipboard.sh
     $pass = footclient -T fzf ~/.config/fzf/extra/pass.sh password
     $otp = footclient -T fzf ~/.config/fzf/extra/pass.sh otp
+    $workspace = ~/.config/hypr/scripts/workspace.sh
+    $cycle = ~/.config/hypr/scripts/cycle.sh
 
     bind = $mainMod, Q, exec, ~/.config/hypr/scripts/quit.sh
-    bind = $hyper, code:49, exit # "`"
+    # bind = $hyper, code:49, exit # "`"
     bind = $mainMod, RETURN, exec, $terminal
     bind = $mainMod, code:61, exec, $browser # "/"
     bindr = $mainMod, code:48, exec, pkill $fileManager || $fileManager # "'"
@@ -41,54 +43,71 @@
     bind = $hyper, W, exec, ~/.config/waybar/scripts/screenrecord/recwindow.sh
     bind = $meh, E, exec, ~/.config/waybar/scripts/screenshot/ssarea.sh
     bind = $hyper, E, exec, ~/.config/waybar/scripts/screenrecord/recarea.sh
-    bind = $meh, R, exec, ~/.config/waybar/scripts/screenshot/ocr.sh
+    bind = $meh, R, exec, ~/.config/waybar/scripts/utility/hyprpicker.sh
+    bind = $hyper, R, exec, ~/.config/waybar/scripts/screenshot/ocr.sh
+
     bind = $meh, V, exec, ~/.config/waybar/scripts/pavucontrol/cycle-output.sh
-    bind = $meh, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-output.sh
     bind = $hyper, V, exec, ~/.config/waybar/scripts/pavucontrol/cycle-input.sh
+    bind = $meh, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-output.sh
     bind = $hyper, C, exec, ~/.config/waybar/scripts/pavucontrol/toggle-input.sh
-    bind = $meh, Y, exec, ~/.config/waybar/scripts/utility/virtualkeyboard.sh
-    bind = $hyper, Y, exec, pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard
-    bind = $meh, U, exec, hyprpicker -a
-    bind = $hyper, U, exec, ~/.config/waybar/scripts/hyprsunset/scroll-down.sh
-    bind = $meh, I, exec, ~/.config/waybar/scripts/dunst/dunsticon.sh
-    bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
-    bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
-    bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
-    bind = $meh, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $pass
-    bind = $hyper, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $otp
+
+    # bind = $meh, Y, exec, ~/.config/waybar/scripts/utility/virtualkeyboard.sh
+    # bind = $hyper, Y, exec, pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard
+    # bind = $hyper, U, exec, ~/.config/waybar/scripts/hyprsunset/scroll-down.sh
+    # bind = $meh, I, exec, ~/.config/waybar/scripts/dunst/dunsticon.sh
+    # bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
+    # bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
+    # bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
+    # bind = $meh, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $pass
+    # bind = $hyper, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $otp
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
+    bind = $meh, J, exec, $cycle prev
+    bind = $meh, K, exec, $cycle next
     bind = $meh, ESCAPE, exec, ~/.config/hypr/scripts/swap-window.sh
 
     # Group
     bind = $hyper, SPACE, changegroupactive
     bind = $hyper, ESCAPE, exec, ~/.config/hypr/scripts/toggle-group.sh
 
-    # Switch workspaces with mainMod + [0-9]
-    bind = $meh, H, workspace, 1
-    bind = $meh, J, workspace, 2
-    bind = $meh, K, workspace, 3
-    bind = $meh, L, workspace, 4
-    bind = $meh, N, workspace, 5
-    bind = $meh, M, workspace, 6
-    # Move active window to a workspace with mainMod + SHIFT + [0-9]
-    bind = $hyper, H, movetoworkspace, 1
-    bind = $hyper, J, movetoworkspace, 2
-    bind = $hyper, K, movetoworkspace, 3
-    bind = $hyper, L, movetoworkspace, 4
-    bind = $hyper, N, movetoworkspace, 5
-    bind = $hyper, M, movetoworkspace, 6
+    # Switch workspaces
+    bind = $meh, Y, exec, $workspace workspace 1
+    bind = $meh, U, exec, $workspace workspace 2
+    bind = $meh, I, exec, $workspace workspace 3
+    bind = $meh, O, exec, $workspace workspace 4
+    bind = $meh, P, exec, $workspace workspace 5
+
+    bind = $meh, N, exec, $workspace workspace 6
+    bind = $meh, M, exec, $workspace workspace 7
+    bind = $meh, code:59, exec, $workspace workspace 8
+    bind = $meh, code:60, exec, $workspace workspace 9
+    bind = $meh, code:61, exec, $workspace workspace 10
+
+    # Move active window to a workspace
+    bind = $hyper, Y, exec, $workspace movetoworkspace 1
+    bind = $hyper, U, exec, $workspace movetoworkspace 2
+    bind = $hyper, I, exec, $workspace movetoworkspace 3
+    bind = $hyper, O, exec, $workspace movetoworkspace 4
+    bind = $hyper, P, exec, $workspace movetoworkspace 5
+
+    bind = $hyper, N, exec, $workspace movetoworkspace 6
+    bind = $hyper, M, exec, $workspace movetoworkspace 7
+    bind = $hyper, code:59, exec, $workspace movetoworkspace 8
+    bind = $hyper, code:60, exec, $workspace movetoworkspace 9
+    bind = $hyper, code:61, exec, $workspace movetoworkspace 10
+
+    # Scroll through existing workspaces
+    bind = $meh, H, exec, $workspace workspace prev
+    bind = $meh, L, exec, $workspace workspace next
+    bind = $meh, mouse_down, exec, $workspace workspace prev
+    bind = $meh, mouse_up, exec, $workspace workspace next
+    bind = $hyper, H, exec, $workspace movetoworkspace prev
+    bind = $hyper, L, exec, $workspace movetoworkspace next
 
     # Special workspace
     bind = $meh, RETURN, togglespecialworkspace, scratchpad
     bind = $hyper, RETURN, movetoworkspace, special:scratchpad
-    bind = $meh, G, exec, ~/.config/hypr/scripts/game-mode.sh
-    bind = $hyper, G, exec, rm -rf ~/.cache/gamemode && notify-send "Game Mode" "File Deleted" -u low
-
-    # Scroll through existing workspaces with $meh + scroll
-    bind = $meh, mouse_down, workspace, e+1
-    bind = $meh, mouse_up, workspace, e-1
 
     # Toggle Float
     bind = $meh, F, togglefloating
