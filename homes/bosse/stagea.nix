@@ -8,6 +8,8 @@
     cursor = "macOS";
     icon = "Papirus-Dark";
     qtstyle = "breeze";
+    terminal = "alacritty";
+    notify = "swaync";
     monitor = [
       {
         name = "Virtual-1";
@@ -31,13 +33,10 @@
       lutris = false;
       prismlauncher = false;
     };
-    notify = "swaync";
-    alacritty = false;
     copas = false;
     feh = false;
     gowall = false;
     kdeconnect = false;
-    kitty = true;
     llm = false;
     mpv = false;
     nautilus = false;

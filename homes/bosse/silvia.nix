@@ -8,6 +8,8 @@
     cursor = "macOS";
     icon = "Papirus-Dark";
     qtstyle = "breeze";
+    terminal = "alacritty";
+    notify = "swaync";
     monitor = [
       {
         name = "DP-1";
@@ -47,13 +49,10 @@
       lutris = true;
       prismlauncher = true;
     };
-    notify = "swaync";
-    alacritty = true;
     copas = true;
     feh = true;
     gowall = true;
     kdeconnect = false;
-    kitty = true;
     llm = true;
     mpv = true;
     nautilus = true;

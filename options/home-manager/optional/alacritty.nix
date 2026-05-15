@@ -18,7 +18,7 @@
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
   programs.alacritty = {
-    enable = homes.alacritty;
+    enable = homes.terminal == "alacritty";
     package = pkgs.alacritty-graphics;
     settings = {
       colors = {

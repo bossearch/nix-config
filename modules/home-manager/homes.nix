@@ -33,6 +33,18 @@ in {
             "kvantum"
           ];
         };
+        terminal = mkOption {
+          type = types.enum [
+            "alacritty"
+            "kitty"
+          ];
+        };
+        notify = mkOption {
+          type = types.enum [
+            "dunst"
+            "swaync"
+          ];
+        };
         # optional modules
         firefox = mkOption {
           default = {};
@@ -86,13 +98,6 @@ in {
             };
           };
         };
-        notify = mkOption {
-          default = "dunst";
-          type = types.enum [
-            "dunst"
-            "swaync"
-          ];
-        };
         llm = mkOption {
           default = false;
           type = types.bool;
@@ -113,10 +118,6 @@ in {
           default = false;
           type = types.bool;
         };
-        alacritty = mkOption {
-          default = false;
-          type = types.bool;
-        };
         copas = mkOption {
           default = false;
           type = types.bool;
@@ -134,10 +135,6 @@ in {
           type = types.bool;
         };
         kdeconnect = mkOption {
-          default = false;
-          type = types.bool;
-        };
-        kitty = mkOption {
           default = false;
           type = types.bool;
         };
@@ -179,7 +176,6 @@ in {
   config = {
     _module.args.homes = config.homes;
     homes = lib.mkIf (!hosts.gui.enable) {
-      alacritty = lib.mkForce false;
       copas = lib.mkForce false;
       feh = lib.mkForce false;
       firefox.enable = lib.mkForce false; #*
@@ -190,13 +186,13 @@ in {
       };
       gowall = lib.mkForce false; #*
       kdeconnect = lib.mkForce false;
-      kitty = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
       notify = lib.mkForce "none";
       nyaa = lib.mkForce false;
       obsidian = lib.mkForce false;
       spicetify = lib.mkForce false;
+      terminal = lib.mkForce "none";
       vaults = lib.mkForce false;
       vesktop = lib.mkForce false; #*
       waybar = lib.mkForce false; #*

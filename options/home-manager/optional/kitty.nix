@@ -25,7 +25,7 @@
   base0F = "#${config.colorScheme.palette.base0F}";
 in {
   programs.kitty = {
-    enable = homes.kitty;
+    enable = homes.terminal == "kitty";
     settings = {
       confirm_os_window_close = 0;
       enable_audio_bell = false;
