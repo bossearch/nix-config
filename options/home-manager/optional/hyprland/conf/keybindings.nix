@@ -1,4 +1,15 @@
 {
+  homes,
+  hosts,
+  ...
+}: let
+  terminal =
+    if homes.terminal == "alacritty"
+    then "alacritty -e sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
+    else if homes.terminal == "kitty"
+    then "kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
+    else "";
+in {
   wayland.windowManager.hyprland.extraConfig = ''
     ###################
     ### KEYBINDINGS ###
@@ -9,7 +20,7 @@
     $secMod = CONTROL
     $meh = MOD5
     $hyper = SUPER MOD5
-    $terminal = kitty bash -c "~/.config/hypr/scripts/assets/tty.sh; exec fish"
+    $terminal = ${terminal}
     $fileManager = nautilus
     $browser = firefox
     $drun = footclient -T fzf ~/.config/fzf/extra/drun.sh
