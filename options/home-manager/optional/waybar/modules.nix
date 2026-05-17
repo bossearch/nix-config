@@ -128,6 +128,18 @@ in {
         "active-only" = false;
         "all-outputs" = true;
         "format" = "<sub>{icon}</sub> {windows}";
+        "format-icons" = {
+          "1" = "Y";
+          "2" = "U";
+          "3" = "I";
+          "4" = "O";
+          "5" = "P";
+          "6" = "N";
+          "7" = "M";
+          "8" = ",";
+          "9" = ".";
+          "10" = "/";
+        };
         "format-window-separator" = " ";
         "on-click" = "activate";
         "on-scroll-down" = "hyprctl dispatch workspace e-1";
