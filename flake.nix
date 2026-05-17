@@ -46,8 +46,6 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Third party programs, not packaged with nix
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;
