@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  service = pkgs.writeShellScript "usbguard-service" ''
+  usbguard = pkgs.writeShellScript "usbguard-service" ''
     DEVICE_PATH="$1"
     ESCAPED_PATH=$(${pkgs.systemd}/bin/systemd-escape "$DEVICE_PATH")
     USER_ID=$(id -u ${hosts.username})
@@ -31,18 +31,26 @@ in {
     extraRules = lib.concatStringsSep "\n" (
       lib.flatten [
         (lib.optional (hosts.usbguard && hosts.hostname == "silvia") ''
+          ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", GOTO="run_usbguard"
+          GOTO="skip_usbguard"
+          LABEL="run_usbguard"
+
           # usbguard rules for mouse, keyboard, usbhub, and usbhub monitor
-          ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", \
-          ENV{ID_VENDOR_ID}!="1b1c", ENV{ID_MODEL_ID}!="1b3e", \
-          ENV{ID_VENDOR_ID}!="4653", ENV{ID_MODEL_ID}!="0001", \
-          ENV{ID_VENDOR_ID}!="2109", ENV{ID_MODEL_ID}!="2815", \
-          ENV{ID_VENDOR_ID}!="05e3", ENV{ID_MODEL_ID}!="0610", \
-          RUN+="${service} $env{DEVNAME}"
+          ENV{ID_VENDOR_ID}=="1b1c", ENV{ID_MODEL_ID}=="1b3e", GOTO="skip_usbguard"
+          ENV{ID_VENDOR_ID}=="4653", ENV{ID_MODEL_ID}=="0001", GOTO="skip_usbguard"
+          ENV{ID_VENDOR_ID}=="2109", ENV{ID_MODEL_ID}=="2815", GOTO="skip_usbguard"
+          ENV{ID_VENDOR_ID}=="05e3", ENV{ID_MODEL_ID}=="0610", GOTO="skip_usbguard"
+
+          RUN+="${usbguard} $env{DEVNAME}"
+          LABEL="skip_usbguard"
         '')
 
         (lib.optional (hosts.usbguard && hosts.hostname == "stagea") ''
-          ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{DEVNAME}!="", \
-          RUN+="${service} $env{DEVNAME}"
+          ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", GOTO="run_usbguard"
+          GOTO="skip_usbguard"
+          LABEL="run_usbguard"
+          RUN+="${usbguard} $env{DEVNAME}"
+          LABEL="skip_usbguard"
         '')
 
         (lib.optional (hosts.udevqmk && hosts.hostname == "silvia") ''
