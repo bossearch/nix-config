@@ -321,8 +321,8 @@ in {
         "max-volume" = 150;
         "format-icons" = {
           #main speaker
-          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3" = [" " " " " "];
-          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3-muted" = " ";
+          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1" = [" " " " " "];
+          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1-muted" = " ";
           #front jack
           "alsa_output.pci-0000_08_00.6.analog-stereo" = "󰋋 ";
           "alsa_output.pci-0000_08_00.6.analog-stereo-muted" = "󰟎 ";
