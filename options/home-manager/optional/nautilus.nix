@@ -8,8 +8,8 @@
 }: let
   Home_dir =
     if hosts.hostname == "silvia"
-    then "${config.home.homeDirectory}/{Desktop,Downloads/Torrent,Documents,Pictures,Shared,Videos}"
-    else "${config.home.homeDirectory}/{Desktop,Downloads,Documents,Pictures,Videos}";
+    then "${config.home.homeDirectory}/{Desktop,Downloads/{Torrent,LocalSend},Documents,Pictures/Screenshots,Shared,Videos/Screenrecords,.cache/${hosts.username}}"
+    else "${config.home.homeDirectory}/{Desktop,Downloads,Documents,Pictures/Screenshots,Videos/Screenrecords,.cache/${hosts.username}}";
 in {
   home = lib.mkMerge [
     {
