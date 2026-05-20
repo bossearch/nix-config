@@ -35,17 +35,16 @@ in
 
       if [[ -z "''${SSH_CONNECTION-}" ]]; then
         TMUX_BIN="${pkgs.tmux}/bin/tmux"
-        SOCKET=''${TMUX:+$(echo "$TMUX" | cut -d',' -f1)}
-        SOCKET=''${SOCKET:-''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-$(id -u)/default}
+        TMUX_SOCKET="$XDG_RUNTIME_DIR/tmux-$(id -u)/default"
 
-        if "$TMUX_BIN" -S "$SOCKET" has-session &>/dev/null; then
-          "$TMUX_BIN" -S "$SOCKET" source-file "$HOME/.config/tmux/tmux.conf"
+        if "$TMUX_BIN" -S "$TMUX_SOCKET" has-session &>/dev/null; then
+          "$TMUX_BIN" -S "$TMUX_SOCKET" source-file "$HOME/.config/tmux/tmux.conf"
         fi
       fi
 
-      for NVIM_SOCK in /run/user/$(id -u)/nvim.*; do
-        if [[ -S "$NVIM_SOCK" ]]; then
-          ${pkgs.neovim}/bin/nvim --server "$NVIM_SOCK" --remote-send ":lua ${nvimLuaCmd}<CR>" &
+      for NVIM_SOCKET in /run/user/$(id -u)/nvim.*; do
+        if [[ -S "$NVIM_SOCKET" ]]; then
+          ${pkgs.neovim}/bin/nvim --server "$NVIM_SOCKET" --remote-send ":lua ${nvimLuaCmd}<CR>" &
         fi
       done
 
