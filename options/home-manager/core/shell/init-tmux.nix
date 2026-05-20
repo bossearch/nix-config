@@ -5,7 +5,7 @@
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
 in {
-  home.file.".config/hypr/scripts/assets/tty.sh" = lib.mkIf enabled {
+  home.file.".config/${hosts.shell}/init-tmux.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash
