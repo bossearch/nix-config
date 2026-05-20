@@ -23,9 +23,6 @@
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "yes" ]]; then
         echo "{\"text\": \"󰂯\"}"
       fi
-
-      sleep 0.1
-      pkill -SIGRTMIN+14 waybar
     '';
   };
 }
