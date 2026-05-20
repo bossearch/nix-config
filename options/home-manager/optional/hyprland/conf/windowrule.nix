@@ -1,8 +1,4 @@
-{
-  homes,
-  hosts,
-  ...
-}: let
+{homes, ...}: let
   coding = 1;
   browser = 2;
   music = 3;
@@ -57,12 +53,6 @@
       then "920 520"
       else "778 440";
   };
-  terminal =
-    if homes.terminal == "alacritty"
-    then "alacritty -e sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
-    else if homes.terminal == "kitty"
-    then "kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
-    else "";
 in {
   wayland.windowManager.hyprland.extraConfig = ''
     ##############################
@@ -203,7 +193,7 @@ in {
     # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
     # Workspaces
     workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: ${homes.terminal} -T scratchpad
-    workspace = ${toString coding}, layout:monocle, on-created-empty: ${terminal}
+    workspace = ${toString coding}, layout:monocle, on-created-empty: ${homes.terminal}
     workspace = ${toString browser},layout:scrolling, on-created-empty: firefox
     workspace = ${toString game_launcher}, layout:scrolling
     workspace = ${toString games}, layout:monocle

@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: let
+  init-tmux =
+    if hosts.gui.enable
+    then "bash ~/.config/fish/init-tmux.sh"
+    else "";
   kittyfish = homes.kitty && hosts.shell == "fish";
 in {
   imports = [
@@ -21,6 +25,7 @@ in {
       set -gx FZF_PREVIEW_DIR_CMD "eza -1 --tree --level=2 --all --icons=always --color=always"
     '';
     interactiveShellInit = ''
+      ${init-tmux}
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       fish_vi_key_bindings
 

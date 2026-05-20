@@ -5,6 +5,10 @@
   pkgs,
   ...
 }: let
+  init-tmux =
+    if hosts.gui.enable
+    then "bash ~/.config/fish/init-tmux.sh"
+    else "";
   kittyzsh = homes.kitty && hosts.shell == "zsh";
 in {
   imports = mylib.autoimport ./.;
@@ -57,6 +61,7 @@ in {
       )
     '';
     initContent = ''
+      ${init-tmux}
       autoload -Uz ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer
       zsh-defer source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       zsh-defer source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
