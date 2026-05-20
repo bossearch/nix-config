@@ -35,9 +35,9 @@ in {
     };
 
   modifications = final: prev: {
-    # waybar = addPatches prev.waybar [
-    #   ./waybar-hyprland-window.diff
-    # ];
+    waybar = addPatches prev.waybar [
+      ./hyprland-workspace.diff
+    ];
     vimPlugins =
       prev.vimPlugins
       // {
