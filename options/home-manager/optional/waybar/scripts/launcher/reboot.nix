@@ -9,26 +9,25 @@
     text = ''
       #!/usr/bin/env bash
 
-      zenity --question \
+      if zenity --question \
         --title="System Reboot" \
         --text="Are you sure you want to reboot your system?" \
         --width=200 \
-        --icon=system-restart
+        --icon=system-restart; then
 
-      if [ $? -eq 0 ]; then
-        for NVIM_SOCK in /run/user/1000/nvim.*; do
-          if [[ -S "$NVIM_SOCK" ]]; then
-            nvim --server "$NVIM_SOCK" --remote-send \
+        for NVIM_SOCKET in /run/user/1000/nvim.*; do
+          if [[ -S "$NVIM_SOCKET" ]]; then
+            nvim --server "$NVIM_SOCKET" --remote-send \
               "<C-\\><C-N>:lua require('mini.sessions').write('global-session')<CR>"
           fi
         done
         sleep 1
 
-        SOCKET=''${SOCKET:-''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tmux-$(id -u)/default}
-        tmux -S "$SOCKET" run-shell -b '${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh'
+        TMUX_SOCKET="$XDG_RUNTIME_DIR/tmux-$(id -u)/default"
+        tmux -S "$TMUX_SOCKET" run-shell -b '${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh'
         sleep 1
 
-        tmux -S "$SOCKET" kill-server
+        tmux -S "$TMUX_SOCKET" kill-server
         sleep 1
 
         MPV_SOCKET="/tmp/mpv-socket"
@@ -37,6 +36,8 @@
 
         systemd-run --user --remain-after-exit \
           bash -c "hyprshutdown -p 'reboot' -t 'Rebooting...'"
+      else
+        :
       fi
     '';
   };
