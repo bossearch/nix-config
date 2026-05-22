@@ -30,7 +30,7 @@ in {
 
     extraRules = lib.concatStringsSep "\n" (
       lib.flatten [
-        (lib.optional (hosts.usbguard && hosts.hostname == "silvia") ''
+        (lib.optional (hosts.gui.enable && hosts.usbguard && hosts.hostname == "silvia") ''
           ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", GOTO="run_usbguard"
           GOTO="skip_usbguard"
           LABEL="run_usbguard"
@@ -45,7 +45,7 @@ in {
           LABEL="skip_usbguard"
         '')
 
-        (lib.optional (hosts.usbguard && hosts.hostname == "stagea") ''
+        (lib.optional (hosts.gui.enable && hosts.usbguard && hosts.hostname == "stagea") ''
           ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", GOTO="run_usbguard"
           GOTO="skip_usbguard"
           LABEL="run_usbguard"
@@ -53,7 +53,7 @@ in {
           LABEL="skip_usbguard"
         '')
 
-        (lib.optional (hosts.udevqmk && hosts.hostname == "silvia") ''
+        (lib.optional (hosts.gui.enable && hosts.udevqmk && hosts.hostname == "silvia") ''
           # raw-hid for corne
           SUBSYSTEM=="usb", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="0001", MODE="0666", TAG+="uaccess"
           KERNEL=="hidraw*", ATTRS{idVendor}== "4653", ATTRS{idProduct}=="0001", MODE="0666", TAG+="uaccess"

@@ -71,7 +71,7 @@ in {
         '')
       ];
     };
-    systemd.user.services."usbguard-prompt@" = {
+    systemd.user.services."usbguard-prompt@" = lib.mkIf hosts.gui.enable {
       description = "USBGuard User Prompt for %i";
       serviceConfig = {
         Type = "oneshot";
@@ -79,7 +79,7 @@ in {
         RemainAfterExit = false;
       };
     };
-    security.polkit.extraConfig = ''
+    security.polkit.extraConfig = lib.mkIf hosts.gui.enable ''
       polkit.addRule(function(action, subject) {
           if (action.id == "org.usbguard.Policy1.modify") {
               return polkit.Result.AUTH_ADMIN;
