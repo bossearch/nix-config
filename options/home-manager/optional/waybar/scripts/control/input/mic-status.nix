@@ -12,12 +12,17 @@
       MUTE_STATE=$(pactl get-source-mute $CURRENT_SOURCE | awk '{print $2}')
 
       DESK_MIC="alsa_input.pci-0000_08_00.6.analog-stereo"
+      WEBCAM_MIC="alsa_input.usb-046d_Brio_100_2603AP74QPC8-02.mono-fallback"
       TWS_MIC="bluez_input.00:A4:1C:F9:15:84"
 
       if [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "no" ]]; then
         echo "{\"text\": \"\"}"
       elif [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "yes" ]]; then
         echo "{\"text\": \"\"}"
+      elif [[ "$CURRENT_SOURCE" == "$WEBCAM_MIC" && "$MUTE_STATE" == "no" ]]; then
+        echo "{\"text\": \"\"}"
+      elif [[ "$CURRENT_SOURCE" == "$WEBCAM_MIC" && "$MUTE_STATE" == "yes" ]]; then
+        echo "{\"text\": \"\"}"
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "no" ]]; then
         echo "{\"text\": \"󰂯\"}"
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "yes" ]]; then
