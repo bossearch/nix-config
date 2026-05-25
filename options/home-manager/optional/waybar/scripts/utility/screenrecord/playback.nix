@@ -110,7 +110,7 @@
       DEFAULT_SOURCE=$(pactl get-default-source)
 
       if ! pactl list short modules | grep -q "$VIRTUAL_SINK"; then
-        pactl load-module module-null-sink media.class=Audio/Sink sink_name="$VIRTUAL_SINK" channel_map=stereo
+        pactl load-module module-null-sink media.class=Audio/Sink sink_name="$VIRTUAL_SINK" channel_map=stereo &>/dev/null
       fi
 
       for id in "''${selections[@]}"; do
