@@ -3,8 +3,10 @@
   hosts,
   lib,
   ...
-}: {
-  home.file.".config/waybar/scripts/resource/cputemp.sh" = lib.mkIf homes.waybar {
+}: let
+  enabled = homes.waybar && hosts.hostname == "silvia";
+in {
+  home.file.".config/waybar/scripts/resource/cputemp.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash

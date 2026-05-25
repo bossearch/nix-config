@@ -15,6 +15,14 @@
     else if homes.notify == "swaync"
     then "swaync-client -t -sw"
     else "";
+  resource =
+    if hosts.hostname == "silvia"
+    then ["custom/cputemp" "custom/gpu" "custom/gputemp"]
+    else [];
+  control =
+    if hosts.hostname == "silvia"
+    then ["custom/ddcutil" "custom/hyprsunset"]
+    else [];
 in {
   programs.waybar.settings = {
     mainBar = {
@@ -63,13 +71,10 @@ in {
 
       "group/resource" = {
         "orientation" = "inherit";
-        "modules" = [
-          "cpu"
-          "custom/cputemp"
-          "custom/gpu"
-          "custom/gputemp"
-          "custom/memory"
-        ];
+        "modules" =
+          ["cpu"]
+          ++ resource
+          ++ ["custom/memory"];
       };
 
       "cpu" = {
@@ -297,13 +302,13 @@ in {
 
       "group/control" = {
         "orientation" = "inherit";
-        "modules" = [
-          "custom/ddcutil"
-          "custom/hyprsunset"
-          "pulseaudio"
-          "custom/mic"
-          "network"
-        ];
+        "modules" =
+          control
+          ++ [
+            "pulseaudio"
+            "custom/mic"
+            "network"
+          ];
       };
 
       "custom/ddcutil" = {
