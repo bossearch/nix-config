@@ -13,18 +13,15 @@
       PLAYBACK="$HOME/.config/waybar/scripts/utility/screenrecord/playback.sh"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${hosts.username}/screenrecord-tooltip"
       WINDOW=$(hyprctl -j activewindow)
-      DATA=$(echo "$WINDOW" | jq -e -r '.initialTitle, .at[0], .at[1], .size[0], .size[1] | select(. != null)')
+      DATA=$(echo "$WINDOW" | jq -r '"\(.initialTitle)|\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+      IFS='|' read -r TITLE GEOMETRY <<<"$DATA"
 
-      if [ "$(echo "$DATA" | wc -l)" -ne 5 ]; then
-        notify-send -e -u critical "Screenrecord Window" "Error: Could not retrieve active window information." -i camera-video
+      if [ -z "$TITLE" ] || [ -z "$GEOMETRY" ]; then
+        notify-send -e -u critical "Screenshot Window" "Error: Could not retrieve active window information." -i camera-photo
         exit 1
       fi
 
-      read -r TITLE X Y WIDTH HEIGHT <<<"$(echo "$DATA" | tr '\n' ' ')"
-
       FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-$TITLE.mp4"
-
-      GEOMETRY="''${X},''${Y} ''${WIDTH}x''${HEIGHT}"
 
       read -r BUTTON COMMAND < <("$PLAYBACK")
 
@@ -38,7 +35,6 @@
         notify-send -e -u critical "Screenrecord Window" "Error: Cancelled" -i camera-video
         exit 0
       fi
-
     '';
   };
 }
