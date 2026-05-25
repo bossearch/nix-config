@@ -1,9 +1,16 @@
 {
+  homes,
   hosts,
   lib,
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  close =
+    if homes.notify == "dunst"
+    then "dunstctl close-all"
+    else if homes.notify == "swaync"
+    then "swaync-client --hide-all"
+    else "";
 in {
   home.file.".config/hypr/scripts/workspace.sh" = lib.mkIf enabled {
     executable = true;
@@ -35,13 +42,15 @@ in {
       activate_gamemode() {
         ~/.config/qmk/crkbd-toggle-game.py 1
         apply_gamemode
-        notify-send -e -a game_on -i state_running "Game Mode" "Activated"
+        ${close}
+        notify-send -e -a nosound -i state_running "Game Mode" "Activated"
       }
 
       deactivate_gamemode() {
         ~/.config/qmk/crkbd-toggle-game.py 0
         hyprctl reload
-        notify-send -e -a game_off -i state_paused "Game Mode" "Deactivated"
+        ${close}
+        notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"
       }
 
       if [[ "$NEW_WORKSPACE" == "7" && "$OLD_WORKSPACE" != "7" ]]; then
