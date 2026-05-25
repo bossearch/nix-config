@@ -1,4 +1,5 @@
 {
+  config,
   hosts,
   lib,
   pkgs,
@@ -16,8 +17,9 @@
         import hid
         import sys
 
-        VID = 0x4653
-        PID = 0x0001
+        with open("${config.home.homeDirectory}/.cache/${hosts.username}/corne") as f:
+            VID, PID = [int(x, 16) for x in f.read().strip().split(":")]
+
         RAW_USAGE_PAGE = 0xFF60
         RAW_USAGE_ID = 0x61
 

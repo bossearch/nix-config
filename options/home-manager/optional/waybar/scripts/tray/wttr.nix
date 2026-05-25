@@ -13,11 +13,7 @@
       COORD_FILE="$CACHE_DIR/coordinate"
       WTTR_FILE="$CACHE_DIR/wttr.json"
 
-      read -r LAT LON < <(awk -F': ' '
-        /^Longitude/ { lon=$2 }
-        /^Latitude/  { lat=$2 }
-        END { print lat, lon }
-      ' "$COORD_FILE")
+      IFS=',' read -r LAT LON < "$COORD_FILE"
 
       get_weather_json=$(curl -s "https://wttr.in/''${LAT},''${LON}?format=j1")
 

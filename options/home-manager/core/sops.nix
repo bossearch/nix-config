@@ -20,29 +20,34 @@ in {
       age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       defaultSopsFile = mylib.at "homes/${hosts.username}/secrets.yaml";
       secrets = {
-        "Latitude" = {};
-        "Longitude" = {};
-        "deepl" = {};
-        "transmission" = {};
+        latitude = {};
+        longitude = {};
+        deepl = {};
+        transmission = {};
+        corne = {};
       };
 
       templates = {
-        "coordinate" = {
+        coordinate = {
           content = ''
-            Latitude: ${config.sops.placeholder."Latitude"}
-            Longitude: ${config.sops.placeholder."Longitude"}
+            ${config.sops.placeholder.latitude},${config.sops.placeholder.longitude}
           '';
           path = "${cacheDir}/coordinate";
           mode = "0400";
         };
-        "deepl" = {
-          content = config.sops.placeholder."deepl";
+        deepl = {
+          content = config.sops.placeholder.deepl;
           path = "${cacheDir}/deepl";
           mode = "0400";
         };
-        "transmission" = {
-          content = config.sops.placeholder."transmission";
+        transmission = {
+          content = config.sops.placeholder.transmission;
           path = "${cacheDir}/transmission";
+          mode = "0400";
+        };
+        corne = {
+          content = config.sops.placeholder.corne;
+          path = "${cacheDir}/corne";
           mode = "0400";
         };
       };
