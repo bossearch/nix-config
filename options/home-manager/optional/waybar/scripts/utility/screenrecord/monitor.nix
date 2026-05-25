@@ -15,7 +15,7 @@
       FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-$OUTPUT.mp4"
       SCREENRECORD_TOOLTIP="$HOME/.cache/${hosts.username}/screenrecord-tooltip"
 
-      read -r BUTTON COMMAND < <("$PLAYBACK")
+      IFS='|' read -r BUTTON COMMAND < <("$PLAYBACK")
 
       if [[ "$BUTTON" -eq 0 ]]; then
         echo "Screenrecording on $OUTPUT Monitor" > "$SCREENRECORD_TOOLTIP"

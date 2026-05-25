@@ -23,7 +23,7 @@
 
       FILENAME="$HOME/Videos/Screenrecords/$(date +%F_%T)-$TITLE.mp4"
 
-      read -r BUTTON COMMAND < <("$PLAYBACK")
+      IFS='|' read -r BUTTON COMMAND < <("$PLAYBACK")
 
       if [[ "$BUTTON" -eq 0 ]]; then
         echo "Screenrecording on $TITLE Window" > "$SCREENRECORD_TOOLTIP"

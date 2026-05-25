@@ -130,7 +130,7 @@
         fi
       done
 
-      echo "$BUTTON $COMMAND"
+      echo "$BUTTON|$COMMAND"
     '';
   };
 }

@@ -25,7 +25,7 @@ in {
         exit 1
       fi
 
-      read -r BUTTON COMMAND < <("$PLAYBACK")
+      IFS='|' read -r BUTTON COMMAND < <("$PLAYBACK")
 
       if [[ "$BUTTON" -eq 0 ]]; then
         echo "Screenrecording on $GEOMETRY Area" > "$SCREENRECORD_TOOLTIP"
