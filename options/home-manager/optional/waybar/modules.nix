@@ -288,7 +288,7 @@ in {
       };
 
       "custom/lamp" = {
-        "exec" = "~/.config/assets/scripts/lamp-control/get-lamp.sh dim";
+        "exec" = "~/.config/waybar/scripts/utility/lamp-control/get-lamp.sh dim";
         "format" = "{icon} ";
         "format-icons" = ["󰹐" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
         "on-click" = "~/.config/waybar/scripts/utility/lamp-control/set-lamp.sh state";
@@ -417,31 +417,6 @@ in {
         "signal" = 10;
         "tooltip" = false;
       };
-
-      # "backlight" = {
-      #   "device" = "DP-3";
-      #   "format" = "{icon} {percent}%";
-      #   "format-icons" = ["" "" "" "" "" "" "" "" ""];
-      # };
-
-      # "battery" = {
-      #   "bat" = "BAT0";
-      #   "adapter" = "ADP0";
-      #   "interval" = 60;
-      #   "states" = {
-      #     "warning" = 30;
-      #     "critical" = 15;
-      #   };
-      #   "max-length" = 20;
-      #   "format" = "{icon} {capacity}%";
-      #   "format-warning" = "{icon} {capacity}%";
-      #   "format-critical" = "{icon} {capacity}%";
-      #   "format-charging" = "<span font-family='Font Awesome 6 Free'></span> {capacity}%";
-      #   "format-plugged" = "  {capacity}%";
-      #   "format-alt" = "{icon} {time}";
-      #   "format-full" = "  {capacity}%";
-      #   "format-icons" = [" " " " " " " " " "];
-      # };
     };
   };
 }
