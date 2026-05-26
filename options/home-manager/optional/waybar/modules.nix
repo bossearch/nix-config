@@ -2,6 +2,7 @@
   config,
   homes,
   hosts,
+  lib,
   ...
 }: let
   base07 = "#${config.colorScheme.palette.base07}";
@@ -336,17 +337,25 @@ in {
       "pulseaudio" = {
         "format" = " {icon}{volume}%";
         "max-volume" = 150;
-        "format-icons" = {
-          #main speaker
-          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1" = [" " " " " "];
-          "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1-muted" = " ";
-          #front jack
-          "alsa_output.pci-0000_08_00.6.analog-stereo" = "󰋋 ";
-          "alsa_output.pci-0000_08_00.6.analog-stereo-muted" = "󰟎 ";
-          #bluetooth
-          "bluez_output.00_A4_1C_F9_15_84.1" = "󰂰 ";
-          "bluez_output.00_A4_1C_F9_15_84.1-muted" = "󰂲 ";
-        };
+        "format-icons" = lib.mkMerge [
+          (lib.mkIf (hosts.hostname == "silvia")
+            {
+              #main speaker
+              "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1" = [" " " " " "];
+              "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra1-muted" = " ";
+              #front jack
+              "alsa_output.pci-0000_08_00.6.analog-stereo" = "󰋋 ";
+              "alsa_output.pci-0000_08_00.6.analog-stereo-muted" = "󰟎 ";
+              #bluetooth
+              "bluez_output.00_A4_1C_F9_15_84.1" = "󰂰 ";
+              "bluez_output.00_A4_1C_F9_15_84.1-muted" = "󰂲 ";
+            })
+          (lib.mkIf (hosts.hostname == "stagea")
+            {
+              "alsa_output.pci-0000_00_1b.0.analog-stereo" = [" " " " " "];
+              "alsa_output.pci-0000_00_1b.0.analog-stereo-muted" = " ";
+            })
+        ];
         "on-click" = "pavucontrol";
         "on-click-right" = "~/.config/waybar/scripts/control/output/cycle-output.sh";
         "on-click-middle" = "~/.config/waybar/scripts/control/output/toggle-output.sh";
