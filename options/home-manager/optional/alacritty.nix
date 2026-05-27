@@ -78,7 +78,7 @@ in {
       keyboard.bindings = [
         {
           key = "+";
-          mods = "Control";
+          mods = "Control|Shift";
           action = "IncreaseFontSize";
         }
         {
