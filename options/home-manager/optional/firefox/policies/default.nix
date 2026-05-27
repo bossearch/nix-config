@@ -14,24 +14,31 @@
     screenshare = list.screenshare or [];
   };
 in {
-  blockaboutprofiles = true;
-  disablefeedbackcommands = true;
-  disablefirefoxaccounts = false;
-  disablefirefoxstudies = true;
-  disablesetdesktopbackground = true;
-  disabletelemetry = true;
-  displaybookmarkstoolbar = "never";
-  enabletrackingprotection = {
-    value = true;
-    locked = true;
-    cryptomining = true;
-    fingerprinting = true;
-    emailtracking = true;
+  "3rdparty".Extensions = import ./extension-settings.nix;
+  BlockAboutProfiles = true;
+  Cookies = {
+    Allow = allowlist.cookies;
+    Behavior = "reject-tracker";
+    BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
+    Locked = true;
   };
-  nodefaultbookmarks = true;
-  offertosavelogins = false;
-  passwordmanagerenabled = false;
-  popupblocking.default = true;
+  DisableFeedbackCommands = true;
+  DisableFirefoxAccounts = false;
+  DisableFirefoxStudies = true;
+  DisableSetDesktopBackground = true;
+  DisableTelemetry = true;
+  DisplayBookmarksToolbar = "never";
+  EnableTrackingProtection = {
+    Value = true;
+    Locked = true;
+    Cryptomining = true;
+    Fingerprinting = true;
+    EmailTracking = true;
+  };
+  ExtensionSettings = import ./extension.nix;
+  NoDefaultBookmarks = true;
+  OfferToSaveLogins = false;
+  PasswordManagerEnabled = false;
   Permissions = {
     Camera = {
       Allow = allowlist.camera;
@@ -68,13 +75,6 @@ in {
       Locked = true;
     };
   };
+  PopupBlocking.Default = true;
   Preferences = import ./preferences.nix;
-  Cookies = {
-    Allow = allowlist.cookies;
-    Behavior = "reject-tracker";
-    BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
-    Locked = true;
-  };
-  ExtensionSettings = import ./extension.nix;
-  "3rdparty".Extensions = import ./extension-settings.nix;
 }
