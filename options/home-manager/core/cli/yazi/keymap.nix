@@ -2,9 +2,39 @@
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
       {
-        run = "plugin ouch --args=zip";
-        on = ["C"];
-        desc = "Compress with ouch";
+        run = "plugin ouch zip";
+        on = ["C" "z"];
+        desc = "Compress with ouch (zip)";
+      }
+      {
+        run = "plugin ouch 7z";
+        on = ["C" "7"];
+        desc = "Compress with ouch (7z)";
+      }
+      {
+        run = "plugin ouch rar";
+        on = ["C" "r"];
+        desc = "Compress with ouch (rar)";
+      }
+      {
+        run = "plugin ouch tar";
+        on = ["C" "t" "o"];
+        desc = "Compress with ouch (tar) only";
+      }
+      {
+        run = "plugin ouch tar.gs";
+        on = ["C" "t" "g"];
+        desc = "Compress with ouch (tar.gs)";
+      }
+      {
+        run = "plugin ouch tar.xz";
+        on = ["C" "t" "x"];
+        desc = "Compress with ouch (tar.xz)";
+      }
+      {
+        run = "plugin ouch tar.zst";
+        on = ["C" "t" "z"];
+        desc = "Compress with ouch (tar.zst)";
       }
       {
         run = "plugin smart-enter";
