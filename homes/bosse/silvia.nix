@@ -26,23 +26,6 @@
         enable = false;
         position = "left";
       };
-      allowlist = [
-        "https://accounts.google.com"
-        "https://bossearch.github.io"
-        "https://chatgpt.com"
-        "https://codeberg.org"
-        "https://duckduckgo.com"
-        "https://github.com"
-        "https://gitlab.com"
-        "https://mail.google.com"
-        "https://proton.me"
-        "https://reddit.com"
-        "https://shopee.co.id"
-        "https://start.duckduckgo.com"
-        "https://tokopedia.com"
-        "https://twitch.tv"
-        "https://youtube.com"
-      ];
     };
     game = {
       lsfg = false;

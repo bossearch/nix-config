@@ -10,7 +10,7 @@
 
   programs.firefox = {
     enable = homes.firefox.enable;
-    policies = import ./policies {inherit homes;};
+    policies = import ./policies {inherit hosts;};
     profiles = {
       ${hosts.username} = {
         id = 0;

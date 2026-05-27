@@ -72,10 +72,6 @@ in {
                   };
                 };
               };
-              allowlist = lib.mkOption {
-                type = types.listOf types.str;
-                default = [];
-              };
             };
           };
         };

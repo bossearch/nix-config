@@ -26,7 +26,6 @@
         enable = true;
         position = "left";
       };
-      allowlist = [];
     };
     game = {
       lsfg = false;
