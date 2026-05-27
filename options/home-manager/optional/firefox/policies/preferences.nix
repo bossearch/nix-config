@@ -27,21 +27,15 @@
     Value = true;
     Status = "default";
   };
-  "browser.search.separatePrivateDefault" = {
+  "browser.safebrowsing.malware.enabled" = {
     Value = false;
     Status = "default";
   };
-  "browser.startup.homepage" = {
-    Value = "https://bossearch.github.io/tab/";
+  "browser.safebrowsing.phishing.enabled" = {
+    Value = false;
     Status = "default";
-    Type = "string";
   };
-  "browser.startup.page" = {
-    Value = 3;
-    Status = "default";
-    Type = "number";
-  };
-  "browser.tabs.groups.smart.userEnabled" = {
+  "browser.search.separatePrivateDefault" = {
     Value = false;
     Status = "default";
   };
@@ -116,10 +110,6 @@
     Value = false;
     Status = "default";
   };
-  "browser.urlbar.suggest.searches" = {
-    Value = false;
-    Status = "default";
-  };
   "browser.urlbar.suggest.topsites" = {
     Value = false;
     Status = "default";
@@ -148,14 +138,6 @@
     Value = "firefox-compact-dark@mozilla.org";
     Status = "default";
     Type = "string";
-  };
-  "extensions.formautofill.addresses.enabled" = {
-    Value = false;
-    Status = "default";
-  };
-  "extensions.formautofill.creditCards.enabled" = {
-    Value = false;
-    Status = "default";
   };
   "extensions.webextensions.restrictedDomains" = {
     Value = "";
@@ -235,10 +217,6 @@
     Status = "default";
     Type = "number";
   };
-  "media.videocontrols.picture-in-picture.video-toggle.enabled" = {
-    Value = false;
-    Status = "default";
-  };
   "media.webspeech.synth.dont_notify_on_error" = {
     Value = true;
     Status = "default";
@@ -251,11 +229,6 @@
     Value = true;
     Status = "default";
   };
-  "network.trr.mode" = {
-    Value = 5;
-    Status = "default";
-    Type = "number";
-  };
   "privacy.globalprivacycontrol.enabled" = {
     Value = true;
     Status = "default";
@@ -265,6 +238,10 @@
     Status = "default";
   };
   "privacy.userContext.ui.enabled" = {
+    Value = false;
+    Status = "default";
+  };
+  "privacy.trackingprotection.allow_list.baseline.enabled" = {
     Value = false;
     Status = "default";
   };

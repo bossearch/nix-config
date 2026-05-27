@@ -10,7 +10,9 @@
       user_pref("network.trr.mode", 3);
       user_pref("network.trr.uri", "https://mozilla.cloudflare-dns.com/dns-query");
     ''
-    else "";
+    else ''
+      user_pref("network.trr.mode", 5);
+    '';
   sidebar =
     if homes.firefox.verticaltab.enable
     then
