@@ -23,6 +23,7 @@ in {
         (ifTheyExist [
           "audio"
           "video"
+          "input"
           "docker"
           "git"
           "networkmanager"
