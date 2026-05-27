@@ -146,11 +146,9 @@ pkgs.writeShellScript "drun-scan" ''
   )
 
   custom_exec=(
-    "alacritty:alacritty -e sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
     "bottles:~/.nix-profile/bin/bottles"
     "discord:vesktop --use-gl=desktop"
     "firefox:firefox"
-    "kitty:kitty sh -c '~/.config/hypr/scripts/assets/tty.sh; exec ${hosts.shell}'"
     "lutris:lutris -f"
     "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
     "spotify:spotify --use-gl=desktop"
