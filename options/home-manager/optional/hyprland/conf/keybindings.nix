@@ -26,7 +26,7 @@
     bind = $mainMod, RETURN, exec, $terminal
     bind = $mainMod, code:61, exec, $browser # "/"
     bindr = $mainMod, code:48, exec, pkill $fileManager || $fileManager # "'"
-    bind = $mainMod, M, exec, ~/.config/hypr/scripts/assets/mpv.sh
+    bind = $mainMod, M, exec, ~/.config/mpv/mpv.sh
     bindr = $mainMod, SPACE, exec, pkill fzf || $drun
     bindr = $secMod, SPACE, exec, pkill fzf || $run
     bindr = $mainMod, code:60, exec, pkill fzf || $emoji # "."

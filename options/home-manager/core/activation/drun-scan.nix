@@ -150,7 +150,7 @@ pkgs.writeShellScript "drun-scan" ''
     "discord:vesktop --use-gl=desktop"
     "firefox:firefox"
     "lutris:lutris -f"
-    "mpv:$HOME/.config/hypr/scripts/assets/mpv.sh"
+    "mpv:~/.config/mpv/mpv.sh"
     "spotify:spotify --use-gl=desktop"
     "steam:/run/current-system/sw/bin/steam"
   )

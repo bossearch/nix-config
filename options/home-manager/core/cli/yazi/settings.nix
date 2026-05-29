@@ -22,7 +22,7 @@
       ];
       play = [
         {
-          run = "sh -c \"~/.config/hypr/scripts/assets/mpv.sh \"$@\"\"";
+          run = "sh -c \"~/.config/mpv/mpv.sh \"$@\"\"";
           orphan = true;
           for = "unix";
         }
