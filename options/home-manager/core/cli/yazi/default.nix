@@ -26,6 +26,15 @@
         return ui.Line(spans)
       end, 9000, Header.RIGHT)
 
+      function Linemode:size_and_mtime()
+          local time = math.floor(self._file.cha.mtime or 0)
+          local time_str = ""
+          if time > 0 then
+              time_str = os.date("%Y/%b/%d %H:%M", time)
+          end
+          local size = self._file:size()
+          return string.format("%s %s", size and ya.readable_size(size) or "-", time_str)
+      end
     '';
   };
 }

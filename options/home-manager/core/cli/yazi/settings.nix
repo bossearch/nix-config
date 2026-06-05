@@ -1,7 +1,8 @@
 {
   programs.yazi.settings = {
     mgr = {
-      ratio = [1 3 4];
+      linemode = "size_and_mtime";
+      ratio = [1 5 2];
       show_hidden = true;
     };
     preview = {
