@@ -1,19 +1,13 @@
-{
-  mylib,
-  pkgs,
-  ...
-}: {
+{mylib, ...}: {
   imports = mylib.autoimport ./.;
 
   programs.yazi = {
     enable = true;
-    package = pkgs.stable.yazi; # 25.5.31
     shellWrapperName = "";
     initLua = ''
       require("full-border"):setup({
         type = ui.Border.ROUNDED,
       })
-      require("git"):setup()
       require("no-status"):setup()
 
       function Tabs.height()
