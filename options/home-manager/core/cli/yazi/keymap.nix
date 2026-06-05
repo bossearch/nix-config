@@ -2,6 +2,11 @@
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
       {
+        run = "plugin chmod";
+        on = ["c" "m"];
+        desc = "Chmod on selected files";
+      }
+      {
         run = "plugin ouch zip";
         on = ["C" "z"];
         desc = "Compress with ouch (zip)";
@@ -42,14 +47,24 @@
         desc = "Enter the child directory, or open the file";
       }
       {
+        on = "F";
+        run = "plugin smart-filter";
+        desc = "Smart filter";
+      }
+      {
         run = "plugin smart-paste";
         on = ["p"];
         desc = "Paste into the hovered directory or CWD";
       }
       {
-        run = "plugin chmod";
-        on = ["c" "m"];
-        desc = "Chmod on selected files";
+        run = "plugin toggle-pane max-preview";
+        on = ["T"];
+        desc = "Maximize or restore the preview pane";
+      }
+      {
+        run = "plugin wl-clipboard";
+        on = ["Y"];
+        desc = "Copy file to clipboard";
       }
       {
         run = "cd ~/Desktop";
