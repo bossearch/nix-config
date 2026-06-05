@@ -19,27 +19,20 @@ in {
   programs.yazi.theme = {
     mgr = {
       cwd = {
+        bold = true;
         fg = base05;
         italic = true;
       };
-
-      # Hovered
-      hovered = {bg = base03;};
-      preview_hovered = {bg = base03;};
-
-      # Find
       find_keyword = {
         fg = base00;
         bg = base09;
         bold = true;
       };
       find_position = {
-        fg = base0F;
-        bg = base06;
+        fg = base0C;
+        bg = base01;
         bold = true;
       };
-
-      # Marker
       marker_copied = {
         fg = base0B;
         bg = base0B;
@@ -56,30 +49,41 @@ in {
         fg = base0D;
         bg = base0D;
       };
-
-      # Count
       count_copied = {
-        fg = base07;
+        fg = base02;
         bg = base0B;
       };
       count_cut = {
-        fg = base07;
+        fg = base02;
         bg = base08;
       };
       count_selected = {
-        fg = base07;
+        fg = base02;
         bg = base0D;
       };
-
-      # Border
       border_symbol = "│";
       border_style = {fg = base0F;};
     };
 
+    indicator = {
+      parent = {
+        bg = base03;
+      };
+      current = {
+        bg = base03;
+      };
+      preview = {};
+      padding = {
+        open = "█";
+        close = "█";
+      };
+    };
+
     tabs = {
       active = {
-        fg = base07;
+        fg = base06;
         bg = base02;
+        bold = true;
       };
       inactive = {
         fg = base02;
@@ -88,78 +92,23 @@ in {
     };
 
     status = {
-      separator_open = "";
-      separator_close = "";
-      separator_style = {
-        fg = base02;
-        bg = base02;
-      };
-
-      # Mode
-      mode_normal = {
-        fg = base00;
-        bg = base0D;
-        bold = true;
-      };
-      mode_select = {
-        fg = base00;
-        bg = base0E;
-        bold = true;
-      };
-      mode_unset = {
-        fg = base00;
-        bg = base0E;
-        bold = true;
-      };
-
-      # Progress
       progress_label = {
-        fg = base05;
+        fg = base02;
         bold = true;
       };
-      progress_normal = {fg = base01;};
-      progress_error = {fg = base08;};
-
-      # Permissions
-      permissions_t = {fg = base0D;};
-      permissions_r = {fg = base0A;};
-      permissions_w = {fg = base08;};
-      permissions_x = {fg = base0B;};
-      permissions_s = {fg = base03;};
-    };
-
-    select = {
-      border = {fg = base0F;};
-      active = {
-        fg = base07;
+      progress_normal = {
+        fg = base0D;
         bg = base02;
       };
-      inactive = {fg = base07;};
-    };
-
-    input = {
-      border = {fg = base0F;};
-      title = {};
-      value = {fg = base0E;};
-      selected = {bg = base02;};
-    };
-
-    completion = {
-      border = {fg = base0F;};
-      active = {
-        fg = base07;
+      progress_error = {
+        fg = base08;
         bg = base02;
       };
-      inactive = {fg = base07;};
-    };
-
-    tasks = {
-      border = {fg = base0F;};
-      title = {};
-      hovered = {
-        fg = base07;
-        bg = base02;
-      };
+      perm_type = {fg = base0D;};
+      perm_read = {fg = base0A;};
+      perm_write = {fg = base08;};
+      perm_exec = {fg = base0B;};
+      perm_sep = {fg = base03;};
     };
 
     which = {
@@ -172,10 +121,55 @@ in {
       separator_style = {fg = base04;};
     };
 
+    confirm = {
+      border = {fg = base0F;};
+      title = {fg = base0F;};
+    };
+
+    spot = {
+      border = {fg = base0F;};
+      title = {fg = base0F;};
+      tbl_col = {fg = base0D;};
+      tbl_cell = {
+        fg = base0D;
+        bg = base03;
+      };
+    };
+
     notify = {
       title_info = {fg = base0F;};
       title_warn = {fg = base0A;};
       title_error = {fg = base08;};
+    };
+
+    pick = {
+      border = {fg = base0F;};
+      active = {
+        fg = base07;
+        bg = base02;
+      };
+      inactive = {fg = base07;};
+    };
+
+    input = {
+      border = {fg = base0F;};
+      title = {fg = base0F;};
+      value = {fg = base0E;};
+      selected = {bg = base02;};
+    };
+
+    cmp = {
+      border = {fg = base0F;};
+      title = {fg = base0F;};
+    };
+
+    tasks = {
+      border = {fg = base0F;};
+      title = {fg = base0F;};
+      hovered = {
+        fg = base07;
+        bg = base02;
+      };
     };
 
     help = {
@@ -184,58 +178,125 @@ in {
       hovered = {bg = base02;};
       footer = {
         fg = base07;
-        bg = "#1a1b26";
+        bg = base01;
       };
     };
 
     filetype = {
       rules = [
-        # Images
+        {
+          url = "**/.nix-config/.*.log";
+          fg = base04;
+        }
+        {
+          url = "*/";
+          fg = base0D;
+        }
+        {
+          url = "*";
+          is = "orphan";
+          fg = "#DFDFDF";
+          bg = base08;
+        }
+        {
+          url = "**/*.{sh,py}";
+          is = "link";
+          fg = base0B;
+          italic = true;
+        }
+        {
+          url = "*";
+          is = "link";
+          fg = base07;
+          italic = true;
+        }
+        {
+          url = "*";
+          is = "block";
+          fg = base0C;
+          bold = true;
+        }
+        {
+          url = "*";
+          is = "char";
+          fg = base0C;
+        }
+        {
+          url = "*";
+          is = "fifo";
+          fg = base09;
+        }
+        {
+          url = "*";
+          is = "sock";
+          fg = base09;
+        }
+        {
+          url = "*";
+          is = "exec";
+          fg = base0B;
+        }
         {
           mime = "image/*";
           fg = base0A;
         }
-
-        # Media
         {
-          mime = "{audio,video};/*";
+          mime = "{audio,video}/*";
           fg = base0E;
         }
-
-        # Archives
         {
-          mime = "application/*zip";
+          mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}";
           fg = base08;
         }
         {
-          mime = "application/x-{tar,bzip*,7z-compressed,xz,rar};";
-          fg = base08;
+          mime = "inode/empty";
+          fg = base04;
         }
+      ];
+    };
 
-        # Documents
+    icon = {
+      dirs = [
         {
-          mime = "application/{pdf,doc,rtf,vnd.*};";
-          fg = base0C;
-        }
-
-        # Empty files
-        # { mime = "inode/x-empty"; fg = base08; };
-
-        # Special files
-        {
-          name = "*";
-          is = "orphan";
-          bg = base08;
+          name = ".config";
+          text = "";
+          fg = base0D;
         }
         {
-          name = "*";
-          is = "exec";
-          fg = base0B;
+          name = "Desktop";
+          text = "";
+          fg = base0D;
         }
-
-        # Fallback
         {
-          name = "*/";
+          name = "Devs";
+          text = "";
+          fg = base0D;
+        }
+        {
+          name = "Documents";
+          text = "";
+          fg = base0D;
+        }
+        {
+          name = "Downloads";
+          text = "";
+          fg = base0D;
+        }
+        {
+          name = "Pictures";
+          text = "";
+          fg = base0D;
+        }
+        {
+          name = "Videos";
+          text = "";
+          fg = base0D;
+        }
+      ];
+      prepend_conds = [
+        {
+          "if" = "dir";
+          text = "";
           fg = base0D;
         }
       ];
