@@ -1,4 +1,14 @@
-{
+{homes, ...}: let
+  mymonitor = builtins.all (m: m.height == 1440) homes.monitor;
+  width =
+    if mymonitor
+    then 1280
+    else 960;
+  height =
+    if mymonitor
+    then 720
+    else 540;
+in {
   programs.yazi.settings = {
     mgr = {
       linemode = "size_and_mtime";
@@ -6,7 +16,9 @@
       show_hidden = true;
     };
     preview = {
-      wrap = "yes";
+      wrap = "no";
+      max_width = width;
+      max_height = height;
     };
     opener = {
       edit = [
@@ -15,22 +27,12 @@
           orphan = true;
           for = "unix";
         }
-        {
-          run = "nvim %*";
-          block = true;
-          for = "windows";
-        }
       ];
       play = [
         {
           run = "sh -c \"~/.config/mpv/mpv.sh \"$@\"\"";
           orphan = true;
           for = "unix";
-        }
-        {
-          run = "\"C:\\Program Files\\mpv.exe\" %*";
-          orphan = true;
-          for = "windows";
         }
       ];
       open = [
@@ -44,11 +46,6 @@
           run = "ouch d -y \"$@\"";
           desc = "Extract here with ouch";
           for = "unix";
-        }
-        {
-          run = "ouch d -y \"%*\"";
-          desc = "Extract here with ouch";
-          for = "windows";
         }
       ];
     };
