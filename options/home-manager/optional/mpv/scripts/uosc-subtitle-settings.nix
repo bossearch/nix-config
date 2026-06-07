@@ -5,6 +5,8 @@
 }: {
   home.file.".config/mpv/scripts/uosc-subtitle-settings.lua" = lib.mkIf homes.mpv {
     text = ''
+      local mp = require("mp")
+
       local options = {
       	pos_increment = 1,
       	scale_increment = 0.05,
@@ -17,7 +19,7 @@
       mp.options = require("mp.options")
       mp.options.read_options(options, "uosc-subtitle-settings", function() end)
 
-      function command(str)
+      local function command(str)
       	return string.format("script-message-to %s %s", script_name, str)
       end
 
@@ -27,9 +29,8 @@
       local default_delay = mp.get_property_number("sub-delay")
       local ass_override
       local blend
-      local fix_timing
 
-      function create_menu_data()
+      local function create_menu_data()
       	local function get_value_hint(property)
       		local value = mp.get_property_number(property)
       		if property == "sub-pos" then
@@ -187,11 +188,6 @@
       				},
       			},
       		},
-      		{
-      			title = "Fix timing",
-      			value = command("toggle-fix-timing"),
-      			icon = fix_timing == true and "check_box" or "check_box_outline_blank",
-      		},
       	}
       	return {
       		type = "subtitle_settings",
@@ -201,7 +197,7 @@
       	}
       end
 
-      function update_menu()
+      local function update_menu()
       	local json = mp.utils.format_json(create_menu_data())
       	mp.commandv("script-message-to", "uosc", "update-menu", json)
       end
@@ -268,39 +264,27 @@
       	end
       end)
 
-      mp.register_script_message("toggle-fix-timing", function(arg)
-      	local current_timing = mp.get_property_bool("sub-fix-timing")
-
-      	if current_timing then
-      		mp.set_property("sub-fix-timing", "no")
-      	else
-      		mp.set_property("sub-fix-timing", "yes")
-      	end
-      end)
-
-      -- Add property observers
-      mp.observe_property("sub-pos", "number", function(name, value)
+      mp.observe_property("sub-pos", "number", function(_, _)
       	update_menu()
       end)
-      mp.observe_property("secondary-sub-pos", "number", function(name, value)
+      mp.observe_property("secondary-sub-pos", "number", function(_, _)
       	update_menu()
       end)
-      mp.observe_property("sub-scale", "number", update_menu)
-      mp.observe_property("sub-delay", "number", update_menu)
-      mp.observe_property("sub-ass-override", "string", function(name, value)
+      mp.observe_property("sub-scale", "number", function(_, _)
+      	update_menu()
+      end)
+      mp.observe_property("sub-delay", "number", function(_, _)
+      	update_menu()
+      end)
+      mp.observe_property("sub-ass-override", "string", function(_, value)
       	ass_override = value
       	update_menu()
       end)
-      mp.observe_property("blend-subtitles", "string", function(name, value)
+      mp.observe_property("blend-subtitles", "string", function(_, value)
       	blend = value
       	update_menu()
       end)
-      mp.observe_property("sub-fix-timing", "bool", function(name, value)
-      	fix_timing = value
-      	update_menu()
-      end)
 
-      -- Execution/binding
       mp.add_forced_key_binding(nil, "open-menu", function()
       	local json = mp.utils.format_json(create_menu_data())
       	mp.commandv("script-message-to", "uosc", "open-menu", json)

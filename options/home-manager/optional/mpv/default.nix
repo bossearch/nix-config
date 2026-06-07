@@ -24,6 +24,7 @@
       scripts = with pkgs; [
         mpvScripts.builtins.autoload
         mpvScripts.mpris
+        mpvScripts.mpv-subtitle-lines
         mpvScripts.quack
         mpvScripts.thumbfast
         mpvScripts.uosc
@@ -39,6 +40,7 @@
 
   home = lib.mkIf homes.mpv {
     packages = with pkgs; [
+      ffsubsync
       vapoursynth-mvtools
     ];
   };

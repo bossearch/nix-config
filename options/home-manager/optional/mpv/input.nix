@@ -44,13 +44,16 @@
       # script-binding uosc/video                                                     #! Video > Select Video Track
       # script-binding uosc/audio                                                     #! Audio > Select Audio Track
       # script-binding uosc/audio-device                                              #! Audio > Select Audio Device
-      # script-binding uosc/subtitles                                                 #! Subtitles > Select
-      # script-binding uosc/load-subtitles                                            #! Subtitles > Load
-      # script-binding auto_sync_subs                                                 #! Subtitles > Sync
-      # script-binding uosc_subtitle_settings/open-menu                               #! Subtitles > Subtitle settings
-      ? script-binding uosc/keybinds                                                  #! Keybinds
-      # script-binding uosc_screenshot/open-menu                                      #! Screenshot
-      Ctrl+p script-message-to command_palette show-command-palette "Command Palette" #! Command Palette
+      # script-binding sync_to_audio                                                  #! Subtitle > Sync to audio
+      # script-binding sync_to_internal_sub                                           #! Subtitle > Sync to internal sub
+      # script-binding subtitle_lines/list_subtitles                                  #! Subtitle > Sub history
+      # script-binding subtitle_lines/list_secondary_subtitles                        #! Subtitle > Sub alt history
+      # script-binding uosc_subtitle_settings/open-menu                               #! Subtitle > Subtitle settings
+      O script-binding uosc/show-in-directory                                         #! Misc > Open file manager
+      Ctrl+c script-binding uosc/copy-to-clipboard                                    #! Misc > Copy Link
+      Ctrl+v script-binding uosc/paste                                                #! Misc > Paste Link
+      / script-binding console/enable                                                 #! Misc > Console
+      ? script-binding uosc/keybinds                                                  #! Misc > Keybinds
     '';
   };
 }
