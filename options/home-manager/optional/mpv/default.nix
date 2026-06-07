@@ -11,6 +11,7 @@
     ./input.nix
     ./scripts
     ./shaders
+    ./script-opts.nix
   ];
 
   programs.mpv = {
@@ -22,6 +23,7 @@
       scripts = with pkgs; [
         mpvScripts.builtins.autoload
         mpvScripts.mpris
+        mpvScripts.quack
         mpvScripts.thumbfast
         mpvScripts.uosc
       ];
