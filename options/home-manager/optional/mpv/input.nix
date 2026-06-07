@@ -1,42 +1,30 @@
 {
   programs.mpv = {
     extraInput = ''
-      MBTN_LEFT_DBL cycle pause; script-binding uosc/flash-pause-indicator
-      MBTN_LEFT ignore
-      MBTN_RIGHT script-binding evafast/speedup #@press
-      MBTN_RIGHT script-binding evafast/slowdown #@release
-      MBTN_MID script-binding skip-key #@click
-      MBTN_RIGHT script-binding uosc/menu-blurred #@click
-
-      TAB script-binding stats/display-stats-toggle #@click
-      SPACE cycle pause
-      a script-binding skip-key
-      g script-message playlist-view-toggle
+      MBTN_LEFT_DBL cycle pause
+      MBTN_RIGHT script-binding uosc/menu
+      MBTN_MID script-binding skip-key
+      WHEEL_DOWN no-osd add volume -5; script-binding uosc/flash-volume
+      WHEEL_UP no-osd add volume 5; script-binding uosc/flash-volume
 
       h seek -5 exact; script-binding uosc/flash-timeline
       j frame-back-step; script-binding uosc/flash-timeline
       k frame-step; script-binding uosc/flash-timeline
       l seek 5 exact; script-binding uosc/flash-timeline
-      u no-osd add volume -1; script-binding uosc/flash-volume
-      i no-osd add volume 1; script-binding uosc/flash-volume
-      WHEEL_DOWN no-osd add volume -5; script-binding uosc/flash-volume
-      WHEEL_UP no-osd add volume 5; script-binding uosc/flash-volume
-      #ctrl+d script-binding autodeint/autodeint
-      #ALT+b script-binding autosub/download_subs
-      J add sub-scale +0.05
-      K add sub-scale -0.05
-      H add sub-delay -0.1
-      L add sub-delay  0.1
-      O script-binding uosc/show-in-directory
+      u add volume -5; script-binding uosc/flash-volume
+      i add volume 5; script-binding uosc/flash-volume
+      m add brightness -1
+      , add brightness +1
+
+      TAB script-binding stats/display-stats-toggle
+      SPACE cycle pause
+      DOWN add sub-scale +0.05
+      UP add sub-scale -0.05
+      LEFT add sub-delay -0.1
+      RIGHT add sub-delay  0.1
+
 
       ### UOSC Menu Config ###
-      o script-binding uosc/open-file                                                 #! File > Open File
-      p script-binding uosc/playlist                                                  #! File > Playlist
-      ; script-binding memo-history                                                   #! File > History
-      Ctrl+c script-binding uosc/copy-to-clipboard                                    #! File > Copy Link
-      Ctrl+v script-binding uosc/paste                                                #! File > Paste Link
-      # script-binding uosc/open-config-directory                                     #! File > Settings
-      / script-binding console/enable                                                 #! File > Console
       # script-binding uosc/chapters                                                  #! Video > Chapters > List Chapters
       # script-binding chapters/add_chapter                                           #! Video > Chapters > Add Chapters
       # script-binding chapters/remove_chapter                                        #! Video > Chapters > Remove Chapters
