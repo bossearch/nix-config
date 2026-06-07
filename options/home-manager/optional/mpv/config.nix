@@ -6,19 +6,19 @@
       keep-open = "always";
       save-position-on-quit = "yes";
       watch-later-dir = "~/.cache/mpv/watch-later";
-      # write-filename-in-watch-later-config = "yes";
-      # force-seekable = "yes";
-      # input-default-bindings = "no";
+      watch-later-options-set = "start";
+      save-watch-history = "yes";
+      watch-history-path = "~/.cache/mpv/watch-history";
+      input-ipc-server = "/tmp/mpv-socket";
 
       # osd
       osc = "yes";
       border = "no";
       osd-bar = "no";
-      # osd-bold = "yes";
       osd-font-size = 40;
       osd-font = "Noto Sans SemiBold";
       osd-color = "#FFFFFFFF";
-      osd-border-color = "#B3000000";
+      osd-border-color = "#FF000000";
       osd-border-size = 2;
 
       # screenshot
@@ -37,14 +37,14 @@
 
       # hwdec
       hwdec = "vaapi";
-      vo = "gpu";
+      vo = "gpu-next";
 
       # interpolation
       interpolation = "no";
       video-sync = "display-resample";
-      tscale = "sphinx"; # or oversample
+      tscale = "sphinx";
       tscale-blur = 0.6991556596428412;
-      tscale-radius = 1.0; #lower (e.g. 0.955) = sharper; higher (e.g. 1.005) = smoother
+      tscale-radius = 1.0;
       tscale-clamp = 0.0;
       interpolation-preserve = "no";
 
@@ -60,40 +60,31 @@
       sub-color = "#FFFFFFFF";
       sub-font = "Noto Sans SemiBold";
       sub-font-size = 36;
-      sub-border-color = "#B3000000";
+      sub-border-color = "#FF000000";
       sub-border-size = 2;
-      # sub-border-style = "outline-and-shadow";
       sub-auto = "all";
       sub-fix-timing = "yes";
-      # blend-subtitles = "yes";
-      # sub-ass-override = "yes";
-      sub-ass-override = "force";
-      # sub-ass-line-spacing = 3.6;
+      sub-ass-override = "strip";
       demuxer-mkv-subtitle-preroll = "yes";
 
       # audio
       alang = "ja,jp,jpn,jap,Japanese,en,eng,English";
-      # volume = 0;
-      volume-max = 200;
+      audio-buffer = 0.5;
       audio-channels = "auto";
-      audio-file-auto = "fuzzy";
-      audio-pitch-correction = "yes";
-      audio-normalize-downmix = "yes";
-      gapless-audio = "yes";
       audio-device = "pipewire/alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3";
-      # mute = "yes";
-      # af = "lavfi=[dynaudnorm=f=250:g=31:p=0.5:m=5:r=0.9:b=1]";
-      # af = "lavfi=[dynaudnorm=g=3:f=250:r=0.9:p=0.9:m=10]";
-      # af = "@dynaudnorm:lavfi=[dynaudnorm=g=5:f=250:r=0.9:p=0.5]";
+      audio-file-auto = "fuzzy";
+      audio-normalize-downmix = "yes";
+      audio-pitch-correction = "yes";
+      gapless-audio = "yes";
+      volume = 100;
+      volume-max = 400;
 
       # misc
       script-opts = "youtube_sub-source_lang=en";
       hr-seek = "yes";
       hr-seek-framedrop = "no";
       target-colorspace-hint = "yes";
-      # target-contrast = "auto";
       fbo-format = "rgba16f";
-      # ytdl-format = "bestvideo[vcodec!=?vp9]+bestaudio/best";
       ytdl-format = "bestvideo[width<=?1920]+bestaudio/best";
     };
     profiles = {
@@ -132,6 +123,7 @@
       "hd" = {
         profile-desc = "hd";
         profile-cond = "(height >= 720 and height < 1080 and path:find('Videos/Movies/'))";
+        profile-restore = "copy";
         glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_enhance.glsl"
@@ -145,6 +137,7 @@
       "sd" = {
         profile-desc = "sd";
         profile-cond = "(height < 720 and path:find('Videos/Movies/'))";
+        profile-restore = "copy";
         glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_enhance.glsl"
@@ -190,6 +183,7 @@
       "animehd" = {
         profile-desc = "animehd";
         profile-cond = "(height >= 720 and height < 1080 and path:find('Videos/Anime/'))";
+        profile-restore = "copy";
         glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_anime_enhance.glsl"
@@ -204,6 +198,7 @@
       "animesd" = {
         profile-desc = "animesd";
         profile-cond = "(height < 720 and path:find('Videos/Anime/'))";
+        profile-restore = "copy";
         glsl-shader = [
           "~/.config/mpv/shaders/KrigBilateral.glsl"
           "~/.config/mpv/shaders/FSRCNNX_x2_16-0-4-1_anime_enhance.glsl"
