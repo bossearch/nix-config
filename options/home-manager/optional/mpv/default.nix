@@ -9,6 +9,7 @@
     ./config.nix
     ./filters
     ./input.nix
+    ./mpv.nix
     ./scripts
     ./shaders
     ./script-opts.nix
@@ -46,7 +47,7 @@
     type = "Application";
     name = "mpvipc";
     icon = "mpv";
-    exec = "/home/${hosts.username}/.config/hypr/scripts/assets/mpv.sh";
+    exec = "/home/${hosts.username}/.config/mpv/mpv.sh";
     terminal = false;
     categories = ["AudioVideo" "Audio" "Video" "Player" "TV"];
     mimeType = [
