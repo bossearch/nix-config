@@ -20,15 +20,10 @@
         vapoursynthSupport = true;
       };
       scripts = with pkgs; [
-        mpvScripts.autosubsync-mpv
-        mpvScripts.chapterskip
-        mpvScripts.evafast
+        mpvScripts.builtins.autoload
         mpvScripts.mpris
-        mpvScripts.quality-menu
-        mpvScripts.sponsorblock
         mpvScripts.thumbfast
         mpvScripts.uosc
-        mpvScripts.youtube-upnext
       ];
       extraMakeWrapperArgs = [
         "--prefix"
@@ -42,7 +37,6 @@
   home = lib.mkIf homes.mpv {
     packages = with pkgs; [
       vapoursynth-mvtools
-      yt-dlp
     ];
   };
 
