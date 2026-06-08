@@ -23,38 +23,33 @@
       LEFT add sub-delay -0.1
       RIGHT add sub-delay  0.1
 
-
       ### UOSC Menu Config ###
-      # script-binding uosc/chapters                                                  #! Video > Chapters > List Chapters
-      # script-binding chapters/add_chapter                                           #! Video > Chapters > Add Chapters
-      # script-binding chapters/remove_chapter                                        #! Video > Chapters > Remove Chapters
-      # script-binding chapters/edit_chapter                                          #! Video > Chapters > Edit Chapters
-      # script-binding chapters/write_chapters                                        #! Video > Chapters > Save Chapters
-      # apply-profile 4k;show-text "Profile: 4K"                                      #! Video > Profiles > Movie-4K
-      # apply-profile 2k;show-text "Profile: 2K"                                      #! Video > Profiles > Movie-2K
-      # apply-profile fhd;show-text "Profile: FHD"                                    #! Video > Profiles > Movie-FHD
-      # apply-profile hd;show-text "Profile: HD"                                      #! Video > Profiles > Movie-HD
-      # apply-profile sd;show-text "Profile: SD"                                      #! Video > Profiles > Movie-SD
-      # apply-profile anime4k;show-text "Profile: Anime-4K"                           #! Video > Profiles > Anime-4K
-      # apply-profile anime2k;show-text "Profile: Anime-2K"                           #! Video > Profiles > Anime-2K
-      # apply-profile animefhd;show-text "Profile: Anime-FHD"                         #! Video > Profiles > Anime-FHD
-      # apply-profile animehd;show-text "Profile: Anime-HD"                           #! Video > Profiles > Anime-HD
-      # apply-profile animesd;show-text "Profile: Anime-SD"                           #! Video > Profiles > Anime-SD
-      # script-binding uosc_video_settings/open-menu                                  #! Video > Video settings
-      # script-binding uosc/video                                                     #! Video > Select Video Track
-      # script-binding uosc/audio                                                     #! Audio > Select audio track
-      # script-binding uosc/audio-device                                              #! Audio > Select audio device
-      # script-binding uosc_audio_filter/open-menu                                    #! Audio > Select audio filter
-      # script-binding sync_to_audio                                                  #! Subtitle > Sync to audio
-      # script-binding sync_to_internal_sub                                           #! Subtitle > Sync to internal sub
-      # script-binding subtitle_lines/list_subtitles                                  #! Subtitle > Sub history
-      # script-binding subtitle_lines/list_secondary_subtitles                        #! Subtitle > Sub alt history
-      # script-binding uosc_subtitle_settings/open-menu                               #! Subtitle > Subtitle settings
-      O script-binding uosc/show-in-directory                                         #! Misc > Open file manager
-      Ctrl+c script-binding uosc/copy-to-clipboard                                    #! Misc > Copy Link
-      Ctrl+v script-binding uosc/paste                                                #! Misc > Paste Link
-      / script-binding console/enable                                                 #! Misc > Console
-      ? script-binding uosc/keybinds                                                  #! Misc > Keybinds
+      # change-list glsl-shaders clr ""; apply-profile 4k; show-text "Profile: 4K"               #! Video > Profiles > Movie-4K
+      # change-list glsl-shaders clr ""; apply-profile 2k; show-text "Profile: 2K"               #! Video > Profiles > Movie-2K
+      # change-list glsl-shaders clr ""; apply-profile fhd; show-text "Profile: FHD"             #! Video > Profiles > Movie-FHD
+      # change-list glsl-shaders clr ""; apply-profile hd; show-text "Profile: HD"               #! Video > Profiles > Movie-HD
+      # change-list glsl-shaders clr ""; apply-profile sd; show-text "Profile: SD"               #! Video > Profiles > Movie-SD
+      # change-list glsl-shaders clr ""; apply-profile anime4k; show-text "Profile: Anime-4K"    #! Video > Profiles > Anime-4K
+      # change-list glsl-shaders clr ""; apply-profile anime2k; show-text "Profile: Anime-2K"    #! Video > Profiles > Anime-2K
+      # change-list glsl-shaders clr ""; apply-profile animefhd; show-text "Profile: Anime-FHD"  #! Video > Profiles > Anime-FHD
+      # change-list glsl-shaders clr ""; apply-profile animehd; show-text "Profile: Anime-HD"    #! Video > Profiles > Anime-HD
+      # change-list glsl-shaders clr ""; apply-profile animesd; show-text "Profile: Anime-SD"    #! Video > Profiles > Anime-SD
+      # change-list glsl-shaders clr ""; show-text "No Profile"                                  #! Video > Profiles > No Profile
+      # script-binding uosc_video_settings/open-menu                                             #! Video > Video settings
+      # script-binding uosc/video                                                                #! Video > Select video track
+      # script-binding uosc/audio                                                                #! Audio > Select audio track
+      # script-binding uosc/audio-device                                                         #! Audio > Select audio device
+      # script-binding uosc_audio_filter/open-menu                                               #! Audio > Select audio filter
+      # script-binding sync_to_audio                                                             #! Subtitle > Sync to audio
+      # script-binding sync_to_internal_sub                                                      #! Subtitle > Sync to internal sub
+      # script-binding subtitle_lines/list_subtitles                                             #! Subtitle > Sub history
+      # script-binding subtitle_lines/list_secondary_subtitles                                   #! Subtitle > Sub alt history
+      # script-binding uosc_subtitle_settings/open-menu                                          #! Subtitle > Subtitle settings
+      O script-binding uosc/show-in-directory                                                    #! Misc > Open file manager
+      Ctrl+c script-binding uosc/copy-to-clipboard                                               #! Misc > Copy Link
+      Ctrl+v script-binding uosc/paste                                                           #! Misc > Paste Link
+      / script-binding console/enable                                                            #! Misc > Console
+      ? script-binding uosc/keybinds                                                             #! Misc > Keybinds
     '';
   };
 }
