@@ -42,8 +42,9 @@
       # apply-profile animesd;show-text "Profile: Anime-SD"                           #! Video > Profiles > Anime-SD
       # script-binding uosc_video_settings/open-menu                                  #! Video > Video settings
       # script-binding uosc/video                                                     #! Video > Select Video Track
-      # script-binding uosc/audio                                                     #! Audio > Select Audio Track
-      # script-binding uosc/audio-device                                              #! Audio > Select Audio Device
+      # script-binding uosc/audio                                                     #! Audio > Select audio track
+      # script-binding uosc/audio-device                                              #! Audio > Select audio device
+      # script-binding uosc_audio_filter/open-menu                                    #! Audio > Select audio filter
       # script-binding sync_to_audio                                                  #! Subtitle > Sync to audio
       # script-binding sync_to_internal_sub                                           #! Subtitle > Sync to internal sub
       # script-binding subtitle_lines/list_subtitles                                  #! Subtitle > Sub history
