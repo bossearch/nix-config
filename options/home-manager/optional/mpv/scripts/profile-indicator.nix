@@ -5,15 +5,13 @@
 }: {
   home.file.".config/mpv/scripts/profile-indicator.lua" = lib.mkIf homes.mpv {
     text = ''
+      local mp = require("mp")
       local ov = mp.create_osd_overlay("ass-events")
       ov.data = [[{\an1\p1\alpha&H79\1c&Hffffff&\3a&Hff\pos(0,20)}]] .. [[m0 0 l 100 0 l 0 100]]
-      -- Function to show the active profile
+
       local function show_profile()
-      	-- Get video properties
-      	local width = mp.get_property_number("width")
       	local height = mp.get_property_number("height")
       	local path = mp.get_property("path")
-      	local fps = mp.get_property_number("container-fps")
       	local profile = "None"
 
       	if height >= 2160 and path:find("Videos/Movies/") then
@@ -50,10 +48,9 @@
       	else
       		ov:remove()
       	end
-        mp.osd_message("Applied Profile: " .. profile, 3)
+      	mp.osd_message("Applied Profile: " .. profile, 3)
       end
 
-      -- Register the function to run when a video is loaded
       mp.register_event("file-loaded", show_profile)
     '';
   };

@@ -5,39 +5,42 @@
 }: {
   home.file.".config/mpv/scripts/skip-to-silence.lua" = lib.mkIf homes.mpv {
     text = ''
-      MAX_SPEED = 100
-      NORMAL_SPEED = 1
-      ONE_SECOND = 1
-      skip = false
-      -- Max noise (dB) and min silence duration (s) to trigger
-      opts = { quietness = -30, duration = 0.5 }
+      local mp = require("mp")
 
-      function setOptions()
+      local MAX_SPEED = 100
+      local NORMAL_SPEED = 1
+      local ONE_SECOND = 1
+      local skip = false
+      local startTime = 0
+
+      local opts = { quietness = -30, duration = 0.5 }
+
+      local function setOptions()
       	local options = require("mp.options")
       	options.read_options(opts)
       end
 
-      function setTime(time)
+      local function setTime(time)
       	mp.set_property_number("time-pos", time)
       end
 
-      function getTime()
+      local function getTime()
       	return mp.get_property_native("time-pos")
       end
 
-      function setSpeed(speed)
+      local function setSpeed(speed)
       	mp.set_property("speed", speed)
       end
 
-      function setPause(state)
+      local function setPause(state)
       	mp.set_property_bool("pause", state)
       end
 
-      function setMute(state)
+      local function setMute(state)
       	mp.set_property_bool("mute", state)
       end
 
-      function initAudioFilter()
+      local function initAudioFilter()
       	local af_table = mp.get_property_native("af")
       	af_table[#af_table + 1] = {
       		enabled = false,
@@ -48,18 +51,7 @@
       	mp.set_property_native("af", af_table)
       end
 
-      function initVideoFilter()
-      	local vf_table = mp.get_property_native("vf")
-      	vf_table[#vf_table + 1] = {
-      		enabled = false,
-      		label = "blackout",
-      		name = "lavfi",
-      		params = { graph = "" },
-      	}
-      	mp.set_property_native("vf", vf_table)
-      end
-
-      function setAudioFilter(state)
+      local function setAudioFilter(state)
       	local af_table = mp.get_property_native("af")
       	if #af_table > 0 then
       		for i = #af_table, 1, -1 do
@@ -72,16 +64,16 @@
       	end
       end
 
-      function dim(state)
-      	local dim = { width = 0, height = 0 }
+      local function dim(state)
+      	local d = { width = 0, height = 0 }
       	if state == true then
-      		dim.width = mp.get_property_native("width")
-      		dim.height = mp.get_property_native("height")
+      		d.width = mp.get_property_native("width") or 0
+      		d.height = mp.get_property_native("height") or 0
       	end
-      	return dim.width .. "x" .. dim.height
+      	return d.width .. "x" .. d.height
       end
 
-      function setVideoFilter(state)
+      local function setVideoFilter(state)
       	local vf_table = mp.get_property_native("vf")
       	if #vf_table > 0 then
       		for i = #vf_table, 1, -1 do
@@ -95,7 +87,25 @@
       	end
       end
 
-      function silenceTrigger(name, value)
+      local function initVideoFilter()
+      	local vf_table = mp.get_property_native("vf")
+      	vf_table[#vf_table + 1] = {
+      		enabled = false,
+      		label = "blackout",
+      		name = "lavfi",
+      		params = { graph = "" },
+      	}
+      	mp.set_property_native("vf", vf_table)
+      end
+
+      local function stopSkip()
+      	setAudioFilter(false)
+      	setVideoFilter(false)
+      	setMute(false)
+      	setSpeed(NORMAL_SPEED)
+      end
+
+      local function silenceTrigger(_, value)
       	if value == "{}" or value == nil then
       		return
       	end
@@ -110,9 +120,10 @@
       	stopSkip()
       	setTime(skipTime)
       	skip = false
+      	mp.unobserve_property(silenceTrigger)
       end
 
-      function setAudioTrigger(state)
+      local function setAudioTrigger(state)
       	if state == true then
       		mp.observe_property("af-metadata/silencedetect", "string", silenceTrigger)
       	else
@@ -120,11 +131,9 @@
       	end
       end
 
-      function startSkip()
-      	startTime = getTime()
-      	-- This audio filter detects moments of silence
+      local function startSkip()
+      	startTime = getTime() or 0
       	setAudioFilter(true)
-      	-- This video filter makes fast-forward faster
       	setVideoFilter(true)
       	setAudioTrigger(true)
       	setPause(false)
@@ -132,25 +141,23 @@
       	setSpeed(MAX_SPEED)
       end
 
-      function stopSkip()
-      	setAudioFilter(false)
-      	setVideoFilter(false)
+      -- Fix: stopSkip needs to explicitly turn off the audio property listener
+      local function wrappedStopSkip()
+      	stopSkip()
       	setAudioTrigger(false)
-      	setMute(false)
-      	setSpeed(NORMAL_SPEED)
       end
 
-      function keypress()
+      local function keypress()
       	skip = not skip
       	if skip then
       		startSkip()
       	else
-      		stopSkip()
+      		wrappedStopSkip()
       		setTime(startTime)
       	end
       end
 
-      setOptions(opts)
+      setOptions()
       initAudioFilter()
       initVideoFilter()
 
