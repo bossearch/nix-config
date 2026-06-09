@@ -5,10 +5,7 @@
   lib,
   ...
 }: let
-  nix-colors = inputs.nix-colors;
-
   floatMod = a: b: a - b * (builtins.floor (a / b));
-
   rgbToHue = r: g: b: let
     rf = r / 255.0;
     gf = g / 255.0;
@@ -33,7 +30,7 @@
     else hue;
 
   getHueFromHex = hex: let
-    rgb = nix-colors.lib.conversions.hexToRGB hex;
+    rgb = inputs.nix-colors.lib.conversions.hexToRGB hex;
     r = builtins.elemAt rgb 0;
     g = builtins.elemAt rgb 1;
     b = builtins.elemAt rgb 2;

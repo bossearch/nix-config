@@ -4,8 +4,7 @@
   inputs,
   ...
 }: let
-  nix-colors = inputs.nix-colors;
-  toRGBString = nix-colors.lib.conversions.hexToRGBString ",";
+  toRGBString = inputs.nix-colors.lib.conversions.hexToRGBString ",";
   base0A-rgba = "rgba(${toRGBString config.colorScheme.palette.base0A}, 0.5)";
   base0D-rgba = "rgba(${toRGBString config.colorScheme.palette.base0D}, 0.5)";
   base00 = "#${config.colorScheme.palette.base00}";

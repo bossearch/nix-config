@@ -1,14 +1,13 @@
 {inputs, ...}: let
-  nix-colors = inputs.nix-colors;
   theme = "tokyo-night-dark";
 in {
   colorScheme =
-    nix-colors.lib.schemeFromYAML
+    inputs.nix-colors.lib.schemeFromYAML
     theme
     (builtins.readFile ../../modules/themes/${theme}.yaml);
 
   imports = [
-    nix-colors.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
     ../common/core/shell
     ../common/core/cli/fastfetch
     ../common/core/cli/fzf
