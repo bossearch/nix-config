@@ -9,7 +9,7 @@
       #!/usr/bin/env bash
 
       GET_LAMP="$HOME/.config/waybar/scripts/utility/lamp-control/get-lamp.sh full"
-      read -r STATE SCENE TEMP DIM ADDRESS < <($GET_LAMP)
+      IFS='|' read -r STATE SCENE TEMP DIM ADDRESS < <($GET_LAMP)
       ARGS="$1"
 
       SET_LAMP() {
