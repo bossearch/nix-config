@@ -170,6 +170,8 @@ in {
         "icon" = false;
         "tooltip" = false;
         "on-click" = "~/.config/hypr/scripts/quit.sh";
+        "on-scroll-down" = "~/.config/hypr/scripts/cycle.sh prev";
+        "on-scroll-up" = "~/.config/hypr/scripts/cycle.sh next";
       };
 
       # tray modules
