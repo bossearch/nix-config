@@ -123,12 +123,12 @@ in {
 
     confirm = {
       border = {fg = base0F;};
-      title = {fg = base0F;};
+      title = {fg = base0D;};
     };
 
     spot = {
       border = {fg = base0F;};
-      title = {fg = base0F;};
+      title = {fg = base0D;};
       tbl_col = {fg = base0D;};
       tbl_cell = {
         fg = base0D;
@@ -153,19 +153,19 @@ in {
 
     input = {
       border = {fg = base0F;};
-      title = {fg = base0F;};
+      title = {fg = base0D;};
       value = {fg = base0E;};
       selected = {bg = base02;};
     };
 
     cmp = {
       border = {fg = base0F;};
-      title = {fg = base0F;};
+      title = {fg = base0D;};
     };
 
     tasks = {
       border = {fg = base0F;};
-      title = {fg = base0F;};
+      title = {fg = base0D;};
       hovered = {
         fg = base07;
         bg = base02;
@@ -193,10 +193,11 @@ in {
           fg = base0D;
         }
         {
-          url = "*";
-          is = "orphan";
-          fg = "#DFDFDF";
           bg = base08;
+          fg = base07;
+          is = "orphan";
+          url = "*";
+          bold = true;
         }
         {
           url = "**/*.{sh,py}";
@@ -291,6 +292,13 @@ in {
           name = "Videos";
           text = "";
           fg = base0D;
+        }
+      ];
+      prepend_exts = [
+        {
+          fg = base0B;
+          name = "sh";
+          text = "";
         }
       ];
       prepend_conds = [
