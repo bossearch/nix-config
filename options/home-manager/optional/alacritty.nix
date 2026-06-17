@@ -77,6 +77,14 @@ in {
       };
       keyboard.bindings = [
         {
+          key = "Copy";
+          action = "Copy";
+        }
+        {
+          key = "Paste";
+          action = "Paste";
+        }
+        {
           key = "+";
           mods = "Control|Shift";
           action = "IncreaseFontSize";
