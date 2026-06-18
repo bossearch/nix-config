@@ -21,6 +21,7 @@
         animation = fadeDim, 1, 4, default
         animation = workspaces, 1, 2, md3_decel, slide
         animation = specialWorkspace, 1, 2, md3_decel, slidevert
+        animation = fadeSwitch, 0
     }
   '';
 }
