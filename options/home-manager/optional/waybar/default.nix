@@ -36,7 +36,7 @@ in {
   programs.waybar = {
     enable = homes.waybar;
     systemd.enable = true;
-    systemd.target = "hyprland-session.target";
+    systemd.targets = ["hyprland-session.target"];
     settings = {
       mainBar = {
         "height" = 34;

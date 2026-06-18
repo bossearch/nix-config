@@ -24,5 +24,6 @@
       name = homes.icon;
       package = pkgs.papirus-icon-theme;
     };
+    gtk4.theme = null;
   };
 }

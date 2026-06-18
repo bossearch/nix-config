@@ -13,6 +13,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = enabled;
     systemd.enable = true;
+    configType = "hyprlang";
     settings = {
       monitor =
         map (

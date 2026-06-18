@@ -10,6 +10,7 @@
 
   programs.firefox = {
     enable = homes.firefox.enable;
+    configPath = ".mozilla/firefox";
     policies = import ./policies {inherit hosts;};
     profiles = {
       ${hosts.username} = {
