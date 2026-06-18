@@ -50,7 +50,7 @@
   in {
     nixosConfigurations = {
       silvia = mkMinimal "bosse" "silvia" "btrfs-luks-impermanence" "/dev/nvme0n1" "32G";
-      stagea = mkMinimal "bosse" "stagea" "btrfs-impermanence" "/dev/vda" "0G";
+      stagea = mkMinimal "bosse" "stagea" "btrfs-luks-impermanence" "/dev/vda" "0G";
     };
   };
 }

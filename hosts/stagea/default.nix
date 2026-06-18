@@ -12,7 +12,7 @@
     timezone = "Asia/Singapore";
     theme = "tokyo-night-dark";
     disko = {
-      type = "btrfs-impermanence";
+      type = "btrfs-luks-impermanence";
       disk = "/dev/vda";
       swap = "0G";
     };
