@@ -30,7 +30,7 @@ in {
       markdown = ["prettier" "markdownlint-cli2" "markdown-toc"];
     };
     formatters = {
-      prettier.command = lib.getExe pkgs.nodePackages.prettier;
+      prettier.command = lib.getExe pkgs.prettier;
       markdownlint-cli2 = {
         command = lib.getExe pkgs.markdownlint-cli2;
         condition.__raw = ''

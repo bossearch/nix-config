@@ -1,6 +1,7 @@
 {
   inputs,
   mylib,
+  pkgs,
   ...
 }: {
   imports =
@@ -11,6 +12,7 @@
 
   programs.nixvim = {
     enable = true;
+    nixpkgs.pkgs = pkgs;
     performance = {
       byteCompileLua = {
         enable = true;
