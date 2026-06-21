@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    gh
-  ];
-
   programs.git = {
     enable = true;
     package = pkgs.git.override {withLibsecret = true;};
