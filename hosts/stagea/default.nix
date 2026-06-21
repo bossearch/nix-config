@@ -35,7 +35,7 @@
     dnscrypt = false;
     pipewire = true;
     proxychains = false;
-    silentboot = true;
+    silentboot = false;
     sops = true;
     ssh = true;
     steam = false;
