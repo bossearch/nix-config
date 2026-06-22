@@ -24,7 +24,7 @@ in {
       OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
       sleep 10
 
-      : > "$LOG_FILE"
+      : >"$LOG_FILE"
       exec > >(tee -a "$LOG_FILE") 2>&1
       echo "--- [$(date '+%Y-%m-%d %H:%M:%S')] Script Started ---"
 
@@ -45,23 +45,24 @@ in {
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -print -quit)
 
       if [[ -z "$INPUT_WALL" ]]; then
-        echo "Fetching today's top wallpaper from Reddit..."
-        USER_AGENT="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0"
-        REDDIT_LINK="https://www.reddit.com/r/wallpaper/top/.json?limit=5"
-        JSON_DATA=$(curl -sH "$USER_AGENT" "$REDDIT_LINK")
-        IMG_URL=$(echo "$JSON_DATA" | jq -r '.data.children[] | select(.data.post_hint == "image") | .data.url' | head -n 1)
+        echo "Fetching today's top wallpaper from Reddit via RSS..."
+        USER_AGENT="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0"
+        RSS_LINK="https://old.reddit.com/r/wallpaper/top/.rss?t=day"
+        RAW_FEED=$(curl -sL -A "$USER_AGENT" "$RSS_LINK")
+        IMG_URL=$(echo "$RAW_FEED" | grep -oE 'href=(&quot;|")https://i.redd.it/[^&" ]+\.(jpg|png|jpeg)' | head -n 1 | sed -E 's/href=(&quot;|")//' || true)
 
         if [[ -n "$IMG_URL" && "$IMG_URL" != "null" ]]; then
           EXT="''${IMG_URL##*.}"
-          EXT=$(echo "$EXT" | cut -d'?' -f1)
+          EXT=$(echo "$EXT" | cut -d'?' -f1 | tr -d '[:space:]')
           INPUT_WALL="wall-''${DATE}.''${EXT}"
-          curl -sL "$IMG_URL" -o "$INPUT_WALL"
+          curl -sL -A "$USER_AGENT" "$IMG_URL" -o "$INPUT_WALL"
+          echo "Wallpaper downloaded: $IMG_URL"
         else
-          echo "Error: Could not find a valid image URL on Reddit."
+          echo "Error: Could not extract a valid image URL from the Reddit RSS feed."
           exit 1
         fi
       else
-        echo "Today's wallpaper already exist"
+        echo "Today's wallpaper already exists."
         exit 0
       fi
 
