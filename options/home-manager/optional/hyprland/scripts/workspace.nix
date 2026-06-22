@@ -29,36 +29,44 @@ in {
 
       NEW_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.id')
 
-      apply_gamemode() {
-        hyprctl --batch "\
-          keyword unbind CONTROL, Q;\
-          keyword unbind CONTROL, SPACE;\
-          keyword decoration:blur:enabled 0;\
-          keyword decoration:active_opacity 1;\
-          keyword decoration:inactive_opacity 1;\
-          keyword decoration:rounding 0"
-      }
-
-      activate_gamemode() {
-        ~/.config/qmk/crkbd-toggle-game.py 1
-        apply_gamemode
-        ${close}
-        notify-send -e -a nosound -i state_running "Game Mode" "Activated"
-      }
-
-      deactivate_gamemode() {
-        ~/.config/qmk/crkbd-toggle-game.py 0
-        hyprctl reload
-        ${close}
-        notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"
+      gamemode() {
+        local mode="$1"
+        if [[ $mode == "enable" ]]; then
+          ~/.config/qmk/crkbd-toggle-game.py 1
+          hyprctl --batch "\
+            keyword decoration:blur:enabled 0;\
+            keyword decoration:active_opacity 1;\
+            keyword decoration:inactive_opacity 1;\
+            keyword decoration:rounding 0;\
+            keyword misc:vfr 0"
+          ${close}
+          notify-send -e -a nosound -i state_running "Game Mode" "Activated"
+        elif [[ $mode == "disable" ]]; then
+          ~/.config/qmk/crkbd-toggle-game.py 0
+          hyprctl --batch "\
+            keyword decoration:blur:enabled 1;\
+            keyword decoration:active_opacity 0.9;\
+            keyword decoration:inactive_opacity 0.85;\
+            keyword decoration:rounding 8"
+          ${close}
+          notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"
+        fi
       }
 
       if [[ "$NEW_WORKSPACE" == "7" && "$OLD_WORKSPACE" != "7" ]]; then
-        activate_gamemode
+        gamemode enable
       elif [[ "$NEW_WORKSPACE" != "7" && "$OLD_WORKSPACE" == "7" ]]; then
-        deactivate_gamemode
+        gamemode disable
       else
         :
+      fi
+
+      if hyprctl workspaces | grep -q "workspace ID 7"; then
+        :
+      else
+        if [ "$(hyprctl getoption misc:vfr -j | jq '.int')" -eq 0 ]; then
+          hyprctl keyword debug:vfr 1
+        fi
       fi
     '';
   };

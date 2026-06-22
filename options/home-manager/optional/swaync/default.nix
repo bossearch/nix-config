@@ -57,7 +57,6 @@ in {
         };
         _game_on = {
           exec = "paplay ~/.config/assets/sounds/Mario-power-up.mp3 ${volume}";
-          urgency = "Normal";
           app-name = "game_on";
         };
         _nchat = {
@@ -75,6 +74,10 @@ in {
         _screenshot = {
           exec = "paplay ~/.config/assets/sounds/camera-shutter.mp3 ${volume}";
           app-name = "screenshot";
+        };
+        _soundoff = {
+          exec = "";
+          app-name = "nosound";
         };
         critical = {
           exec = "paplay ~/.config/assets/sounds/Sonar.mp3 ${volume}";
