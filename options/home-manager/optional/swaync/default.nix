@@ -108,12 +108,12 @@ in {
               command = "${hide} notify-send -e \"Oops\" \"This button\'s isn\'t configured yet\"";
             }
             {
-              label = "";
-              command = "${hide} notify-send -e \"Oops\" \"This button\'s isn\'t configured yet\"";
-            }
-            {
               label = "";
               command = "${hide} ${layer} && ~/.config/hypr/scripts/hyprlock.sh";
+            }
+            {
+              label = "󰒲";
+              command = "${hide} ~/.config/waybar/scripts/launcher/sleep.sh";
             }
             {
               label = "";

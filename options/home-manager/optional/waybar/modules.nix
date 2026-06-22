@@ -37,8 +37,9 @@ in {
         "modules" = [
           "custom/launcher"
           "custom/lock"
-          "custom/shutdown"
+          "custom/sleep"
           "custom/reboot"
+          "custom/shutdown"
         ];
       };
 
@@ -58,15 +59,21 @@ in {
         "tooltip" = false;
       };
 
-      "custom/shutdown" = {
-        "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/launcher/shutdown.sh";
+      "custom/sleep" = {
+        "format" = " 󰒲 ";
+        "on-click" = "~/.config/waybar/scripts/launcher/sleep.sh";
         "tooltip" = false;
       };
 
       "custom/reboot" = {
         "format" = "  ";
         "on-click" = "~/.config/waybar/scripts/launcher/reboot.sh";
+        "tooltip" = false;
+      };
+
+      "custom/shutdown" = {
+        "format" = "  ";
+        "on-click" = "~/.config/waybar/scripts/launcher/shutdown.sh";
         "tooltip" = false;
       };
 
