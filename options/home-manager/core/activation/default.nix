@@ -15,6 +15,9 @@
   drunScan = import ./drun-scan.nix {
     inherit hosts pkgs;
   };
+  resetFirefox = import ./reset-firefox.nix {
+    inherit config homes hosts lib pkgs;
+  };
   themeSync = import ./theme-sync.nix {
     inherit config hosts lib pkgs;
     theme = theme;
@@ -25,6 +28,11 @@ in {
     drunScan = lib.hm.dag.entryAfter ["writeBoundary"] ''
       ${drunScan}
     '';
+    resetFirefox = lib.mkIf homes.firefox.enable (
+      lib.hm.dag.entryAfter ["writeBoundary"] ''
+        ${resetFirefox}
+      ''
+    );
     themeSync = lib.hm.dag.entryAfter ["writeBoundary"] ''
       ${themeSync}
     '';

@@ -6,8 +6,6 @@
   lib,
   ...
 }: {
-  imports = [./extras/activation.nix];
-
   programs.firefox = {
     enable = homes.firefox.enable;
     configPath = ".mozilla/firefox";
