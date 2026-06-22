@@ -18,11 +18,11 @@ in {
       monitor =
         map (
           m: let
-            bitdepth =
-              if m.hdr
-              then "10"
-              else "8";
-          in "${m.name}, ${toString m.width}x${toString m.height}@${toString m.refreshRate}, 0x0, 1, bitdepth, ${bitdepth}"
+            vrr =
+              if m.vrr
+              then ",vrr, 1"
+              else ",vrr, 0";
+          in "${m.name}, ${toString m.width}x${toString m.height}@${toString m.refreshRate}, 0x0, 1 ${vrr}"
         )
         homes.monitor;
     };

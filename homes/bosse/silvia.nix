@@ -17,7 +17,7 @@
         height = 1440;
         refreshRate = 165;
         primary = true;
-        hdr = false;
+        vrr = false;
       }
     ];
     firefox = {

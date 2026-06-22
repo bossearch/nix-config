@@ -37,7 +37,7 @@ in {
             type = types.bool;
             default = true;
           };
-          hdr = mkOption {
+          vrr = mkOption {
             type = types.bool;
             default = true;
           };
