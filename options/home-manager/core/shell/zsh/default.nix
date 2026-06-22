@@ -39,7 +39,7 @@ in {
       rm = "rm -i";
       cp = "cp -i";
       c = "clear";
-      cat = "bat";
+      cat = "bat --color=always --style=plain";
       ".." = "cd ..";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
     };
@@ -49,6 +49,8 @@ in {
       # export FZF_DEFAULT_OPTS="$(< ~/.config/fzf/.fzfrc)"
       # export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/.fzfrc
       export FZF_{CTRL_T,ALT_C}_OPTS="--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
+      export FZF_PREVIEW_FILE_CMD="bat --color=always --style=plain"
+      export FZF_PREVIEW_DIR_CMD="eza -1 --tree --level=2 --all --icons=always --color=always"
       export KEYTIMEOUT=1
       export AUTO_NOTIFY_THRESHOLD=5 # Set threshold to 30 seconds
       export AUTO_NOTIFY_IGNORE=(

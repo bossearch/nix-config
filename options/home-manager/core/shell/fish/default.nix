@@ -21,7 +21,7 @@ in {
     shellInit = ''
       set -gx FZF_CTRL_T_OPTS "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       set -gx FZF_ALT_C_OPTS  "--preview='~/.config/fzf/extra/fzf-preview.sh {}'";
-      set -gx FZF_PREVIEW_FILE_CMD "bat --color=always --style=plain --theme=ansi"
+      set -gx FZF_PREVIEW_FILE_CMD "bat --color=always --style=plain"
       set -gx FZF_PREVIEW_DIR_CMD "eza -1 --tree --level=2 --all --icons=always --color=always"
     '';
     interactiveShellInit = ''
@@ -85,7 +85,7 @@ in {
       rm = "rm -i";
       cp = "cp -i";
       c = "clear";
-      cat = "bat --style=plain --theme=ansi";
+      cat = "bat --color=always --style=plain";
       bridge-enable = "nmcli con up br0";
       bridge-disable = "nmcli con down br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";

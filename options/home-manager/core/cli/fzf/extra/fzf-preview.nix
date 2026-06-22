@@ -9,7 +9,7 @@
       if [ -d "$FILE" ]; then
         eza -1 --tree --level=2 --all --icons=always --color=always "$FILE"
       elif [ -f "$FILE" ]; then
-        bat --color=always --style=plain --theme=ansi "$FILE"
+        bat --color=always --style=plain "$FILE"
       else
         echo 'Not a file or directory'
       fi

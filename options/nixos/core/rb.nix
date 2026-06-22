@@ -125,7 +125,7 @@
       echo ""
 
       if read -r -p "Open log? (y/N): " confirm && [[ $confirm == [yY] ]]; then
-        bat --style=plain --theme=ansi .rb.log
+        bat --color=always --style=plain .rb.log
       fi
 
       popd >/dev/null

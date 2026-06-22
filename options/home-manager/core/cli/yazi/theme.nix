@@ -63,6 +63,7 @@ in {
       };
       border_symbol = "│";
       border_style = {fg = base0F;};
+      syntect_theme = "~/.config/bat/themes/my-base16.tmTheme";
     };
 
     indicator = {

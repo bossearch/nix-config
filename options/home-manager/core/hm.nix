@@ -91,7 +91,7 @@
       git reset -q
 
       if read -r -p "Open log? (y/N): " confirm && [[ $confirm == [yY] ]]; then
-        bat --style=plain --theme=ansi .hm.log
+        bat --color=always --style=plain .hm.log
       fi
 
       popd >/dev/null

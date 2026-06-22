@@ -34,13 +34,6 @@ in {
     unzip
     wget
   ];
-  programs.bat = {
-    enable = true;
-    config = {
-      pager = "less -FR";
-      theme = "ansi";
-    };
-  };
   programs.zoxide = {
     enable = true;
     options = [
