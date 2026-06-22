@@ -16,10 +16,6 @@ in {
       mkdir -p "$(dirname "$SOCKET")"
       chmod 700 "$(dirname "$SOCKET")"
 
-      if [ ! -f /tmp/nvim-startup.log ]; then
-        nvim --headless +q --startuptime /tmp/nvim-startup.log
-      fi
-
       if command -v tmux &>/dev/null; then
         TERM_TITLE=$(hyprctl activewindow | awk -F': ' '/title: / {print $2}')
         if [ "$TERM_TITLE" = "scratchpad" ]; then

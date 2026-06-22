@@ -46,8 +46,6 @@ in {
     envExtra = ''
       export EDITOR="nvim"
       export BAT_THEME="tokyonight_night"
-      # export FZF_DEFAULT_OPTS="$(< ~/.config/fzf/.fzfrc)"
-      # export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/.fzfrc
       export FZF_{CTRL_T,ALT_C}_OPTS="--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
       export FZF_PREVIEW_FILE_CMD="bat --color=always --style=plain"
       export FZF_PREVIEW_DIR_CMD="eza -1 --tree --level=2 --all --icons=always --color=always"
