@@ -9,7 +9,7 @@
     end
     rm -f -- "$tmp"
     if test -f "$edit_handoff"
-        set -l file_to_edit (cat "$edit_handoff")
+        set -l file_to_edit (command cat "$edit_handoff")
         rm -f "$edit_handoff"
         nvim "$file_to_edit"
     end
@@ -24,7 +24,7 @@
     end
     rm -f -- "$tmp"
     if test -f "$edit_handoff"
-        set -l file_to_edit (cat "$edit_handoff")
+        set -l file_to_edit (command cat "$edit_handoff")
         sudo rm -f "$edit_handoff"
         sudo nvim "$file_to_edit"
     end
