@@ -132,6 +132,7 @@ pkgs.writeShellScript "drun-scan" ''
     "blueman-manager:blueman"
     "com.libretro.RetroArch:retroarch"
     "com.mitchellh.ghostty:ghostty"
+    "com.obsproject.Studio:obs"
     "com.usebottles.bottles:bottles"
     "io.github.giantpinkrobots.varia:varia"
     "io.github.mpobaschnig.Vaults:vaults"
@@ -152,6 +153,7 @@ pkgs.writeShellScript "drun-scan" ''
     "firefox:firefox"
     "lutris:lutris -f"
     "mpv:~/.config/mpv/mpv.sh"
+    "obs:QT_QPA_PLATFORM=xcb obs"
     "spotify:spotify --use-gl=desktop"
     "steam:/run/current-system/sw/bin/steam"
   )

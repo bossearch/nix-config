@@ -44,6 +44,7 @@
     neomutt = false;
     newsboat = false;
     nyaa = false;
+    obs = false;
     obsidian = false;
     spicetify = false;
     vaults = false;

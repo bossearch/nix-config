@@ -136,6 +136,9 @@ in {
     #nmtui
     windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (footclient), match:title (nmtui)
 
+    #obs
+    windowrule = workspace ${toString utilities},opaque on, match:class (obs)
+
     #obsidian
     windowrule = workspace ${toString coding}, match:class (obsidian)
 

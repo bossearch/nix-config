@@ -146,6 +146,10 @@ in {
           default = false;
           type = types.bool;
         };
+        obs = mkOption {
+          default = false;
+          type = types.bool;
+        };
         obsidian = mkOption {
           default = false;
           type = types.bool;
