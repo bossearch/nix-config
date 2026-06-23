@@ -130,6 +130,7 @@ pkgs.writeShellScript "drun-scan" ''
     "LocalSend:localsend"
     "Waydroid:waydroid"
     "blueman-manager:blueman"
+    "com.libretro.RetroArch:retroarch"
     "com.mitchellh.ghostty:ghostty"
     "com.usebottles.bottles:bottles"
     "io.github.giantpinkrobots.varia:varia"

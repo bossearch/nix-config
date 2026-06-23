@@ -151,6 +151,10 @@ in {
     windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download shader packs.*)
     windowrule = center 1, size ${size."1/5"}, match:class (org.prismlauncher.PrismLauncher), match:title (Please wait.*)
     windowrule = workspace ${toString games}, pseudo on, immediate on, match:title (Minecraft.*)
+
+    #retroarch
+    windowrule = workspace ${toString games}, fullscreen on, immediate on, match:class (com.libretro.RetroArch)
+
     #spotify
     windowrule = workspace ${toString music}, match:class (spotify)
 

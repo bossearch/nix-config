@@ -91,6 +91,10 @@ in {
                 default = false;
                 type = types.bool;
               };
+              retroarch = mkOption {
+                default = false;
+                type = types.bool;
+              };
             };
           };
         };

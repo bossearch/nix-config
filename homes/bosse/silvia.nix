@@ -31,6 +31,7 @@
       lsfg = false;
       lutris = true;
       prismlauncher = true;
+      retroarch = true;
     };
     copas = true;
     feh = true;
