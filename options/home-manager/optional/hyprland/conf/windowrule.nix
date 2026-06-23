@@ -101,7 +101,7 @@ in {
 
     #fzf
     windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (fzf)
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (mousefzf)
+    windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (bigfzf)
 
     #kdeconnect
     windowrule = workspace ${toString utilities}, match:class (org.kde.kdeconnect.*)

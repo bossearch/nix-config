@@ -15,7 +15,7 @@
     $drun = footclient -T fzf ~/.config/fzf/extra/drun.sh
     $run = footclient -T fzf ~/.config/fzf/extra/run.sh
     $emoji = footclient -T fzf ~/.config/fzf/extra/emoji.sh
-    $clipboard = footclient -T fzf ~/.config/fzf/extra/clipboard.sh
+    $clipboard = footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh
     $pass = footclient -T fzf ~/.config/fzf/extra/pass.sh password
     $otp = footclient -T fzf ~/.config/fzf/extra/pass.sh otp
     $workspace = ~/.config/hypr/scripts/workspace.sh

@@ -17,7 +17,7 @@ in {
       footclient -o "main.font=${homes.nerdfont} Nerd Font:size=24" \
         -o "main.font-bold=${homes.nerdfont} Nerd Font:style=bold:size=24" \
         -o "main.line-height=29" \
-        -T mousefzf ~/.config/fzf/extra/drun.sh
+        -T bigfzf ~/.config/fzf/extra/drun.sh
     '';
   };
 }
