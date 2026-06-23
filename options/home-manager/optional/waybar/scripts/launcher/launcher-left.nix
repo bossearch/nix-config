@@ -17,8 +17,8 @@ in {
     text = ''
       #!/usr/bin/env bash
       hyprctl dispatch movecursor ${position}
-      footclient -H -T fastfetch -o "colors-dark.cursor=${base07} ${base01}" bash -c '
-        sleep 0.1 && fastfetch --logo-position right --logo-padding-right 0 --logo-padding-top 1'
+      footclient -H -T fastfetch -o "colors-dark.cursor=${base07} ${base01}" sh -c '
+        sleep 0.1 && fastfetch'
     '';
   };
 }

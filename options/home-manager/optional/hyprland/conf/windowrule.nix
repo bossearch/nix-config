@@ -48,10 +48,6 @@
       if mymonitor
       then "200"
       else "150";
-    about =
-      if mymonitor
-      then "920 520"
-      else "778 440";
   };
 in {
   wayland.windowManager.hyprland.extraConfig = ''
@@ -81,7 +77,7 @@ in {
     windowrule = workspace ${toString games}, float on, center 1, immediate on, no_initial_focus on, match:title (DNOrigins)
 
     #fastfetch
-    windowrule = float on, center 1, size ${size.about}, match:class (footclient), match:title (fastfetch)
+    windowrule = float on, center 1, size 520 600, match:class (footclient), match:title (fastfetch)
 
     #feh
     windowrule = float on, center 1, match:class (feh)
