@@ -8,8 +8,9 @@
     text = ''
       #!/usr/bin/env bash
 
+      ADDRESS="192.168.18.14:38899"
       GET_LAMP="$HOME/.config/waybar/scripts/utility/lamp-control/get-lamp.sh full"
-      IFS='|' read -r STATE SCENE TEMP DIM ADDRESS < <($GET_LAMP)
+      IFS='|' read -r STATE SCENE TEMP DIM < <($GET_LAMP)
       ARGS="$1"
 
       SET_LAMP() {

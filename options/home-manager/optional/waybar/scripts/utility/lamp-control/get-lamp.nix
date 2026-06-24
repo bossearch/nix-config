@@ -1,28 +1,15 @@
 {
   homes,
   lib,
-  pkgs,
   ...
-}: let
-  layer =
-    if homes.notify == "swaync"
-    then
-      pkgs.writeShellScript "swaync-layer" ''
-        while hyprctl layers | grep -q "namespace: swaync-control-center"; do
-            sleep 0.1
-        done
-      ''
-    else "";
-in {
+}: {
   home.file.".config/waybar/scripts/utility/lamp-control/get-lamp.sh" = lib.mkIf homes.waybar {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       ARGS="$1"
-      LAMP_IP="192.168.18.14"
-      PORT=38899
-      ADDRESS="$LAMP_IP:$PORT"
+      ADDRESS="192.168.18.14:38899"
 
       get_lamp() {
         local t="$1"
@@ -30,7 +17,7 @@ in {
         LAMP_DATA=$(jq -r '.result | select(. != null) | "\(.state),\(.sceneId),\(.temp),\(.dimming)"' <<<"$GET_LAMP" 2>/dev/null || echo "")
       }
 
-      for i in {1..4}; do
+      for i in {1..10}; do
         TIMEOUT="0.$i"
         get_lamp "$TIMEOUT"
         if [[ -n "$LAMP_DATA" ]]; then
@@ -41,8 +28,6 @@ in {
       done
 
       if [[ -z "$LAMP_DATA" ]]; then
-        ${layer}
-        notify-send -e -u critical "Lamp control" "Error: Could not retrieve your lamp data" -i redshift-status-off
         exit 1
       fi
 
@@ -53,7 +38,7 @@ in {
       fi
 
       if [[ $ARGS == "full" ]]; then
-        echo "$STATE|$SCENE|$TEMP|$DIM|$ADDRESS"
+        echo "$STATE|$SCENE|$TEMP|$DIM"
       elif [[ $ARGS == "dim" ]]; then
         echo '{"percentage":'"$DIM"'}'
       else
