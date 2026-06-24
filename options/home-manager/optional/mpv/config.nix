@@ -64,7 +64,7 @@
       sub-border-size = 2;
       sub-auto = "all";
       sub-fix-timing = "yes";
-      sub-ass-override = "strip";
+      sub-ass-override = "force";
       demuxer-mkv-subtitle-preroll = "yes";
 
       # audio
