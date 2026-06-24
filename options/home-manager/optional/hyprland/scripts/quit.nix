@@ -17,9 +17,7 @@ in {
         waydroid session stop
 
       elif [[ "$focused_class" == "mpv" ]]; then
-        if ! echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket; then
-          pkill mpv
-        fi
+        echo '{ "command": ["quit"] }' | socat - UNIX-CONNECT:/tmp/mpv-socket
 
       elif [[ "$focused_class" == "steam" ]]; then
         killall steam
