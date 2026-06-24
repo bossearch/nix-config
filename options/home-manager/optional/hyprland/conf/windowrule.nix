@@ -90,6 +90,8 @@ in {
     windowrule = opaque on, match:class (firefox), match:title (.*YouTube.*)
     windowrule = opaque on, match:class (firefox), match:title (.*IDLIX.*)
     windowrule = opaque on, match:class (firefox), match:title (.*Twitch.*)
+    windowrule = no_screen_share on, match:class (firefox), match:title (.*Gmail.*)
+    windowrule = no_screen_share on, match:class (firefox), match:title (.*WhatsApp.*)
     windowrule = size ${size."1/2"}, match:class (firefox), match:title (File Upload)
 
     #foot
@@ -100,7 +102,7 @@ in {
     windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (bigfzf)
 
     #kdeconnect
-    windowrule = workspace ${toString utilities}, match:class (org.kde.kdeconnect.*)
+    windowrule = workspace ${toString utilities}, no_screen_share on, match:class (org.kde.kdeconnect.*)
 
     #kitty
     windowrule = workspace ${toString coding}, match:class (kitty)
@@ -127,7 +129,7 @@ in {
     windowrule = float on, center 1, opaque on, size ${size."1/2"}, match:class (org.gnome.NautilusPreviewer)
 
     #nchat
-    windowrule = workspace ${toString social}, match:class (footclient), match:title (nchat)
+    windowrule = workspace ${toString social}, no_screen_share on, match:class (footclient), match:title (nchat)
 
     #nmtui
     windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (footclient), match:title (nmtui)
@@ -162,22 +164,22 @@ in {
     windowrule = workspace ${toString game_launcher}, match:title (steam)
     windowrule = workspace ${toString games}, pseudo on, immediate on, match:class (dota2)
 
-    # tor browser
-    windowrule = workspace ${toString browser}, match:class (Tor Browser)
+    #tor browser
+    windowrule = workspace ${toString browser}, no_screen_share on, match:class (Tor Browser)
 
     #transmission
     windowrule = workspace ${toString utilities}, match:class (transmission-gtk)
     windowrule = float on, center 1, size ${size."1/2"}, match:class (transmission-gtk), match:title (Open a Torrent)
 
     #veracrypt
-    windowrule = workspace ${toString utilities}, match:class (veracrypt)
+    windowrule = workspace ${toString utilities}, no_screen_share on, match:class (veracrypt)
 
     #virt-manager
     windowrule = workspace ${toString virt_manager}, match:class (.virt-manager-wrapped)
     windowrule = workspace ${toString virt_manager}, float on, center 1, size 1920 1150, opaque on, match:class (.virt-manager-wrapped), match:title (.*QEMU/KVM)
 
     #vesktop
-    windowrule = workspace ${toString social}, match:class (vesktop)
+    windowrule = workspace ${toString social}, no_screen_share on, match:class (vesktop)
     windowrule = float on, center 1, size ${size."3/4"}, match:initial_class (vesktop), match:initial_title (Discord Popout)
 
     #waydroid
