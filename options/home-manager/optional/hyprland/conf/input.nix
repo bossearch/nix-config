@@ -42,20 +42,15 @@ in {
     # See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
     # mice
     device {
-        name = bosse’s-magic-mouse
-        sensitivity = -0.2 # -1.0 - 1.0, 0 means no modification.
-    }
-    device {
         name = corsair-corsair-gaming-scimitar-pro-rgb-mouse-1
         sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
         accel_profile = flat
     }
     device {
         name = foostan-corne-mouse
-        sensitivity = 1 # -1.0 - 1.0, 0 means no modification.
+        sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
         accel_profile = flat
-      }
-
+    }
     # keyboard
     ${keyboard}
   '';

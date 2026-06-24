@@ -12,10 +12,12 @@ in {
     }
 
     misc {
-        # focus_on_activate = true
         allow_session_lock_restore = true
-        disable_hyprland_logo = true
         background_color = 0xFF${base00}
+        disable_hyprland_logo = true
+        disable_splash_rendering = true
+        key_press_enables_dpms = true
+        mouse_move_enables_dpms = true
     }
 
     debug {

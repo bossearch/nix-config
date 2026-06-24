@@ -67,6 +67,10 @@
     bind = $meh, K, exec, $cycle next
     bind = $meh, ESCAPE, exec, ~/.config/hypr/scripts/swap-window.sh
 
+    # Swap window left or right
+    bind = $hyper, J, swapwindow, l
+    bind = $hyper, K, swapwindow, r
+
     # Group
     bind = $hyper, SPACE, changegroupactive
     bind = $hyper, ESCAPE, exec, ~/.config/hypr/scripts/toggle-group.sh

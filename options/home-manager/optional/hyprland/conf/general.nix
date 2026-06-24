@@ -22,7 +22,7 @@ in {
         # resize_on_border = true
 
         # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
-        allow_tearing = false
+        allow_tearing = true
 
         layout = master
     }
