@@ -130,6 +130,10 @@ in {
           default = false;
           type = types.bool;
         };
+        gimp = mkOption {
+          default = false;
+          type = types.bool;
+        };
         gowall = mkOption {
           default = false;
           type = types.bool;

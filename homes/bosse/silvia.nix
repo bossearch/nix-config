@@ -35,6 +35,7 @@
     };
     copas = true;
     feh = true;
+    gimp = true;
     gowall = true;
     kdeconnect = false;
     llm = true;

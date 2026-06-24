@@ -101,6 +101,9 @@ in {
     windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (fzf)
     windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (bigfzf)
 
+    #gimp
+    windowrule = workspace ${toString editing}, match:class (gimp)
+
     #kdeconnect
     windowrule = workspace ${toString utilities}, no_screen_share on, match:class (org.kde.kdeconnect.*)
 
