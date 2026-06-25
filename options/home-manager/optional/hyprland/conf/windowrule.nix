@@ -98,7 +98,7 @@ in {
     windowrule = workspace ${toString coding}, match:class (foot)
 
     #fzf
-    windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (fzf)
+    windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (smallfzf)
     windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (bigfzf)
 
     #gimp

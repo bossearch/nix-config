@@ -12,12 +12,12 @@
     $terminal = ${homes.terminal}
     $fileManager = nautilus
     $browser = firefox
-    $drun = footclient -T fzf ~/.config/fzf/extra/drun.sh
-    $run = footclient -T fzf ~/.config/fzf/extra/run.sh
-    $emoji = footclient -T fzf ~/.config/fzf/extra/emoji.sh
+    $drun = footclient -T smallfzf ~/.config/fzf/extra/drun.sh
+    $run = footclient -T smallfzf ~/.config/fzf/extra/run.sh
+    $emoji = footclient -T smallfzf ~/.config/fzf/extra/emoji.sh
     $clipboard = footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh
-    $pass = footclient -T fzf ~/.config/fzf/extra/pass.sh password
-    $otp = footclient -T fzf ~/.config/fzf/extra/pass.sh otp
+    $pass = footclient -T smallfzf ~/.config/fzf/extra/pass.sh password
+    $otp = footclient -T smallfzf ~/.config/fzf/extra/pass.sh otp
     $workspace = ~/.config/hypr/scripts/workspace.sh
     $cycle = ~/.config/hypr/scripts/cycle.sh
 
@@ -27,10 +27,10 @@
     bind = $mainMod, code:61, exec, $browser # "/"
     bindr = $mainMod, code:48, exec, pkill $fileManager || $fileManager # "'"
     bind = $mainMod, M, exec, ~/.config/mpv/mpv.sh
-    bindr = $mainMod, SPACE, exec, pkill fzf || $drun
-    bindr = $secMod, SPACE, exec, pkill fzf || $run
-    bindr = $mainMod, code:60, exec, pkill fzf || $emoji # "."
-    bindr = $mainMod, V, exec, pkill fzf || $clipboard
+    bindr = $mainMod, SPACE, exec, pkill smallfzf || $drun
+    bindr = $secMod, SPACE, exec, pkill smallfzf || $run
+    bindr = $mainMod, code:60, exec, pkill smallfzf || $emoji # "."
+    bindr = $mainMod, V, exec, pkill bigfzf || $clipboard
     bind = $mainMod, code:59, exec, ~/.config/qmk/cheatsheet-wrapper.sh # ","
     bind = $mainMod, T, exec, ~/.config/hypr/scripts/word-lookup.sh
     bind = $mainMod, R, exec, ~/.config/hypr/scripts/deepl-terjemah.sh
@@ -58,8 +58,8 @@
     # bind = $hyper, I, exec, ~/.config/waybar/scripts/hyprsunset/scroll-up.sh
     # bind = $meh, O, exec, hyprctl dispatch setprop active opaque toggle
     # bind = $hyper, O, exec, ~/.config/waybar/scripts/hyprsunset/hyprsunset.sh
-    # bind = $meh, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $pass
-    # bind = $hyper, P, exec, pkill fzf || hyprctl activewindow -j > /tmp/prev_window && $otp
+    # bind = $meh, P, exec, pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && $pass
+    # bind = $hyper, P, exec, pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && $otp
 
     # Move focus with mainMod + arrow keys
     bind = $meh, SPACE, cyclenext
