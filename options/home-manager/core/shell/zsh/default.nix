@@ -1,47 +1,56 @@
 {
+  config,
   homes,
   hosts,
-  mylib,
+  lib,
   pkgs,
   ...
 }: let
   init-tmux =
     if hosts.gui.enable
-    then "bash ~/.config/fish/init-tmux.sh"
+    then "bash ~/.config/zsh/init-tmux.sh"
     else "";
   kittyzsh = homes.kitty && hosts.shell == "zsh";
 in {
-  imports = mylib.autoimport ./.;
+  imports = [
+    ./functions
+    ./omp.nix
+  ];
 
   programs.zsh = {
     enable = hosts.shell == "zsh";
     dotDir = ".config/zsh";
     history = {
       append = true;
+      expireDuplicatesFirst = true;
+      findNoDups = true;
       ignoreAllDups = true;
+      ignoreDups = true;
       ignoreSpace = true;
+      ignorePatterns = ["pass *" "fsys" "fsys *" "yy" "sy" "zsh" "c"];
+      path = "${config.programs.zsh.dotDir}/.zsh_history";
+      save = config.programs.zsh.history.size;
+      saveNoDups = true;
       share = true;
-      path = "$HOME/.config/zsh/.zsh_history";
-      size = 1000000;
-      extended = false;
+      size = 10000;
     };
-    enableCompletion = true;
     shellAliases = {
       v = "nvim --startuptime /tmp/nvim-startup.log";
       vi = "nvim --startuptime /tmp/nvim-startup.log";
       vim = "nvim --startuptime /tmp/nvim-startup.log";
       nvim = "nvim --startuptime /tmp/nvim-startup.log";
-      l = "eza --color=always";
-      la = "eza -a --color=always";
-      ll = "eza -al --color=always --no-user --no-permissions --no-filesize --no-time";
-      lll = "eza -aloh --color=always --long";
+      ls = "eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions";
       mv = "mv -i";
       rm = "rm -i";
       cp = "cp -i";
       c = "clear";
-      cat = "bat --color=always --style=plain";
+      cat = "bat --style=plain";
       ".." = "cd ..";
+      bridge-disable = "nmcli con down br0";
+      bridge-enable = "nmcli con up br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
+      nyaa = "setsid --fork transmission-gtk >/dev/null 2>&1 </dev/null; command nyaa $argv";
+      z = "zoxide";
     };
     envExtra = ''
       export EDITOR="nvim"
@@ -60,101 +69,64 @@ in {
         "lazygit" "newsboat" "toipe" "neomutt"
       )
     '';
-    initContent = ''
-      ${init-tmux}
-      autoload -Uz ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer
-      zsh-defer source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      zsh-defer source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      zsh-defer source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-      zsh-defer source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
-      zsh-defer source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-      zsh-defer source ${pkgs.zsh-auto-notify}/share/zsh-auto-notify/zsh-auto-notify.plugin.zsh
-      ZSH_AUTOSUGGEST_STRATEGY=(history)
-      bindkey "$terminfo[kcuu1]" history-substring-search-up
-      bindkey "$terminfo[kcud1]" history-substring-search-down
+    completionInit = "autoload -U compinit && compinit -C";
+    initContent = let
+      zshrcBeforeCompInit = lib.mkOrder 500 ''
+        bindkey -e
+        autoload -Uz ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer
+        zsh-defer source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        zsh-defer source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        zsh-defer source ${pkgs.zsh-completions}/share/zsh-completions/zsh-completions.zsh
+        zsh-defer source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        zsh-defer source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+      '';
+      zshrcAfterCompInit = lib.mkOrder 1000 ''
+        ${init-tmux}
 
-      # fzf-tab settings for preview and completion
-      # custom fzf flags
-      zstyle ':fzf-tab:*' fzf-flags --height=50% --min-height=20
-      zstyle ':fzf-tab:complete:*' fzf-preview \
-      '[[ -d $realpath ]] && eza -1 --tree --level=2 --all --icons=always --color=always $realpath || \
-      ([[ -f $realpath ]] && bat --color=always $realpath || \
-      echo "Cannot preview")'
-      setopt glob_dots
+        # Include hidden file
+        setopt glob_dots
 
-      # zsh-completions matcher settings
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-      _comp_options+=(globdots)
+        # fzf-tab settings for preview and completion
+        zstyle ':fzf-tab:*' use-fzf-default-opts yes
+        zstyle ':fzf-tab:complete:*' fzf-preview \
+        '[[ -d $realpath ]] && eza --tree --level=2 --all --icons=always --color=always $realpath || \
+        ([[ -f $realpath ]] && bat -n --color=always $realpath || \
+        echo "Cannot preview")'
 
-      # Don't save wrong command to history
-      zshaddhistory() { whence ''${''${(z)1}[1]} >| /dev/null || return 1 }
+        # zsh-completions matcher settings
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        _comp_options+=(globdots)
 
-      # Source additional fzf files
-      source ~/.config/zsh/functions/other
-      source ~/.config/zsh/functions/fsys
-      source ~/.config/zsh/functions/furl
-      source ~/.config/zsh/functions/tmux
+        # Don't save unvalid command to history
+        zshaddhistory() { whence ''${''${(z)1}[1]} >| /dev/null || return 1 }
 
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
+        # Keybindings
+        bindkey "$terminfo[kcud1]" history-search-forward
+        bindkey "$terminfo[kcuu1]" history-search-backward
+        bindkey '^n' history-search-forward
+        bindkey '^p' history-search-backward
 
-      # my custom scripts
-      rb() {
-        ~/.nix-config/scripts/rebuild.sh "$@"
-      }
-      hm() {
-        ~/.nix-config/scripts/homemanager.sh "$@"
-      }
+        #Edit command line buffer in Neovim
+        autoload -Uz edit-command-line
+        zle -N edit-command-line
+        bindkey '^x^e' edit-command-line
 
-      # yazi with sudo
-      function sy() {
-        cd /
-        local tmp="/tmp/yazi-cwd.XXXXXX"
-        sudo -E yazi "$@" --cwd-file="$tmp"
-        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            builtin cd -- "$cwd"
-        fi
-        sudo rm -f -- "$tmp"
-      }
+        # Copy to clipboard
+        zclip-copy() {
+          print -rn -- "$BUFFER" | wl-copy
+        }
+        zle -N zclip-copy
+        bindkey '\e[50~"+y' zclip-copy
 
-      # Show Nix Development Shell Name
-      function prompt_nix_dev_shell_name() {
-        if [[ -n $IN_NIX_SHELL ]]; then
-          p10k segment -f grey -t "[nix-shell]"
-        fi
-      }
-
-      # Show if Direnv Active
-      function prompt_in_direnv() {
-        if [[ -n $DIRENV_ACTIVE ]]; then
-          p10k segment -f grey -t "[direnv]"
-        fi
-      }
-
-      # Keybindings
-      bindkey -v
-      bindkey "^?" backward-delete-char
-      autoload -z edit-command-line
-      zle -N edit-command-line
-      bindkey '^V' edit-command-line
-
-      export KEYTIMEOUT=1
-
-      # Yank on vicmd
-      function vi-yank-xclip {
-          zle vi-yank
-          echo "$CUTBUFFER" | wl-copy
-      }
-
-      # Paste on vicmd
-      zle -N vi-yank-xclip
-      bindkey -M vicmd 'y' vi-yank-xclip
-      function vi-paste-xclip {
-          LBUFFER+=$(wl-paste)
-      }
-      zle -N vi-paste-xclip
-      bindkey -M vicmd 'p' vi-paste-xclip
-    '';
+        # Source additional fzf files
+        zsh-defer source ~/.config/zsh/functions/cheat
+        zsh-defer source ~/.config/zsh/functions/notify
+        zsh-defer source ~/.config/zsh/functions/fzf
+        zsh-defer source ~/.config/zsh/functions/tmux
+        zsh-defer source ~/.config/zsh/functions/yazi
+      '';
+    in
+      lib.mkMerge [zshrcBeforeCompInit zshrcAfterCompInit];
   };
   programs.kitty.shellIntegration = {
     enableZshIntegration = kittyzsh;

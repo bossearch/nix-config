@@ -5,74 +5,82 @@
 }: {
   home.file.".config/zsh/functions/tmux" = lib.mkIf (hosts.shell == "zsh") {
     text = ''
-      # zsh; needs setopt re_match_pcre. You can, of course, adapt it to your own shell easily.
-      tmuxkill () {
-        local sessions
-        sessions="$(tmux ls|fzf --exit-0 --multi --bind 'j:down,k:up,space:accept')"  || return $?
-        local i
-        for i in "''${(f@)sessions}"
-        do
-        [[ $i =~ '([^:]*):.*' ]] && {
-          echo "Killing $match[1]"
-          tmux kill-session -t "$match[1]"
-        }
-        done
-      }
-      # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
-      # `tm` will allow you to select your tmux session via fzf.
-      # `tm irc` will attach to the irc session (if it exists), else it will create it.
-
       tm() {
-        [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-        if [ $1 ]; then
-          tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
-        fi
-        session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --height 100% --exit-0 \
-        --bind 'j:down,k:up,space:accept') \
-        &&  tmux $change -t "$session" || echo "No sessions found."
-      }
+        local choice
+        choice=$(tmux list-session | fzf \
+          --prompt="session ❯ " \
+          --multi \
+          --bind "j:down,k:up,x:execute(for sid in {+1}; do tmux kill-session -t \$sid; done)+reload(tmux list-sessions)" \
+        ) || return $?
 
-      # ftpane - switch pane (@george-b)
-      ftpane() {
-        local panes current_window current_pane target target_window target_pane
-        panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
-        current_pane=$(tmux display-message -p '#I:#P')
-        current_window=$(tmux display-message -p '#I')
+        local target_session
+        target_session=$(echo "$choice" | head -n1 | awk '{print $1}')
 
-        target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --height 100% --reverse \
-        --bind 'j:down,k:up,space:accept') || return
-
-        target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
-        target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
-
-        if [[ $current_window -eq $target_window ]]; then
-          tmux select-pane -t ''${target_window}.''${target_pane}
-        else
-          tmux select-pane -t ''${target_window}.''${target_pane} &&
-          tmux select-window -t $target_window
+        if [[ -n "$target_session" ]]; then
+          tmux switch-client -t "$target_session"
         fi
       }
 
-      ftpanekill() {
-        local windowpanes
-        # Get the list of panes and select with fzf
-        windowpanes=$(tmux list-panes -s | fzf --exit-0 --multi --height 100%\
-          --bind 'j:down,k:up,space:accept') || return $?
+      pane() {
+        local fmt=""
+        fmt+="#{pane_id} "
+        fmt+="#{window_index}.#{pane_index} "
+        fmt+="#{?pane_active,●,○} "
+        fmt+="[#{pane_width}x#{pane_height}] "
+        fmt+="#{pane_current_command}#{?pane_dead, (dead),} "
+        fmt+="@ #{s|#{HOME}|~|:pane_current_path}"
 
-        # Sort the selected panes by window and pane number in descending order
-        local sorted_panes
-        sorted_panes=$(echo "$windowpanes" | sort -t':' -k1,1nr -k2,2nr)
-        echo "''${sorted_panes}"
+        local choice
+        choice=$(tmux list-panes -s -F "$fmt" | fzf \
+          --with-nth=2.. \
+          --prompt="pane ❯ " \
+          --multi \
+          --bind "j:down,k:up,x:execute(for pid in {+1}; do tmux kill-pane -t \$pid; done)+reload<tmux list-panes -s -F '$fmt'>" \
+        ) || return $?
 
-        local i
-        for i in "''${(f@)sorted_panes}"
-        do
-          [[ $i =~ '([^:]*):.*' ]] && {
-              echo "Killing $match[1]"
-              tmux kill-pane -t "$match[1]"
-          }
-        done
+        local target_pane
+        target_pane=$(echo "$choice" | head -n1 | awk '{print $1}')
+
+        if [[ -n "$target_pane" ]]; then
+          tmux switch-client -t "$target_pane"
+        fi
       }
+
+      furl() {
+        local content selected
+        local -a all_urls
+
+        content=$(tmux capture-pane -J -p)
+        all_urls+=( ''${(f)"$(echo "$content" | grep -oE '(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]')"} )
+        all_urls+=( ''${(f)"$(echo "$content" | grep -oE '(https?://)?www\.[a-zA-Z](-?[a-zA-Z0-9])+\.[a-zA-Z]{2,}(/\S+)?' | grep -vE '^https?://' | sed 's|^|http://|')"} )
+        all_urls+=( ''${(f)"$(echo "$content" | grep -oE '[0-9]{1,3}(\.[0-9]{1,3}){3}(:[0-9]{1,5})?(/\S+)?' | sed 's|^|http://|')"} )
+        all_urls+=( ''${(f)"$(echo "$content" | grep -oE '(ssh://)?git@\S+' | sed -E 's/:/\//g; s/^(ssh\/\/\/)?git@(.+)$/https:\/\/\2/')"} )
+        all_urls+=( ''${(f)"$(echo "$content" | grep -oE '(~/|/home/'$USER'/)[A-Za-z0-9._\/-]+' | sed "s|^~|$HOME|")"} )
+
+        all_urls=( ''${(u)all_urls:#} )
+
+        if (( ''${#all_urls} == 0 )); then
+          print "No URLs found in tmux pane." >&2
+          return 1
+        fi
+
+        selected=$(print -l "''${all_urls[@]}" | sort | fzf --prompt="furl ❯ ")
+
+        if [[ -n "$selected" ]]; then
+          if (( $+commands[xdg-open] )); then
+            setsid xdg-open "$selected" >/dev/null 2>&1 &
+          elif (( $+commands[open] )); then
+            open "$selected" >/dev/null 2>&1 &
+          elif [[ -n "$BROWSER" ]]; then
+            setsid "$BROWSER" "$selected" >/dev/null 2>&1 &
+          else
+            print "No suitable method to open URL found." >&2
+            return 1
+          fi
+          sleep 0.05
+        fi
+      }
+
     '';
   };
 }
