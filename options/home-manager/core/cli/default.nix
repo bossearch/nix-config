@@ -14,6 +14,7 @@ in {
     })
     age
     bc
+    chafa
     curl
     eza
     fd
