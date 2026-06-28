@@ -86,16 +86,10 @@
     end
 
     function __fzf_complete_preview
-        set -l path (string replace "~" $HOME -- $argv[1])
-        if test -d "$path"
-            eval $FZF_PREVIEW_DIR_CMD (string escape $path)
-        else if test -f "$path"
-            if grep -qI . "$path" 2>/dev/null
-                eval $FZF_PREVIEW_FILE_CMD (string escape $path)
-            end
+        ~/.config/fzf/extra/fzf-preview.sh $argv[1]
+        if test -n "$argv[2]"
+            echo $argv[2]
         end
-        type -q "$path" 2>/dev/null; and type -a "$path"
-        echo $argv[2]
     end
 
     test "$argv[1]" = "__fzf_complete_preview"; and __fzf_complete_preview $argv[2..3]

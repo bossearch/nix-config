@@ -1,4 +1,39 @@
 {
+  tm = ''
+    set -l choice (tmux list-session | fzf \
+        --prompt="session ❯ " \
+        --multi \
+        --bind "j:down,k:up,x:execute(for sid in {+1}; do tmux kill-session -t \$sid; done)+reload(tmux list-sessions)" \
+    )
+    or return
+
+    set -l target_session (string split ' ' -- $choice[1])[1]
+    if test -n "$target_session"
+        tmux switch-client -t "$target_session"
+    end
+  '';
+  pane = ''
+    set -l fmt "#{pane_id} "
+    set fmt "$fmt#{window_index}.#{pane_index} "
+    set fmt "$fmt#{?pane_active,●,○} "
+    set fmt "$fmt[#{pane_width}x#{pane_height}] "
+    set fmt "$fmt#{pane_current_command}#{?pane_dead, (dead),} "
+    set fmt "$fmt@ #{s|#{HOME}|~|:pane_current_path}"
+
+    set -l choice (tmux list-panes -s -F "$fmt" | fzf \
+        --with-nth=2.. \
+        --prompt="pane ❯ " \
+        --multi \
+        --bind "j:down,k:up,x:execute(for pid in {+1}; do tmux kill-pane -t \$pid; done)+reload<tmux list-panes -s -F '$fmt'>" \
+    )
+    or return
+
+    set -l target_pane (string split ' ' -- $choice[1])[1]
+
+    if test -n "$target_pane"
+        tmux switch-client -t "$target_pane"
+    end
+  '';
   furl = ''
     set -l content (tmux capture-pane -J -p -e | sed -r 's/\x1B\[[0-9;]*[mK]//g')
     set -l all_urls (
@@ -14,7 +49,7 @@
         echo "No URLs found in tmux pane."
         return 1
     end
-    set -l selected (printf '%s\n' $all_urls | fzf --prompt="Open URL > ")
+    set -l selected (printf '%s\n' $all_urls | fzf --prompt="furl > ")
 
     if test -n "$selected"
         if type -q xdg-open

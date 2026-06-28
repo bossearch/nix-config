@@ -5,20 +5,13 @@ let
     {}
     [
       ./bd.nix
-      ./expand.nix
       # ./error.nix
-      ./fgrep.nix
-      ./fkill.nix
-      ./fsys.nix
-      ./furl.nix
+      ./expand.nix
+      ./fzf.nix
       ./greeting.nix
       ./ignore_history.nix
       ./notify.nix
-      ./tmux_navigate.nix
-      ./tmux_pane.nix
-      ./tmux_panekill.nix
-      ./tmux_tm.nix
-      ./tmux_tmkill.nix
+      ./tmux.nix
       ./yazi.nix
     ];
 in
