@@ -1,4 +1,8 @@
-{hosts, ...}: {
+{
+  homes,
+  hosts,
+  ...
+}: {
   home = {
     username = "${hosts.username}";
     homeDirectory = "/home/${hosts.username}";
@@ -7,7 +11,7 @@
       VISUAL = "nvim";
       PAGER = "less";
       BROWSER = "firefox";
-      TERMINAL = "kitty";
+      TERMINAL = homes.terminal;
       MANPAGER = "nvim +Man!";
     };
   };
