@@ -7,7 +7,7 @@
   hosts = {
     hostname = "stagea";
     username = "bosse";
-    shell = "fish";
+    shell = "zsh";
     locale = "en_US.UTF-8";
     timezone = "Asia/Singapore";
     theme = "tokyo-night-dark";
