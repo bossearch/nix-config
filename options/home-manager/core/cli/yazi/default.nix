@@ -3,7 +3,10 @@
 
   programs.yazi = {
     enable = true;
-    shellWrapperName = "";
+    # disable yazi.shellWrapperName
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
     initLua = ''
       require("full-border"):setup({
         type = ui.Border.ROUNDED,
