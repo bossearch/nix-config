@@ -1,18 +1,35 @@
 {
+  hosts,
   mylib,
   pkgs,
   ...
-}: {
+}: let
+  exec =
+    if hosts.shell == "fish"
+    then {
+      prefix = "fish -c";
+      suffx = "";
+    }
+    else if hosts.shell == "zsh"
+    then {
+      prefix = "zsh -c 'source /home/bosse/.config/zsh/functions/tmux &&";
+      suffix = "'";
+    }
+    else "";
+in {
   imports = mylib.autoimport ./.;
 
   programs.tmux = {
     enable = true;
     baseIndex = 1;
     escapeTime = 0;
-    terminal = "tmux-256color";
+    terminal = "tmux-256color"; #screen-256color dont work well with yazi
     mouse = true;
     keyMode = "vi";
     historyLimit = 10000;
+    focusEvents = true;
+    aggressiveResize = true;
+    secureSocket = true;
     extraConfig = ''
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf \; display-message -d 2000 "Tmux Reloaded"
@@ -26,20 +43,33 @@
 
       # Tmux sensible
       set -g status-interval 1
-      set -g status-keys vi
-      set -g focus-events on
+      set -g status-keys emacs
 
-      # bindkey
-      unbind Up
-      unbind Down
-      unbind Left
-      unbind Right
-      bind -r Left resize-pane -L    # Resize pane to the left
-      bind -r Down resize-pane -D    # Resize pane downward
-      bind -r Up resize-pane -U      # Resize pane upward
-      bind -r Right resize-pane -R   # Resize pane to the right
+      # prefix
+      unbind C-b
+      set -g prefix M-Space
+      bind-key Space last-window
+
+      # copy mode
+      unbind f
+      bind f copy-mode
+
+      # window navigation
       bind -n M-h previous-window
       bind -n M-l next-window
+      # bind -r C-p previous-window
+      # bind -r C-n next-window
+
+      # window control
+      unbind h
+      unbind j
+      unbind k
+      unbind l
+      unbind s
+      bind -r h resize-pane -L
+      bind -r j resize-pane -D
+      bind -r k resize-pane -U
+      bind -r l resize-pane -R
       bind -r s swap-pane -D
 
       # Split
@@ -48,33 +78,31 @@
       bind | split-window -h
       bind - split-window -v
 
-      # Selection mode
-      set-window-option -g mode-keys vi
+      # Selection mode (vi mode)
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \; send -X begin-selection
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
       # Fzf
-      unbind Space
+      unbind o
       unbind q
-      bind Space popup -E -B -w80 -h10 -xC -yC "fish -c pane"
-      bind Escape popup -E -B -w80 -h10 -xC -yC "fish -c panekill"
-      bind Tab popup -E -B -w80 -h10 -xC -yC "fish -c tm"
-      bind q popup -E -B -w80 -h10 -xC -yC "fish -c tmkill"
-      bind o popup -E -B -w80 -h10 -xC -yC "fish -c furl"
-      bind Enter popup -E -w100 -h50 -xC -yC
+      unbind w
+      bind o popup -E -B -w80 -h10 -xC -yC "${exec.prefix} furl${exec.suffix}"
+      bind w popup -E -B -w80 -h10 -xC -yC "${exec.prefix} pane${exec.suffix}"
+      bind q popup -E -B -w80 -h10 -xC -yC "${exec.prefix} tm${exec.suffix}"
 
+      # my plugin
       run-shell ~/.config/tmux/plugins/mythemux/mythemux.tmux
     '';
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.vim-tmux-navigator;
         extraConfig = ''
-          set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
-          set -g @vim_navigator_mapping_right "C-Right C-l"
+          set -g @vim_navigator_mapping_left "C-h"
+          set -g @vim_navigator_mapping_right "C-l"
           set -g @vim_navigator_mapping_up "C-k"
           set -g @vim_navigator_mapping_down "C-j"
-          set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
+          set -g @vim_navigator_mapping_prev ""
         '';
       }
       {
@@ -83,7 +111,7 @@
           resurrect_dir="$HOME/.local/state/tmux/resurrect"
           set -g @resurrect-dir $resurrect_dir
           set -g @resurrect-hook-post-save-all "sed -i -E 's|:[^[:space:]]*/nvim[[:space:]].*|:nvim|' \$resurrect_dir/last"
-          set -g @resurrect-processes '~nvim ~yazi ~lazygit'
+          set -g @resurrect-processes '~nvim ~yazi'
         '';
       }
     ];
