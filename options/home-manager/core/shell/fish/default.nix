@@ -18,12 +18,6 @@ in {
   programs.fish = {
     enable = hosts.shell == "fish";
     generateCompletions = false;
-    shellInit = ''
-      set -gx FZF_CTRL_T_OPTS "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
-      set -gx FZF_ALT_C_OPTS  "--preview='~/.config/fzf/extra/fzf-preview.sh {}'";
-      set -gx FZF_PREVIEW_FILE_CMD "bat --color=always --style=plain"
-      set -gx FZF_PREVIEW_DIR_CMD "eza -1 --tree --level=2 --all --icons=always --color=always"
-    '';
     interactiveShellInit = ''
       ${init-tmux}
       ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source

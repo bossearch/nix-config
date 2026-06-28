@@ -22,7 +22,7 @@ in {
 
   programs.fzf = {
     enable = true;
-    defaultCommand = "fd --type f --strip-cwd-prefix --hidden --follow --color=auto";
+    defaultCommand = "fd --hidden --strip-cwd-prefix --follow --exclude .git";
     defaultOptions = [
       "--layout=reverse"
       "--height=50%"
@@ -33,6 +33,19 @@ in {
       "--highlight-line"
       "--preview-window=right"
     ];
+    fileWidgetCommand = config.programs.fzf.defaultCommand;
+    fileWidgetOptions =
+      config.programs.fzf.defaultOptions
+      ++ [
+        "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
+      ];
+    changeDirWidgetCommand = "fd --type d --hidden --strip-cwd-prefix --follow --exclude .git";
+    changeDirWidgetOptions =
+      config.programs.fzf.defaultOptions
+      ++ [
+        "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
+      ];
+    historyWidgetOptions = ["--tiebreak=index" "--no-sort"];
     colors = {
       fg = base07;
       "fg+" = base05;

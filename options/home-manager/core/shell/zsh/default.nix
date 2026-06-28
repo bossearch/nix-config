@@ -52,23 +52,6 @@ in {
       nyaa = "setsid --fork transmission-gtk >/dev/null 2>&1 </dev/null; command nyaa $argv";
       z = "zoxide";
     };
-    envExtra = ''
-      export EDITOR="nvim"
-      export BAT_THEME="tokyonight_night"
-      export FZF_{CTRL_T,ALT_C}_OPTS="--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
-      export FZF_PREVIEW_FILE_CMD="bat --color=always --style=plain"
-      export FZF_PREVIEW_DIR_CMD="eza -1 --tree --level=2 --all --icons=always --color=always"
-      export KEYTIMEOUT=1
-      export AUTO_NOTIFY_THRESHOLD=5 # Set threshold to 30 seconds
-      export AUTO_NOTIFY_IGNORE=(
-        "nyaa"
-        "rb" "hm" "nix-shell"
-        "fh" "fkill" "fif" "fzf" "fsys" "fgrep"
-        "yy" "sy" "yazi"
-        "man" "nvim" "tmux" "tm" "fg"
-        "lazygit" "newsboat" "toipe" "neomutt"
-      )
-    '';
     completionInit = "autoload -U compinit && compinit -C";
     initContent = let
       zshrcBeforeCompInit = lib.mkOrder 500 ''
@@ -85,6 +68,17 @@ in {
 
         # Include hidden file
         setopt glob_dots
+
+        # fzf preview
+        _fzf_comprun() {
+          local command=$1
+          shift
+          case "$command" in
+            export|unset) fzf "$@" --preview='printenv {1}' ;;
+            ssh) fzf "$@" ;;
+            *) fzf "$@" --preview='~/.config/fzf/extra/fzf-preview.sh {}' ;;
+          esac
+        }
 
         # fzf-tab settings for preview and completion
         zstyle ':fzf-tab:*' use-fzf-default-opts yes
