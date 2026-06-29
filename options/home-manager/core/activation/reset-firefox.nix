@@ -10,7 +10,7 @@ pkgs.writeShellScript "reset-firefox" ''
   VERTICALTAB_ENABLE="${lib.boolToString homes.firefox.verticaltab.enable}"
   VERTICALTAB_POSITION="${homes.firefox.verticaltab.position}"
   VERTICALTAB_FILE="${config.home.homeDirectory}/.cache/${hosts.username}/verticaltab"
-  PREFS="${config.xdg.configHome}/mozilla/firefox/${hosts.username}/prefs.js"
+  PREFS="${config.programs.firefox.configPath}/${hosts.username}/prefs.js"
 
   if [[ ! -f "$VERTICALTAB_FILE" ]]; then
     echo "$VERTICALTAB_ENABLE" > "$VERTICALTAB_FILE"
