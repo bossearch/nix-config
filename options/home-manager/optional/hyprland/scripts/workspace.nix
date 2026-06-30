@@ -38,7 +38,7 @@ in {
             keyword decoration:active_opacity 1;\
             keyword decoration:inactive_opacity 1;\
             keyword decoration:rounding 0;\
-            keyword misc:vfr 0"
+            keyword debug:vfr 0"
           ${close}
           notify-send -e -a nosound -i state_running "Game Mode" "Activated"
         elif [[ $mode == "disable" ]]; then
