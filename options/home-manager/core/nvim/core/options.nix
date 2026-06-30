@@ -24,6 +24,7 @@
       cursorcolumn = false; # Highlight the screen column of the cursor
       cursorline = true; # Highlight the screen line of the cursor
       cursorlineopt = "number"; # cursorline opt
+      colorcolumn = "80,120";
       expandtab = true; # Expand <Tab> to spaces in Insert mode (local to buffer)
       foldlevel = 99; # Folds level when scrolling
       ignorecase = true; # When the search query is lower-case, match both lower and upper-case
