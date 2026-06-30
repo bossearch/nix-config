@@ -75,10 +75,14 @@ in {
         size = 12;
         builtin_box_drawing = true;
       };
+      selection = {
+        save_to_clipboard = true;
+      };
       keyboard.bindings = [
+        # best alacritty keymap ever !!!
         {
-          key = "Copy";
-          action = "Copy";
+          key = 133;
+          chars = (builtins.fromJSON "\"\\u001b[50~\"") + "\"+y";
         }
         {
           key = "Paste";
