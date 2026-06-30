@@ -7,7 +7,7 @@
       enable = true;
       settings = {
         enabled = true;
-        file_types = ["markdown" "Avante"];
+        file_types = ["markdown"];
         code = {
           sign = false;
         };
