@@ -59,7 +59,7 @@
         key = "<S-j>";
         action.__raw = ''
           function()
-            vim.diagnostic.goto_next({float=false})
+            vim.diagnostic.jump({count=1})
           end
         '';
         options = {
@@ -72,7 +72,7 @@
         key = "<S-k>";
         action.__raw = ''
           function()
-            vim.diagnostic.goto_prev({float=false})
+            vim.diagnostic.jump({count=-1})
           end
         '';
         options = {

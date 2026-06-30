@@ -8,9 +8,35 @@
 in {
   programs.nixvim = {
     diagnostic.settings = {
-      virtual_text = true;
+      virtual_text = {
+        spacing = 2;
+        # prefix = "❯";
+        prefix.__raw = ''
+          function(diagnostic)
+            local icons = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+            for d, icon in pairs(icons) do
+              if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+                return icon
+              end
+            end
+            return "●"
+          end
+        '';
+      };
       underline = false;
       float = false;
+      severity_sort = true;
+      signs.text.__raw = ''
+        {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+          [vim.diagnostic.severity.INFO] = " ",
+        }
+      '';
+    };
+    lsp = {
+      inlayHints.enable = false;
     };
     plugins.lsp =
       lang.lsp
@@ -21,19 +47,8 @@ in {
             event = ["BufReadPre" "BufNewFile"];
           };
         };
-        # Be aware that you also will need to properly configure your LSP server to
-        # provide the inlay hints.
-        inlayHints = false;
-        # uncomment this if you're not want lsp hl some word
-        # onAttach = ''
-        #   client.server_capabilities.documentHighlightProvider = false
-        # '';
-        luaConfig.post = ''
-          local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-          for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-          end
+        onAttach = ''
+          client.server_capabilities.documentHighlightProvider = true
         '';
       };
   };
