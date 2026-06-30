@@ -1,68 +1,54 @@
 let
-  buffer_score = 50;
-  copilot_score = 60;
-  dictionary_score = 30;
+  buffer_score = 60;
+  dictionary_score = 40;
   git_score = 90;
-  lsp_score = 70;
-  path_score = 80;
-  ripgrep_score = 40;
-  snippets_score = 95;
+  lsp_score = 90;
+  path_score = 70;
+  ripgrep_score = 50;
+  snippets_score = 80;
+  thesaurus_score = 20;
 in {
   default = [
     "buffer"
-    "cmdline"
-    # "copilot"
     "dictionary"
     # "git"
     "lsp"
     "path"
     "ripgrep"
     "snippets"
+    "thesaurus"
   ];
   providers = {
     buffer = {
-      name = "buffer";
+      name = "buff";
       module = "blink.cmp.sources.buffer";
       enabled = true;
       async = true;
       max_items = 4;
       min_keyword_length = 2;
       score_offset = buffer_score;
-    };
-    copilot = {
-      name = "copilot";
-      module = "blink-copilot";
-      enabled = false;
-      async = true;
-      min_keyword_length = 4;
-      score_offset = copilot_score;
       opts = {
-        max_completions = 2;
-        max_attempts = 4;
-        kind = "Copilot";
-        debounce = 750;
-        auto_refresh = {
-          backward = true;
-          forward = true;
-        };
+        get_bufnrs.__raw = ''
+          function()
+            return vim.tbl_filter(function(bufnr)
+              return vim.bo[bufnr].buftype == ""
+            end, vim.api.nvim_list_bufs())
+          end
+        '';
       };
     };
     dictionary = {
       name = "dict";
-      module = "blink-cmp-dictionary";
+      module = "blink-cmp-words.dictionary";
       enabled.__raw = ''
         function()
           return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
         end
       '';
-      async = true;
-      max_items = 4;
-      min_keyword_length = 6;
-      score_offset = dictionary_score;
       opts = {
-        dictionary_files.__raw = ''
-          { vim.fn.expand("~/.config/nvim/lua/lib/words.txt") }
-        '';
+        score_offset = dictionary_score;
+        dictionary_search_threshold = 3;
+        definition_pointers = ["!" "&" "^"];
       };
     };
     git = {
@@ -73,7 +59,6 @@ in {
           return vim.tbl_contains({ 'gitcommit' }, vim.bo.filetype)
         end
       '';
-      async = true;
       max_items = null;
       min_keyword_length = 1;
       score_offset = git_score;
@@ -108,12 +93,17 @@ in {
       ];
       opts = {
         label_trailing_slash = true;
-        show_hidden_files_by_default = false;
+        show_hidden_files_by_default = true;
         trailing_slash = false;
+        get_cwd.__raw = ''
+          function(_)
+            return vim.fn.getcwd()
+          end
+        '';
       };
     };
     ripgrep = {
-      name = "ripgrep";
+      name = "grep";
       module = "blink-ripgrep";
       enabled = true;
       async = true;
@@ -132,8 +122,9 @@ in {
         debug = false;
       };
     };
+    # TODO: refine this sections
     snippets = {
-      name = "snippets";
+      name = "snip";
       module = "blink.cmp.sources.snippets";
       enabled = true;
       async = false;
@@ -143,6 +134,21 @@ in {
       opts = {
         use_show_condition = true;
         show_autosnippets = true;
+      };
+    };
+    thesaurus = {
+      name = "thes";
+      module = "blink-cmp-words.thesaurus";
+      enabled.__raw = ''
+        function()
+          return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
+        end
+      '';
+      opts = {
+        definition_pointers = ["!" "&" "^"];
+        similarity_pointers = ["&" "^"];
+        similarity_depth = 2;
+        score_offset = thesaurus_score;
       };
     };
   };

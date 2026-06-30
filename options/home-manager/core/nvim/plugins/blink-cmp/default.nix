@@ -1,19 +1,19 @@
 {pkgs, ...}: {
   programs.nixvim = {
+    # packages for blink-cmp-words
     extraPackages = with pkgs; [
       wordnet
+      fzy
     ];
     plugins = {
-      blink-cmp-dictionary.enable = true;
+      blink-cmp-words.enable = true;
       blink-cmp-git.enable = true;
-      blink-cmp-spell.enable = true;
-      blink-copilot.enable = false;
       blink-ripgrep.enable = true;
       blink-cmp = {
         enable = true;
         lazyLoad = {
           settings = {
-            cmp = "BlinkCmp";
+            event = "InsertEnter";
           };
         };
         setupLspCapabilities = true;
