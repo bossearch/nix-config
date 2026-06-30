@@ -28,9 +28,7 @@
           "blink.cmp"
           "blink-cmp-words" # needed so blink-cmp-words can use wordnet & fzy
           "friendly-snippets" # needed for blink to access friendly-snippets
-          "fyler.nvim"
           "nvim-treesitter"
-          "outline.nvim"
         ];
       };
     };
