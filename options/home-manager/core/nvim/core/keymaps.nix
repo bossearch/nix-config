@@ -13,7 +13,7 @@
             local buf = vim.api.nvim_get_current_buf()
             local ft = vim.bo[buf].filetype
             local ignore_filetypes = {
-              "Fyler", "undotree", "Avante.*", "qf", "notify",
+              "undotree","qf", "notify",
               "terminal", "toggleterm", "checkhealth" , "lspinfo",
             }
             for _, pattern in ipairs(ignore_filetypes) do
@@ -37,7 +37,7 @@
             local buf = vim.api.nvim_get_current_buf()
             local ft = vim.bo[buf].filetype
             local ignore_filetypes = {
-              "Fyler", "undotree", "Avante.*", "qf", "notify",
+              "undotree","qf", "notify",
               "terminal", "toggleterm", "checkhealth" , "lspinfo",
             }
             for _, pattern in ipairs(ignore_filetypes) do

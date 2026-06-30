@@ -155,15 +155,11 @@
 
         -- smart buffer delete --
         util.smart_bdelete = function()
-          if vim.bo.filetype == "fyler" then
-            vim.cmd("TmuxNavigateRight")
-            return
-          end
-          if (vim.api.nvim_win_get_width(0) < (vim.o.columns - 37)) or
-            (vim.api.nvim_win_get_height(0) < (vim.o.lines - 1)) then
+          if (vim.api.nvim_win_get_width(0) < vim.o.columns) or
+            (vim.api.nvim_win_get_height(0) < (vim.o.lines - 2)) then
               vim.cmd("close")
           else
-            vim.cmd("bnext")
+            vim.cmd("b #")
             local alt_bufnr = tonumber(vim.fn.bufnr("#"))
             if alt_bufnr > 0 and vim.api.nvim_buf_is_valid(alt_bufnr) then
               vim.api.nvim_buf_delete(alt_bufnr, { force = false })

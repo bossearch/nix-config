@@ -25,6 +25,7 @@
       combinePlugins = {
         enable = true;
         standalonePlugins = [
+          "blink.cmp"
           "avante.nvim"
           "friendly-snippets" # needed for blink to access friendly-snippets
           "fyler.nvim"
