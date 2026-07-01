@@ -1,5 +1,4 @@
 {
-  imports = [./base16.nix];
   programs.nixvim.plugins.mini = {
     enable = true;
     lazyLoad = {
