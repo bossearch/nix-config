@@ -1,9 +1,9 @@
 {
-  autoread = false; # Auto-load session if no file is given
-  autowrite = false; # Auto-save session before exiting
+  autoread = false;
+  autowrite = false;
 
-  directory.__raw = ''vim.fn.stdpath ("state") .. "/session"''; # ~/.local/state/nvim/session
-  file = ""; # Save session as 'Session.vim' inside the directory
+  directory.__raw = ''vim.fn.stdpath ("state") .. "/session"'';
+  file = "";
 
   force = {
     read = true;
@@ -13,31 +13,21 @@
 
   hooks = {
     pre = {
-      read = null;
-      write.__raw = ''
-        function ()
-          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.api.nvim_buf_get_name(buf):match("^fyler://") then
-              vim.api.nvim_buf_delete(buf, { force = true })
-            end
-          end
-        end
-      '';
       delete = null;
+      read = null;
+      write = null;
     };
     post = {
-      read.__raw = ''
-        function ()
-          vim.notify("Session restored!")
-        end
-      '';
-      write.__raw = ''
-        function()
-          local file_win = vim.api.nvim_get_current_win()
-          require("fyler").open({ dir = vim.fn.getcwd(), kind="split_left" })
-        end
-      '';
       delete = null;
+      read.__raw = ''
+        function(data)
+          vim.schedule(function()
+            vim.notify(data.name .. " restored")
+          end)
+        end,
+
+      '';
+      write = null;
     };
   };
 
