@@ -11,7 +11,7 @@
         },
         show_multiple_lines = false,
         max_filename_length = 0,
-        filename_truncate_prefix = '[...]',
+        filename_truncate_prefix = '[…]',
       })
     '';
   };

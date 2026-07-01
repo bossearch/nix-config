@@ -8,13 +8,10 @@
       settings = {
         enabled = true;
         file_types = ["markdown"];
-        code = {
-          sign = false;
-        };
         heading = {
-          sign = false;
           icons = ["󰎤 " "󰎧 " "󰎪 " "󰎭 " "󰎱 " "󰎳 "];
         };
+        sign.enabled = false;
       };
     };
   };

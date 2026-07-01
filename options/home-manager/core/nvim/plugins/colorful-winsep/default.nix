@@ -1,14 +1,13 @@
 {
   programs.nixvim.plugins.colorful-winsep = {
     enable = true;
+    lazyLoad = {
+      settings = {
+        event = ["BufReadPre" "BufNewFile"];
+      };
+    };
     settings = {
-      excluded_ft = [
-        "packer"
-        "TelescopePrompt"
-        "mason"
-        "CompetiTest"
-        "NvimTree"
-      ];
+      excluded_ft = [];
       border = [
         "─"
         "│"

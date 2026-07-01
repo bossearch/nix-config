@@ -7,13 +7,7 @@
       };
     };
     settings = {
-      render = "virtual"; #'background'|'foreground'|'virtual'
-      virtual_symbol = " ";
-      virtual_symbol_position = "eow";
-      virtual_symbol_prefix = " ";
-      virtual_symbol_suffix.__raw = ''
-        ''\''
-      '';
+      render = "background";
       enable_hex = true;
       enable_short_hex = true;
       enable_rgb = true;
@@ -25,6 +19,8 @@
       enable_var_usage = true;
       enable_named_colors = true;
       enable_tailwind = true;
+      exclude_filetypes = null;
+      exclude_buftypes = null;
     };
   };
 }
