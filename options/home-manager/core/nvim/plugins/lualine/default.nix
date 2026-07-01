@@ -9,6 +9,7 @@
     };
     luaConfig.pre = ''
       local p = _G.MiniBase16.config.palette
+      -- ${pkgs.vimPlugins.lualine-nvim}
     '';
     settings = {
       options = {
@@ -21,25 +22,15 @@
           right = "";
         };
         component_separators = {
-          left = "│";
-          right = "│";
+          left = "";
+          right = "";
         };
       };
       sections = {
         lualine_a = ["mode"];
-        lualine_b.__raw = ''
-          {
-            "branch", {require("lib.util").get_cwd, icon = "󰝰"},
-          }
-        '';
+        lualine_b = ["fileformat" "filesize" "encoding"];
         lualine_c.__raw = ''
           {
-            {
-              "buffers",
-              show_filename_only = false,
-              hide_filename_extension = false,
-              max_length = vim.o.columns * 2 / 3,
-            },
             {
               "diff",
               source = function()
@@ -52,35 +43,8 @@
                   }
                 end
               end,
+              separator = '│',
             },
-          }
-        '';
-        lualine_x.__raw = ''
-          {
-            {
-              require("noice").api.status.command.get,
-              cond = require("noice").api.status.command.has,
-              color = { fg = p.base09 },
-            },
-            {
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = p.base0E },
-            },
-            -- {
-            --   function()
-            --     return " " .. require("dap").status()
-            --   end,
-            --   cond = function()
-            --     return package.loaded["dap"] and require("dap").status() ~= ""
-            --   end,
-            --   color = { fg = palette.base08 },
-            -- },
-          }
-        '';
-        lualine_y = ["%l/%L:%c:%p%%" "filesize" "encoding"];
-        lualine_z.__raw = ''
-          {
             {
               "diagnostics",
               sources = { "nvim_diagnostic" },
@@ -90,11 +54,52 @@
                 info = " ",
                 hint = "󰠠 ",
               },
-              -- color = "lualine_c_normal",
-              colored = false,
+              colored = true,
               update_in_insert = false,
+              separator = '│',
             },
-            { require("lib.util").lsp_status, icon = "" }
+            -- {
+            --   function()
+            --     return " " .. require("dap").status()
+            --   end,
+            --   cond = function()
+            --     return package.loaded["dap"] and require("dap").status() ~= ""
+            --   end,
+            --   color = { fg = palette.base08 },
+            --   separator = '│',
+            -- },
+          }
+        '';
+        lualine_x.__raw = ''
+          {
+            {
+              require("noice").api.status.command.get,
+              cond = require("noice").api.status.command.has,
+              color = { fg = p.base09 },
+              separator = '│',
+            },
+            {
+              require("noice").api.status.mode.get,
+              cond = require("noice").api.status.mode.has,
+              color = { fg = p.base0E },
+              separator = '│',
+            },
+          }
+        '';
+        lualine_y = ["%l/%L:%c:%p%%"];
+        lualine_z.__raw = ''
+          {
+            {
+              'lsp_status',
+              icon = '',
+              symbols = {
+                spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                done = '✓',
+                separator = ' ',
+              },
+              ignore_lsp = {},
+              show_name = true,
+            }
           }
         '';
       };
