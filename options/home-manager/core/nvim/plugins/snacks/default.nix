@@ -1,6 +1,4 @@
 {
-  imports = [./toggle.nix];
-
   programs.nixvim.plugins.snacks = {
     enable = true;
     lazyLoad = {
@@ -24,5 +22,6 @@
       words = {enabled = true;};
       zen = {enabled = true;};
     };
+    luaConfig.post = import ./toggle.nix;
   };
 }
