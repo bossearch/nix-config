@@ -47,6 +47,9 @@ in {
         mini-base16 = addPatches prev.vimPlugins.mini-base16 [
           ./mini-base16.diff
         ];
+        bufferline-nvim = addPatches prev.vimPlugins.bufferline-nvim [
+          ./bufferline-ui.diff
+        ];
       };
   };
 }

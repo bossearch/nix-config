@@ -1,0 +1,66 @@
+diff --git a/lua/bufferline/ui.lua b/lua/bufferline/ui.lua
+index 440b203..8fc766b 100644
+--- a/lua/bufferline/ui.lua
++++ b/lua/bufferline/ui.lua
+@@ -320,15 +320,15 @@ local function add_suffix(context)
+   local element = context.tab
+   local hl = context.current_highlights
+   local symbol = config.options.modified_icon
+-  -- If the buffer is modified add an icon, if it isn't pad
+-  -- the buffer so it doesn't "jump" when it becomes modified i.e. due
+-  -- to the sudden addition of a new character
+-  local modified = {
+-    text = element.modified and symbol or string.rep(padding, strwidth(symbol)),
+-    highlight = element.modified and hl.modified or nil,
+-  }
++
++  if element.modified then return {
++    text = symbol,
++    highlight = hl.modified,
++  } end
++
+   local close = get_close_icon(element.id, context)
+-  return not element.modified and close or modified
++  if close then return close end
++  return nil
+ end
+
+ --- TODO: We increment the buffer length by the separator although the final
+@@ -644,6 +644,18 @@ end
+ --- @param tab_indicators bufferline.Segment[]
+ --- @return BufferlineTablineData
+ function M.tabline(items, tab_indicators)
++  local ignored_buftype = {
++    "quickfix",
++    "nofile",
++    "terminal",
++    "prompt",
++    "acwrite",
++  }
++  local current_buftype = vim.bo.buftype
++  if vim.tbl_contains(ignored_buftype, current_buftype) then
++    if _G._bufferline_last_render then return _G._bufferline_last_render end
++  end
++
+   local options = config.options
+   local hl = config.highlights
+   local right_align = { { highlight = hl.fill.hl_group, text = "%=" } }
+@@ -701,13 +713,16 @@ function M.tabline(items, tab_indicators)
+   local right_offset_size = offsets.right_size + statusline_str_width(right_area)
+   local right_marker_size = right_marker and get_component_size(right_marker) or 0
+
+-  return {
++  local render_output = {
+     str = tabline,
+     segments = segments,
+     visible_components = visible_components,
+     right_offset_size = right_offset_size + right_marker_size,
+     left_offset_size = left_offset_size + left_marker_size,
+   }
++
++  _G._bufferline_last_render = render_output
++  return render_output
+ end
+
+ M.get_component_size = get_component_size
+
