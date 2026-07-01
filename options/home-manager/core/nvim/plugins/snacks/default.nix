@@ -5,7 +5,7 @@
     enable = true;
     lazyLoad = {
       settings = {
-        lazy = false;
+        event = "User startuptime-loaded";
       };
     };
     settings = {

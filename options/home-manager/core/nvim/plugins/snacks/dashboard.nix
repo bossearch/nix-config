@@ -72,7 +72,7 @@
           { require("lib.util").get_tips(), hl = "header"},
           {"\n\n  ", hl = "desc"},
           {"Nixvim started in ", hl = "footer"},
-          { require("lib.util").get_nvim_startup_time(), hl = "key"},
+          { require('lib.util')._startup_time, hl = "key" },
         }
       '';
     }
