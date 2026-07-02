@@ -1,36 +1,30 @@
-{
-  inputs,
-  mylib,
-  pkgs,
-  ...
-}: {
-  imports =
-    [
-      inputs.nixvim.homeModules.nixvim
-    ]
-    ++ (mylib.autoimport ./.);
+{mylib, ...}: {
+  imports = mylib.autoimport ./.;
 
-  programs.nixvim = {
-    enable = true;
-    nixpkgs.pkgs = pkgs;
-    performance = {
-      byteCompileLua = {
-        enable = true;
-        configs = true;
-        initLua = true;
-        luaLib = true;
-        nvimRuntime = true;
-        plugins = true;
-      };
-      combinePlugins = {
-        enable = true;
-        standalonePlugins = [
-          "blink.cmp"
-          "blink-cmp-words" # needed so blink-cmp-words can use wordnet & fzy
-          "friendly-snippets" # needed for blink to access friendly-snippets
-          "nvim-treesitter"
-        ];
-      };
-    };
+  xdg.desktopEntries.nvim = {
+    type = "Application";
+    name = "Neovim";
+    genericName = "Text Editor";
+    icon = "nvim";
+    exec = "footclient -T nvim nvim";
+    comment = "Edit text files";
+    categories = ["Utility" "TextEditor"];
+    mimeType = [
+      "text/english"
+      "text/plain"
+      "text/x-makefile"
+      "text/x-c++hdr"
+      "text/x-c++src"
+      "text/x-chdr"
+      "text/x-csrc"
+      "text/x-java"
+      "text/x-moc"
+      "text/x-pascal"
+      "text/x-tcl"
+      "text/x-tex"
+      "application/x-shellscript"
+      "text/x-c"
+      "text/x-c++"
+    ];
   };
 }
