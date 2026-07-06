@@ -39,6 +39,12 @@ in {
             "kitty"
           ];
         };
+        neovim = mkOption {
+          type = types.enum [
+            "nix"
+            "lua"
+          ];
+        };
         notify = mkOption {
           type = types.enum [
             "dunst"

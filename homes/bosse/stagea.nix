@@ -9,6 +9,7 @@
     icon = "Papirus-Dark";
     qtstyle = "breeze";
     terminal = "alacritty";
+    neovim = "lua";
     notify = "swaync";
     monitor = [
       {
