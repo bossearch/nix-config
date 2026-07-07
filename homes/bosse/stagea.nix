@@ -31,6 +31,7 @@
     game = {
       lsfg = false;
       lutris = false;
+      pcsx2 = false;
       prismlauncher = false;
       retroarch = false;
     };

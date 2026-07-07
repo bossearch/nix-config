@@ -137,6 +137,7 @@ pkgs.writeShellScript "drun-scan" ''
     "io.github.giantpinkrobots.varia:varia"
     "io.github.mpobaschnig.Vaults:vaults"
     "net.lutris.Lutris:lutris"
+    "PCSX2:pcsx2"
     "org.cryptomator.Cryptomator:cryptomator"
     "org.gnome.Nautilus:nautilus"
     "org.gnome.baobab:baobab"

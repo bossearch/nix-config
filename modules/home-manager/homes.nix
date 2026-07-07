@@ -93,6 +93,10 @@ in {
                 default = false;
                 type = types.bool;
               };
+              pcsx2 = mkOption {
+                default = false;
+                type = types.bool;
+              };
               prismlauncher = mkOption {
                 default = false;
                 type = types.bool;
