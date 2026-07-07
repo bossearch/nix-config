@@ -215,14 +215,23 @@ in {
       game = {
         lsfg = lib.mkForce false; #*
         lutris = lib.mkForce false; #*
+        pcsx2 = lib.mkForce false; #*
         prismlauncher = lib.mkForce false;
+        retroarch = lib.mkForce false;
       };
+      ai = {
+        opencode = lib.mkForce false; #*
+        ollama = lib.mkForce false; #*
+      };
+      gimp = lib.mkForce false; #*
       gowall = lib.mkForce false; #*
       kdeconnect = lib.mkForce false;
+      kdenlive = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
       notify = lib.mkForce "none";
       nyaa = lib.mkForce false;
+      obs = lib.mkForce false;
       obsidian = lib.mkForce false;
       spicetify = lib.mkForce false;
       terminal = lib.mkForce "none";
