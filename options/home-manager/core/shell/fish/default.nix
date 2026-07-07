@@ -78,6 +78,7 @@ in {
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
       nyaa = "setsid --fork transmission-gtk >/dev/null 2>&1 </dev/null; command nyaa $argv";
       z = "zoxide";
+      lg = "lazygit";
     };
     functions = import ./.functions;
   };

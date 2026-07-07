@@ -28,5 +28,8 @@ in {
         };
       };
     };
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
   };
 }

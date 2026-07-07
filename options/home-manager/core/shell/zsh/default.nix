@@ -19,7 +19,7 @@ in {
 
   programs.zsh = {
     enable = hosts.shell == "zsh";
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     history = {
       append = true;
       expireDuplicatesFirst = true;
@@ -51,6 +51,7 @@ in {
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
       nyaa = "setsid --fork transmission-gtk >/dev/null 2>&1 </dev/null; command nyaa $argv";
       z = "zoxide";
+      lg = "lazygit";
     };
     completionInit = "autoload -U compinit && compinit -C";
     initContent = let
