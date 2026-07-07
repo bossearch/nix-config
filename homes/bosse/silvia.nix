@@ -39,6 +39,7 @@
     gimp = true;
     gowall = true;
     kdeconnect = false;
+    kdenlive = true;
     llm = true;
     mpv = true;
     nautilus = true;

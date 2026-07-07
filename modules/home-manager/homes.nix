@@ -148,6 +148,10 @@ in {
           default = false;
           type = types.bool;
         };
+        kdenlive = mkOption {
+          default = false;
+          type = types.bool;
+        };
         mpv = mkOption {
           default = false;
           type = types.bool;

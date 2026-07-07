@@ -141,6 +141,7 @@ pkgs.writeShellScript "drun-scan" ''
     "org.gnome.Nautilus:nautilus"
     "org.gnome.baobab:baobab"
     "org.kde.kdeconnect.app:kdeconnect"
+    "org.kde.kdenlive:kdenlive"
     "org.prismlauncher.PrismLauncher:prismlauncher"
     "org.pulseaudio.pavucontrol:pavucontrol"
     "org.shotcut.Shotcut:shotcut"
