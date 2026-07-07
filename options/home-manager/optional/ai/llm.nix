@@ -4,7 +4,7 @@
   ...
 }: {
   services.ollama = {
-    enable = homes.llm;
+    enable = homes.ai.ollama;
     package = pkgs.ollama-rocm;
     acceleration = "rocm";
     environmentVariables = {

@@ -35,13 +35,16 @@
       prismlauncher = true;
       retroarch = true;
     };
+    ai = {
+      opencode = true;
+      ollama = false;
+    };
     copas = true;
     feh = true;
     gimp = true;
     gowall = true;
     kdeconnect = false;
     kdenlive = true;
-    llm = true;
     mpv = true;
     nautilus = true;
     nchat = false;

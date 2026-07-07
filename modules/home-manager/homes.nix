@@ -108,9 +108,20 @@ in {
             };
           };
         };
-        llm = mkOption {
-          default = false;
-          type = types.bool;
+        ai = mkOption {
+          default = {};
+          type = types.submodule {
+            options = {
+              opencode = mkOption {
+                default = false;
+                type = types.bool;
+              };
+              ollama = mkOption {
+                default = false;
+                type = types.bool;
+              };
+            };
+          };
         };
         nchat = mkOption {
           default = false;
