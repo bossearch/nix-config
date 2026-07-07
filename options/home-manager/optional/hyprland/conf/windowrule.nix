@@ -107,6 +107,9 @@ in {
     #kdeconnect
     windowrule = workspace ${toString utilities}, no_screen_share on, match:class (org.kde.kdeconnect.*)
 
+    #kdenlive
+    windowrule = workspace ${toString editing}, match:class (org.kde.kdenlive)
+
     #kitty
     windowrule = workspace ${toString coding}, match:class (kitty)
 
@@ -146,6 +149,9 @@ in {
     #pavucontrol
     windowrule = float on, center 1, size ${size."1/2"}, match:class (org.pulseaudio.pavucontrol)
 
+    #pcsx2
+    windowrule = workspace ${toString games}, fullscreen on, immediate on, match:title (PCSX2.*)
+
     #prismlauncher
     windowrule = workspace ${toString game_launcher}, match:class (org.prismlauncher.PrismLauncher)
     windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (New Instance.*)
@@ -160,7 +166,7 @@ in {
     windowrule = workspace ${toString games}, fullscreen on, immediate on, match:class (com.libretro.RetroArch)
 
     #spotify
-    windowrule = workspace ${toString music}, match:class (spotify)
+    windowrule = workspace ${toString music}, match:class (Spotify)
 
     #steam
     windowrule = workspace ${toString game_launcher}, match:class (steam)
