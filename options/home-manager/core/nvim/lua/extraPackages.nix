@@ -46,6 +46,10 @@ in {
       ktlint
       # qml
       kdePackages.qtdeclarative
+      # html/css/json/eslint
+      vscode-langservers-extracted-latest
+      htmlhint
+      stylelint
     ];
     extraWrapperArgs = [
       "--set"
