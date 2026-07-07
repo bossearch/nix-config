@@ -3,16 +3,20 @@
   "class<.virt-manager-wrapped>" = "󰢔";
   "class<Tor Browser>" = "";
   "class<alacritty>" = "";
+  "class<com.libretro.RetroArch>" = "󰺵";
   "class<firefox>" = "";
   "class<foot>" = "";
   "class<gcr-prompter>" = "";
+  "class<gimp>" = "󱇣";
   "class<kitty>" = "";
   "class<localsend_app>" = "󰈪";
   "class<mpv>" = "";
   "class<net.lutris.lutris>" = "";
+  "class<obs>" = "󰐹";
   "class<obsidian>" = "";
   "class<org.gnome.nautilus>" = "";
   "class<org.kde.kdeconnect.app>" = "";
+  "class<org.kde.kdenlive>" = "";
   "class<org.prismlauncher.PrismLauncher>" = "󰍳";
   "class<org.pulseaudio.pavucontrol>" = "";
   "class<spotify>" = "";
@@ -24,8 +28,10 @@
   "title<btop>" = "";
   "title<crkbd>" = "󰌌";
   "title<fastfetch>" = "󰋼";
-  "title<fzf>" = "󱁴";
-  "title<mousefzf>" = "󱁴";
+  "title<nvim>" = "";
+  "title<smallfzf>" = "󱁴";
+  "title<bigfzf>" = "󱁴";
   "title<newsboat>" = "";
   "title<nmtui>" = "󰀂";
+  "title<PCSX2.*>" = "";
 }

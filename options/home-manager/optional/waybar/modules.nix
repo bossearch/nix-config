@@ -158,7 +158,7 @@ in {
         "on-scroll-down" = "hyprctl dispatch workspace e-1";
         "on-scroll-up" = "hyprctl dispatch workspace e+1";
         "show-special" = false;
-        "window-rewrite-default" = "";
+        "window-rewrite-default" = "󰖺";
         "window-rewrite" = import ./.rewrite.nix;
       };
 
