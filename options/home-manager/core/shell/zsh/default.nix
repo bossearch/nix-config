@@ -45,7 +45,6 @@ in {
       cp = "cp -i";
       c = "clear";
       cat = "bat --style=plain";
-      ".." = "cd ..";
       bridge-disable = "nmcli con down br0";
       bridge-enable = "nmcli con up br0";
       gh-create = "gh repo create --private --source=. --remote=origin && git push -u --all && gh browse";
@@ -115,6 +114,7 @@ in {
 
         # Source additional fzf files
         zsh-defer source ~/.config/zsh/functions/cheat
+        zsh-defer source ~/.config/zsh/functions/expand
         zsh-defer source ~/.config/zsh/functions/fatcat
         zsh-defer source ~/.config/zsh/functions/notify
         zsh-defer source ~/.config/zsh/functions/fzf

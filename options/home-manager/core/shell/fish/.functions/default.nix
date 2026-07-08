@@ -4,7 +4,6 @@ let
     (acc: file: acc // (import file))
     {}
     [
-      ./bd.nix
       # ./error.nix
       ./expand.nix
       ./fatcat.nix
