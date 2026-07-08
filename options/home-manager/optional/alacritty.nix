@@ -62,7 +62,7 @@ in {
         };
       };
       cursor.style = "block";
-      env.TERM = "xterm-256color";
+      env.TERM = "alacritty";
       font = {
         normal.family = "${homes.nerdfont} Nerd Font";
         bold.family = "${homes.nerdfont} Nerd Font";
