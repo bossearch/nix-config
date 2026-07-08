@@ -23,7 +23,7 @@ in {
     enable = true;
     baseIndex = 1;
     escapeTime = 0;
-    terminal = "tmux-256color"; #screen-256color dont work well with yazi
+    terminal = "tmux-256color";
     mouse = true;
     keyMode = "vi";
     historyLimit = 10000;
@@ -40,6 +40,10 @@ in {
       set -g allow-passthrough on
       set-option -g status-position top
       set-option -g renumber-windows on
+
+      # show undercurl inside tmux
+      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
+      set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
 
       # Tmux sensible
       set -g status-interval 1
@@ -60,7 +64,7 @@ in {
       # bind -r C-p previous-window
       # bind -r C-n next-window
 
-      # window control
+      # pane control
       unbind h
       unbind j
       unbind k
