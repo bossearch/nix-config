@@ -25,13 +25,10 @@ in {
     jq
     killall
     mediainfo
-    moreutils
     poppler
     ripgrep
     seniorpw
     ssh-to-age
-    taskwarrior3
-    toipe
     unzip
     wget
   ];
