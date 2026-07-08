@@ -33,6 +33,7 @@
         "application/xhtml+xml" = firefox;
         "application/vnd.mozilla.xul+xml" = firefox;
         "application/xml" = firefox;
+        "text/html" = firefox;
 
         # MPV
         "application/x-shorten" = mpv;
@@ -93,18 +94,20 @@
 
         # Neovim
         "application/x-shellscript" = nvim;
-        "text/x-csrc" = nvim;
-        "text/html" = nvim;
-        "text/tcl" = nvim;
-        "text/x-c++src" = nvim;
-        "text/x-tex" = nvim;
-        "text/x-pascal" = nvim;
-        "text/x-java" = nvim;
-        "text/x-chdr" = nvim;
-        "text/x-moc" = nvim;
-        "text/x-makefile" = nvim;
-        "text/x-c++hdr" = nvim;
+        "text/english" = nvim;
         "text/plain" = nvim;
+        "text/x-c" = nvim;
+        "text/x-c++" = nvim;
+        "text/x-c++hdr" = nvim;
+        "text/x-c++src" = nvim;
+        "text/x-chdr" = nvim;
+        "text/x-csrc" = nvim;
+        "text/x-java" = nvim;
+        "text/x-makefile" = nvim;
+        "text/x-moc" = nvim;
+        "text/x-pascal" = nvim;
+        "text/x-tcl" = nvim;
+        "text/x-tex" = nvim;
 
         # Nautilus
         "inode/directory" = nautilus;
