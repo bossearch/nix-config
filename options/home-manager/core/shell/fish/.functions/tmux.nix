@@ -3,11 +3,11 @@
     set -l choice (tmux list-session | fzf \
         --prompt="session ❯ " \
         --multi \
-        --bind "j:down,k:up,x:execute(for sid in {+1}; do tmux kill-session -t \$sid; done)+reload(tmux list-sessions)" \
+        --bind "j:down,k:up,x:execute(for sid in {+1}; set -l clean_sid (string split -m 1 : \$sid)[1]; tmux kill-session -t \$clean_sid; end)+abort"
     )
     or return
 
-    set -l target_session (string split ' ' -- $choice[1])[1]
+    set -l target_session (string split -m 1 : -- $choice[1])[1]
     if test -n "$target_session"
         tmux switch-client -t "$target_session"
     end
@@ -24,7 +24,7 @@
         --with-nth=2.. \
         --prompt="pane ❯ " \
         --multi \
-        --bind "j:down,k:up,x:execute(for pid in {+1}; do tmux kill-pane -t \$pid; done)+reload<tmux list-panes -s -F '$fmt'>" \
+        --bind "j:down,k:up,x:execute(for pid in {+1}; tmux kill-pane -t \$pid; end)+abort" \
     )
     or return
 
