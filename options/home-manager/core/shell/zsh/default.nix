@@ -115,6 +115,7 @@ in {
 
         # Source additional fzf files
         zsh-defer source ~/.config/zsh/functions/cheat
+        zsh-defer source ~/.config/zsh/functions/fatcat
         zsh-defer source ~/.config/zsh/functions/notify
         zsh-defer source ~/.config/zsh/functions/fzf
         zsh-defer source ~/.config/zsh/functions/tmux

@@ -7,6 +7,7 @@ let
       ./bd.nix
       # ./error.nix
       ./expand.nix
+      ./fatcat.nix
       ./fzf.nix
       ./greeting.nix
       ./ignore_history.nix
