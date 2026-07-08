@@ -76,6 +76,17 @@ in {
       bind -r l resize-pane -R
       bind -r s swap-pane -D
 
+      # pane navigation
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?\.?(view|n?vim?x?)(-wrapped)?(diff)?$'"
+      bind-key -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+      bind-key -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+      bind-key -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+      bind-key -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
+      bind-key -T copy-mode-vi C-h select-pane -L
+      bind-key -T copy-mode-vi C-j select-pane -D
+      bind-key -T copy-mode-vi C-k select-pane -U
+      bind-key -T copy-mode-vi C-l select-pane -R
+
       # Split
       unbind %
       unbind '"'
@@ -99,16 +110,6 @@ in {
       run-shell ~/.config/tmux/plugins/mythemux/mythemux.tmux
     '';
     plugins = with pkgs; [
-      {
-        plugin = tmuxPlugins.vim-tmux-navigator;
-        extraConfig = ''
-          set -g @vim_navigator_mapping_left "C-h"
-          set -g @vim_navigator_mapping_right "C-l"
-          set -g @vim_navigator_mapping_up "C-k"
-          set -g @vim_navigator_mapping_down "C-j"
-          set -g @vim_navigator_mapping_prev ""
-        '';
-      }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
