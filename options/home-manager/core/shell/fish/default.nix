@@ -1,4 +1,5 @@
 {
+  config,
   homes,
   hosts,
   pkgs,
@@ -34,6 +35,7 @@ in {
       bind '$' __fish_expand_args
       bind \cz 'jobs -q; and fg >/dev/null 2>&1; commandline -f repaint'
 
+      set -gx AGE_KEY_FILE "${config.sops.age.keyFile}"
       set -gx fish_color_autosuggestion      brblack
       set -gx fish_color_cancel              -r
       set -gx fish_color_command             green

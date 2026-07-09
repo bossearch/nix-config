@@ -120,6 +120,8 @@ in {
         zsh-defer source ~/.config/zsh/functions/fzf
         zsh-defer source ~/.config/zsh/functions/tmux
         zsh-defer source ~/.config/zsh/functions/yazi
+
+        export AGE_KEY_FILE="${config.sops.age.keyFile}"
       '';
     in
       lib.mkMerge [zshrcBeforeCompInit zshrcAfterCompInit];
