@@ -6,8 +6,8 @@
   refresh-on-startup yes
   prepopulate-query-feeds yes
 
-  ignore-mode "display"
-  ignore-article "*" "age > 7"
+  ignore-mode "download"
+  ignore-article "*" "age > 182"
   ignore-article "https://reddit.com/r/unixporn.rss" \
     "title !# \"[OC]\" and \
     title !# \"[Hyprland]\" and \
