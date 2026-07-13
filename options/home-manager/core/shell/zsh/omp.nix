@@ -31,6 +31,8 @@
                 revert_icon = "reverting ";
                 cherry_pick_icon = "cherry picking ";
                 commit_icon = "@";
+                no_commit_icon = "empty ";
+                tag_icon = "tag ";
                 fetch_status = true;
               };
               style = "plain";
