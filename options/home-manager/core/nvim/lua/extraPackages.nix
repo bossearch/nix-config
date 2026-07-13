@@ -13,6 +13,9 @@
     dontNpmBuild = true;
     meta.mainProgram = "markdown-toc";
   };
+  deltaNeogitWrapper = pkgs.writeShellScriptBin "delta-neogit" ''
+    ${pkgs.delta}/bin/delta "$@" | ${pkgs.gnused}/bin/sed '1{/^$/d;}'
+  '';
 in {
   programs.neovim = {
     extraPackages = with pkgs; [
@@ -21,6 +24,7 @@ in {
       gnumake
       tree-sitter
       lsof
+      deltaNeogitWrapper
       # lua
       lua-language-server
       stylua
