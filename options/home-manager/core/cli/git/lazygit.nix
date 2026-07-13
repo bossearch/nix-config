@@ -27,6 +27,9 @@ in {
           defaultFgColor = ["${base07}"];
         };
       };
+      git.pagers = [
+        {pager = "delta --paging=never";}
+      ];
     };
     enableBashIntegration = false;
     enableFishIntegration = false;
