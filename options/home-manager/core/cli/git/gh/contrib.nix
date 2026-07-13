@@ -7,7 +7,6 @@
     executable = true;
     text = ''
       #!/usr/bin/env bash
-
       set -euo pipefail
 
       gh api graphql -f query='{
