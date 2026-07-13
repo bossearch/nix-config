@@ -9,13 +9,13 @@
 
       # List of commands to exclude
       set -l exclude_cmds \
-          nyaa lg \
+          nyaa \
           rb hm nix-shell \
           fkill fzf fsys fgrep \
           yy sy yazi \
           v vi vim nvim \
           man tmux tm fg \
-          lazygit newsboat
+          git lazygit lg newsboat
 
       # Exit code and duration
       set -l exit_code $status

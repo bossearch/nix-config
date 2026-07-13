@@ -39,7 +39,7 @@
               "fkill" "fzf" "fsys" "fgrep"
               "yy" "sy" "yazi"
               "man" "tmux" "fg"
-              "lazygit" "lg"
+              "git" "lazygit" "lg"
               "newsboat"
               "v" "vi" "vim" "nvim"
           )
