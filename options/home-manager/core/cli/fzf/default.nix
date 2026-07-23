@@ -32,6 +32,7 @@ in {
       "--prompt='❯ '"
       "--highlight-line"
       "--preview-window=right"
+      "--bind 'ctrl-f:preview-half-page-down,ctrl-b:preview-half-page-up'"
     ];
     fileWidgetCommand = config.programs.fzf.defaultCommand;
     fileWidgetOptions =
