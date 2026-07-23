@@ -37,7 +37,7 @@ in {
     options = [
       "--cmd cd"
     ];
-    enableBashIntegration = shell == "bash";
+    enableBashIntegration = true;
     enableFishIntegration = shell == "fish";
     enableZshIntegration = shell == "zsh";
   };

@@ -68,7 +68,7 @@ in {
       preview-border = base09;
       preview-scrollbar = base09;
     };
-    enableBashIntegration = shell == "bash";
+    enableBashIntegration = true;
     enableFishIntegration = shell == "fish";
     enableZshIntegration = shell == "zsh";
   };
