@@ -13,17 +13,21 @@ in {
   wayland.windowManager.hyprland = {
     enable = enabled;
     systemd.enable = true;
-    configType = "hyprlang";
+    configType = "lua";
     settings = {
       monitor =
-        map (
-          m: let
-            vrr =
-              if m.vrr
-              then ",vrr, 1"
-              else ",vrr, 0";
-          in "${m.name}, ${toString m.width}x${toString m.height}@${toString m.refreshRate}, 0x0, 1 ${vrr}"
-        )
+        map (m: let
+          vrr =
+            if m.vrr
+            then 1
+            else 0;
+        in {
+          output = "${m.name}";
+          mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+          position = "0x0";
+          scale = 1;
+          vrr = vrr;
+        })
         homes.monitor;
     };
   };

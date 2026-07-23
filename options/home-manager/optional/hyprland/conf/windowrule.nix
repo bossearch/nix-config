@@ -14,202 +14,579 @@
   size = {
     "3/4" =
       if mymonitor
-      then "1920 1080"
-      else "1440 810";
+      then "{ 1920, 1080 }"
+      else "{ 1440, 810 }";
     "1/2" =
       if mymonitor
-      then "1280 720"
-      else "960 540";
+      then "{ 1280, 720 }"
+      else "{ 960, 540 }";
     "1/4" =
       if mymonitor
-      then "540 360"
-      else "480 270";
+      then "{ 640, 360 }"
+      else "{ 480, 270 }";
     "1/3-3:2" =
       if mymonitor
-      then "720 480"
-      else "540 360";
+      then "{ 720, 480 }"
+      else "{ 540, 360 }";
     "1/2-1:1" =
       if mymonitor
-      then "720 720"
-      else "540 540";
+      then "{ 720, 720 }"
+      else "{ 540, 540 }";
     "1/5" =
       if mymonitor
-      then "480 288"
-      else "384 216";
-    full =
-      if mymonitor
-      then "2540 1387"
-      else "1900 1027";
+      then "{ 512, 288 }"
+      else "{ 384, 216 }";
     portrait =
       if mymonitor
-      then "982 1387"
-      else "728 1027";
-    gapsout =
-      if mymonitor
-      then "200"
-      else "150";
+      then "{ 982, 1387 }"
+      else "{ 728, 1027 }";
   };
 in {
-  wayland.windowManager.hyprland.extraConfig = ''
-    ##############################
-    ### WINDOWS AND WORKSPACES ###
-    ##############################
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "lua.windowrule" = {
+      autoLoad = true;
+      content = ''
+        --------------------
+        ---- WINDOWRULE ----
+        --------------------
 
-    # See https://wiki.hypr.land/Configuring/Window-Rules/ for more
+        local rules_config = {
+            alacritty = {
+                {
+                    name = "normal",
+                    match = {
+                        class = "Alacritty",
+                    },
+                    workspace = ${toString coding},
+                },
+                {
+                    name = "scratchpad",
+                    match = {
+                        class = "Alacritty",
+                        title = "scratchpad",
+                    },
+                    workspace = "special:scratchpad",
+                },
+            },
+            blueman = {
+                match = {
+                    class = ".blueman-manager-wrapped",
+                    title = "Bluetooth Devices",
+                },
+                float = true,
+                center = 1,
+                size = ${size."1/3-3:2"},
+            },
+            bottles = {
+                match = {
+                    class = "com.usebottles.bottles",
+                },
+                workspace = ${toString game_launcher},
+                opaque = true,
+            },
+            btop = {
+                match = {
+                    class = "footclient",
+                    title = "btop",
+                },
+                float = true,
+                center = 1,
+                size = ${size."3/4"},
+            },
+            crkbd = {
+                match = {
+                    class = "footclient",
+                    title = "crkbd",
+                },
+                float = true,
+                center = 1,
+                size = "1310 1080",
+            },
+            dn = {
+                {
+                    name = "launcher",
+                    match = {
+                        title = "DNOrigins Launcher",
+                    },
+                    workspace = ${toString games},
+                    float = true,
+                    center = 1,
+                    no_initial_focus = true,
+                },
+                {
+                    name = "game",
+                    match = {
+                        title = "DNOrigins",
+                    },
+                    workspace = ${toString games},
+                    float = true,
+                    center = 1,
+                    immediate = true,
+                    no_initial_focus = true,
+                },
+            },
+            fastfetch = {
+                match = {
+                    class = "footclient",
+                    title = "fastfetch",
+                },
+                float = true,
+                center = 1,
+                size = "520 600",
+            },
+            feh = {
+                match = {
+                    class = "feh",
+                },
+                float = true,
+                center = 1,
+            },
+            firefox = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = "firefox",
+                    },
+                    workspace = ${toString browser},
+                },
+                {
+                    name = "library",
+                    match = {
+                        class = "firefox",
+                        title = "Library",
+                    },
+                    float = true,
+                    center = 1,
+                },
+                {
+                    name = "dialogs",
+                    match = {
+                        class = "firefox",
+                        title = "Save Image|File Upload",
+                    },
+                    size = ${size."1/2"},
+                },
+                {
+                    name = "activate",
+                    match = {
+                        initial_class = "firefox",
+                        initial_title = "Mozilla Firefox",
+                    },
+                    focus_on_activate = true,
+                },
+                {
+                    name = "media",
+                    match = {
+                        class = "firefox",
+                        title = ".*(YouTube|IDLIX|Twitch).*",
+                    },
+                    opaque = true,
+                },
+                {
+                    name = "privacy",
+                    match = {
+                        class = "firefox",
+                        title = ".*(Gmail|WhatsApp).*",
+                    },
+                    no_screen_share = true,
+                },
+            },
+            fzf = {
+                {
+                    name = "smallfzf",
+                    match = {
+                        class = "footclient",
+                        title = "smallfzf",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/4"},
+                },
+                {
+                    name = "bigfzf",
+                    match = {
+                        class = "footclient",
+                        title = "bigfzf",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/2"},
+                },
+            },
+            gimp = {
+                match = {
+                    class = "gimp",
+                },
+                workspace = ${toString editing},
+            },
+            kdeconnect = {
+                match = {
+                    class = "org.kde.kdeconnect.*",
+                },
+                workspace = ${toString utilities},
+                no_screen_share = true,
+            },
+            kdenlive = {
+                match = {
+                    class = "org.kde.kdenlive",
+                },
+                workspace = ${toString editing},
+            },
+            kitty = {
+                {
+                    name = "normal",
+                    match = {
+                        class = "kitty",
+                    },
+                    workspace = ${toString coding},
+                },
+                {
+                    name = "scratchpad",
+                    match = {
+                        class = "kitty",
+                        title = "scratchpad",
+                    },
+                    workspace = "special:scratchpad",
+                },
+            },
+            localsend = {
+                match = {
+                    class = "localsend_app",
+                    title = "Open File",
+                },
+                float = true,
+                center = 1,
+                size = ${size."1/2"},
+            },
+            lutris = {
+                {
+                    match = {
+                        class = "net.lutris.Lutris",
+                    },
+                    workspace = ${toString game_launcher},
+                    opaque = true,
+                },
+                {
+                    name = "file-pickers",
+                    match = {
+                        class = "net.lutris.Lutris",
+                        title = "(Please|Select|Configure).*",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/2"},
+                },
+            },
+            mainpicker = {
+                match = {
+                    initial_title = "MainPicker",
+                    title = "MainPicker",
+                },
+                float = true,
+                center = 1,
+                size = ${size."1/4"},
+            },
+            magicchess = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = "steam_app_default",
+                        title = ".*|Magic Chess: Go Go|MagicChessGoGo",
+                    },
+                    workspace = ${toString games},
+                },
+                {
+                    name = "props",
+                    match = {
+                        class = "steam_app_default",
+                        title = "Magic Chess: Go Go|MagicChessGoGo",
+                    },
+                    pseudo = true,
+                    immediate = true,
+                },
+            },
+            mpv = {
+                match = {
+                    class = "mpv",
+                },
+                opaque = true,
+            },
+            nautilus = {
+                {
+                    match = {
+                        class = "org.gnome.Nautilus",
+                    },
+                    workspace = ${toString file_manager},
+                },
+                {
+                    name = "previewer",
+                    match = {
+                        class = "org.gnome.NautilusPreviewer",
+                    },
+                    float = true,
+                    center = 1,
+                    opaque = true,
+                    size = ${size."1/2"},
+                },
+            },
+            nchat = {
+                match = {
+                    class = "footclient",
+                    title = "nchat",
+                },
+                workspace = ${toString social},
+                no_screen_share = true,
+            },
+            nmtui = {
+                match = {
+                    class = "footclient",
+                    title = "nmtui",
+                },
+                float = true,
+                center = 1,
+                size = ${size."1/2-1:1"},
+            },
+            obs = {
+                match = {
+                    class = "obs",
+                },
+                workspace = ${toString utilities},
+                opaque = true,
+            },
+            obsidian = {
+                match = {
+                    class = "obsidian",
+                },
+                workspace = ${toString coding},
+            },
+            pavucontrol = {
+                match = {
+                    class = "org.pulseaudio.pavucontrol",
+                },
+                float = true,
+                center = 1,
+                size = ${size."1/2"},
+            },
+            pcsx2 = {
+                match = {
+                    title = "PCSX2.*",
+                },
+                workspace = ${toString games},
+                fullscreen = true,
+                immediate = true,
+            },
+            prismlauncher = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = "org.prismlauncher.PrismLauncher",
+                    },
+                    workspace = ${toString game_launcher},
+                },
+                {
+                    name = "dialogs",
+                    match = {
+                        class = "org.prismlauncher.PrismLauncher",
+                        title = "(New|Select|Download).*",
+                    },
+                    center = 1,
+                    size = ${size."1/2"},
+                },
+                {
+                    name = "wait-dialog",
+                    match = {
+                        class = "org.prismlauncher.PrismLauncher",
+                        title = "Please wait.*",
+                    },
+                    center = 1,
+                    size = ${size."1/5"},
+                },
+                {
+                    name = "minecraft",
+                    match = { title = "Minecraft.*" },
+                    workspace = ${toString games},
+                    pseudo = true,
+                    immediate = true,
+                },
+            },
+            retroarch = {
+                match = {
+                    class = "com.libretro.RetroArch",
+                },
+                workspace = ${toString games},
+                fullscreen = true,
+                immediate = true,
+            },
+            spotify = {
+                match = {
+                    class = "Spotify",
+                },
+                workspace = ${toString music},
+            },
+            steam = {
+                {
+                    name = "class-workspace",
+                    match = {
+                        class = "steam",
+                    },
+                    workspace = ${toString game_launcher},
+                },
+                {
+                    name = "title-workspace",
+                    match = {
+                        title = "steam",
+                    },
+                    workspace = ${toString game_launcher},
+                },
+                {
+                    name = "dota2",
+                    match = {
+                        class = "dota2",
+                    },
+                    workspace = ${toString games},
+                    pseudo = true,
+                    immediate = true,
+                },
+            },
+            tor_browser = {
+                match = {
+                    class = "Tor Browser",
+                },
+                workspace = ${toString browser},
+                no_screen_share = true,
+            },
+            transmission = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = "transmission-gtk",
+                    },
+                    workspace = ${toString utilities},
+                },
+                {
+                    name = "open-torrent",
+                    match = {
+                        class = "transmission-gtk",
+                        title = "Open a Torrent",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/2"},
+                },
+            },
+            veracrypt = {
+                match = {
+                    class = "veracrypt",
+                },
+                workspace = ${toString utilities},
+                no_screen_share = true,
+            },
+            virt_manager = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = ".virt-manager-wrapped",
+                    },
+                    workspace = ${toString virt_manager},
+                },
+                {
+                    name = "kvm",
+                    match = {
+                        class = ".virt-manager-wrapped",
+                        title = ".*QEMU/KVM",
+                    },
+                    workspace = ${toString virt_manager},
+                    float = true,
+                    center = 1,
+                    size = "1920 1150",
+                    opaque = true,
+                },
+            },
+            vesktop = {
+                {
+                    name = "workspace",
+                    match = {
+                        class = "vesktop",
+                    },
+                    workspace = ${toString social},
+                    no_screen_share = true,
+                },
+                {
+                    name = "popout",
+                    match = {
+                        initial_class = "vesktop",
+                        initial_title = "Discord Popout",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."3/4"},
+                },
+            },
+            waydroid = {
+                match = {
+                    class = "Waydroid",
+                },
+                workspace = ${toString games},
+                pseudo = true,
+                immediate = true,
+            },
+            zathura = {
+                match = {
+                    class = "org.pwmt.zathura",
+                },
+                float = true,
+                center = 1,
+                size = ${size.portrait},
+            },
+            zenity = {
+                match = {
+                    class = "zenity",
+                },
+                float = true,
+                center = 1,
+                rounding = 18,
+            },
+            misc = {
+                {
+                    name = "suppress-maximize",
+                    match = {
+                        class = ".*",
+                    },
+                    suppress_event = "maximize",
+                },
+                {
+                    name = "xdg-desktop-portal-share",
+                    match = {
+                        title = "Select what to share",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/4"},
+                },
+                {
+                    name = "fix-xwayland-drags",
+                    match = {
+                        class = "^$",
+                        title = "^$",
+                        xwayland = true,
+                        float = true,
+                        fullscreen = false,
+                        pin = false,
+                    },
+                    no_focus = true,
+                },
+            },
+        }
 
-    #alacritty
-    windowrule = workspace ${toString coding}, match:class (Alacritty)
+        for app, rules in pairs(rules_config) do
+            local rules_list = rules.match and { rules } or rules
 
-    #blueman
-    windowrule = float on, center 1, size ${size."1/3-3:2"}, match:class (.blueman-manager-wrapped), match:title (Bluetooth Devices)
-
-    #bottles
-    windowrule = workspace ${toString game_launcher}, opaque on, match:class (com.usebottles.bottles)
-
-    #btop
-    windowrule = float on, center 1, size ${size."3/4"}, match:class (footclient), match:title (btop)
-
-    #crkbd
-    windowrule = float on, center 1, size 1310 1080, match:class (footclient), match:title (crkbd)
-
-    #dn
-    windowrule = workspace ${toString games}, float on, center 1, no_initial_focus on, match:title (DNOrigins Launcher)
-    windowrule = workspace ${toString games}, float on, center 1, immediate on, no_initial_focus on, match:title (DNOrigins)
-
-    #fastfetch
-    windowrule = float on, center 1, size 520 600, match:class (footclient), match:title (fastfetch)
-
-    #feh
-    windowrule = float on, center 1, match:class (feh)
-
-    #firefox
-    windowrule = workspace ${toString browser}, match:class (firefox)
-    windowrule = float on, center 1, match:class (firefox), match:title (Library)
-    windowrule = size ${size."1/2"}, match:class (firefox), match:title (Save Image)
-    windowrule = focus_on_activate on, match:initial_class (firefox), match:initial_title (Mozilla Firefox)
-    windowrule = opaque on, match:class (firefox), match:title (.*YouTube.*)
-    windowrule = opaque on, match:class (firefox), match:title (.*IDLIX.*)
-    windowrule = opaque on, match:class (firefox), match:title (.*Twitch.*)
-    windowrule = no_screen_share on, match:class (firefox), match:title (.*Gmail.*)
-    windowrule = no_screen_share on, match:class (firefox), match:title (.*WhatsApp.*)
-    windowrule = size ${size."1/2"}, match:class (firefox), match:title (File Upload)
-
-    #foot
-    windowrule = workspace ${toString coding}, match:class (foot)
-
-    #fzf
-    windowrule = float on, center 1, size ${size."1/4"}, match:class (footclient), match:title (smallfzf)
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (footclient), match:title (bigfzf)
-
-    #gimp
-    windowrule = workspace ${toString editing}, match:class (gimp)
-
-    #kdeconnect
-    windowrule = workspace ${toString utilities}, no_screen_share on, match:class (org.kde.kdeconnect.*)
-
-    #kdenlive
-    windowrule = workspace ${toString editing}, match:class (org.kde.kdenlive)
-
-    #kitty
-    windowrule = workspace ${toString coding}, match:class (kitty)
-
-    #localsend
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (localsend_app), match:title (Open File)
-
-    #lutris
-    windowrule = workspace ${toString game_launcher}, opaque on, match:class (net.lutris.Lutris)
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (net.lutris.Lutris), match:title (Please choose a custom image|Select file|Select folder|Select new location for the game|Configure.*)
-
-    #mainpicker
-    windowrule = float on, center 1, size ${size."1/4"}, match:initial_title (MainPicker), match:title (MainPicker)
-
-    #magicchess
-    windowrule = workspace ${toString games}, match:class (steam_app_default), match:title (.*|Magic Chess: Go Go|MagicChessGoGo)
-    windowrule = pseudo on, immediate on, match:class (steam_app_default), match:title (Magic Chess: Go Go|MagicChessGoGo)
-
-    #mpv
-    windowrule = opaque on, match:class (mpv)
-
-    #nautilus
-    windowrule = workspace ${toString file_manager}, match:class (org.gnome.Nautilus)
-    windowrule = float on, center 1, opaque on, size ${size."1/2"}, match:class (org.gnome.NautilusPreviewer)
-
-    #nchat
-    windowrule = workspace ${toString social}, no_screen_share on, match:class (footclient), match:title (nchat)
-
-    #nmtui
-    windowrule = float on, center 1, size ${size."1/2-1:1"}, match:class (footclient), match:title (nmtui)
-
-    #obs
-    windowrule = workspace ${toString utilities},opaque on, match:class (obs)
-
-    #obsidian
-    windowrule = workspace ${toString coding}, match:class (obsidian)
-
-    #pavucontrol
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (org.pulseaudio.pavucontrol)
-
-    #pcsx2
-    windowrule = workspace ${toString games}, fullscreen on, immediate on, match:title (PCSX2.*)
-
-    #prismlauncher
-    windowrule = workspace ${toString game_launcher}, match:class (org.prismlauncher.PrismLauncher)
-    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (New Instance.*)
-    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Select a Java version.*)
-    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download mods.*)
-    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download resource packs.*)
-    windowrule = center 1, size ${size."1/2"}, match:class (org.prismlauncher.PrismLauncher), match:title (Download shader packs.*)
-    windowrule = center 1, size ${size."1/5"}, match:class (org.prismlauncher.PrismLauncher), match:title (Please wait.*)
-    windowrule = workspace ${toString games}, pseudo on, immediate on, match:title (Minecraft.*)
-
-    #retroarch
-    windowrule = workspace ${toString games}, fullscreen on, immediate on, match:class (com.libretro.RetroArch)
-
-    #spotify
-    windowrule = workspace ${toString music}, match:class (Spotify)
-
-    #steam
-    windowrule = workspace ${toString game_launcher}, match:class (steam)
-    windowrule = workspace ${toString game_launcher}, match:title (steam)
-    windowrule = workspace ${toString games}, pseudo on, immediate on, match:class (dota2)
-
-    #tor browser
-    windowrule = workspace ${toString browser}, no_screen_share on, match:class (Tor Browser)
-
-    #transmission
-    windowrule = workspace ${toString utilities}, match:class (transmission-gtk)
-    windowrule = float on, center 1, size ${size."1/2"}, match:class (transmission-gtk), match:title (Open a Torrent)
-
-    #veracrypt
-    windowrule = workspace ${toString utilities}, no_screen_share on, match:class (veracrypt)
-
-    #virt-manager
-    windowrule = workspace ${toString virt_manager}, match:class (.virt-manager-wrapped)
-    windowrule = workspace ${toString virt_manager}, float on, center 1, size 1920 1150, opaque on, match:class (.virt-manager-wrapped), match:title (.*QEMU/KVM)
-
-    #vesktop
-    windowrule = workspace ${toString social}, no_screen_share on, match:class (vesktop)
-    windowrule = float on, center 1, size ${size."3/4"}, match:initial_class (vesktop), match:initial_title (Discord Popout)
-
-    #waydroid
-    windowrule = workspace ${toString games}, pseudo on, immediate on, match:class (Waydroid)
-
-    #zathura
-    windowrule = float on, center 1, size ${size.portrait}, match:class (org.pwmt.zathura)
-
-    #zenity
-    windowrule = float on, center 1, rounding 18, match:class (zenity)
-
-    #misc
-    windowrule = suppress_event maximize, match:class .* # You'll probably like this.
-    windowrule = float on, center 1, size ${size."1/4"}, match:title (Select what to share) # xdg-desktop-portal-hyprland
-
-    # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
-    # Workspaces
-    workspace = special:scratchpad, gapsout:${size.gapsout}, on-created-empty: ${homes.terminal} -T scratchpad
-    workspace = ${toString coding}, layout:monocle, on-created-empty: ${homes.terminal}
-    workspace = ${toString browser},layout:scrolling, on-created-empty: firefox
-    workspace = ${toString game_launcher}, layout:scrolling
-    workspace = ${toString games}, layout:monocle
-  '';
+            for _, rule in ipairs(rules_list) do
+                rule.name = rule.name and (app .. "-" .. rule.name) or app
+                hl.window_rule(rule)
+            end
+        end
+      '';
+    };
+  };
 }

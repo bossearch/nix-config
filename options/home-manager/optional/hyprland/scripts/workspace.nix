@@ -19,12 +19,22 @@ in {
 
       OLD_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.id')
 
-      if [[ "$2" == "next" ]]; then
-        hyprctl dispatch "$1" e+1
-      elif [[ "$2" == "prev" ]]; then
-        hyprctl dispatch "$1" e-1
-      else
-        hyprctl dispatch "$1" "$2"
+      if [[ "$1" == "focus" ]]; then
+        if [[ "$2" == "next" ]]; then
+          hyprctl eval "require('lib.util').cycle_workspace('next')"
+        elif [[ "$2" == "prev" ]]; then
+          hyprctl eval "require('lib.util').cycle_workspace('prev')"
+        else
+          hyprctl eval "require('lib.util').select_workspace($2)"
+        fi
+      elif [[ "$1" == "move" ]]; then
+        if [[ "$2" == "next" ]]; then
+          hyprctl eval "require('lib.util').move_to_workspace('next')"
+        elif [[ "$2" == "prev" ]]; then
+          hyprctl eval "require('lib.util').move_to_workspace('prev')"
+        else
+          hyprctl eval "require('lib.util').move_to_selected_workspace($2)"
+        fi
       fi
 
       NEW_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.id')
@@ -33,21 +43,12 @@ in {
         local mode="$1"
         if [[ $mode == "enable" ]]; then
           ~/.config/qmk/crkbd-toggle-game.py 1
-          hyprctl --batch "\
-            keyword decoration:blur:enabled 0;\
-            keyword decoration:active_opacity 1;\
-            keyword decoration:inactive_opacity 1;\
-            keyword decoration:rounding 0;\
-            keyword debug:vfr 0"
+          hyprctl eval "require('lib.util').enable_gamemode()"
           ${close}
           notify-send -e -a nosound -i state_running "Game Mode" "Activated"
         elif [[ $mode == "disable" ]]; then
           ~/.config/qmk/crkbd-toggle-game.py 0
-          hyprctl --batch "\
-            keyword decoration:blur:enabled 1;\
-            keyword decoration:active_opacity 0.9;\
-            keyword decoration:inactive_opacity 0.85;\
-            keyword decoration:rounding 8"
+          hyprctl eval "require('lib.util').disable_gamemode()"
           ${close}
           notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"
         fi
@@ -64,8 +65,8 @@ in {
       if hyprctl workspaces | grep -q "workspace ID 7"; then
         :
       else
-        if [ "$(hyprctl getoption misc:vfr -j | jq '.int')" -eq 0 ]; then
-          hyprctl keyword debug:vfr 1
+        if [ "$(hyprctl getoption debug:vfr -j | jq '.bool')" == "false" ]; then
+          hyprctl eval "hl.config({debug={vfr=true}})"
         fi
       fi
     '';

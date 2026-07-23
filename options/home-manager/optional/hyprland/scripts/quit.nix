@@ -29,7 +29,7 @@ in {
         pkill -f mcgg
 
       else
-        hyprctl dispatch killactive
+        hyprctl dispatch 'hl.dsp.window.close({window = "activewindow"})'
       fi
     '';
   };

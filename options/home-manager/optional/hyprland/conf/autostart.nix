@@ -1,37 +1,38 @@
 {
   config,
   homes,
-  hosts,
   ...
 }: let
   footclient =
     if config.programs.foot.enable
-    then "exec-once = ~/.config/foot/footclient.sh"
+    then "hl.exec_cmd(\"~/.config/foot/footclient.sh\")"
     else "";
   gowall =
     if homes.gowall
-    then "exec-once = ~/.config/gowall/daily-wallpaper.sh"
-    else "";
-  retroarch =
-    if homes.game.retroarch
-    then "exec-once = cp ~/.cache/${hosts.username}/hyprpaper.png ~/.cache/${hosts.username}/retroarch.png"
+    then "hl.exec_cmd(\"~/.config/gowall/daily-wallpaper.sh\")"
     else "";
 in {
-  wayland.windowManager.hyprland.extraConfig = ''
-    #################
-    ### AUTOSTART ###
-    #################
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "lua.autostart" = {
+      autoLoad = true;
+      content = ''
+        -------------------
+        ---- AUTOSTART ----
+        -------------------
 
-    exec-once = hyprlock --immediate-render --no-fade-in
-    exec-once = hyprpaper
-    exec-once = blueman-applet
+        hl.on("hyprland.start", function()
+            hl.exec_cmd("hyprlock --immediate-render --no-fade-in")
+            hl.exec_cmd("hyprpaper")
+            hl.exec_cmd("blueman-applet")
 
-    exec-once = cliphist wipe
-    exec-once = wl-paste --watch cliphist store
+            hl.exec_cmd("cliphist wipe")
+            hl.exec_cmd("wl-paste --watch cliphist store")
 
-    exec-once = ~/.config/hypr/scripts/startup-value.sh
-    ${footclient}
-    ${gowall}
-    ${retroarch}
-  '';
+            hl.exec_cmd("~/.config/hypr/scripts/startup-value.sh")
+            ${footclient}
+            ${gowall}
+        end)
+      '';
+    };
+  };
 }

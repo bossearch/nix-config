@@ -155,8 +155,8 @@ in {
         };
         "format-window-separator" = " ";
         "on-click" = "activate";
-        "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        "on-scroll-down" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})'";
+        "on-scroll-up" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})'";
         "show-special" = false;
         "window-rewrite-default" = "󰖺";
         "window-rewrite" = import ./.rewrite.nix;

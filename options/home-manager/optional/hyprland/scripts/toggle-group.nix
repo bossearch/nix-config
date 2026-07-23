@@ -39,7 +39,7 @@ in {
 
       GROUP=$(group_window)
       if [[ -z $GROUP ]]; then
-        hyprctl dispatch togglegroup
+        hyprctl eval "require('lib.util').toggle_group('toggle')"
         UNGROUP=$(ungroup_window)
         if [[ -n $UNGROUP ]]; then
           UNGROUP_SUM=$(echo "$UNGROUP" | wc -l)
@@ -73,7 +73,7 @@ in {
             POS=$(hyprctl -j clients | jq -r --arg addr "$UNGROUP_NEAREST" '
             .[] | select(.address == $addr) | .at')
 
-            hyprctl dispatch focuswindow address:"$UNGROUP_NEAREST"
+            hyprctl eval "require('lib.util').toggle_group('window', '$UNGROUP_NEAREST')"
             #---
             X=$(echo "$POS" | jq '.[0]')
             Y=$(echo "$POS" | jq '.[1]')
@@ -88,7 +88,7 @@ in {
             else
               DIR="u"
             fi
-            hyprctl dispatch moveintogroup "$DIR"
+            hyprctl eval "require('lib.util').toggle_group('move', '$DIR')"
           done
           while true; do
             ACTIVE_NEW=$(hyprctl -j activewindow | jq -r '.address')
@@ -102,7 +102,7 @@ in {
           exit 0
         fi
       else
-        hyprctl dispatch togglegroup
+        hyprctl eval "require('lib.util').toggle_group('toggle')"
       fi
     '';
   };

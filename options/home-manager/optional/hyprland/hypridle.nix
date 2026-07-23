@@ -19,8 +19,8 @@ in {
         # DPMS TIMEOUT
         {
           timeout = 1800;
-          on-timeout = "(playerctl -a status | grep -q 'Playing' || hyprctl dispatch dpms off)";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "(playerctl -a status | grep -q 'Playing' || hyprctl dispatch 'hl.dsp.dpms({action = \"off\"})')";
+          on-resume = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
         }
         # SUSPEND TIMEOUT
         {

@@ -1,22 +1,26 @@
 {
-  wayland.windowManager.hyprland.extraConfig = ''
-    ##############
-    ### LAYOUT ###
-    ##############
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "lua.layout" = {
+      autoLoad = true;
+      content = ''
+        ----------------
+        ---- LAYOUT ----
+        ----------------
 
-    # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
-    dwindle {
-      preserve_split = true # You probably want this
-    }
+        hl.config({
+            dwindle = {
+                preserve_split = true,
+            },
 
-    # See https://wiki.hypr.land/Configuring/Master-Layout/ for more
-    master {
-      mfact = 0.5
-    }
+            master = {
+                mfact = 0.5,
+            },
 
-    # See https://wiki.hypr.land/Configuring/Scrolling-Layout/
-    scrolling {
-      direction = right
-    }
-  '';
+            scrolling = {
+                direction = "right",
+            },
+        })
+      '';
+    };
+  };
 }

@@ -2,29 +2,31 @@
   base00 = config.colorScheme.palette.base00;
   base03 = config.colorScheme.palette.base03;
 in {
-  wayland.windowManager.hyprland.extraConfig = ''
-    ###############
-    ### GENERAL ###
-    ###############
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "lua.general" = {
+      autoLoad = true;
+      content = ''
+        -----------------
+        ---- GENERAL ----
+        -----------------
 
-    # https://wiki.hypr.land/Configuring/Variables/#general
-    general {
-        gaps_in = 4
-        gaps_out = 8
+        hl.config({
+            general = {
+                gaps_in = 4,
+                gaps_out = 8,
+                border_size = 2,
 
-        border_size = 2
+                col = {
+                    active_border = "rgb(${base00})",
+                    inactive_border = "rgb(${base03})",
+                },
 
-        # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
-        col.active_border = rgb(${base00})
-        col.inactive_border = rgb(${base03})
-
-        # Set to true enable resizing windows by clicking and dragging on borders and gaps
-        # resize_on_border = true
-
-        # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
-        allow_tearing = true
-
-        layout = master
-    }
-  '';
+                resize_on_border = false,
+                allow_tearing = true,
+                layout = "master",
+            },
+        })
+      '';
+    };
+  };
 }

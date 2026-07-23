@@ -13,9 +13,9 @@ in {
       LAYOUT=$(hyprctl activeworkspace -j | jq -r '.tiledLayout')
 
       if [[ "$LAYOUT" == "scrolling" ]]; then
-        hyprctl dispatch cyclenext tiled "$1"
+        hyprctl eval "require('lib.util').cycle_window('scrolling', '$1')"
       else
-        hyprctl dispatch layoutmsg cycle"$1"
+        hyprctl eval "require('lib.util').cycle_window('not_scrolling', '$1')"
       fi
     '';
   };
