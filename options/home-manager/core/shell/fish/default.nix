@@ -14,7 +14,6 @@ in {
   imports = [
     ./completions.nix
     ./fzf_complete.nix
-    ./starship.nix
   ];
   programs.fish = {
     enable = hosts.shell == "fish";

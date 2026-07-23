@@ -12,10 +12,7 @@
     else "";
   kittyzsh = homes.kitty && hosts.shell == "zsh";
 in {
-  imports = [
-    ./functions
-    ./omp.nix
-  ];
+  imports = [./functions];
 
   programs.zsh = {
     enable = hosts.shell == "zsh";
