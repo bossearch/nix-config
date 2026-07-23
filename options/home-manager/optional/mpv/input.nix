@@ -35,11 +35,11 @@
       # change-list glsl-shaders clr ""; apply-profile animehd; show-text "Profile: Anime-HD"    #! Video > Profiles > Anime-HD
       # change-list glsl-shaders clr ""; apply-profile animesd; show-text "Profile: Anime-SD"    #! Video > Profiles > Anime-SD
       # change-list glsl-shaders clr ""; show-text "No Profile"                                  #! Video > Profiles > No Profile
-      # script-binding uosc_video_settings/open-menu                                             #! Video > Video settings
       # script-binding uosc/video                                                                #! Video > Select video track
+      # script-binding uosc_video_settings/open-menu                                             #! Video > Video settings
       # script-binding uosc/audio                                                                #! Audio > Select audio track
       # script-binding uosc/audio-device                                                         #! Audio > Select audio device
-      # script-binding uosc_audio_filter/open-menu                                               #! Audio > Select audio filter
+      # script-binding uosc_audio_settings/open-menu                                             #! Audio > Audio settings
       # script-binding sync_to_audio                                                             #! Subtitle > Sync to audio
       # script-binding sync_to_internal_sub                                                      #! Subtitle > Sync to internal sub
       # script-binding subtitle_lines/list_subtitles                                             #! Subtitle > Sub history
