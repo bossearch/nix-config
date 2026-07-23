@@ -5,10 +5,6 @@
         font_size = 16;
         border_size = 1;
       };
-      quack = {
-        ducksecs = 2;
-        duckratio = 0.5;
-      };
       stats = {
         key_page_1 = "1";
         key_page_2 = "2";

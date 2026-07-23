@@ -42,8 +42,6 @@
       # script-binding uosc_audio_settings/open-menu                                             #! Audio > Audio settings
       # script-binding sync_to_audio                                                             #! Subtitle > Sync to audio
       # script-binding sync_to_internal_sub                                                      #! Subtitle > Sync to internal sub
-      # script-binding subtitle_lines/list_subtitles                                             #! Subtitle > Sub history
-      # script-binding subtitle_lines/list_secondary_subtitles                                   #! Subtitle > Sub alt history
       # script-binding uosc_subtitle_settings/open-menu                                          #! Subtitle > Subtitle settings
       O script-binding uosc/show-in-directory                                                    #! Misc > Open file manager
       Ctrl+c script-binding uosc/copy-to-clipboard                                               #! Misc > Copy Link
