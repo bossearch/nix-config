@@ -63,8 +63,8 @@
         image_types = "apng,avif,bmp,gif,j2k,jp2,jfif,jpeg,jpg,jxl,mj2,png,svg,tga,tif,tiff,webp";
         languages = "slang,en";
         load_types = "video,audio";
-        menu_item_height = 36;
-        menu_min_width = 260;
+        menu_item_height = 48;
+        menu_min_width = 300;
         menu_padding = 4;
         menu_type_to_search = "no";
         opacity = "speed=0.8,menu=0.8,timeline=0.8,curtain=0";
