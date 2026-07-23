@@ -23,121 +23,58 @@
       	return string.format("script-message-to %s %s", script_name, str)
       end
 
-      local default_sub_pos = mp.get_property_number("sub-pos")
-      local default_sec_sub_pos = mp.get_property_number("secondary-sub-pos")
-      local default_scale = mp.get_property_number("sub-scale")
-      local default_delay = mp.get_property_number("sub-delay")
-      local ass_override
-      local blend
+      -- Store initial default values for the reset action
+      local default_properties = {
+      	["sub-pos"] = mp.get_property_number("sub-pos"),
+      	["sub-scale"] = mp.get_property_number("sub-scale"),
+      	["sub-delay"] = mp.get_property_number("sub-delay"),
+      }
 
-      local function create_menu_data()
-      	local function get_value_hint(property)
-      		local value = mp.get_property_number(property)
-      		if property == "sub-pos" then
-      			return value ~= default_sub_pos and string.format("%d", value) or nil
-      		elseif property == "secondary-sub-pos" then
-      			return value ~= default_sec_sub_pos and string.format("%d", value) or nil
-      		elseif property == "sub-scale" then
-      			return value ~= default_scale and string.format("%.2f", value) or nil
-      		elseif property == "sub-delay" then
-      			return value ~= default_delay and string.format("%.2f", value) or nil
+      local ass_override = mp.get_property("sub-ass-override")
+      local blend = mp.get_property("blend-subtitles")
+
+      local function create_property_number_adjustment(title, property, increment, format_str, min, max)
+      	local current_value = mp.get_property_number(property) or 0.0
+
+      	local function create_adjustment_actions()
+      		local range = ""
+      		if min or max then
+      			range = " " .. (min or "") .. (max and " " .. max or "")
       		end
+
+      		return {
+      			{
+      				name = command("adjust-property " .. property .. " " .. increment .. range),
+      				icon = "add",
+      				label = "Increase by " .. increment .. ".",
+      			},
+      			{
+      				name = command("adjust-property " .. property .. " -" .. increment .. range),
+      				icon = "remove",
+      				label = "Decrease by " .. increment .. ".",
+      			},
+      			{
+      				name = command("adjust-property " .. property .. " reset"),
+      				icon = "clear",
+      				label = "Reset.",
+      			},
+      		}
       	end
 
+      	return {
+      		title = title,
+      		hint = string.format(format_str, current_value),
+      		actions = create_adjustment_actions(),
+      		actions_place = "outside",
+      	}
+      end
+
+      local function create_menu_data()
       	local items = {
-      		{
-      			title = "Position",
-      			items = {
-      				{
-      					title = "Primary",
-      					hint = get_value_hint("sub-pos"),
-      					items = {
-      						{
-      							title = "Move up",
-      							hint = string.format("-%d", options.pos_increment),
-      							value = command("adjust-pos primary dec"),
-      						},
-      						{
-      							title = "Move down",
-      							hint = string.format("+%d", options.pos_increment),
-      							value = command("adjust-pos primary inc"),
-      						},
-      						{
-      							title = "Reset",
-      							value = command("adjust-pos primary reset"),
-      							italic = true,
-      							muted = true,
-      						},
-      					},
-      				},
-      				{
-      					title = "Secondary",
-      					hint = get_value_hint("secondary-sub-pos"),
-      					items = {
-      						{
-      							title = "Move up",
-      							hint = string.format("-%d", options.pos_increment),
-      							value = command("adjust-pos secondary dec"),
-      						},
-      						{
-      							title = "Move down",
-      							hint = string.format("+%d", options.pos_increment),
-      							value = command("adjust-pos secondary inc"),
-      						},
-      						{
-      							title = "Reset",
-      							value = command("adjust-pos secondary reset"),
-      							italic = true,
-      							muted = true,
-      						},
-      					},
-      				},
-      			},
-      		},
-      		{
-      			title = "Scale",
-      			hint = get_value_hint("sub-scale"),
-      			items = {
-      				{
-      					title = "Increase",
-      					hint = string.format("+%.2f", options.scale_increment),
-      					value = command("adjust-scale inc"),
-      				},
-      				{
-      					title = "Decrease",
-      					hint = string.format("-%.2f", options.scale_increment),
-      					value = command("adjust-scale dec"),
-      				},
-      				{
-      					title = "Reset",
-      					value = command("adjust-scale reset"),
-      					italic = true,
-      					muted = true,
-      				},
-      			},
-      		},
-      		{
-      			title = "Delay",
-      			hint = get_value_hint("sub-delay"),
-      			items = {
-      				{
-      					title = "Increase",
-      					hint = string.format("+%.2f", options.delay_increment),
-      					value = command("adjust-delay inc"),
-      				},
-      				{
-      					title = "Decrease",
-      					hint = string.format("-%.2f", options.delay_increment),
-      					value = command("adjust-delay dec"),
-      				},
-      				{
-      					title = "Reset",
-      					value = command("adjust-delay reset"),
-      					italic = true,
-      					muted = true,
-      				},
-      			},
-      		},
+      		-- Flattened Position to only handle Primary sub-pos with inline actions
+      		create_property_number_adjustment("Position", "sub-pos", options.pos_increment, "%d", 0, 100),
+      		create_property_number_adjustment("Scale", "sub-scale", options.scale_increment, "%.2f"),
+      		create_property_number_adjustment("Delay", "sub-delay", options.delay_increment, "%.2f s"),
       		{
       			title = "ASS override",
       			items = {
@@ -189,11 +126,13 @@
       			},
       		},
       	}
+
       	return {
       		type = "subtitle_settings",
       		title = "Subtitle settings",
       		items = items,
       		keep_open = true,
+      		callback = { script_name, "menu-event" },
       	}
       end
 
@@ -202,80 +141,55 @@
       	mp.commandv("script-message-to", "uosc", "update-menu", json)
       end
 
-      mp.register_script_message("adjust-pos", function(type, arg)
-      	local property = type == "primary" and "sub-pos" or "secondary-sub-pos"
-      	local current = mp.get_property_number(property)
-      	if arg == "inc" then
-      		local new_value = math.min(100, current + options.pos_increment)
-      		mp.set_property_number(property, new_value)
-      	elseif arg == "dec" then
-      		local new_value = math.max(0, current - options.pos_increment)
-      		mp.set_property_number(property, new_value)
-      	else
-      		mp.set_property_number(property, type == "primary" and default_sub_pos or default_sec_sub_pos)
-      	end
-      end)
+      local message_handlers = {
+      	["menu-event"] = function(json)
+      		local event = mp.utils.parse_json(json)
+      		if event.action then
+      			mp.command(event.action)
+      		elseif event.value then
+      			mp.command(event.value)
+      		end
+      	end,
 
-      mp.register_script_message("adjust-scale", function(arg)
-      	local current = mp.get_property_number("sub-scale")
-      	if arg == "inc" then
-      		local new_value = math.min(100, current + options.scale_increment)
-      		mp.set_property_number("sub-scale", new_value)
-      	elseif arg == "dec" then
-      		local new_value = math.max(0, current - options.scale_increment)
-      		mp.set_property_number("sub-scale", new_value)
-      	else
-      		mp.set_property_number("sub-scale", default_scale)
-      	end
-      end)
+      	["adjust-property"] = function(property, value, min, max)
+      		min = tonumber(min) or -math.huge
+      		max = tonumber(max) or math.huge
 
-      mp.register_script_message("adjust-delay", function(arg)
-      	local current = mp.get_property_number("sub-delay")
-      	if arg == "inc" then
-      		mp.set_property_number("sub-delay", current + options.delay_increment)
-      	elseif arg == "dec" then
-      		mp.set_property_number("sub-delay", current - options.delay_increment)
-      	else
-      		mp.set_property_number("sub-delay", default_delay)
-      	end
-      end)
+      		local num = tonumber(value)
+      		if num then
+      			local current = mp.get_property_number(property) or 0.0
+      			local new = math.max(min, math.min(max, current + num))
+      			mp.set_property(property, new)
+      		elseif value == "reset" then
+      			mp.set_property(property, default_properties[property])
+      		else
+      			mp.set_property(property, value)
+      		end
+      	end,
 
-      mp.register_script_message("adjust-ass-override", function(value)
-      	if value == "off" then
-      		mp.set_property("sub-ass-override", "no")
-      	elseif value == "on" then
-      		mp.set_property("sub-ass-override", "yes")
-      	elseif value == "scale" then
-      		mp.set_property("sub-ass-override", "scale")
-      	elseif value == "force" then
-      		mp.set_property("sub-ass-override", "force")
-      	elseif value == "strip" then
-      		mp.set_property("sub-ass-override", "strip")
-      	end
-      end)
+      	["adjust-ass-override"] = function(value)
+      		local mapping = { off = "no", on = "yes", scale = "scale", force = "force", strip = "strip" }
+      		if mapping[value] then
+      			mp.set_property("sub-ass-override", mapping[value])
+      		end
+      	end,
 
-      mp.register_script_message("adjust-blend", function(value)
-      	if value == "off" then
-      		mp.set_property("blend-subtitles", "no")
-      	elseif value == "on" then
-      		mp.set_property("blend-subtitles", "yes")
-      	elseif value == "video" then
-      		mp.set_property("blend-subtitles", "video")
-      	end
-      end)
+      	["adjust-blend"] = function(value)
+      		local mapping = { off = "no", on = "yes", video = "video" }
+      		if mapping[value] then
+      			mp.set_property("blend-subtitles", mapping[value])
+      		end
+      	end,
+      }
 
-      mp.observe_property("sub-pos", "number", function(_, _)
-      	update_menu()
-      end)
-      mp.observe_property("secondary-sub-pos", "number", function(_, _)
-      	update_menu()
-      end)
-      mp.observe_property("sub-scale", "number", function(_, _)
-      	update_menu()
-      end)
-      mp.observe_property("sub-delay", "number", function(_, _)
-      	update_menu()
-      end)
+      for name, handler in pairs(message_handlers) do
+      	mp.register_script_message(name, handler)
+      end
+
+      -- Efficient native value state observers tracking property cycles safely
+      mp.observe_property("sub-pos", "number", update_menu)
+      mp.observe_property("sub-scale", "number", update_menu)
+      mp.observe_property("sub-delay", "number", update_menu)
       mp.observe_property("sub-ass-override", "string", function(_, value)
       	ass_override = value
       	update_menu()
@@ -285,6 +199,7 @@
       	update_menu()
       end)
 
+      -- Open Menu Keybinding
       mp.add_forced_key_binding(nil, "open-menu", function()
       	local json = mp.utils.format_json(create_menu_data())
       	mp.commandv("script-message-to", "uosc", "open-menu", json)
