@@ -32,17 +32,25 @@ in {
     };
   };
 
-  home.packages = lib.mkIf enabled (with pkgs; [
-    cliphist
-    hyprpicker
-    hyprshutdown
-    hyprsunset
-    hyprtoolkit
-    localsend
-    wev
-    wl-clipboard
-    zenity
-  ]);
+  home = lib.mkIf enabled {
+    packages = with pkgs; [
+      cliphist
+      hyprpicker
+      hyprshutdown
+      hyprsunset
+      hyprtoolkit
+      localsend
+      wev
+      wl-clipboard
+      zenity
+    ];
+    file.".config/hypr/.stylua.toml" = {
+      text = ''
+        indent_type = "Spaces"
+        indent_width = 4
+      '';
+    };
+  };
 
   xdg.portal = {
     enable = enabled;
