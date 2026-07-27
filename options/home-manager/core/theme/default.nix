@@ -21,9 +21,9 @@ in {
   home.pointerCursor = lib.mkIf hosts.gui.enable {
     name = homes.cursor;
     package = pkgsCursor;
+    size = cursor;
     hyprcursor = lib.mkIf (hosts.gui.windowmanager == "hyprland") {
       enable = true;
-      size = cursor;
     };
   };
 }
