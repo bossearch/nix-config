@@ -28,13 +28,13 @@ in {
     slurp
     socat
     tesseract
-    waybar
     wl-screenrec
     sysboard
   ]);
 
   programs.waybar = {
     enable = homes.waybar;
+    package = pkgs.waybar-fix-hypr-lua;
     systemd.enable = true;
     systemd.targets = ["hyprland-session.target"];
     settings = {
@@ -45,7 +45,6 @@ in {
         "margin-right" = 8;
         "margin-bottom" = 0;
         "margin-left" = 8;
-        "fixef-center" = "true";
         "spacing" = 4;
 
         "modules-left" = [
