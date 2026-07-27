@@ -16,9 +16,9 @@ in {
       #!/usr/bin/env bash
 
       ${condition}
-        hyprctl keyword cursor:zoom_factor 2
+        hyprctl eval "hl.config({ cursor = { zoom_factor = 2.0 } })"
       else
-        hyprctl keyword cursor:zoom_factor 1
+        hyprctl eval "hl.config({ cursor = { zoom_factor = 1.0 } })"
       fi
     '';
   };
