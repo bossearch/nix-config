@@ -14,11 +14,45 @@ in {
         ---- WORKSPACERULE ----
         -----------------------
 
-        hl.workspace_rule({ workspace = "special:scratchpad", gaps_out = 200, on_created_empty = "alacritty -T scratchpad" })
-        hl.workspace_rule({ workspace = "1", layout = "monocle", on_created_empty = "alacritty" })
-        hl.workspace_rule({ workspace = "2", layout = "scrolling", on_created_empty = "firefox" })
-        hl.workspace_rule({ workspace = "6", layout = "scrolling" })
-        hl.workspace_rule({ workspace = "7", layout = "monocle" })
+        hl.workspace_rule({
+            workspace = "special:scratchpad",
+            gaps_out = 200,
+            on_created_empty = "alacritty -T scratchpad",
+        })
+        hl.workspace_rule({
+            workspace = "1",
+            layout = "monocle",
+            on_created_empty = "alacritty",
+        })
+        hl.workspace_rule({
+            workspace = "2",
+            layout = "scrolling",
+            on_created_empty = "firefox",
+        })
+        hl.workspace_rule({
+            workspace = "6",
+            layout = "scrolling",
+        })
+        hl.workspace_rule({
+            workspace = "7",
+            layout = "monocle",
+        })
+
+        -- auto enable hyprsunset on workspace 1
+        local hyprsunset_enabled = false
+        hl.on("workspace.active", function(ws)
+            if ws.id == 1 then
+                if not hyprsunset_enabled then
+                    hl.exec_cmd("~/.config/waybar/scripts/control/hyprsunset.sh enable")
+                    hyprsunset_enabled = true
+                end
+            elseif ws.id ~= 1 then
+                if hyprsunset_enabled then
+                    hl.exec_cmd("~/.config/waybar/scripts/control/hyprsunset.sh disable")
+                    hyprsunset_enabled = false
+                end
+            end
+        end)
 
         -- auto toggle gamemode
         local gamemode_enabled = false

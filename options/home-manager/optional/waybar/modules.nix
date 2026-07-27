@@ -336,9 +336,7 @@ in {
       "custom/hyprsunset" = {
         "format" = "{} ";
         "exec" = "cat ~/.cache/${hosts.username}/hyprsunset-icon";
-        "on-click" = "~/.config/waybar/scripts/control/hyprsunset/hyprsunset.sh";
-        "on-scroll-up" = "~/.config/waybar/scripts/control/hyprsunset/scroll-up.sh";
-        "on-scroll-down" = "~/.config/waybar/scripts/control/hyprsunset/scroll-down.sh";
+        "on-click" = "~/.config/waybar/scripts/control/hyprsunset.sh";
         "signal" = 12;
         "tooltip" = false;
       };

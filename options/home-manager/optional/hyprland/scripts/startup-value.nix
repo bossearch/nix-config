@@ -16,10 +16,9 @@ in {
       echo "󰂞" >"$NOTIFY_ICON_FILE"
 
       HYPRSUNSET_ICON_FILE="$HOME/.cache/${hosts.username}/hyprsunset-icon"
+      HYPRSUNSET_TEMP_FILE="$HOME/.cache/${hosts.username}/hyprsunset-temp"
       echo "" >"$HYPRSUNSET_ICON_FILE"
-      HYPRSUNSET_TEMP_FILE="$HOME/.cache/${hosts.username}/temperature"
-      HYPRSUNSET_TEMP_SCROLL="$HOME/.cache/${hosts.username}/temp-scroll"
-      echo "6500" | tee "$HYPRSUNSET_TEMP_FILE" "$HYPRSUNSET_TEMP_SCROLL"
+      echo "6500" >"$HYPRSUNSET_TEMP_FILE"
 
       GAMEMODE_FILE="$HOME/.cache/${hosts.username}/gamemode"
       rm -f "$GAMEMODE_FILE"
