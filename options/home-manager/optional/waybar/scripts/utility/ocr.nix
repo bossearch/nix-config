@@ -14,6 +14,8 @@ in {
 
       set -e
 
+      hyprctl eval "require('lib.util').toggle_opacity('enable')"
+
       die() {
         notify-send -e -u critical "OCR" "$1" -i scanner -t 1000
         exit 1
@@ -34,6 +36,9 @@ in {
       tesseract "$SCR_IMG/scr.png" "$SCR_IMG/scr" &>/dev/null || die "Failed to extract text"
       wl-copy <"$SCR_IMG/scr.txt" || die "Failed to copy text to clipboard"
       notify-send -e "OCR" "Text extracted to clipboard" -i scanner
+
+      hyprctl eval "require('lib.util').toggle_opacity('disable')"
+
       exit
     '';
   };

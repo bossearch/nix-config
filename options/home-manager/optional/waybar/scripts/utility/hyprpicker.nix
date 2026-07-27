@@ -7,14 +7,13 @@
     executable = true;
     text = ''
       #!/usr/bin/env bash
-      hyprctl --batch "\
-      keyword decoration:active_opacity 1;\
-      keyword decoration:inactive_opacity 1"
+
+      hyprctl eval "require('lib.util').toggle_opacity('enable')"
 
       sleep 0.5
-
       hyprpicker -a
-      trap 'hyprctl reload' EXIT
+
+      hyprctl eval "require('lib.util').toggle_opacity('disable')"
     '';
   };
 }

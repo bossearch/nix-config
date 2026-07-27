@@ -70,34 +70,72 @@
             end
         end
 
-        -- gamemode
-        M.enable_gamemode = function()
-            hl.config({
-                decoration = {
-                    rounding = 0,
-                    active_opacity = 1,
-                    inactive_opacity = 1,
-                    blur = {
-                        enabled = false,
+        local active_opacity = nil
+        local inactive_opacity = nil
+
+        -- toggle opacity
+        M.toggle_opacity = function(args)
+            if args == "enable" then
+                active_opacity = hl.get_config("decoration.active_opacity")
+                inactive_opacity = hl.get_config("decoration.inactive_opacity")
+                hl.config({
+                    decoration = {
+                        active_opacity = 1,
+                        inactive_opacity = 1,
                     },
-                },
-                debug = {
-                    vfr = false,
-                },
-            })
+                })
+            elseif args == "disable" then
+                hl.config({
+                    decoration = {
+                        active_opacity = active_opacity,
+                        inactive_opacity = inactive_opacity,
+                    },
+                })
+            end
         end
 
-        M.disable_gamemode = function()
-            hl.config({
-                decoration = {
-                    rounding = 8,
-                    active_opacity = 0.9,
-                    inactive_opacity = 0.85,
-                    blur = {
-                        enabled = true,
+        -- gamemode
+        M.gamemode = function(args)
+            if args == "enable" then
+                active_opacity = hl.get_config("decoration.active_opacity")
+                inactive_opacity = hl.get_config("decoration.inactive_opacity")
+                hl.config({
+                    decoration = {
+                        rounding = 0,
+                        active_opacity = 1,
+                        inactive_opacity = 1,
+                        blur = {
+                            enabled = false,
+                        },
                     },
-                },
-            })
+                    debug = {
+                        vfr = false,
+                    },
+                })
+            elseif args == "disable" then
+                hl.config({
+                    decoration = {
+                        rounding = 8,
+                        active_opacity = active_opacity,
+                        inactive_opacity = inactive_opacity,
+                        blur = {
+                            enabled = true,
+                        },
+                    },
+                })
+            else
+                local ws7_exists = false
+                for _, w in ipairs(hl.get_workspaces()) do
+                    if w.id == 7 then
+                        ws7_exists = true
+                        break
+                    end
+                end
+
+                if not ws7_exists then
+                    hl.config({ debug = { vfr = true } })
+                end
+            end
         end
 
         return M
