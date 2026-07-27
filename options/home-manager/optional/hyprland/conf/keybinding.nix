@@ -83,38 +83,40 @@
         hl.bind(hyper .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-group.sh"))
 
         -- Switch workspaces
-        hl.bind(meh .. " + Y", hl.dsp.exec_cmd(workspace .. " focus 1"))
-        hl.bind(meh .. " + U", hl.dsp.exec_cmd(workspace .. " focus 2"))
-        hl.bind(meh .. " + I", hl.dsp.exec_cmd(workspace .. " focus 3"))
-        hl.bind(meh .. " + O", hl.dsp.exec_cmd(workspace .. " focus 4"))
-        hl.bind(meh .. " + P", hl.dsp.exec_cmd(workspace .. " focus 5"))
+        hl.bind(meh .. " + Y", hl.dsp.focus({ workspace = "r~1" }))
+        hl.bind(meh .. " + U", hl.dsp.focus({ workspace = "r~2" }))
+        hl.bind(meh .. " + I", hl.dsp.focus({ workspace = "r~3" }))
+        hl.bind(meh .. " + O", hl.dsp.focus({ workspace = "r~4" }))
+        hl.bind(meh .. " + P", hl.dsp.focus({ workspace = "r~5" }))
 
-        hl.bind(meh .. " + N", hl.dsp.exec_cmd(workspace .. " focus 6"))
-        hl.bind(meh .. " + M", hl.dsp.exec_cmd(workspace .. " focus 7"))
-        hl.bind(meh .. " + code:59", hl.dsp.exec_cmd(workspace .. " focus 8"))
-        hl.bind(meh .. " + code:60", hl.dsp.exec_cmd(workspace .. " focus 9"))
-        hl.bind(meh .. " + code:61", hl.dsp.exec_cmd(workspace .. " focus 10"))
+        hl.bind(meh .. " + N", hl.dsp.focus({ workspace = "r~6" }))
+        hl.bind(meh .. " + M", hl.dsp.focus({ workspace = "r~7" }))
+        hl.bind(meh .. " + code:59", hl.dsp.focus({ workspace = "r~8" }))
+        hl.bind(meh .. " + code:60", hl.dsp.focus({ workspace = "r~9" }))
+        hl.bind(meh .. " + code:61", hl.dsp.focus({ workspace = "r~10" }))
 
         -- Move active window to a workspace
-        hl.bind(hyper .. " + Y", hl.dsp.exec_cmd(workspace .. " move 1"))
-        hl.bind(hyper .. " + U", hl.dsp.exec_cmd(workspace .. " move 2"))
-        hl.bind(hyper .. " + I", hl.dsp.exec_cmd(workspace .. " move 3"))
-        hl.bind(hyper .. " + O", hl.dsp.exec_cmd(workspace .. " move 4"))
-        hl.bind(hyper .. " + P", hl.dsp.exec_cmd(workspace .. " move 5"))
+        hl.bind(hyper .. " + Y", hl.dsp.window.move({ workspace = "r~1", follow = true }))
+        hl.bind(hyper .. " + U", hl.dsp.window.move({ workspace = "r~2", follow = true }))
+        hl.bind(hyper .. " + I", hl.dsp.window.move({ workspace = "r~3", follow = true }))
+        hl.bind(hyper .. " + O", hl.dsp.window.move({ workspace = "r~4", follow = true }))
+        hl.bind(hyper .. " + P", hl.dsp.window.move({ workspace = "r~5", follow = true }))
 
-        hl.bind(hyper .. " + N", hl.dsp.exec_cmd(workspace .. " move 6"))
-        hl.bind(hyper .. " + M", hl.dsp.exec_cmd(workspace .. " move 7"))
-        hl.bind(hyper .. " + code:59", hl.dsp.exec_cmd(workspace .. " move 8"))
-        hl.bind(hyper .. " + code:60", hl.dsp.exec_cmd(workspace .. " move 9"))
-        hl.bind(hyper .. " + code:61", hl.dsp.exec_cmd(workspace .. " move 10"))
+        hl.bind(hyper .. " + N", hl.dsp.window.move({ workspace = "r~6", follow = true }))
+        hl.bind(hyper .. " + M", hl.dsp.window.move({ workspace = "r~7", follow = true }))
+        hl.bind(hyper .. " + code:59", hl.dsp.window.move({ workspace = "r~8", follow = true }))
+        hl.bind(hyper .. " + code:60", hl.dsp.window.move({ workspace = "r~9", follow = true }))
+        hl.bind(hyper .. " + code:61", hl.dsp.window.move({ workspace = "r~10", follow = true }))
 
         -- Scroll through existing workspaces
-        hl.bind(meh .. " + H", hl.dsp.exec_cmd(workspace .. " focus prev"))
-        hl.bind(meh .. " + L", hl.dsp.exec_cmd(workspace .. " focus next"))
-        hl.bind(meh .. " + mouse_down", hl.dsp.exec_cmd(workspace .. " focus prev"))
-        hl.bind(meh .. " + mouse_up", hl.dsp.exec_cmd(workspace .. " focus next"))
-        hl.bind(hyper .. " + H", hl.dsp.exec_cmd(workspace .. " move prev"))
-        hl.bind(hyper .. " + L", hl.dsp.exec_cmd(workspace .. " move next"))
+        hl.bind(meh .. " + H", hl.dsp.focus({ workspace = "e-1" }))
+        hl.bind(meh .. " + L", hl.dsp.focus({ workspace = "e+1" }))
+        hl.bind(meh .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
+        hl.bind(meh .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
+
+        -- Move window with scroll through existing workspaces
+        hl.bind(hyper .. " + H", hl.dsp.window.move({ workspace = "e-1", follow = true }))
+        hl.bind(hyper .. " + L", hl.dsp.window.move({ workspace = "e+1", follow = true }))
 
         -- Special workspace
         hl.bind(meh .. " + RETURN", hl.dsp.workspace.toggle_special("scratchpad"))

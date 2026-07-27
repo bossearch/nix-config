@@ -9,26 +9,6 @@
 
         local M = {}
 
-        -- workspace
-        M.cycle_workspace = function(args)
-            local target = (args == "next") and "e+1" or "e-1"
-            hl.dispatch(hl.dsp.focus({ workspace = target }))
-        end
-
-        M.select_workspace = function(args)
-            hl.dispatch(hl.dsp.focus({ workspace = "r~" .. args }))
-        end
-
-        -- move window to workspace
-        M.move_to_workspace = function(args)
-            local target = (args == "next") and "e+1" or "e-1"
-            hl.dispatch(hl.dsp.window.move({ workspace = target, follow = true }))
-        end
-
-        M.move_to_selected_workspace = function(args)
-            hl.dispatch(hl.dsp.window.move({ workspace = "r~" .. args, follow = true }))
-        end
-
         -- cycle window with direction (only works for scrolling, master & monocle)
         M.cycle_window = function(layout, direction)
             if layout == "scrolling" then
