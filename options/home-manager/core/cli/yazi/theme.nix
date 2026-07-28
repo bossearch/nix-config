@@ -266,32 +266,42 @@ in {
         }
         {
           name = "Desktop";
-          text = "";
-          fg = base0D;
-        }
-        {
-          name = "Devs";
-          text = "";
+          text = "󱋣";
           fg = base0D;
         }
         {
           name = "Documents";
-          text = "";
+          text = "󰲂";
           fg = base0D;
         }
         {
           name = "Downloads";
-          text = "";
+          text = "󰉍";
+          fg = base0D;
+        }
+        {
+          name = "Music";
+          text = "󱍙";
           fg = base0D;
         }
         {
           name = "Pictures";
-          text = "";
+          text = "󰉏";
+          fg = base0D;
+        }
+        {
+          name = "Projects";
+          text = "󰴉";
+          fg = base0D;
+        }
+        {
+          name = "Public";
+          text = "󱧬";
           fg = base0D;
         }
         {
           name = "Videos";
-          text = "";
+          text = "󱧺";
           fg = base0D;
         }
       ];
