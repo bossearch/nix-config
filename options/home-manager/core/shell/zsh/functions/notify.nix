@@ -40,7 +40,7 @@
               "yy" "sy" "yazi"
               "man" "tmux" "fg"
               "git" "lazygit" "lg"
-              "newsboat"
+              "newsboat" "opencode"
               "v" "vi" "vim" "nvim"
           )
 

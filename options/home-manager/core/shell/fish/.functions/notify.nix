@@ -13,9 +13,10 @@
           rb hm nix-shell \
           fkill fzf fsys fgrep \
           yy sy yazi \
+          man tmux fg \
+          git lazygit lg \
+          newsboat opencode \
           v vi vim nvim \
-          man tmux tm fg \
-          git lazygit lg newsboat
 
       # Exit code and duration
       set -l exit_code $status
