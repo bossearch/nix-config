@@ -10,6 +10,12 @@
     else if hosts.theme == "catppuccin-mocha"
     then "catppuccin"
     else "palette";
+  retroarch =
+    if homes.game.retroarch
+    then ''
+      cp "$OUTPUT_IMG" "$CACHE_DIR/retroarch.png"
+    ''
+    else "";
 in {
   home.file.".config/gowall/daily-wallpaper.sh" = lib.mkIf homes.gowall {
     executable = true;
@@ -23,6 +29,8 @@ in {
       DATE=$(date +%Y%m%d)
       OUTPUT_IMG="$CACHE_DIR/hyprpaper.png"
       sleep 10
+
+      ${retroarch}
 
       : >"$LOG_FILE"
       exec > >(tee -a "$LOG_FILE") 2>&1
