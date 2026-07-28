@@ -8,8 +8,8 @@
 }: let
   Home_dir =
     if hosts.hostname == "silvia"
-    then "${config.home.homeDirectory}/{Desktop,Downloads/{Torrent,LocalSend},Documents,Pictures/Screenshots,Shared,Videos/Screenrecords,.cache/${hosts.username}}"
-    else "${config.home.homeDirectory}/{Desktop,Downloads,Documents,Pictures/Screenshots,Videos/Screenrecords,.cache/${hosts.username}}";
+    then "${config.home.homeDirectory}/{Downloads/{Torrent,LocalSend},Pictures/Screenshots,Videos/Screenrecords,.cache/${hosts.username}}"
+    else "${config.home.homeDirectory}/{Pictures/Screenshots,Videos/Screenrecords,.cache/${hosts.username}}";
 in {
   home = lib.mkMerge [
     {
@@ -29,19 +29,13 @@ in {
       file = {
         ".config/gtk-3.0/bookmarks".text = ''
           file://${config.home.homeDirectory}/Desktop Desktop
-          file://${config.home.homeDirectory}/Downloads Downloads
           file://${config.home.homeDirectory}/Documents Documents
+          file://${config.home.homeDirectory}/Downloads Downloads
+          file://${config.home.homeDirectory}/Music Music
           file://${config.home.homeDirectory}/Pictures Pictures
+          file://${config.home.homeDirectory}/Projects Projects
+          file://${config.home.homeDirectory}/Public Public
           file://${config.home.homeDirectory}/Videos Videos
-          file://${config.home.homeDirectory}/Shared Shared
-        '';
-        ".config/user-dirs.dirs".text = ''
-          XDG_DESKTOP_DIR="$HOME/Desktop"
-          XDG_DOCUMENTS_DIR="$HOME/Documents"
-          XDG_DOWNLOAD_DIR="$HOME/Downloads"
-          XDG_PICTURES_DIR="$HOME/Pictures"
-          XDG_VIDEOS_DIR="$HOME/Videos"
-          XDG_PUBLICSHARE_DIR="$HOME/Shared"
         '';
       };
     })
