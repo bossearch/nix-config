@@ -12,8 +12,8 @@ pkgs.writeShellScript "nvim-config" ''
     fi
     ;;
   clone)
-    if [[ ! -d "$HOME/Devs/nvim-config" ]]; then
-      ${pkgs.git}/bin/git clone "https://github.com/bossearch/nvim-config" "$HOME/Devs/nvim-config"
+    if [[ ! -d "$HOME/Projects/nvim-config" ]]; then
+      ${pkgs.git}/bin/git clone "https://github.com/bossearch/nvim-config" "$HOME/Projects/nvim-config"
     fi
     ;;
   esac

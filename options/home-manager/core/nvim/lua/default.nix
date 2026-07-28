@@ -7,7 +7,7 @@
 }: {
   home = lib.mkIf config.programs.neovim.enable {
     file.".config/nvim".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Devs/nvim-config";
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/nvim-config";
   };
 
   imports = mylib.autoimport ./.;
