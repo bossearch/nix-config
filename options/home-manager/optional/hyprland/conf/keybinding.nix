@@ -13,150 +13,224 @@
         local hyper = "SUPER + MOD5"
 
         local terminal = "alacritty"
-        local pass = "footclient -T smallfzf ~/.config/fzf/extra/pass.sh password"
-        local otp = "footclient -T smallfzf ~/.config/fzf/extra/pass.sh otp"
-        local workspace = "~/.config/hypr/scripts/workspace.sh"
+        -- local pass = "footclient -T smallfzf ~/.config/fzf/extra/pass.sh password"
+        -- local otp = "footclient -T smallfzf ~/.config/fzf/extra/pass.sh otp"
         local cycle = "~/.config/hypr/scripts/cycle.sh"
         local util = require("lib.util")
 
-        hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("~/.config/hypr/scripts/quit.sh"))
-        hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+        local specialKeys = {
+            [","] = "code:59",
+            ["."] = "code:60",
+            ["/"] = "code:61",
+        }
 
-        hl.bind(mainMod .. " + SPACE", function()
-            util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/drun.sh")
-        end, { release = true })
-        hl.bind(secMod .. " + SPACE", function()
-            util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/run.sh")
-        end, { release = true })
-        hl.bind(mainMod .. " + code:60", function()
-            util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/emoji.sh")
-        end, { release = true }) -- "."
-        hl.bind(mainMod .. " + V", function()
-            util.toggle_app("bigfzf", "footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh")
-        end, { release = true }) -- "."
+        local function parse_key(key)
+            return specialKeys[key] or key
+        end
 
-        hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/mpv/mpv.sh"))
-        hl.bind(mainMod .. " + code:59", hl.dsp.exec_cmd("~/.config/qmk/cheatsheet-wrapper.sh")) -- ","
+        local workspaceKeys = { "Y", "U", "I", "O", "P", "N", "M", ",", ".", "/" }
 
-        -- TODO: remove this key later or update the path if still used
-        -- hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprlock.sh"))
-        -- hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/word-lookup.sh"))
-        -- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/deepl-terjemah.sh"))
-        -- hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("~/.config/hypr/scripts/deepl-translate.sh"))
-        -- hl.bind(meh .. " + Q", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenshot/ssmonitor.sh"))
-        -- hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenrecord/recmonitor.sh"))
-        -- hl.bind(meh .. " + W", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenshot/sswindow.sh"))
-        -- hl.bind(hyper .. " + W", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenrecord/recwindow.sh"))
-        -- hl.bind(meh .. " + E", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenshot/ssarea.sh"))
-        -- hl.bind(hyper .. " + E", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenrecord/recarea.sh"))
-        -- hl.bind(meh .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/utility/hyprpicker.sh"))
-        -- hl.bind(hyper .. " + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/screenshot/ocr.sh"))
-        -- hl.bind(meh .. " + V", hl.dsp.exec_cmd("~/.config/waybar/scripts/pavucontrol/cycle-output.sh"))
-        -- hl.bind(hyper .. " + V", hl.dsp.exec_cmd("~/.config/waybar/scripts/pavucontrol/cycle-input.sh"))
-        -- hl.bind(meh .. " + C", hl.dsp.exec_cmd("~/.config/waybar/scripts/pavucontrol/toggle-output.sh"))
-        -- hl.bind(hyper .. " + C", hl.dsp.exec_cmd("~/.config/waybar/scripts/pavucontrol/toggle-input.sh"))
-        -- hl.bind(meh .. " + Y", hl.dsp.exec_cmd("~/.config/waybar/scripts/utility/virtualkeyboard.sh"))
-        -- hl.bind(
-        --     hyper .. " + Y",
-        --     hl.dsp.exec_cmd("pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard")
-        -- )
-        -- hl.bind(hyper .. " + U", hl.dsp.exec_cmd("~/.config/waybar/scripts/hyprsunset/scroll-down.sh"))
-        -- hl.bind(meh .. " + I", hl.dsp.exec_cmd("~/.config/waybar/scripts/dunst/dunsticon.sh"))
-        -- hl.bind(hyper .. " + I", hl.dsp.exec_cmd("~/.config/waybar/scripts/hyprsunset/scroll-up.sh"))
-        -- hl.bind(meh .. " + O", hl.dsp.exec_cmd("hyprctl dispatch setprop active opaque toggle"))
-        -- hl.bind(hyper .. " + S", hl.dsp.exec_cmd("~/.config/waybar/scripts/hyprsunset/hyprsunset.sh"))
-        -- hl.bind(meh .. " + P", hl.dsp.exec_cmd("pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. pass))
-        -- hl.bind(hyper .. " + P", hl.dsp.exec_cmd("pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. otp))
+        local keybinds = {
+            { mod = mainMod, key = "Q", dispatch = "~/.config/hypr/scripts/quit.sh" },
+            { mod = mainMod, key = "RETURN", dispatch = terminal },
 
-        -- Move focus with mainMod + arrow keys
-        hl.bind(meh .. " + SPACE", hl.dsp.window.cycle_next({ next = true }))
-        hl.bind(meh .. " + J", hl.dsp.exec_cmd(cycle .. " prev"))
-        hl.bind(meh .. " + K", hl.dsp.exec_cmd(cycle .. " next"))
-        hl.bind(meh .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/hypr/scripts/swap-window.sh"))
+            -- toggle custom app
+            {
+                mod = mainMod,
+                key = "SPACE",
+                dispatch = function()
+                    util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/drun.sh")
+                end,
+                opts = { release = true },
+            },
+            {
+                mod = secMod,
+                key = "SPACE",
+                dispatch = function()
+                    util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/run.sh")
+                end,
+                opts = { release = true },
+            },
+            {
+                mod = mainMod,
+                key = ".",
+                dispatch = function()
+                    util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/emoji.sh")
+                end,
+                opts = { release = true },
+            },
+            {
+                mod = mainMod,
+                key = "V",
+                dispatch = function()
+                    util.toggle_app("bigfzf", "footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh")
+                end,
+                opts = { release = true },
+            },
+            {
+                mod = mainMod,
+                key = ",",
+                dispatch = function()
+                    util.toggle_app("crkbd", "~/.config/qmk/cheatsheet-wrapper.sh")
+                end,
+                opts = { release = true },
+            },
 
-        -- Swap window left or right
-        hl.bind(hyper .. " + J", hl.dsp.window.swap({ direction = "l" }))
-        hl.bind(hyper .. " + K", hl.dsp.window.swap({ direction = "r" }))
+            -- cycle focus
+            { mod = meh, key = "SPACE", dispatch = hl.dsp.window.cycle_next({ next = true }) },
+            { mod = meh, key = "J", dispatch = cycle .. " prev" },
+            { mod = meh, key = "K", dispatch = cycle .. " next" },
+            { mod = meh, key = "ESCAPE", dispatch = "~/.config/hypr/scripts/swap-window.sh" },
 
-        -- Group
-        hl.bind(hyper .. " + SPACE", hl.dsp.group.next())
-        hl.bind(hyper .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-group.sh"))
+            -- swap window
+            { mod = hyper, key = "J", dispatch = hl.dsp.window.swap({ direction = "l" }) },
+            { mod = hyper, key = "K", dispatch = hl.dsp.window.swap({ direction = "r" }) },
 
-        -- Switch workspaces
-        hl.bind(meh .. " + Y", hl.dsp.focus({ workspace = "r~1" }))
-        hl.bind(meh .. " + U", hl.dsp.focus({ workspace = "r~2" }))
-        hl.bind(meh .. " + I", hl.dsp.focus({ workspace = "r~3" }))
-        hl.bind(meh .. " + O", hl.dsp.focus({ workspace = "r~4" }))
-        hl.bind(meh .. " + P", hl.dsp.focus({ workspace = "r~5" }))
+            -- window groups
+            { mod = hyper, key = "SPACE", dispatch = hl.dsp.group.next() },
+            { mod = hyper, key = "ESCAPE", dispatch = "~/.config/hypr/scripts/toggle-group.sh" },
 
-        hl.bind(meh .. " + N", hl.dsp.focus({ workspace = "r~6" }))
-        hl.bind(meh .. " + M", hl.dsp.focus({ workspace = "r~7" }))
-        hl.bind(meh .. " + code:59", hl.dsp.focus({ workspace = "r~8" }))
-        hl.bind(meh .. " + code:60", hl.dsp.focus({ workspace = "r~9" }))
-        hl.bind(meh .. " + code:61", hl.dsp.focus({ workspace = "r~10" }))
+            -- Dynamic workspace bindings utilizing the workspaceKeys array
+            { mod = meh, key = workspaceKeys, workspace = "focus" },
+            { mod = hyper, key = workspaceKeys, workspace = "move" },
 
-        -- Move active window to a workspace
-        hl.bind(hyper .. " + Y", hl.dsp.window.move({ workspace = "r~1", follow = true }))
-        hl.bind(hyper .. " + U", hl.dsp.window.move({ workspace = "r~2", follow = true }))
-        hl.bind(hyper .. " + I", hl.dsp.window.move({ workspace = "r~3", follow = true }))
-        hl.bind(hyper .. " + O", hl.dsp.window.move({ workspace = "r~4", follow = true }))
-        hl.bind(hyper .. " + P", hl.dsp.window.move({ workspace = "r~5", follow = true }))
+            -- scroll through existing workspaces
+            { mod = meh, key = "H", dispatch = hl.dsp.focus({ workspace = "e-1" }) },
+            { mod = meh, key = "L", dispatch = hl.dsp.focus({ workspace = "e+1" }) },
+            { mod = meh, key = "mouse_down", dispatch = hl.dsp.focus({ workspace = "e-1" }) },
+            { mod = meh, key = "mouse_up", dispatch = hl.dsp.focus({ workspace = "e+1" }) },
+            { mod = hyper, key = "H", dispatch = hl.dsp.window.move({ workspace = "e-1", follow = true }) },
+            { mod = hyper, key = "L", dispatch = hl.dsp.window.move({ workspace = "e+1", follow = true }) },
 
-        hl.bind(hyper .. " + N", hl.dsp.window.move({ workspace = "r~6", follow = true }))
-        hl.bind(hyper .. " + M", hl.dsp.window.move({ workspace = "r~7", follow = true }))
-        hl.bind(hyper .. " + code:59", hl.dsp.window.move({ workspace = "r~8", follow = true }))
-        hl.bind(hyper .. " + code:60", hl.dsp.window.move({ workspace = "r~9", follow = true }))
-        hl.bind(hyper .. " + code:61", hl.dsp.window.move({ workspace = "r~10", follow = true }))
+            -- scratchpad
+            { mod = meh, key = "RETURN", dispatch = hl.dsp.workspace.toggle_special("scratchpad") },
+            { mod = hyper, key = "RETURN", dispatch = hl.dsp.window.move({ workspace = "special:scratchpad" }) },
 
-        -- Scroll through existing workspaces
-        hl.bind(meh .. " + H", hl.dsp.focus({ workspace = "e-1" }))
-        hl.bind(meh .. " + L", hl.dsp.focus({ workspace = "e+1" }))
-        hl.bind(meh .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
-        hl.bind(meh .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
+            -- toggle window
+            { mod = meh, key = "F", dispatch = hl.dsp.window.float({ action = "toggle" }) },
+            { mod = meh, key = "F", dispatch = hl.dsp.window.center() },
 
-        -- Move window with scroll through existing workspaces
-        hl.bind(hyper .. " + H", hl.dsp.window.move({ workspace = "e-1", follow = true }))
-        hl.bind(hyper .. " + L", hl.dsp.window.move({ workspace = "e+1", follow = true }))
+            -- move or drag window
+            { mod = meh, key = "mouse:272", dispatch = hl.dsp.window.drag(), opts = { mouse = true } },
+            { mod = meh, key = "mouse:273", dispatch = hl.dsp.window.resize(), opts = { mouse = true } },
 
-        -- Special workspace
-        hl.bind(meh .. " + RETURN", hl.dsp.workspace.toggle_special("scratchpad"))
-        hl.bind(hyper .. " + RETURN", hl.dsp.window.move({ workspace = "special:scratchpad" }))
+            -- builtin zoom
+            {
+                mod = hyper,
+                key = "mouse_down",
+                dispatch = function()
+                    util.adjust_zoom(0.5)
+                end,
+                opts = { mouse = true },
+            },
+            {
+                mod = hyper,
+                key = "mouse_up",
+                dispatch = function()
+                    util.adjust_zoom(-0.5)
+                end,
+                opts = { mouse = true },
+            },
+            {
+                mod = hyper,
+                key = "mouse:272",
+                dispatch = function()
+                    hl.config({ cursor = { zoom_factor = 2.0 } })
+                end,
+                opts = { mouse = true },
+            },
+            {
+                mod = hyper,
+                key = "mouse:273",
+                dispatch = function()
+                    hl.config({ cursor = { zoom_factor = 1.0 } })
+                end,
+                opts = { mouse = true },
+            },
 
-        -- Toggle Float
-        hl.bind(meh .. " + F", hl.dsp.window.float({ action = "toggle" }))
-        hl.bind(meh .. " + F", hl.dsp.window.center())
+            -- media key
+            { mod = "", key = "XF86AudioRaiseVolume", dispatch = "pactl set-sink-volume @DEFAULT_SINK@ +5%" },
+            { mod = "", key = "XF86AudioLowerVolume", dispatch = "pactl set-sink-volume @DEFAULT_SINK@ -5%" },
+            { mod = "", key = "XF86AudioPlay", dispatch = "~/.config/hypr/scripts/playerctl/player-toggle.sh" },
+            { mod = "", key = "XF86AudioMute", dispatch = "~/.config/hypr/scripts/playerctl/playerctl.sh" },
+            { mod = "", key = "XF86AudioPrev", dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh -5" },
+            { mod = "", key = "XF86AudioNext", dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh +5" },
+            {
+                mod = "",
+                key = "XF86AudioPrev",
+                dispatch = "~/.config/hypr/scripts/playerctl/player-skip.sh previous",
+                opts = { long_press = true },
+            },
+            {
+                mod = "",
+                key = "XF86AudioNext",
+                dispatch = "~/.config/hypr/scripts/playerctl/player-skip.sh next",
+                opts = { long_press = true },
+            },
 
-        -- Move/resize windows with mainMod + LMB/RMB and dragging
-        hl.bind(meh .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-        hl.bind(meh .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+            -- TODO: remove this key later or update the path if still used
+            -- { mod = mainMod, key = "L", dispatch = "~/.config/hypr/scripts/hyprlock.sh" },
+            -- { mod = mainMod, key = "T", dispatch = "~/.config/hypr/scripts/word-lookup.sh" },
+            -- { mod = mainMod, key = "R", dispatch = "~/.config/hypr/scripts/deepl-terjemah.sh" },
+            -- { mod = mainMod, key = "E", dispatch = "~/.config/hypr/scripts/deepl-translate.sh" },
+            -- { mod = meh, key = "Q", dispatch = "~/.config/waybar/scripts/screenshot/ssmonitor.sh" },
+            -- { mod = hyper, key = "Q", dispatch = "~/.config/waybar/scripts/screenrecord/recmonitor.sh" },
+            -- { mod = meh, key = "W", dispatch = "~/.config/waybar/scripts/screenshot/sswindow.sh" },
+            -- { mod = hyper, key = "W", dispatch = "~/.config/waybar/scripts/screenrecord/recwindow.sh" },
+            -- { mod = meh, key = "E", dispatch = "~/.config/waybar/scripts/screenshot/ssarea.sh" },
+            -- { mod = hyper, key = "E", dispatch = "~/.config/waybar/scripts/screenrecord/recarea.sh" },
+            -- { mod = meh, key = "R", dispatch = "~/.config/waybar/scripts/utility/hyprpicker.sh" },
+            -- { mod = hyper, key = "R", dispatch = "~/.config/waybar/scripts/screenshot/ocr.sh" },
+            -- { mod = meh, key = "V", dispatch = "~/.config/waybar/scripts/pavucontrol/cycle-output.sh" },
+            -- { mod = hyper, key = "V", dispatch = "~/.config/waybar/scripts/pavucontrol/cycle-input.sh" },
+            -- { mod = meh, key = "C", dispatch = "~/.config/waybar/scripts/pavucontrol/toggle-output.sh" },
+            -- { mod = hyper, key = "C", dispatch = "~/.config/waybar/scripts/pavucontrol/toggle-input.sh" },
+            -- { mod = meh, key = "Y", dispatch = "~/.config/waybar/scripts/utility/virtualkeyboard.sh" },
+            -- {
+            --     mod = hyper,
+            --     key = "Y",
+            --     dispatch = "pgrep sysboard | xargs kill && notify-send 'Virtual Keyboard' 'Off' -i keyboard",
+            -- },
+            -- { mod = hyper, key = "U", dispatch = "~/.config/waybar/scripts/hyprsunset/scroll-down.sh" },
+            -- { mod = meh, key = "I", dispatch = "~/.config/waybar/scripts/dunst/dunsticon.sh" },
+            -- { mod = hyper, key = "I", dispatch = "~/.config/waybar/scripts/hyprsunset/scroll-up.sh" },
+            -- { mod = meh, key = "O", dispatch = "hyprctl dispatch setprop active opaque toggle" },
+            -- { mod = hyper, key = "S", dispatch = "~/.config/waybar/scripts/hyprsunset/hyprsunset.sh" },
+            -- { mod = meh, key = "P", dispatch = "pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. pass },
+            -- { mod = hyper, key = "P", dispatch = "pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. otp },
+        }
 
-        -- Zoom
-        hl.bind(hyper .. " + mouse_down", function()
-            util.adjust_zoom(0.5)
-        end)
-        hl.bind(hyper .. " + mouse_up", function()
-            util.adjust_zoom(-0.5)
-        end)
-        hl.bind(hyper .. " + mouse:272", function()
-            hl.config({ cursor = { zoom_factor = 2.0 } })
-        end)
-        hl.bind(hyper .. " + mouse:273", function()
-            hl.config({ cursor = { zoom_factor = 1.0 } })
-        end)
+        for _, bind in ipairs(keybinds) do
+            local modBind = bind.mod or mainMod
+            local prefix = (modBind ~= "") and (modBind .. " + ") or ""
+            local opts = bind.opts or {}
 
-        -- Media key
-        hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"))
-        hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"))
-        hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/player-toggle.sh"))
-        hl.bind("XF86AudioMute", hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/playerctl.sh"))
-        hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/player-seek.sh -5"))
-        hl.bind("XF86AudioNext", hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/player-seek.sh +5"))
-        hl.bind(
-            "XF86AudioPrev",
-            hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/player-skip.sh previous"),
-            { long_press = true }
-        )
-        hl.bind("XF86AudioNext", hl.dsp.exec_cmd("~/.config/hypr/scripts/playerctl/player-skip.sh next"), { long_press = true })
+            local bindKey = bind.key
+            local keysTable
+            if type(bindKey) == "table" then
+                keysTable = bindKey
+            else
+                keysTable = { bindKey }
+            end
+
+            local dispatchVal = bind.dispatch
+
+            for i, rawKey in ipairs(keysTable) do
+                local combo = prefix .. parse_key(rawKey)
+
+                if bind.workspace == "focus" then
+                    hl.bind(combo, hl.dsp.focus({ workspace = "r~" .. i }), opts)
+                elseif bind.workspace == "move" then
+                    hl.bind(combo, hl.dsp.window.move({ workspace = "r~" .. i, follow = true }), opts)
+                elseif dispatchVal then
+                    if type(dispatchVal) == "string" then
+                        hl.bind(combo, hl.dsp.exec_cmd(dispatchVal), opts)
+                    else
+                        hl.bind(combo, dispatchVal, opts)
+                    end
+                end
+            end
+        end
       '';
     };
   };
