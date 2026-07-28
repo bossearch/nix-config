@@ -11,11 +11,11 @@
               tmux list-session | fzf \
                   --prompt="session ❯ " \
                   --multi \
-                  --bind "j:down,k:up,x:execute(for sid in {+1}; do tmux kill-session -t \''${sid%%:*}; done)+abort"
+                  --bind "j:down,k:up,x:execute(for sid in {+1}; do tmux kill-session -t \$sid; done)+abort"
           ) || return $?
 
           local target_session
-          target_session=$(echo "$choice" | head -n1 | awk -F '{print $1}')
+          target_session=$(echo "$choice" | head -n1 | awk '{print $1}')
 
           if [[ -n "$target_session" ]]; then
               tmux switch-client -t "$target_session"
