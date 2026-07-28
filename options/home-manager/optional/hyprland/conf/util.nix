@@ -112,6 +112,7 @@
                         vfr = false,
                     },
                 })
+                hl.bind("MOD5 + Q", hl.dsp.exec_cmd("~/.config/hypr/scripts/quit.sh"))
             elseif args == "disable" then
                 hl.config({
                     decoration = {
@@ -123,6 +124,7 @@
                         },
                     },
                 })
+                hl.unbind("MOD5 + Q")
             else
                 local ws7_exists = false
                 for _, w in ipairs(hl.get_workspaces()) do
