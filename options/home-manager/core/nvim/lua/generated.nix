@@ -1,5 +1,6 @@
 {
   config,
+  hosts,
   lib,
   pkgs,
   ...
@@ -20,6 +21,10 @@
   base0D = "#${config.colorScheme.palette.base0D}";
   base0E = "#${config.colorScheme.palette.base0E}";
   base0F = "#${config.colorScheme.palette.base0F}";
+
+  config_dir = "${config.home.homeDirectory}/.nix-config";
+  host = "${hosts.hostname}";
+  user_host = "${hosts.username}@${hosts.hostname}";
 in {
   home = lib.mkIf config.programs.neovim.enable {
     file.".cache/nvim/generated.lua".text = ''
@@ -43,6 +48,10 @@ in {
               base0F = "${base0F}",
           },
           hyprland = "${pkgs.hyprland}/share/hypr/stubs",
+          nixd = {
+              nixos = '(builtins.getFlake "${config_dir}").nixosConfigurations.${host}.options',
+              home_manager = '(builtins.getFlake "${config_dir}").homeConfigurations."${user_host}".options',
+          },
       }
     '';
   };
