@@ -35,7 +35,7 @@
         sleep 1
 
         systemd-run --user --remain-after-exit \
-          bash -c "hyprshutdown -p 'ddcutil setvcp D6 05; poweroff' -t 'Shutting down...'"
+          bash -c "hyprshutdown -p 'poweroff' -t 'Shutting down...'"
       else
         :
       fi

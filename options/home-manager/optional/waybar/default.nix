@@ -21,7 +21,6 @@ in {
   imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf homes.waybar (with pkgs; [
-    ddcutil
     brightnessctl
     grim
     libnotify
