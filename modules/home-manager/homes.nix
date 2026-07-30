@@ -93,7 +93,7 @@ in {
                 default = false;
                 type = types.bool;
               };
-              pcsx2 = mkOption {
+              playstation = mkOption {
                 default = false;
                 type = types.bool;
               };
@@ -215,7 +215,7 @@ in {
       game = {
         lsfg = lib.mkForce false; #*
         lutris = lib.mkForce false; #*
-        pcsx2 = lib.mkForce false; #*
+        playstation = lib.mkForce false; #*
         prismlauncher = lib.mkForce false;
         retroarch = lib.mkForce false;
       };
