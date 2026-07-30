@@ -1,7 +1,6 @@
 {
   homes,
   hosts,
-  lib,
   mylib,
   ...
 }: let
@@ -9,12 +8,8 @@
 in {
   imports = mylib.autoimport ./.;
 
-  home = lib.mkIf enabled {
-    file.".config/Kvantum/kvantum.kvconfig" = {
-      text = ''
-        [General]
-        theme=KvMyColors
-      '';
-    };
+  qt.kvantum = {
+    enable = enabled;
+    settings.General.theme = "KvMyColors";
   };
 }
