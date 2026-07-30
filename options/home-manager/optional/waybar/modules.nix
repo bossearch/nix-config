@@ -22,7 +22,7 @@
     else [];
   control =
     if hosts.hostname == "silvia"
-    then ["custom/ddcutil" "custom/hyprsunset"]
+    then ["backlight" "custom/hyprsunset"]
     else [];
 in {
   programs.waybar.settings = {
@@ -321,15 +321,13 @@ in {
           ];
       };
 
-      "custom/ddcutil" = {
-        "format" = " {icon}{percentage}% ";
+      "backlight" = {
+        "format" = " {icon}{percent}% ";
         "format-icons" = [" " " " " " " " " " " " " " " " " "];
-        "exec" = "bash -c '~/.config/waybar/scripts/control/ddcutil.sh'";
-        "return-type" = "json";
-        "on-scroll-up" = "echo '+' > ~/.cache/${hosts.username}/ddcutil";
-        "on-scroll-down" = "echo '-' > ~/.cache/${hosts.username}/ddcutil";
-        "on-click" = "echo 'max' > ~/.cache/${hosts.username}/ddcutil";
-        "on-click-right" = "echo 'min' > ~/.cache/${hosts.username}/ddcutil";
+        "on-scroll-up" = "brightnessctl set +10%";
+        "on-scroll-down" = "brightnessctl set 10%-";
+        "on-click" = "brightnessctl set 80%";
+        "on-click-right" = "brightnessctl set 0%";
         "tooltip" = false;
       };
 
