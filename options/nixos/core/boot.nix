@@ -16,7 +16,7 @@
       kernelPackages = pkgs.linuxPackages_zen;
     }
     (lib.mkIf (hosts.hostname == "silvia") {
-      kernelModules = ["i2c-dev" "ddcci_backlight"];
+      kernelModules = ["amdgpu" "i2c-dev" "ddcci_backlight"];
       extraModulePackages = with config.boot.kernelPackages; [
         v4l2loopback
         ddcci-driver
