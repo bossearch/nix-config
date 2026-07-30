@@ -16,6 +16,7 @@
       DISPLAY=:0 \
       ${pkgs.systemd}/bin/systemctl --user start "usbguard-prompt@$ESCAPED_PATH.service"
   '';
+  bind_ddcci = "${pkgs.bash}/bin/bash -c '${pkgs.kmod}/bin/modprobe ddcci_backlight && echo ddcci 0x37 > /sys/bus/i2c/devices/%k/new_device'";
 in {
   sops = lib.mkIf (hosts.gui.enable && hosts.usbguard && hosts.hostname == "silvia") {
     secrets.udev1 = {};
@@ -54,6 +55,9 @@ in {
 
     extraRules = lib.concatStringsSep "\n" (
       lib.flatten [
+        (lib.optional (hosts.hostname == "silvia") ''
+          SUBSYSTEM=="i2c", ACTION=="add", KERNELS=="card*", RUN+="${bind_ddcci}"
+        '')
         (lib.optional (hosts.gui.enable && hosts.usbguard && hosts.hostname == "stagea") ''
           ACTION=="add", SUBSYSTEM=="usb", ENV{DEVNAME}!="", GOTO="run_usbguard"
           GOTO="skip_usbguard"
