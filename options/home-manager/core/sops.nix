@@ -12,9 +12,12 @@ in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   config = lib.mkIf hosts.sops {
-    home.packages = with pkgs; [
-      sops
-    ];
+    home = {
+      packages = with pkgs; [
+        sops
+      ];
+      sessionVariables.AGE_KEY_FILE = "${config.sops.age.keyFile}";
+    };
 
     sops = {
       age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
