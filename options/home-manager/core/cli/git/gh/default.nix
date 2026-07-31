@@ -1,8 +1,4 @@
-{
-  mylib,
-  pkgs,
-  ...
-}: {
+{mylib, ...}: {
   imports = mylib.autoimport ./.;
   programs.gh = {
     enable = true;
@@ -29,10 +25,5 @@
       prompt = "enabled";
       spinner = "enabled";
     };
-    extensions = with pkgs; [
-      gh-markdown-preview
-      gh-notify
-      gh-token
-    ];
   };
 }
