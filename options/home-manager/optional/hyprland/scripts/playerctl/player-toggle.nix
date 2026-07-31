@@ -22,7 +22,7 @@ in {
 
       toggle_player() {
         playerctl -p "$NEXT_PLAYER" play-pause
-        sleep 0.001
+        sleep 0.01
 
         STATUS=$(playerctl -p "$NEXT_PLAYER" status 2>/dev/null)
         if [ "$STATUS" == "Playing" ]; then

@@ -382,7 +382,7 @@ in {
       };
 
       "network" = {
-        "format-wifi" = " 󰖩 {signalStrength}%";
+        "format-wifi" = " 󰖩 {signalStrength}% ";
         "format-ethernet" = "  ";
         "on-click" = "footclient -T nmtui bash -c 'sleep 0.1 && nmtui'";
         "format-disconnected" = " Disconnected  ";

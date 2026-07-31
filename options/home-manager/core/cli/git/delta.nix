@@ -41,8 +41,8 @@
 
   softRed = blend base08 base01 0.1;
   softGreen = blend base0B base01 0.1;
-  hardRed = blend base08 base01 0.5;
-  hardGreen = blend base0B base01 0.5;
+  hardRed = blend base08 base01 0.3;
+  hardGreen = blend base0B base01 0.3;
 in {
   programs.delta = {
     enable = true;

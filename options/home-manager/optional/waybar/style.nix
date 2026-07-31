@@ -125,7 +125,7 @@ in {
 
 
     #control {
-      /*group for ddcutil, pulseaudio, and internet*/
+      /*group for backlight, pulseaudio, and internet*/
       background: alpha(@fg, 0.7);
       color: @blue;
     }
