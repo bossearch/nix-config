@@ -51,23 +51,6 @@ in {
         --------------------
 
         local rules_config = {
-            alacritty = {
-                {
-                    name = "normal",
-                    match = {
-                        class = "Alacritty",
-                    },
-                    workspace = ${toString coding},
-                },
-                {
-                    name = "scratchpad",
-                    match = {
-                        class = "Alacritty",
-                        title = "scratchpad",
-                    },
-                    workspace = "special:scratchpad",
-                },
-            },
             blueman = {
                 match = {
                     class = ".blueman-manager-wrapped",
@@ -232,23 +215,6 @@ in {
                 },
                 workspace = ${toString editing},
             },
-            kitty = {
-                {
-                    name = "normal",
-                    match = {
-                        class = "kitty",
-                    },
-                    workspace = ${toString coding},
-                },
-                {
-                    name = "scratchpad",
-                    match = {
-                        class = "kitty",
-                        title = "scratchpad",
-                    },
-                    workspace = "special:scratchpad",
-                },
-            },
             localsend = {
                 match = {
                     class = "localsend_app",
@@ -352,12 +318,6 @@ in {
                 },
                 workspace = ${toString utilities},
                 opaque = true,
-            },
-            obsidian = {
-                match = {
-                    class = "obsidian",
-                },
-                workspace = ${toString coding},
             },
             pavucontrol = {
                 match = {
