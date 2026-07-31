@@ -164,6 +164,26 @@ pkgs.writeShellScript "drun-scan" ''
 
   custom_app=(
     "tor-browser:nix-shell -p tor-browser --run tor-browser"
+    "crkbd-cheatsheet:~/.config/qmk/cheatsheet-wrapper.sh"
+    "toggle-notify:~/.config/waybar/scripts/notify/notify-icon.sh"
+    "lock:~/.config/hypr/scripts/hyprlock.sh"
+    "sleep:~/.config/waybar/scripts/launcher/sleep.sh"
+    "reboot:~/.config/waybar/scripts/launcher/reboot.sh"
+    "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
+    "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
+    "hyprsunset:~/.config/waybar/scripts/control/hyprsunset.sh"
+    "ocr:~/.config/waybar/scripts/utility/ocr.sh"
+    "ss-monitor:sleep 0.2 && ~/.config/waybar/scripts/utility/screenshot/monitor.sh"
+    "ss-area:~/.config/waybar/scripts/utility/screenshot/area.sh"
+    "ss-window:sleep 0.2 && ~/.config/waybar/scripts/utility/screenshot/window.sh"
+    "rec-monitor:~/.config/waybar/scripts/utility/screenrecord/monitor.sh"
+    "rec-area:~/.config/waybar/scripts/utility/screenrecord/area.sh"
+    "rec-window:~/.config/waybar/scripts/utility/screenrecord/window.sh"
+    "on-screen-keyboard:~/.config/waybar/scripts/utility/virtualkeyboard.sh"
+    "cycle-input:~/.config/waybar/scripts/control/input/cycle-input.sh"
+    "toggle-input:~/.config/waybar/scripts/control/input/toggle-input.sh"
+    "cycle-output:~/.config/waybar/scripts/control/output/cycle-output.sh"
+    "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
   )
 
   readarray -t applications < <(find \
