@@ -47,8 +47,8 @@
         desc = "Enter the child directory, or open the file";
       }
       {
-        on = "F";
         run = "plugin smart-filter";
+        on = "F";
         desc = "Smart filter";
       }
       {
@@ -57,14 +57,24 @@
         desc = "Paste into the hovered directory or CWD";
       }
       {
-        run = "plugin toggle-pane max-preview";
-        on = ["T"];
-        desc = "Maximize or restore the preview pane";
-      }
-      {
         run = "plugin wl-clipboard";
         on = ["Y"];
         desc = "Copy file to clipboard";
+      }
+      {
+        run = "plugin toggle-pane max-preview";
+        on = ["<C-p>"];
+        desc = "Maximize or restore the preview pane";
+      }
+      {
+        run = "seek -5";
+        on = ["<C-b>"];
+        desc = "Seek up 5 units in the preview";
+      }
+      {
+        run = "seek 5";
+        on = ["<C-f>"];
+        desc = "Seek down 5 units in the preview";
       }
       {
         run = "cd ~/Desktop";
