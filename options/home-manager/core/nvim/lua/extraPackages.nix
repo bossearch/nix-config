@@ -22,9 +22,8 @@ in {
       # needed by plugins
       gcc
       gnumake
-      tree-sitter
-      lsof
-      deltaNeogitWrapper
+      tree-sitter # treesitter
+      deltaNeogitWrapper # neogit
       # lua
       lua-language-server
       stylua
@@ -34,6 +33,8 @@ in {
       # nix
       nixd
       alejandra
+      statix
+      deadnix
       # bash
       bash-language-server
       shfmt
@@ -54,11 +55,17 @@ in {
       vscode-langservers-extracted-latest
       htmlhint
       stylelint
+      # python
+      basedpyright
+      ruff
     ];
     extraWrapperArgs = [
       "--set"
       "CODELLDB_PATH"
       "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb"
+      "--set"
+      "SQLITE_PATH"
+      "${pkgs.sqlite.out}/lib/libsqlite3.so"
     ];
   };
 }
