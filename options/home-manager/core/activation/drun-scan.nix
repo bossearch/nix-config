@@ -157,6 +157,7 @@ pkgs.writeShellScript "drun-scan" ''
     "lutris:lutris -f"
     "mpv:~/.config/mpv/mpv.sh"
     "obs:QT_QPA_PLATFORM=xcb obs"
+    "rpcs3:QT_QPA_PLATFORM=xcb rpcs3"
     "spotify:spotify --use-gl=desktop"
     "steam:/run/current-system/sw/bin/steam"
   )

@@ -417,6 +417,34 @@ in {
                 fullscreen = true,
                 immediate = true,
             },
+            rpcs3 = {
+                {
+                    name = "main-window",
+                    match = {
+                        class = "RPCS3",
+                        title = "RPCS3 .*",
+                    },
+                    workspace = ${toString games},
+                    fullscreen = true,
+                    immediate = true,
+                },
+                {
+                    name = "Settings",
+                    match = {
+                        class = "RPCS3",
+                        title = "(Settings|Select).*",
+                    },
+                    size = ${size."1/2"},
+                    center = 1,
+                },
+                {
+                    name = "misc",
+                    match = {
+                        class = "RPCS3",
+                        title = "RPCS3",
+                    },
+                },
+            },
             spotify = {
                 match = {
                     class = "Spotify",
