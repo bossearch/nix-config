@@ -18,9 +18,10 @@
         hl.animation({ leaf = "border",           enabled = true, speed = 4, bezier = "md3_decel" })
         hl.animation({ leaf = "fade",             enabled = true, speed = 4, bezier = "md3_decel" })
         hl.animation({ leaf = "fadeDim",          enabled = true, speed = 4, bezier = "md3_decel" })
+        hl.animation({ leaf = "fadeOut",          enabled = false })
+        hl.animation({ leaf = "fadeSwitch",       enabled = false })
         hl.animation({ leaf = "workspaces",       enabled = true, speed = 2, bezier = "md3_decel", style = "slide" })
         hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2, bezier = "md3_decel", style = "slidevert" })
-        hl.animation({ leaf = "fadeSwitch",       enabled = false })
         -- stylua: ignore end
       '';
     };
