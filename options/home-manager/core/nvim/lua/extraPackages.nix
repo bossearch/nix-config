@@ -52,7 +52,7 @@ in {
       # qml
       kdePackages.qtdeclarative
       # html/css/json/eslint
-      vscode-langservers-extracted-latest
+      vscode-langservers-extracted
       htmlhint
       stylelint
       # python
