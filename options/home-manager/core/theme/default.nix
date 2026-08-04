@@ -18,7 +18,8 @@
 in {
   imports = mylib.autoimport ./.;
 
-  home.pointerCursor = lib.mkIf hosts.gui.enable {
+  home.pointerCursor = {
+    enable = hosts.gui.enable;
     name = homes.cursor;
     package = pkgsCursor;
     size = cursor;
