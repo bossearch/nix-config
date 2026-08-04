@@ -83,6 +83,9 @@ in {
         '[[ -d $realpath ]] && eza --tree --level=2 --all --icons=always --color=always $realpath || \
         ([[ -f $realpath ]] && bat -n --color=always $realpath || \
         echo "Cannot preview")'
+        ## preview environment variable
+        zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+          fzf-preview 'echo ''${(P)word}'
 
         # zsh-completions matcher settings
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
