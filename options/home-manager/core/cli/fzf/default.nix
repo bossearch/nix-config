@@ -34,19 +34,23 @@ in {
       "--preview-window=right"
       "--bind 'ctrl-f:preview-half-page-down,ctrl-b:preview-half-page-up'"
     ];
-    fileWidgetCommand = config.programs.fzf.defaultCommand;
-    fileWidgetOptions =
-      config.programs.fzf.defaultOptions
-      ++ [
-        "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
-      ];
-    changeDirWidgetCommand = "fd --type d --hidden --strip-cwd-prefix --follow --exclude .git";
-    changeDirWidgetOptions =
-      config.programs.fzf.defaultOptions
-      ++ [
-        "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
-      ];
-    historyWidgetOptions = ["--tiebreak=index" "--no-sort"];
+    fileWidget = {
+      command = config.programs.fzf.defaultCommand;
+      options =
+        config.programs.fzf.defaultOptions
+        ++ [
+          "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
+        ];
+    };
+    changeDirWidget = {
+      command = "fd --type d --hidden --strip-cwd-prefix --follow --exclude .git";
+      options =
+        config.programs.fzf.defaultOptions
+        ++ [
+          "--preview='~/.config/fzf/extra/fzf-preview.sh {}'"
+        ];
+    };
+    historyWidget.options = ["--tiebreak=index" "--no-sort"];
     colors = {
       fg = base07;
       "fg+" = base05;
