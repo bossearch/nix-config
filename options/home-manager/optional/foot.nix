@@ -28,6 +28,8 @@ in {
     server.enable = true;
     settings = {
       "colors-dark" = {
+        alpha = 0.9;
+        blur = true;
         background = base01;
         foreground = base07;
 
