@@ -12,6 +12,7 @@
             blur = true,
             blur_popups = true,
             ignore_alpha = 0,
+            xray = true,
         })
         hl.layer_rule({
             match = { namespace = "swaync-control-center" },
