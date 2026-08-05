@@ -136,18 +136,20 @@ in {
                     name = "library",
                     match = {
                         class = "firefox",
-                        title = "Library",
+                        title = "Library|Save Image|File Upload",
                     },
                     float = true,
                     center = 1,
+                    size = ${size."1/2"},
                 },
                 {
-                    name = "dialogs",
+                    name = "bookmark",
                     match = {
                         class = "firefox",
-                        title = "Save Image|File Upload",
+                        title = "Add bookmark",
                     },
-                    size = ${size."1/2"},
+                    float = true,
+                    center = 1,
                 },
                 {
                     name = "activate",
