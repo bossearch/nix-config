@@ -10,7 +10,7 @@ in {
     text = ''
       #!/usr/bin/env bash
       NOTIFY_VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
-      echo "65536" >"NOTIFY_VOLUME_FILE"
+      echo "65536" >"$NOTIFY_VOLUME_FILE"
 
       NOTIFY_ICON_FILE="$HOME/.cache/${hosts.username}/notify-icon"
       echo "󰂞" >"$NOTIFY_ICON_FILE"
