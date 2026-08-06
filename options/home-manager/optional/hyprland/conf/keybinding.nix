@@ -53,25 +53,9 @@
             },
             {
                 mod = mainMod,
-                key = ".",
-                dispatch = function()
-                    util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/emoji.sh")
-                end,
-                opts = { release = true },
-            },
-            {
-                mod = mainMod,
                 key = "V",
                 dispatch = function()
                     util.toggle_app("bigfzf", "footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh")
-                end,
-                opts = { release = true },
-            },
-            {
-                mod = mainMod,
-                key = ",",
-                dispatch = function()
-                    util.toggle_app("crkbd", "~/.config/qmk/cheatsheet-wrapper.sh")
                 end,
                 opts = { release = true },
             },

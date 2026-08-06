@@ -169,6 +169,7 @@ in
     custom_app=(
       "tor-browser:nix-shell -p tor-browser --run tor-browser"
       "crkbd-cheatsheet:~/.config/qmk/cheatsheet-wrapper.sh"
+      "emoji:footclient -T mediumfzf ~/.config/fzf/extra/emoji.sh"
       "toggle-notify:~/.config/waybar/scripts/notify/notify-icon.sh"
       "lock:${delay} && ~/.config/hypr/scripts/hyprlock.sh"
       "sleep:~/.config/waybar/scripts/launcher/sleep.sh"
