@@ -97,38 +97,6 @@ in {
         icon = "dialog-warning";
         script = "~/.config/dunst/dunstsound.sh";
       };
-      zsh = {
-        appname = "zsh";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/apps/utilities-terminal.svg";
-      };
-      fish = {
-        appname = "fish";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/apps/utilities-terminal.svg";
-      };
-      nchat = {
-        appname = "nchat";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/apps/internet-chat.svg";
-      };
-      game_on = {
-        appname = "game_on";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/status/state_running.svg";
-      };
-      game_off = {
-        appname = "game_off";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/status/state_paused.svg";
-      };
-      playerctl = {
-        appname = "playerctl";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/apps/xt7-player-mpv.svg";
-      };
-      screenshot = {
-        appname = "screenshot";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/devices/camera-photo.svg";
-      };
-      screenrecord = {
-        appname = "screenrecord";
-        new_icon = "${pkgs.papirus-icon-theme}/share/icons/${homes.icon}/32x32/devices/camera-video.svg";
-      };
     };
   };
 }
