@@ -16,7 +16,7 @@ in {
   imports = mylib.autoimport ./.;
 
   services.swaync = {
-    enable = homes.notify == "swaync";
+    enable = false;
     settings = {
       "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
       control-center-margin-bottom = 8;

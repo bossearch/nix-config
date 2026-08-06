@@ -2,14 +2,7 @@
   homes,
   lib,
   ...
-}: let
-  close =
-    if homes.notify == "dunst"
-    then "dunstctl close-all"
-    else if homes.notify == "swaync"
-    then "swaync-client --hide-all"
-    else "";
-in {
+}: {
   home.file.".config/waybar/scripts/control/input/cycle-input.sh" = lib.mkIf homes.waybar {
     executable = true;
     text = ''
@@ -19,13 +12,13 @@ in {
       mapfile -t SOURCES < <(pactl list short sources | awk '/alsa_input/ {print $2}')
 
       if [[ ''${#SOURCES[@]} -eq 0 ]]; then
-        ${close}
+        dunstctl close-all
         notify-send -e -u critical "Cycle Input" "No audio input found!" -i microphone-sensitivity-high
         exit 1
       fi
 
       if [[ ''${#SOURCES[@]} -eq 1 ]]; then
-        ${close}
+        dunstctl close-all
         notify-send -e "Cycle Input" "Only 1 audio input found!" -i microphone-sensitivity-high
         exit 0
       fi
@@ -39,7 +32,7 @@ in {
 
       NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ''${#SOURCES[@]} ))
       pactl set-default-source "''${SOURCES[$NEXT_INDEX]}"
-      ${close}
+      dunstctl close-all
       notify-send -e "Cycle Input" "''${SOURCES[$NEXT_INDEX]}" -i microphone-sensitivity-high
 
       sleep 0.1

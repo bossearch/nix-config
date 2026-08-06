@@ -1,15 +1,4 @@
-{
-  homes,
-  pkgs,
-  ...
-}: let
-  close =
-    if homes.notify == "dunst"
-    then "hl.exec_cmd('dunstctl close-all')"
-    else if homes.notify == "swaync"
-    then "hl.exec_cmd('swaync-client --hide-all')"
-    else "";
-in {
+{pkgs, ...}: {
   wayland.windowManager.hyprland.extraLuaFiles = {
     "lua.event" = {
       autoLoad = true;
@@ -52,7 +41,7 @@ in {
                 if not gamemode_enabled then
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 1")
                     require("lib.util").gamemode("enable")
-                    ${close}
+                    hl.exec_cmd('dunstctl close-all')
                     hl.exec_cmd('notify-send -e -a nosound -i state_running "Game Mode" "Activated"')
                     gamemode_enabled = true
                 end
@@ -60,7 +49,7 @@ in {
                 if gamemode_enabled then
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 0")
                     require("lib.util").gamemode("disable")
-                    ${close}
+                    hl.exec_cmd('dunstctl close-all')
                     hl.exec_cmd('notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"')
                     gamemode_enabled = false
 

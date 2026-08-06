@@ -4,7 +4,7 @@
   ...
 }: {
   home.file = {
-    ".config/assets/sounds" = lib.mkIf (homes.notify != "none") {
+    ".config/assets/sounds" = lib.mkIf homes.dunst {
       source = ./sounds;
       recursive = true;
     };

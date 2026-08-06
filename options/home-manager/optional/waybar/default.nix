@@ -4,20 +4,7 @@
   mylib,
   pkgs,
   ...
-}: let
-  modules =
-    if homes.notify == "dunst"
-    then {
-      launcher = "group/launcher";
-      utility = "group/utility";
-    }
-    else if homes.notify == "swaync"
-    then {
-      launcher = "custom/launcher";
-      utility = "";
-    }
-    else "";
-in {
+}: {
   imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf homes.waybar (with pkgs; [
@@ -48,7 +35,7 @@ in {
         "spacing" = 4;
 
         "modules-left" = [
-          "${modules.launcher}"
+          "custom/launcher"
           "hyprland/workspaces"
           "custom/chevron"
           "hyprland/window"
@@ -56,12 +43,8 @@ in {
 
         "modules-right" = [
           "group/customtray"
-          "custom/weather"
-          "${modules.utility}"
           "group/resource"
           "group/control"
-          # "backlight"
-          # "battery"
           "clock"
           "custom/notify"
         ];

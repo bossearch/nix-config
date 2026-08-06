@@ -1,6 +1,5 @@
 {
   config,
-  homes,
   hosts,
   lib,
   ...
@@ -10,12 +9,6 @@
   base0A = "#${config.colorScheme.palette.base0A}";
   base0B = "#${config.colorScheme.palette.base0B}";
   base0D = "#${config.colorScheme.palette.base0D}";
-  notification =
-    if homes.notify == "dunst"
-    then "~/.config/waybar/scripts/notify/dunst-history.sh"
-    else if homes.notify == "swaync"
-    then "swaync-client -t -sw"
-    else "";
   resource =
     if hosts.hostname == "silvia"
     then ["custom/cputemp" "custom/gpu" "custom/gputemp"]
@@ -188,6 +181,7 @@ in {
           "custom/stoprec"
           "privacy"
           "tray"
+          "custom/weather"
         ];
       };
 
@@ -418,7 +412,7 @@ in {
         "format" = " {} ";
         "exec" = "cat ~/.cache/${hosts.username}/notify-icon";
         "on-click" = ".config/waybar/scripts/notify/notify-icon.sh";
-        "on-click-right" = "${notification}";
+        "on-click-right" = "~/.config/waybar/scripts/notify/dunst-history.sh";
         "signal" = 10;
         "tooltip" = false;
       };

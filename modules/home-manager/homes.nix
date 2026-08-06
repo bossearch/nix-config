@@ -45,12 +45,6 @@ in {
             "lua"
           ];
         };
-        notify = mkOption {
-          type = types.enum [
-            "dunst"
-            "swaync"
-          ];
-        };
         # optional modules
         firefox = mkOption {
           default = {};
@@ -210,6 +204,7 @@ in {
     _module.args.homes = config.homes;
     homes = lib.mkIf (!hosts.gui.enable) {
       copas = lib.mkForce false;
+      dunst = lib.mkForce false;
       feh = lib.mkForce false;
       firefox.enable = lib.mkForce false; #*
       game = {
@@ -229,7 +224,6 @@ in {
       kdenlive = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
-      notify = lib.mkForce "none";
       nyaa = lib.mkForce false;
       obs = lib.mkForce false;
       obsidian = lib.mkForce false;

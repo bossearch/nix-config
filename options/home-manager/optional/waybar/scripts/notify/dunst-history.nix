@@ -4,14 +4,14 @@
   lib,
   ...
 }: let
-  enabled = homes.waybar && (homes.notify == "dunst");
+  enabled = homes.waybar && homes.dunst;
 in {
   home.file.".config/waybar/scripts/notify/dunst-history.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      VOLUME_FILE="$HOME/.cache/${hosts.username}/volume"
+      VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
 
       DISPLAYED=$(dunstctl count | awk '/Currently displayed:/ {print $3}')
       HIST_COUNT=$(dunstctl count | awk '/History:/ {print $2}')

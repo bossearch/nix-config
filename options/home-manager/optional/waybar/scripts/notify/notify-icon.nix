@@ -3,24 +3,8 @@
   hosts,
   lib,
   ...
-}: let
-  dnd =
-    if homes.notify == "dunst"
-    then {
-      on = "dunstctl set-paused true";
-      off = ''
-        dunstctl close-all
-        dunstctl set-paused false
-      '';
-    }
-    else if homes.notify == "swaync"
-    then {
-      on = "swaync-client -dn -sw";
-      off = "swaync-client -df -sw";
-    }
-    else "";
-in {
-  home.file.".config/waybar/scripts/notify/notify-icon.sh" = lib.mkIf (homes.notify != "none") {
+}: {
+  home.file.".config/waybar/scripts/notify/notify-icon.sh" = lib.mkIf homes.dunst {
     executable = true;
     text = ''
       #!/usr/bin/env bash
@@ -37,11 +21,12 @@ in {
         ;;
       "󰂚")
         NEW_ICON="󰂛"
-        ${dnd.on}
+        dunstctl set-paused true
         ;;
       *)
         NEW_ICON="󰂞"
-        ${dnd.off}
+        dunstctl close-all
+        dunstctl set-paused false
         echo "65536" >"$VOLUME_FILE"
         ;;
       esac

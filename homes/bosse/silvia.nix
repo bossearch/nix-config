@@ -10,7 +10,6 @@
     qtstyle = "breeze";
     terminal = "alacritty";
     neovim = "lua";
-    notify = "swaync";
     monitor = [
       {
         name = "DP-1";
@@ -40,6 +39,7 @@
       ollama = false;
     };
     copas = true;
+    dunst = true;
     feh = true;
     gimp = true;
     gowall = true;

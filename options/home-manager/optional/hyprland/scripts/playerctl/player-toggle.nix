@@ -1,16 +1,9 @@
 {
-  homes,
   hosts,
   lib,
   ...
 }: let
   enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
-  close =
-    if homes.notify == "dunst"
-    then "dunstctl close-all"
-    else if homes.notify == "swaync"
-    then "swaync-client --hide-all"
-    else "";
 in {
   home.file.".config/hypr/scripts/playerctl/player-toggle.sh" = lib.mkIf enabled {
     executable = true;
@@ -30,11 +23,11 @@ in {
         else
           ICON="media-playback-pause"
         fi
-        ${close}
+        dunstctl close-all
       }
 
       if [ "''${#AVAILABLE_PLAYERS[@]}" -eq 0 ]; then
-        ${close}
+        dunstctl close-all
         notify-send -e -a playerctl "Playerctl" "No media players found" -i dialog-warning
         exit 0
       elif [ "''${#AVAILABLE_PLAYERS[@]}" -eq 1 ]; then
