@@ -2,244 +2,248 @@
   hosts,
   pkgs,
   ...
-}:
-pkgs.writeShellScript "drun-scan" ''
-  # Output file for the app names and Exec commands
-  output_file="$HOME/.cache/${hosts.username}/drun.txt"
-  rm -f "$output_file"
-  touch "$output_file"
-
-  # List of apps to exclude (add full .desktop filenames here)
-  exclude_apps=(
-    "Dota 2"
-    "Stardew Valley"
-    "Steam Linux Runtime 1.0 (scout)"
-    "Steam Linux Runtime 2.0 (soldier)"
-    "Steam Linux Runtime 3.0 (sniper)"
-    "auto-cpufreq-gtk"
-    "avahi-discover"
-    "blueman-adapters"
-    "breezestyleconfig"
-    "bssh"
-    "btop"
-    "bvnc"
-    "cmake-gui"
-    "cups"
-    "de.feschber.LanMouse"
-    "discord-1216669957799018608"
-    "electron31"
-    "electron32"
-    "feh"
-    "fish"
-    "foot"
-    "foot-server"
-    "footclient"
-    "gcr-prompter"
-    "gcr-viewer"
-    "geoclue-demo-agent"
-    "geoclue-where-am-i"
-    "gkbd-keyboard-display"
-    "google-maps-geo-handler"
-    "java-java17-openjdk"
-    "java-java21-openjdk"
-    "kcm_breezedecoration"
-    "kcm_kdeconnect"
-    "kitty-open"
-    "ktelnetservice6"
-    "nautilus-autorun-software"
-    "net.lutris.Lutris1"
-    "nixos-manual"
-    "nvim"
-    "openstreetmap-geo-handler"
-    "org.freedesktop.Xwayland"
-    "org.gnome.Evince"
-    "org.gnome.Evince-previewer"
-    "org.gnome.Zenity"
-    "org.gnupg.pinentry-qt"
-    "org.gnupg.pinentry-qt5"
-    "org.kde.kdeconnect-settings"
-    "org.kde.kdeconnect.daemon"
-    "org.kde.kdeconnect.handler"
-    "org.kde.kdeconnect.nonplasma"
-    "org.kde.kdeconnect.sms"
-    "org.kde.kiod6"
-    "org.kde.ksecretd"
-    "org.kde.kwalletd6"
-    "org.kde.xwaylandvideobridge"
-    "org.pwmt.zathura"
-    "org.pwmt.zathura-cb"
-    "org.pwmt.zathura-djvu"
-    "org.pwmt.zathura-pdf-mupdf"
-    "org.pwmt.zathura-ps"
-    "org.quickshell"
-    "polkit-gnome-authentication-agent-1"
-    "qt5ct"
-    "qt6ct"
-    "qv4l2"
-    "qvidcap"
-    "qwant-maps-geo-handler"
-    "remote-viewer"
-    "transmission-gtk"
-    "umpv"
-    "user-dirs-update-gtk"
-    "userapp-transmission-gtk-*"
-    "uuctl"
-    "vim"
-    "waydroid.app.install"
-    "waydroid.com.android.calculator2"
-    "waydroid.com.android.camera2"
-    "waydroid.com.android.contacts"
-    "waydroid.com.android.deskclock"
-    "waydroid.com.android.documentsui"
-    "waydroid.com.android.gallery3d"
-    "waydroid.com.android.inputmethod.latin"
-    "waydroid.com.android.settings"
-    "waydroid.com.android.vending"
-    "waydroid.com.aurora.adroid"
-    "waydroid.com.aurora.services"
-    "waydroid.com.aurora.store"
-    "waydroid.com.google.android.apps.messaging"
-    "waydroid.com.google.android.contacts"
-    "waydroid.com.google.android.gms"
-    "waydroid.com.mobile.legends"
-    "waydroid.com.mobilechess.gp"
-    "waydroid.cu.axel.smartdock"
-    "waydroid.io.github.huskydg.magisk"
-    "waydroid.io.github.sds100.keymapper"
-    "waydroid.io.github.sds100.keymapper.inputmethod.latin"
-    "waydroid.market"
-    "waydroid.org.fdroid.fdroid"
-    "waydroid.org.lineageos.aperture"
-    "waydroid.org.lineageos.eleven"
-    "waydroid.org.lineageos.etar"
-    "waydroid.org.lineageos.jelly"
-    "waydroid.org.lineageos.recorder"
-    "waydroid.org.mozilla.firefox"
-    "wheelmap-geo-handler"
-    "wine"
-    "wine-extension-chm"
-    "wine-extension-hlp"
-    "wine-extension-msp"
-    "wine-extension-vbs"
-    "winetricks"
-    "xdg-desktop-portal-gtk"
-    "yazi"
-  )
-
-  custom_name=(
-    "Alacritty:alacritty"
-    "LocalSend:localsend"
-    "Waydroid:waydroid"
-    "blueman-manager:blueman"
-    "com.libretro.RetroArch:retroarch"
-    "com.mitchellh.ghostty:ghostty"
-    "com.obsproject.Studio:obs"
-    "com.usebottles.bottles:bottles"
-    "io.github.giantpinkrobots.varia:varia"
-    "io.github.mpobaschnig.Vaults:vaults"
-    "net.lutris.Lutris:lutris"
-    "PCSX2:pcsx2"
-    "org.cryptomator.Cryptomator:cryptomator"
-    "org.gnome.Nautilus:nautilus"
-    "org.gnome.baobab:baobab"
-    "org.kde.kdeconnect.app:kdeconnect"
-    "org.kde.kdenlive:kdenlive"
-    "org.prismlauncher.PrismLauncher:prismlauncher"
-    "org.pulseaudio.pavucontrol:pavucontrol"
-    "org.shotcut.Shotcut:shotcut"
-    "vesktop:discord"
-  )
-
-  custom_exec=(
-    "bottles:~/.nix-profile/bin/bottles"
-    "discord:vesktop --use-gl=desktop"
-    "firefox:firefox"
-    "lutris:lutris -f"
-    "mpv:~/.config/mpv/mpv.sh"
-    "obs:QT_QPA_PLATFORM=xcb obs"
-    "rpcs3:QT_QPA_PLATFORM=xcb rpcs3"
-    "spotify:spotify --use-gl=desktop"
-    "steam:/run/current-system/sw/bin/steam"
-  )
-
-  custom_app=(
-    "tor-browser:nix-shell -p tor-browser --run tor-browser"
-    "crkbd-cheatsheet:~/.config/qmk/cheatsheet-wrapper.sh"
-    "toggle-notify:~/.config/waybar/scripts/notify/notify-icon.sh"
-    "lock:~/.config/hypr/scripts/hyprlock.sh"
-    "sleep:~/.config/waybar/scripts/launcher/sleep.sh"
-    "reboot:~/.config/waybar/scripts/launcher/reboot.sh"
-    "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
-    "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
-    "hyprsunset:~/.config/waybar/scripts/control/hyprsunset.sh"
-    "ocr:~/.config/waybar/scripts/utility/ocr.sh"
-    "ss-monitor:sleep 0.2 && ~/.config/waybar/scripts/utility/screenshot/monitor.sh"
-    "ss-area:~/.config/waybar/scripts/utility/screenshot/area.sh"
-    "ss-window:sleep 0.2 && ~/.config/waybar/scripts/utility/screenshot/window.sh"
-    "rec-monitor:~/.config/waybar/scripts/utility/screenrecord/monitor.sh"
-    "rec-area:~/.config/waybar/scripts/utility/screenrecord/area.sh"
-    "rec-window:~/.config/waybar/scripts/utility/screenrecord/window.sh"
-    "on-screen-keyboard:~/.config/waybar/scripts/utility/virtualkeyboard.sh"
-    "cycle-input:~/.config/waybar/scripts/control/input/cycle-input.sh"
-    "toggle-input:~/.config/waybar/scripts/control/input/toggle-input.sh"
-    "cycle-output:~/.config/waybar/scripts/control/output/cycle-output.sh"
-    "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
-  )
-
-  readarray -t applications < <(find \
-    ~/.local/share/applications \
-    ~/.nix-profile/share/applications \
-    /run/current-system/sw/share/applications \
-    /etc/profiles/per-user/"$USER"/share/applications \
-    -name '*.desktop' 2>/dev/null)
-
-  for path in "''${applications[@]}"; do
-    name=$(basename "$path" .desktop)
-
-    exclude=false
-    for pattern in "''${exclude_apps[@]}"; do
-      if [[ "$name" == $pattern ]]; then
-        exclude=true
-        break
-      fi
+}: let
+  delay = pkgs.writeShellScript "delay-smallfzf" ''
+    while hyprctl clients | grep -q "smallfzf"; do
+      sleep 0.1;
     done
+  '';
+in
+  pkgs.writeShellScript "drun-scan" ''
+    output_file="$HOME/.cache/${hosts.username}/drun.txt"
+    rm -f "$output_file"
+    touch "$output_file"
 
-    if [ "$exclude" = true ]; then
-      continue
-    fi
+    exclude_apps=(
+      "Dota 2"
+      "Stardew Valley"
+      "Steam Linux Runtime 1.0 (scout)"
+      "Steam Linux Runtime 2.0 (soldier)"
+      "Steam Linux Runtime 3.0 (sniper)"
+      "auto-cpufreq-gtk"
+      "avahi-discover"
+      "blueman-adapters"
+      "breezestyleconfig"
+      "bssh"
+      "btop"
+      "bvnc"
+      "cmake-gui"
+      "cups"
+      "de.feschber.LanMouse"
+      "discord-1216669957799018608"
+      "electron31"
+      "electron32"
+      "feh"
+      "fish"
+      "foot"
+      "foot-server"
+      "footclient"
+      "gcr-prompter"
+      "gcr-viewer"
+      "geoclue-demo-agent"
+      "geoclue-where-am-i"
+      "gkbd-keyboard-display"
+      "google-maps-geo-handler"
+      "java-java17-openjdk"
+      "java-java21-openjdk"
+      "kcm_breezedecoration"
+      "kcm_kdeconnect"
+      "kitty-open"
+      "ktelnetservice6"
+      "nautilus-autorun-software"
+      "net.lutris.Lutris1"
+      "nixos-manual"
+      "nvim"
+      "openstreetmap-geo-handler"
+      "org.freedesktop.Xwayland"
+      "org.gnome.Evince"
+      "org.gnome.Evince-previewer"
+      "org.gnome.Zenity"
+      "org.gnupg.pinentry-qt"
+      "org.gnupg.pinentry-qt5"
+      "org.kde.kdeconnect-settings"
+      "org.kde.kdeconnect.daemon"
+      "org.kde.kdeconnect.handler"
+      "org.kde.kdeconnect.nonplasma"
+      "org.kde.kdeconnect.sms"
+      "org.kde.kiod6"
+      "org.kde.ksecretd"
+      "org.kde.kwalletd6"
+      "org.kde.xwaylandvideobridge"
+      "org.pwmt.zathura"
+      "org.pwmt.zathura-cb"
+      "org.pwmt.zathura-djvu"
+      "org.pwmt.zathura-pdf-mupdf"
+      "org.pwmt.zathura-ps"
+      "org.quickshell"
+      "polkit-gnome-authentication-agent-1"
+      "qt5ct"
+      "qt6ct"
+      "qv4l2"
+      "qvidcap"
+      "qwant-maps-geo-handler"
+      "remote-viewer"
+      "transmission-gtk"
+      "umpv"
+      "user-dirs-update-gtk"
+      "userapp-transmission-gtk-*"
+      "uuctl"
+      "vim"
+      "waydroid.app.install"
+      "waydroid.com.android.calculator2"
+      "waydroid.com.android.camera2"
+      "waydroid.com.android.contacts"
+      "waydroid.com.android.deskclock"
+      "waydroid.com.android.documentsui"
+      "waydroid.com.android.gallery3d"
+      "waydroid.com.android.inputmethod.latin"
+      "waydroid.com.android.settings"
+      "waydroid.com.android.vending"
+      "waydroid.com.aurora.adroid"
+      "waydroid.com.aurora.services"
+      "waydroid.com.aurora.store"
+      "waydroid.com.google.android.apps.messaging"
+      "waydroid.com.google.android.contacts"
+      "waydroid.com.google.android.gms"
+      "waydroid.com.mobile.legends"
+      "waydroid.com.mobilechess.gp"
+      "waydroid.cu.axel.smartdock"
+      "waydroid.io.github.huskydg.magisk"
+      "waydroid.io.github.sds100.keymapper"
+      "waydroid.io.github.sds100.keymapper.inputmethod.latin"
+      "waydroid.market"
+      "waydroid.org.fdroid.fdroid"
+      "waydroid.org.lineageos.aperture"
+      "waydroid.org.lineageos.eleven"
+      "waydroid.org.lineageos.etar"
+      "waydroid.org.lineageos.jelly"
+      "waydroid.org.lineageos.recorder"
+      "waydroid.org.mozilla.firefox"
+      "wheelmap-geo-handler"
+      "wine"
+      "wine-extension-chm"
+      "wine-extension-hlp"
+      "wine-extension-msp"
+      "wine-extension-vbs"
+      "winetricks"
+      "xdg-desktop-portal-gtk"
+      "yazi"
+    )
 
-    for app in "''${custom_name[@]}"; do
-      old_name=$(echo "$app" | cut -d ':' -f 1)
-      new_name=$(echo "$app" | cut -d ':' -f 2)
-      if [[ "$name" == "$old_name" ]]; then
-        name="$new_name"
-        break
+    custom_name=(
+      "Alacritty:alacritty"
+      "LocalSend:localsend"
+      "Waydroid:waydroid"
+      "blueman-manager:blueman"
+      "com.libretro.RetroArch:retroarch"
+      "com.mitchellh.ghostty:ghostty"
+      "com.obsproject.Studio:obs"
+      "com.usebottles.bottles:bottles"
+      "io.github.giantpinkrobots.varia:varia"
+      "io.github.mpobaschnig.Vaults:vaults"
+      "net.lutris.Lutris:lutris"
+      "PCSX2:pcsx2"
+      "org.cryptomator.Cryptomator:cryptomator"
+      "org.gnome.Nautilus:nautilus"
+      "org.gnome.baobab:baobab"
+      "org.kde.kdeconnect.app:kdeconnect"
+      "org.kde.kdenlive:kdenlive"
+      "org.prismlauncher.PrismLauncher:prismlauncher"
+      "org.pulseaudio.pavucontrol:pavucontrol"
+      "org.shotcut.Shotcut:shotcut"
+      "vesktop:discord"
+    )
+
+    custom_exec=(
+      "bottles:~/.nix-profile/bin/bottles"
+      "discord:vesktop --use-gl=desktop"
+      "firefox:firefox"
+      "lutris:lutris -f"
+      "mpv:~/.config/mpv/mpv.sh"
+      "obs:QT_QPA_PLATFORM=xcb obs"
+      "rpcs3:QT_QPA_PLATFORM=xcb rpcs3"
+      "spotify:spotify --use-gl=desktop"
+      "steam:/run/current-system/sw/bin/steam"
+    )
+
+    custom_app=(
+      "tor-browser:nix-shell -p tor-browser --run tor-browser"
+      "crkbd-cheatsheet:~/.config/qmk/cheatsheet-wrapper.sh"
+      "toggle-notify:~/.config/waybar/scripts/notify/notify-icon.sh"
+      "lock:${delay} && ~/.config/hypr/scripts/hyprlock.sh"
+      "sleep:~/.config/waybar/scripts/launcher/sleep.sh"
+      "reboot:~/.config/waybar/scripts/launcher/reboot.sh"
+      "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
+      "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
+      "hyprsunset:~/.config/waybar/scripts/control/hyprsunset.sh"
+      "ocr:~/.config/waybar/scripts/utility/ocr.sh"
+      "ss-monitor:${delay} && ~/.config/waybar/scripts/utility/screenshot/monitor.sh"
+      "ss-area:${delay} && ~/.config/waybar/scripts/utility/screenshot/area.sh"
+      "ss-window:${delay} && ~/.config/waybar/scripts/utility/screenshot/window.sh"
+      "rec-monitor:~/.config/waybar/scripts/utility/screenrecord/monitor.sh"
+      "rec-area:~/.config/waybar/scripts/utility/screenrecord/area.sh"
+      "rec-window:~/.config/waybar/scripts/utility/screenrecord/window.sh"
+      "on-screen-keyboard:~/.config/waybar/scripts/utility/virtualkeyboard.sh"
+      "cycle-input:~/.config/waybar/scripts/control/input/cycle-input.sh"
+      "toggle-input:~/.config/waybar/scripts/control/input/toggle-input.sh"
+      "cycle-output:~/.config/waybar/scripts/control/output/cycle-output.sh"
+      "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
+    )
+
+    readarray -t applications < <(find \
+      ~/.local/share/applications \
+      ~/.nix-profile/share/applications \
+      /run/current-system/sw/share/applications \
+      /etc/profiles/per-user/"$USER"/share/applications \
+      -name '*.desktop' 2>/dev/null)
+
+    for path in "''${applications[@]}"; do
+      name=$(basename "$path" .desktop)
+
+      exclude=false
+      for pattern in "''${exclude_apps[@]}"; do
+        if [[ "$name" == $pattern ]]; then
+          exclude=true
+          break
+        fi
+      done
+
+      if [ "$exclude" = true ]; then
+        continue
       fi
+
+      for app in "''${custom_name[@]}"; do
+        old_name=$(echo "$app" | cut -d ':' -f 1)
+        new_name=$(echo "$app" | cut -d ':' -f 2)
+        if [[ "$name" == "$old_name" ]]; then
+          name="$new_name"
+          break
+        fi
+      done
+
+      exec_command=$(grep '^Exec=' "$path" | tail -1 | sed 's/^Exec=//' | sed 's/%.*//')
+
+      for exec in "''${custom_exec[@]}"; do
+        app_name=$(echo "$exec" | cut -d ':' -f 1)
+        custom_command=$(echo "$exec" | cut -d ':' -f 2)
+        if [[ "$name" == "$app_name" ]]; then
+          exec_command="$custom_command"
+          break
+        fi
+      done
+
+      if [ -n "$exec_command" ]; then
+        if ! grep -q "^$name|" "$output_file"; then
+          echo "$name|$exec_command" >>"$output_file"
+        fi
+      fi
+
+      for entry in "''${custom_app[@]}"; do
+        m_name=$(echo "$entry" | cut -d ':' -f 1)
+        m_exec=$(echo "$entry" | cut -d ':' -f 2)
+        if ! grep -q "^$m_name|" "$output_file"; then
+          echo "$m_name|$m_exec" >> "$output_file"
+        fi
+      done
     done
-
-    exec_command=$(grep '^Exec=' "$path" | tail -1 | sed 's/^Exec=//' | sed 's/%.*//')
-
-    for exec in "''${custom_exec[@]}"; do
-      app_name=$(echo "$exec" | cut -d ':' -f 1)
-      custom_command=$(echo "$exec" | cut -d ':' -f 2)
-      if [[ "$name" == "$app_name" ]]; then
-        exec_command="$custom_command"
-        break
-      fi
-    done
-
-    if [ -n "$exec_command" ]; then
-      if ! grep -q "^$name|" "$output_file"; then
-        echo "$name|$exec_command" >>"$output_file"
-      fi
-    fi
-
-    for entry in "''${custom_app[@]}"; do
-      m_name=$(echo "$entry" | cut -d ':' -f 1)
-      m_exec=$(echo "$entry" | cut -d ':' -f 2)
-      if ! grep -q "^$m_name|" "$output_file"; then
-        echo "$m_name|$m_exec" >> "$output_file"
-      fi
-    done
-  done
-''
+  ''
