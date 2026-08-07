@@ -103,18 +103,7 @@
       padding: 0px 8px 0px 8px;
     }
 
-    #utility {
-      /*group for screenshot, virtualkeyboard,hyprpicker, and wiz*/
-      background: alpha(@fg, 0.7);
-      color: @white;
-    }
-    #custom-lamp {
-      padding: 0px 0px 0px 6px;
-    }
-
-
     #control {
-      /*group for backlight, pulseaudio, and internet*/
       background: alpha(@fg, 0.7);
       color: @blue;
     }
@@ -149,7 +138,6 @@
       color: #DFDFDF;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-
     }
   '';
 }
