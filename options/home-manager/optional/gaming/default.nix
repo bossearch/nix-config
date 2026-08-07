@@ -8,6 +8,8 @@
   imports = mylib.autoimport ./.;
 
   home.packages = lib.mkIf hosts.gui.enable (with pkgs; [
+    gamescope
+    gamemode
     mangohud
   ]);
 }
