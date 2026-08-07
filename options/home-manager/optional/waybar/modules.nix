@@ -20,22 +20,6 @@
 in {
   programs.waybar.settings = {
     mainBar = {
-      # launcher and power
-      "group/launcher" = {
-        "orientation" = "inherit";
-        "drawer" = {
-          "transition-duration" = 500;
-          "transition-left-to-right" = true;
-        };
-        "modules" = [
-          "custom/launcher"
-          "custom/lock"
-          "custom/sleep"
-          "custom/reboot"
-          "custom/shutdown"
-        ];
-      };
-
       "custom/launcher" = {
         "exec" = "~/.config/waybar/scripts/launcher/uptime.sh";
         "format" = "  ";
@@ -44,30 +28,6 @@ in {
         "on-click-right" = "~/.config/waybar/scripts/launcher/launcher-right.sh";
         "return-type" = "json";
         "tooltip" = true;
-      };
-
-      "custom/lock" = {
-        "format" = "  ";
-        "on-click" = "~/.config/hypr/scripts/hyprlock.sh";
-        "tooltip" = false;
-      };
-
-      "custom/sleep" = {
-        "format" = " 󰒲 ";
-        "on-click" = "~/.config/waybar/scripts/launcher/sleep.sh";
-        "tooltip" = false;
-      };
-
-      "custom/reboot" = {
-        "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/launcher/reboot.sh";
-        "tooltip" = false;
-      };
-
-      "custom/shutdown" = {
-        "format" = "  ";
-        "on-click" = "~/.config/waybar/scripts/launcher/shutdown.sh";
-        "tooltip" = false;
       };
 
       "group/resource" = {
