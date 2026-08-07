@@ -3,6 +3,8 @@
   lib,
   ...
 }: {
+  imports = [./scripts];
+
   home.file = {
     ".config/assets/sounds" = lib.mkIf homes.dunst {
       source = ./sounds;

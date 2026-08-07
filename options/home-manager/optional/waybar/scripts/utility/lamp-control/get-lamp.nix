@@ -21,10 +21,8 @@
         TIMEOUT="0.$i"
         get_lamp "$TIMEOUT"
         if [[ -n "$LAMP_DATA" ]]; then
-          echo "Attempt with ''${TIMEOUT}s success." >&2
           break
         fi
-        echo "Attempt with ''${TIMEOUT}s failed. Retrying..." >&2
       done
 
       if [[ -z "$LAMP_DATA" ]]; then
