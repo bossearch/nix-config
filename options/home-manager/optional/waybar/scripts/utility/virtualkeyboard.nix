@@ -8,8 +8,8 @@
     text = ''
       #!/usr/bin/env bash
 
-      if ! pgrep sysboard >/dev/null; then
-        setsid --fork bash -c "sysboard -H 400 -m 8" >/dev/null 2>&1 </dev/null
+      if ! hyprctl layers | grep -q "namespace: sysboard"; then
+        hyprctl eval "hl.exec_cmd('sysboard -H 400 -m 8')"
         sleep 0.1
         notify-send -e "Virtual Keyboard" "On" -i keyboard
         pkill -RTMIN sysboard
