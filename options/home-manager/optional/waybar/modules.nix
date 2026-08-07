@@ -372,7 +372,7 @@ in {
         "format" = " {} ";
         "exec" = "cat ~/.cache/${hosts.username}/notify-icon";
         "on-click" = ".config/waybar/scripts/notify/notify-icon.sh";
-        "on-click-right" = "~/.config/waybar/scripts/notify/dunst-history.sh";
+        "on-click-right" = "~/.config/waybar/scripts/notify/notify-history.sh";
         "signal" = 10;
         "tooltip" = false;
       };

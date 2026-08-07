@@ -6,7 +6,7 @@
 }: let
   enabled = homes.waybar && homes.dunst;
 in {
-  home.file.".config/waybar/scripts/notify/dunst-history.sh" = lib.mkIf enabled {
+  home.file.".config/waybar/scripts/notify/notify-history.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash
