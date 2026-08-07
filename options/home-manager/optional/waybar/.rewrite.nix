@@ -9,6 +9,7 @@
   "class<gcr-prompter>" = "";
   "class<gimp>" = "󱇣";
   "class<kitty>" = "";
+  "class<.lamp-gui-wrapped>" = "󰛨";
   "class<localsend_app>" = "󰈪";
   "class<mpv>" = "";
   "class<net.lutris.lutris>" = "";
@@ -34,4 +35,5 @@
   "title<newsboat>" = "";
   "title<nmtui>" = "󰀂";
   "title<PCSX2.*>" = "";
+  "title<RPCS3.*>" = "";
 }
