@@ -9,7 +9,7 @@
       #!/usr/bin/env bash
 
       CURRENT_SOURCE=$(pactl get-default-source)
-      mapfile -t SOURCES < <(pactl list short sources | awk '/alsa_input/ {print $2}')
+      mapfile -t SOURCES < <(pactl list short sources | awk '!/\.monitor/ {print $2}')
 
       if [[ ''${#SOURCES[@]} -eq 0 ]]; then
         dunstctl close-all

@@ -12,28 +12,28 @@
       TWS_MIC="bluez_input.00:A4:1C:F9:15:84"
 
       if [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       elif [[ "$CURRENT_SOURCE" == "$DESK_MIC" && "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       elif [[ "$CURRENT_SOURCE" == "$WEBCAM_MIC" && "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       elif [[ "$CURRENT_SOURCE" == "$WEBCAM_MIC" && "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \"󰂯\"}"
+        ICON="󰂯 "
       elif [[ "$CURRENT_SOURCE" == "$TWS_MIC" && "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"󰂯\"}"
+        ICON="󰂯 "
       else
-        echo "{\"text\": \"?\"}"
+        ICON="? "
       fi
     ''
     else ''
       if [[ "$MUTE_STATE" == "no" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       if [[ "$MUTE_STATE" == "yes" ]]; then
-        echo "{\"text\": \"\"}"
+        ICON=" "
       else
-        echo "{\"text\": \"?\"}"
+        ICON="? "
       fi
     '';
 in {
@@ -50,9 +50,12 @@ in {
       done
 
       CURRENT_SOURCE=$(pactl get-default-source)
-      MUTE_STATE=$(pactl get-source-mute $CURRENT_SOURCE | awk '{print $2}')
+      MUTE_STATE=$(pactl get-source-mute "$CURRENT_SOURCE" | awk '{print $2}')
+      VOL=$(pactl get-source-volume "$CURRENT_SOURCE" | awk -F'/' '/Volume:/ {print $2}' | tr -d ' \t%' | head -n1)
 
       ${source}
+
+      echo "{\"text\": \"$ICON$VOL%\"}"
     '';
   };
 }

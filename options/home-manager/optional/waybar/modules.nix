@@ -294,7 +294,7 @@ in {
       };
 
       "pulseaudio" = {
-        "format" = " {icon}{volume}%";
+        "format" = " {icon}{volume}% ";
         "max-volume" = 150;
         "format-icons" = lib.mkMerge [
           (lib.mkIf (hosts.hostname == "silvia")
@@ -330,9 +330,12 @@ in {
         "on-click" = "pavucontrol";
         "on-click-right" = "~/.config/waybar/scripts/control/input/cycle-input.sh";
         "on-click-middle" = "~/.config/waybar/scripts/control/input/toggle-input.sh";
+        "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +5% && pkill -RTMIN+14 waybar";
+        "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -5% && pkill -RTMIN+14 waybar";
         "return-type" = "json";
-        "signal" = 14;
+        "smooth-scrolling-threshold" = 2;
         "tooltip" = false;
+        "signal" = 14;
       };
 
       "network" = {
@@ -343,7 +346,6 @@ in {
         "tooltip" = false;
       };
 
-      # clock and date
       "clock" = {
         "interval" = 1;
         "format" = "<small><b> {0:%a, %d/%b/%y} \n    {0:%H:%M:%S}</b></small>";
