@@ -15,7 +15,7 @@
     else [];
   control =
     if hosts.hostname == "silvia"
-    then ["backlight" "custom/hyprsunset"]
+    then ["backlight"]
     else [];
 in {
   programs.waybar.settings = {
@@ -80,15 +80,6 @@ in {
         "exec" = "~/.config/waybar/scripts/resource/memory.sh";
       };
 
-      # weather
-      "custom/weather" = {
-        "format" = "{}";
-        "tooltip" = true;
-        "interval" = 3600;
-        "exec" = "~/.config/waybar/scripts/tray/wttr.sh";
-        "return-type" = "json";
-      };
-
       # workspace button
       "hyprland/workspaces" = {
         "active-only" = false;
@@ -139,6 +130,7 @@ in {
         "orientation" = "inherit";
         "modules" = [
           "custom/stoprec"
+          "custom/hyprsunset"
           "privacy"
           "tray"
           "custom/weather"
@@ -151,6 +143,13 @@ in {
         "exec" = "~/.config/waybar/scripts/tray/screenrecord-tray.sh";
         "on-click" = "~/.config/waybar/scripts/tray/screenrecord-stop.sh";
         "signal" = 11;
+      };
+
+      "custom/hyprsunset" = {
+        "format" = "{}";
+        "exec" = "cat ~/.cache/${hosts.username}/hyprsunset-icon";
+        "signal" = 12;
+        "tooltip" = false;
       };
 
       "privacy" = {
@@ -175,6 +174,14 @@ in {
         "icon-size" = 14;
         "spacing" = 14;
         "reverse-direction" = true;
+      };
+
+      "custom/weather" = {
+        "format" = "{}";
+        "tooltip" = true;
+        "interval" = 3600;
+        "exec" = "~/.config/waybar/scripts/tray/wttr.sh";
+        "return-type" = "json";
       };
 
       # utility
@@ -282,14 +289,6 @@ in {
         "on-scroll-down" = "brightnessctl set 10%-";
         "on-click" = "brightnessctl set 80%";
         "on-click-right" = "brightnessctl set 0%";
-        "tooltip" = false;
-      };
-
-      "custom/hyprsunset" = {
-        "format" = "{} ";
-        "exec" = "cat ~/.cache/${hosts.username}/hyprsunset-icon";
-        "on-click" = "~/.config/waybar/scripts/control/hyprsunset.sh";
-        "signal" = 12;
         "tooltip" = false;
       };
 

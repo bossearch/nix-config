@@ -45,11 +45,6 @@
       color: @green;
     }
 
-    #custom-weather {
-      color: #DFDFDF;
-      padding: 0px 10px 0px 0px;
-    }
-
     #workspaces {
       background: alpha(@fg, 0.7);
     }
@@ -100,6 +95,12 @@
     #tray > .needs-attention {
       -gtk-icon-effect: highlight;
       background: @yellow;
+    }
+
+    #custom-hyprsunset,
+    #custom-weather {
+      color: #DFDFDF;
+      padding: 0px 8px 0px 8px;
     }
 
     #utility {

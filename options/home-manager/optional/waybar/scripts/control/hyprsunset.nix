@@ -23,12 +23,12 @@
       STATE="''${1:-$TOGGLE_STATE}"
 
       if [[ "$CURRENT_TEMP" == "6500" ]] && [[ $STATE == "enable" ]]; then
-        echo "" >"$ICON_FILE"
+        echo "󰈈" >"$ICON_FILE"
         echo "2700" >"$TEMP_FILE"
         pkill -SIGRTMIN+12 waybar
         hyprctl hyprsunset temperature 2700
       elif [[ "$CURRENT_TEMP" == "2700" ]] && [[ $STATE == "disable" ]]; then
-        echo "" >"$ICON_FILE"
+        echo "" >"$ICON_FILE"
         echo "6500" >"$TEMP_FILE"
         pkill -SIGRTMIN+12 waybar
         hyprctl hyprsunset temperature 6500
