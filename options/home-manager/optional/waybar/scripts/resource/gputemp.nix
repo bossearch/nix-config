@@ -11,25 +11,15 @@ in {
     text = ''
       #!/usr/bin/env bash
 
-      TEMP_FILE="$HOME/.cache/${hosts.username}/gputemp"
-
       for i in /sys/class/hwmon/hwmon*/temp1_input; do
-        name_file="$(dirname "$i")/name"
-        if [[ -f "$name_file" ]]; then
-          name=$(<"$name_file")
-          if [[ "$name" == "amdgpu" ]]; then
-            temp=$(<"$i")
-            # Convert millidegree to degree Celsius
-            temp_c=$((temp / 1000))
-            echo "$temp_c" >>"$TEMP_FILE"
-            break
-          fi
+        if [[ -f "''${i%/*}/name" ]] && [[ $(<"''${i%/*}/name") == "amdgpu" ]]; then
+          temp=$(<"$i")
+          temp_c=$((temp / 1000))
+          break
         fi
       done
 
-      tooltip=$($HOME/.config/waybar/scripts/resource/graph.sh gpu)
-
-      echo "{\"text\": \"$temp_c\", \"tooltip\": \"$tooltip\"}"
+      echo "{\"text\": \"$temp_c\"}"
     '';
   };
 }
