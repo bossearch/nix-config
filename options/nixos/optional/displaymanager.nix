@@ -38,8 +38,8 @@ in {
         user = hosts.username;
       };
       default_session = {
-        command = autoLoginCmd;
-        user = hosts.username;
+        command = "${pkgs.greetd}/bin/agreety --cmd '${hosts.shell} -l'";
+        user = "greeter";
       };
     };
   };
