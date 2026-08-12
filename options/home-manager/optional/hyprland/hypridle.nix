@@ -1,7 +1,6 @@
 {hosts, ...}: let
   enabled =
     hosts.gui.enable
-    && hosts.gui.windowmanager == "hyprland"
     && hosts.hostname == "silvia";
 in {
   services.hypridle = {

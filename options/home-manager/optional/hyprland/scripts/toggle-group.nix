@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  enabled = hosts.gui.enable;
 in {
   home.file.".config/hypr/scripts/toggle-group.sh" = lib.mkIf enabled {
     executable = true;

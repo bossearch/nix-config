@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  enabled = hosts.gui.enable;
 in {
   home.file.".config/mpv/mpv.sh" = lib.mkIf enabled {
     executable = true;

@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  enabled = hosts.gui.enable;
   base00 = config.colorScheme.palette.base00;
   base01 = config.colorScheme.palette.base01;
   base06 = config.colorScheme.palette.base06;

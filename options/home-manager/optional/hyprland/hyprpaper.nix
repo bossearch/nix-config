@@ -4,7 +4,7 @@
   hosts,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  enabled = hosts.gui.enable;
 in {
   services.hyprpaper = {
     enable = enabled;

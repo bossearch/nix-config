@@ -6,7 +6,7 @@
   pkgs,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
+  enabled = hosts.gui.enable;
 in {
   imports = mylib.autoimport ./.;
 

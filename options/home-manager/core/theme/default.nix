@@ -1,11 +1,11 @@
 {
   homes,
   hosts,
-  lib,
   pkgs,
   mylib,
   ...
 }: let
+  enabled = hosts.gui.enable;
   pkgsCursor =
     if homes.cursor == "macOS"
     then pkgs.apple-cursor
@@ -19,12 +19,12 @@ in {
   imports = mylib.autoimport ./.;
 
   home.pointerCursor = {
-    enable = hosts.gui.enable;
+    enable = enabled;
     name = homes.cursor;
     package = pkgsCursor;
     size = cursor;
-    hyprcursor = lib.mkIf (hosts.gui.windowmanager == "hyprland") {
-      enable = true;
+    hyprcursor = {
+      enable = enabled;
     };
   };
 }
