@@ -98,20 +98,6 @@ in {
                 default = false;
                 type = types.bool;
               };
-              displaymanager = mkOption {
-                default = "greetd";
-                type = types.enum [
-                  "greetd"
-                  "none"
-                ];
-              };
-              windowmanager = mkOption {
-                default = "hyprland";
-                type = types.enum [
-                  "hyprland"
-                  "none"
-                ];
-              };
             };
           };
         };

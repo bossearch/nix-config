@@ -1,8 +1,6 @@
-{hosts, ...}: let
-  enabled = hosts.gui.enable && hosts.gui.windowmanager == "hyprland";
-in {
+{hosts, ...}: {
   programs.hyprland = {
-    enable = enabled;
+    enable = hosts.gui.enable;
     xwayland.enable = true;
   };
 }

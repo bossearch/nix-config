@@ -39,11 +39,7 @@
       };
     };
     # optional
-    gui = {
-      enable = true;
-      displaymanager = "greetd";
-      windowmanager = "hyprland";
-    };
+    gui.enable = true;
     bluetooth = true;
     dnscrypt = true;
     pipewire = true;
