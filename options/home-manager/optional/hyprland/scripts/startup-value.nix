@@ -17,7 +17,7 @@ in {
 
       HYPRSUNSET_ICON_FILE="$HOME/.cache/${hosts.username}/hyprsunset-icon"
       HYPRSUNSET_TEMP_FILE="$HOME/.cache/${hosts.username}/hyprsunset-temp"
-      echo "" >"$HYPRSUNSET_ICON_FILE"
+      echo "" >"$HYPRSUNSET_ICON_FILE"
       echo "6500" >"$HYPRSUNSET_TEMP_FILE"
 
       GAMEMODE_FILE="$HOME/.cache/${hosts.username}/gamemode"
