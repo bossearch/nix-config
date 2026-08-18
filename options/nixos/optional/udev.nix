@@ -43,15 +43,10 @@ in {
 
   services.udev = {
     enable = true;
-    packages =
-      # [
-      #   pkgs.android-udev-rules
-      #   pkgs.libu2f-host
-      # ]
-      # ++ (
-      lib.optionals hosts.udevqmk [pkgs.qmk-udev-rules]
-      # )
-      ;
+    # packages = [
+    #   pkgs.android-udev-rules
+    #   pkgs.libu2f-host
+    # ];
 
     extraRules = lib.concatStringsSep "\n" (
       lib.flatten [

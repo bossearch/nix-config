@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.udevqmk;
+  enabled = hosts.gui.enable && hosts.hostname == "silvia";
 in {
   home.file.".config/qmk/crkbd-cheatsheet.sh" = lib.mkIf enabled {
     executable = true;

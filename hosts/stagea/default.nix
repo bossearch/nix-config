@@ -35,7 +35,6 @@
     sops = true;
     ssh = true;
     steam = false;
-    udevqmk = false;
     usbguard = false;
     virtmanager = false;
     waydroid = false;

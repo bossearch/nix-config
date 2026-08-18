@@ -137,10 +137,6 @@ in {
           default = false;
           type = types.bool;
         };
-        udevqmk = mkOption {
-          default = false;
-          type = types.bool;
-        };
         usbguard = mkOption {
           default = false;
           type = types.bool;

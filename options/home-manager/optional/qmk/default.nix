@@ -7,7 +7,7 @@
 }: {
   imports = mylib.autoimport ./.;
 
-  home.packages = lib.mkIf hosts.udevqmk [
+  home.packages = lib.mkIf (hosts.hostname == "silvia") [
     pkgs.qmk
   ];
 }

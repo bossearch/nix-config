@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  enabled = hosts.gui.enable && hosts.udevqmk;
+  enabled = hosts.gui.enable && hosts.hostname == "silvia";
   mymonitor = builtins.all (m: m.height == 1440) homes.monitor;
   position =
     if mymonitor

@@ -24,6 +24,7 @@
         opencl.enable = true;
       };
       i2c.enable = true;
+      keyboard.qmk.enable = true;
     })
   ];
 }

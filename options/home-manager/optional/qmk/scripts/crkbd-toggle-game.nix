@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  home = lib.mkIf hosts.udevqmk {
+  home = lib.mkIf (hosts.hostname == "silvia") {
     packages = with pkgs; [
       (python312.withPackages (ps: with ps; [hidapi]))
     ];
