@@ -20,6 +20,7 @@
         rocmPackages.rocwmma
       ];
       amdgpu = {
+        initrd.enable = true;
         opencl.enable = true;
       };
       i2c.enable = true;
