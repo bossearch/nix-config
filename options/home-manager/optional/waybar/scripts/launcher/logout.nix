@@ -4,16 +4,16 @@
   pkgs,
   ...
 }: {
-  home.file.".config/waybar/scripts/launcher/reboot.sh" = lib.mkIf homes.waybar {
+  home.file.".config/waybar/scripts/launcher/logout.sh" = lib.mkIf homes.waybar {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
       if zenity --question \
-        --title="System Reboot" \
-        --text="Are you sure you want to reboot your system?" \
+        --title="Log Out" \
+        --text="Are you sure you want to logout?" \
         --width=200 \
-        --icon=system-reboot; then
+        --icon=system-log-out; then
 
         for NVIM_SOCKET in /run/user/1000/nvim.*; do
           if [[ -S "$NVIM_SOCKET" ]]; then
@@ -35,7 +35,7 @@
         sleep 1
 
         systemd-run --user --remain-after-exit \
-          bash -c "hyprshutdown -p 'reboot' -t 'Rebooting...'"
+          bash -c "hyprshutdown -p \"hyprctl dispatch 'hl.dsp.exit()'\" -t 'Logging out...'"
       else
         :
       fi

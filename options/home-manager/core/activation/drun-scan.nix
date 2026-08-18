@@ -173,6 +173,7 @@ in
       "toggle-notify:~/.config/waybar/scripts/notify/notify-icon.sh"
       "lock:${delay} && ~/.config/hypr/scripts/hyprlock.sh"
       "sleep:~/.config/waybar/scripts/launcher/sleep.sh"
+      "logout:~/.config/waybar/scripts/launcher/logout.sh"
       "reboot:~/.config/waybar/scripts/launcher/reboot.sh"
       "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
       "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
