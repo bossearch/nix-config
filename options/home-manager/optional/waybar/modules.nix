@@ -248,6 +248,7 @@ in {
         "smooth-scrolling-threshold" = 2;
         "tooltip" = false;
         "signal" = 14;
+        "interval" = 10;
       };
 
       "network" = {
