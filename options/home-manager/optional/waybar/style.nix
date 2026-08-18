@@ -29,22 +29,7 @@
       color: @cyan;
     }
 
-    #resource {
-      /*group for cpu, gpu and memory*/
-      background: alpha(@fg, 0.7);
-    }
-    #cpu,
-    #custom-cputemp {
-      color: @red;
-    }
-    #custom-gpu,
-    #custom-gputemp {
-      color: @yellow;
-    }
-    #custom-memory {
-      color: @green;
-    }
-
+    #custom-launcher,
     #workspaces {
       background: alpha(@fg, 0.7);
     }
@@ -101,6 +86,22 @@
     #custom-weather {
       color: #DFDFDF;
       padding: 0px 8px 0px 8px;
+    }
+
+    #resource {
+      background: alpha(@fg, 0.7);
+    }
+
+    #cpu,
+    #custom-cputemp {
+      color: @red;
+    }
+    #custom-gpu,
+    #custom-gputemp {
+      color: @yellow;
+    }
+    #custom-memory {
+      color: @green;
     }
 
     #control {

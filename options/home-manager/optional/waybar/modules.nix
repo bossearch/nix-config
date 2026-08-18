@@ -30,56 +30,6 @@ in {
         "tooltip" = true;
       };
 
-      "group/resource" = {
-        "orientation" = "inherit";
-        "modules" =
-          ["cpu"]
-          ++ resource
-          ++ ["custom/memory"];
-      };
-
-      "cpu" = {
-        "interval" = 5;
-        "format" = "  {usage}% ";
-        "max-length" = 15;
-        "on-click" = "footclient -T btop btop";
-      };
-
-      "custom/cputemp" = {
-        "exec" = "~/.config/waybar/scripts/resource/cputemp.sh";
-        "format" = "{}° ";
-        "interval" = 5;
-        "on-click" = "footclient -T btop btop";
-        "return-type" = "json";
-        "tooltip" = true;
-      };
-
-      "custom/gpu" = {
-        "exec" = "cat $(fd gpu_busy_percent /sys/class/hwmon/hwmon*/device/)";
-        "interval" = 5;
-        "format" = "  {}% ";
-        "max-length" = 15;
-        "on-click" = "footclient -T btop btop";
-        "tooltip" = false;
-      };
-
-      "custom/gputemp" = {
-        "exec" = "~/.config/waybar/scripts/resource/gputemp.sh";
-        "format" = "{}° ";
-        "interval" = 5;
-        "on-click" = "footclient -T btop btop";
-        "return-type" = "json";
-        "tooltip" = true;
-      };
-
-      "custom/memory" = {
-        "interval" = 5;
-        "format" = "  {}% ";
-        "on-click" = "footclient -T btop btop";
-        "return-type" = "json";
-        "exec" = "~/.config/waybar/scripts/resource/memory.sh";
-      };
-
       # workspace button
       "hyprland/workspaces" = {
         "active-only" = false;
@@ -182,6 +132,56 @@ in {
         "interval" = 3600;
         "exec" = "~/.config/waybar/scripts/tray/wttr.sh";
         "return-type" = "json";
+      };
+
+      "group/resource" = {
+        "orientation" = "inherit";
+        "modules" =
+          ["cpu"]
+          ++ resource
+          ++ ["custom/memory"];
+      };
+
+      "cpu" = {
+        "interval" = 5;
+        "format" = "  {usage}% ";
+        "max-length" = 15;
+        "on-click" = "footclient -T btop btop";
+      };
+
+      "custom/cputemp" = {
+        "exec" = "~/.config/waybar/scripts/resource/cputemp.sh";
+        "format" = "{}° ";
+        "interval" = 5;
+        "on-click" = "footclient -T btop btop";
+        "return-type" = "json";
+        "tooltip" = true;
+      };
+
+      "custom/gpu" = {
+        "exec" = "cat $(fd gpu_busy_percent /sys/class/hwmon/hwmon*/device/)";
+        "interval" = 5;
+        "format" = "  {}% ";
+        "max-length" = 15;
+        "on-click" = "footclient -T btop btop";
+        "tooltip" = false;
+      };
+
+      "custom/gputemp" = {
+        "exec" = "~/.config/waybar/scripts/resource/gputemp.sh";
+        "format" = "{}° ";
+        "interval" = 5;
+        "on-click" = "footclient -T btop btop";
+        "return-type" = "json";
+        "tooltip" = true;
+      };
+
+      "custom/memory" = {
+        "interval" = 5;
+        "format" = "  {}% ";
+        "on-click" = "footclient -T btop btop";
+        "return-type" = "json";
+        "exec" = "~/.config/waybar/scripts/resource/memory.sh";
       };
 
       "group/control" = {
