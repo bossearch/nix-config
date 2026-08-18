@@ -21,6 +21,12 @@
           segments = [
             {
               background = "transparent";
+              style = "plain";
+              template = "{{ if .SSHSession }}<yellow>{{ .UserName }}@{{ .HostName }}</> <blue>in</> {{ end }}";
+              type = "session";
+            }
+            {
+              background = "transparent";
               foreground = "blue";
               properties = {
                 style = "full";
@@ -31,9 +37,9 @@
             }
             {
               background = "transparent";
-              foreground = "p:grey";
+              foreground = "magenta";
               properties = {
-                branch_icon = "";
+                branch_icon = "on ";
                 merge_icon = "merging ";
                 rebase_icon = "rebasing ";
                 revert_icon = "reverting ";
@@ -44,7 +50,7 @@
                 fetch_status = true;
               };
               style = "plain";
-              template = " <magenta>{{ .HEAD }}</><red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</> <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}{{ if gt .StashCount 0 }} ≡{{ end }}</>";
+              template = " {{ .HEAD }}<red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</> <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}{{ if gt .StashCount 0 }} ≡{{ end }}</>";
               type = "git";
             }
           ];
