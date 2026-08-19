@@ -32,6 +32,10 @@
       if mymonitor
       then "{ 720, 720 }"
       else "{ 540, 540 }";
+    "1/4-1:1" =
+      if mymonitor
+      then "{ 360, 360 }"
+      else "{ 270, 270 }";
     "1/5" =
       if mymonitor
       then "{ 512, 288 }"
@@ -182,6 +186,16 @@ in {
                     match = {
                         class = "footclient",
                         title = "smallfzf",
+                    },
+                    float = true,
+                    center = 1,
+                    size = ${size."1/4-1:1"},
+                },
+                {
+                    name = "mediumfzf",
+                    match = {
+                        class = "footclient",
+                        title = "mediumfzf",
                     },
                     float = true,
                     center = 1,
