@@ -12,34 +12,30 @@ in {
     text = ''
       #!/usr/bin/env bash
 
-      set -e
+      SCR_IMG=""
 
-      hyprctl eval "require('lib.util').toggle_opacity('enable')"
+      cleanup() {
+        hyprctl eval "require('lib.util').toggle_opacity('disable')"
+        [[ -n "$SCR_IMG" && -d "$SCR_IMG" ]] && rm -rf "$SCR_IMG"
+      }
 
       die() {
         notify-send -e -u critical "OCR" "$1" -i scanner -t 1000
         exit 1
       }
-      cleanup() {
-        [[ -n $1 ]] && rm -r "$1"
-      }
+
+      hyprctl eval "require('lib.util').toggle_opacity('enable')"
+
+      trap cleanup EXIT
 
       GEOMETRY=$(slurp -d -F "${homes.nerdfont}" -b "${background}" -c "${border}")
-      SCR_IMG=$(mktemp -d) || die "failed to create tmpdir"
+      SCR_IMG=$(mktemp -d) || die "Failed to create tmpdir"
 
-      # shellcheck disable=SC2064
-      trap "cleanup '$SCR_IMG'" EXIT
-
-      # Use grim and slurp to capture a selected region
       grim -g "$GEOMETRY" "$SCR_IMG/scr.png" || die "Area selection cancelled"
       mogrify -modulate 100,0 -resize 400% "$SCR_IMG/scr.png" || die "Failed to convert image"
       tesseract "$SCR_IMG/scr.png" "$SCR_IMG/scr" &>/dev/null || die "Failed to extract text"
       wl-copy <"$SCR_IMG/scr.txt" || die "Failed to copy text to clipboard"
       notify-send -e "OCR" "Text extracted to clipboard" -i scanner
-
-      hyprctl eval "require('lib.util').toggle_opacity('disable')"
-
-      exit
     '';
   };
 }

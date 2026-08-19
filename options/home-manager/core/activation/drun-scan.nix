@@ -178,7 +178,7 @@ in
       "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
       "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
       "hyprsunset:~/.config/waybar/scripts/control/hyprsunset.sh"
-      "ocr:~/.config/waybar/scripts/utility/ocr.sh"
+      "ocr:${delay} && ~/.config/waybar/scripts/utility/ocr.sh"
       "ss-monitor:${delay} && ~/.config/waybar/scripts/utility/screenshot/monitor.sh"
       "ss-area:${delay} && ~/.config/waybar/scripts/utility/screenshot/area.sh"
       "ss-window:${delay} && ~/.config/waybar/scripts/utility/screenshot/window.sh"
