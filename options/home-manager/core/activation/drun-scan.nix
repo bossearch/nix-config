@@ -176,7 +176,7 @@ in
       "logout:~/.config/waybar/scripts/launcher/logout.sh"
       "reboot:~/.config/waybar/scripts/launcher/reboot.sh"
       "shutdown:~/.config/waybar/scripts/launcher/shutdown.sh"
-      "hyprpicker:~/.config/waybar/scripts/utility/hyprpicker.sh"
+      "hyprpicker:footclient -T smallfzf ~/.config/waybar/scripts/utility/hyprpicker.sh"
       "hyprsunset:~/.config/waybar/scripts/control/hyprsunset.sh"
       "ocr:${delay} && ~/.config/waybar/scripts/utility/ocr.sh"
       "ss-monitor:${delay} && ~/.config/waybar/scripts/utility/screenshot/monitor.sh"
