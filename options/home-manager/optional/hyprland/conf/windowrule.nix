@@ -231,6 +231,15 @@ in {
                 },
                 workspace = ${toString editing},
             },
+            lampcontrol = {
+                match = {
+                    title = ".lamp-gui-wrapped",
+                    title = "Lamp Control",
+                },
+                float = true,
+                center = 1,
+                size = {480, 180},
+            },
             localsend = {
                 match = {
                     class = "localsend_app",
