@@ -42,7 +42,7 @@
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 1")
                     require("lib.util").gamemode("enable")
                     hl.exec_cmd('dunstctl close-all')
-                    hl.exec_cmd('notify-send -e -a nosound -i state_running "Game Mode" "Activated"')
+                    hl.exec_cmd('notify-send -e -a game_on -i state_running "Game Mode" "Activated"')
                     gamemode_enabled = true
                 end
             else
@@ -50,7 +50,7 @@
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 0")
                     require("lib.util").gamemode("disable")
                     hl.exec_cmd('dunstctl close-all')
-                    hl.exec_cmd('notify-send -e -a nosound -i state_paused "Game Mode" "Deactivated"')
+                    hl.exec_cmd('notify-send -e -a game_off -i state_paused "Game Mode" "Deactivated"')
                     gamemode_enabled = false
 
                     hl.on("workspace.removed", function()
