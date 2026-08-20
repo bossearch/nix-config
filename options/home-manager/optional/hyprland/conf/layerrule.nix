@@ -15,14 +15,10 @@
             xray = true,
         })
         hl.layer_rule({
-            match = { namespace = "swaync-control-center" },
+            match = { namespace = "notifications" },
             blur = true,
             ignore_alpha = 0,
-        })
-        hl.layer_rule({
-            match = { namespace = "swaync-notification-window" },
-            blur = true,
-            ignore_alpha = 0.5,
+            no_screen_share = true,
         })
       '';
     };
