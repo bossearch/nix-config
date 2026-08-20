@@ -152,6 +152,10 @@
                 opts = { long_press = true },
             },
 
+            -- backlight
+            { mod = "", key = "XF86MonBrightnessDown", dispatch = "brightnessctl set 10%-" },
+            { mod = "", key = "XF86MonBrightnessUp", dispatch = "brightnessctl set +10%" },
+
             -- TODO: remove this key later or update the path if still used
             -- { mod = meh, key = "P", dispatch = "pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. pass },
             -- { mod = hyper, key = "P", dispatch = "pkill smallfzf || hyprctl activewindow -j > /tmp/prev_window && " .. otp },
