@@ -20,23 +20,12 @@
       cat << 'EOF' > $out/bin/lamp-gui
       #!/usr/bin/env python3
 
+      import gi
       import os
       import subprocess
       import sys
 
       HOME = os.path.expanduser("~")
-      USER = os.environ.get("USER", os.path.basename(HOME))
-      extra_paths = [
-          os.path.join(HOME, ".nix-profile/bin"),
-          f"/etc/profiles/per-user/{USER}/bin",
-          "/run/current-system/sw/bin",
-          "/usr/local/bin",
-          "/usr/bin",
-          "/bin",
-      ]
-      os.environ["PATH"] = ":".join(extra_paths) + ":" + os.environ.get("PATH", "")
-
-      import gi
 
       gi.require_version("Gdk", "3.0")
       gi.require_version("Gtk", "3.0")
@@ -139,9 +128,10 @@
                   subprocess.Popen(["bash", SET_SCRIPT, str(val)])
 
           def on_button_clicked(self, widget, action):
-              if action != "close":
+              if action == "close":
+                  Gtk.main_quit()
+              else:
                   subprocess.run(["bash", SET_SCRIPT, action], check=False)
-              Gtk.main_quit()
 
 
       if __name__ == "__main__":
@@ -155,6 +145,6 @@
   };
 in {
   home = lib.mkIf hosts.gui.enable {
-    file.".config/assets/scripts/lamp-control/lamp-gui.py".source = "${lampGui}/bin/lamp-gui";
+    file.".config/assets/scripts/lamp-gui.py".source = "${lampGui}/bin/lamp-gui";
   };
 }
