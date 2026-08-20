@@ -432,7 +432,7 @@ in {
             },
             spotify = {
                 match = {
-                    class = "Spotify",
+                    class = "(?i)^spotify.*$"
                 },
                 workspace = ${toString music},
             },
