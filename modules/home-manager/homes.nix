@@ -137,10 +137,6 @@ in {
           default = false;
           type = types.bool;
         };
-        dunst = mkOption {
-          default = false;
-          type = types.bool;
-        };
         feh = mkOption {
           default = false;
           type = types.bool;
@@ -158,6 +154,10 @@ in {
           type = types.bool;
         };
         kdenlive = mkOption {
+          default = false;
+          type = types.bool;
+        };
+        mako = mkOption {
           default = false;
           type = types.bool;
         };
@@ -204,7 +204,6 @@ in {
     _module.args.homes = config.homes;
     homes = lib.mkIf (!hosts.gui.enable) {
       copas = lib.mkForce false;
-      dunst = lib.mkForce false;
       feh = lib.mkForce false;
       firefox.enable = lib.mkForce false; #*
       game = {
@@ -222,6 +221,7 @@ in {
       gowall = lib.mkForce false; #*
       kdeconnect = lib.mkForce false;
       kdenlive = lib.mkForce false;
+      mako = lib.mkForce false;
       mpv = lib.mkForce false; #*
       nautilus = lib.mkForce false; #*
       nyaa = lib.mkForce false;

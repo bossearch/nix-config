@@ -6,7 +6,7 @@
   imports = [./scripts];
 
   home.file = {
-    ".config/assets/sounds" = lib.mkIf homes.dunst {
+    ".config/assets/sounds" = lib.mkIf homes.mako {
       source = ./sounds;
       recursive = true;
     };

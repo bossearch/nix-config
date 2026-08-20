@@ -39,12 +39,12 @@
       ollama = false;
     };
     copas = false;
-    dunst = true;
     feh = false;
     gimp = false;
     gowall = false;
     kdeconnect = false;
     kdenlive = false;
+    mako = true;
     mpv = false;
     nautilus = false;
     nchat = false;

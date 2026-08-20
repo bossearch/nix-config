@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.file.".config/waybar/scripts/notify/notify-icon.sh" = lib.mkIf homes.dunst {
+  home.file.".config/waybar/scripts/notify/notify-icon.sh" = lib.mkIf homes.mako {
     executable = true;
     text = ''
       #!/usr/bin/env bash
@@ -21,12 +21,12 @@
         ;;
       "󰂚")
         NEW_ICON="󰂛"
-        dunstctl set-paused true
+        makoctl mode -a dnd
         ;;
       *)
         NEW_ICON="󰂞"
-        dunstctl close-all
-        dunstctl set-paused false
+        makoctl dismiss -a
+        makoctl mode -r dnd
         echo "65536" >"$VOLUME_FILE"
         ;;
       esac

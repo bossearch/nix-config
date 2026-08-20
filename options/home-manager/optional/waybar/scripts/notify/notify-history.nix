@@ -1,51 +1,40 @@
 {
   homes,
-  hosts,
   lib,
   ...
 }: let
-  enabled = homes.waybar && homes.dunst;
+  enabled = homes.waybar && homes.mako;
 in {
   home.file.".config/waybar/scripts/notify/notify-history.sh" = lib.mkIf enabled {
     executable = true;
     text = ''
       #!/usr/bin/env bash
 
-      VOLUME_FILE="$HOME/.cache/${hosts.username}/notify-volume"
+      DISPLAYED=$(makoctl list -j | jq 'length')
+      HIST_COUNT=$(makoctl history -j | jq 'length')
 
-      DISPLAYED=$(dunstctl count | awk '/Currently displayed:/ {print $3}')
-      HIST_COUNT=$(dunstctl count | awk '/History:/ {print $2}')
+      if ((DISPLAYED > 0)); then
+        makoctl dismiss -a -h
 
-      clear_hist() {
-        dunstctl history |
-          jq '.data[0][0:5][]? | .id.data' |
-          xargs -r -I {} dunstctl history-rm {}
-      }
+      elif ((HIST_COUNT == 0)); then
+        notify-send -e -u critical "Notification history is empty"
 
-      if [[ "$HIST_COUNT" -eq 0 && "$DISPLAYED" -eq 0 ]]; then
-        notify-send -u critical -t 1000 "Notification history is empty"
-        while true; do
-          DISPLAYED=$(dunstctl count | awk '/Currently displayed:/ {print $3}')
-          if [ "$DISPLAYED" -eq 0 ]; then
-            break
-          fi
-          sleep 0.2
-        done
-        dunstctl history-clear
-        exit 0
-      fi
-
-      if [ "$DISPLAYED" -gt 0 ]; then
-        dunstctl close-all
-        clear_hist
       else
-        cp "$VOLUME_FILE" "$VOLUME_FILE".bak
-        echo "0" >"$VOLUME_FILE"
+        TO_RESTORE=$((HIST_COUNT < 5 ? HIST_COUNT : 5))
 
-        seq 5 | xargs -I _ dunstctl history-pop
+        for ((i = 0; i < TO_RESTORE; i++)); do
+          makoctl restore
+        done
 
-        rm -f "$VOLUME_FILE"
-        mv "$VOLUME_FILE".bak "$VOLUME_FILE"
+        mapfile -t IDS < <(makoctl list -j | jq -r '.[].id')
+        for ((idx = ''${#IDS[@]} - 1; idx >= 0; idx--)); do
+          makoctl dismiss -n "''${IDS[idx]}"
+        done
+
+        for ((i = 0; i < TO_RESTORE; i++)); do
+          makoctl restore
+          sleep 0.01
+        done
       fi
     '';
   };
