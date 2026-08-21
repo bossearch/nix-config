@@ -58,6 +58,12 @@ in {
       # python
       basedpyright
       ruff
+      # glsl
+      glsl_analyzer
+      glslang
+      # java
+      jdt-language-server
+      google-java-format
     ];
     extraWrapperArgs = [
       "--set"
