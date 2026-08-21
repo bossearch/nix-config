@@ -15,10 +15,8 @@ in {
 
       if ((DISPLAYED > 0)); then
         makoctl dismiss -a -h
-
       elif ((HIST_COUNT == 0)); then
-        notify-send -e -u critical "Notification history is empty"
-
+        exit 0
       else
         TO_RESTORE=$((HIST_COUNT < 5 ? HIST_COUNT : 5))
 
