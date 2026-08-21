@@ -2,6 +2,7 @@
   config,
   homes,
   hosts,
+  mylib,
   pkgs,
   ...
 }: let
@@ -20,6 +21,8 @@
     paplay "$HOME/.config/assets/sounds/''${SOUND_NAME}.mp3" --volume="$CURRENT_VOLUME"
   '';
 in {
+  imports = mylib.autoimport ./.;
+
   services.mako = {
     enable = homes.mako;
     settings = {
@@ -52,7 +55,7 @@ in {
       [urgency=low]
       background-color=${base01}
       border-color=${base05}
-      default-timeout=2000
+      default-timeout=1000
       on-notify=exec ${playSound} Chord
 
       [urgency=normal]
@@ -67,6 +70,10 @@ in {
       default-timeout=4000
       on-notify=exec ${playSound} Sonar
 
+      [app-name=Firefox]
+      urgency=normal
+      on-notify=exec ${playSound} camera-shutter
+
       [app-name=screenshot]
       on-notify=exec ${playSound} camera-shutter
 
@@ -74,13 +81,16 @@ in {
       on-notify=exec sh -c "sleep 2 && ${playSound} clapper-board"
 
       [app-name=game_on]
-      on-notify=exec ${playSound} Mario-power-up 0
+      on-notify=exec ${playSound} Mario-power-up 32768
 
       [app-name=game_off]
-      on-notify=exec ${playSound} Mario-power-down 0
+      on-notify=exec ${playSound} Mario-power-down 32768
 
       [app-name=playerctl]
       on-notify=exec ${playSound} Hello
+
+      [category=e]
+      history=0
     '';
   };
 }

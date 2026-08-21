@@ -10,7 +10,6 @@
   home.packages = lib.mkIf homes.waybar (with pkgs; [
     brightnessctl
     grim
-    libnotify
     pavucontrol
     slurp
     socat
