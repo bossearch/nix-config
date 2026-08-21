@@ -23,11 +23,11 @@ in {
         else
           ICON="media-playback-pause"
         fi
-        dunstctl close-all
+        makoctl dismiss -a
       }
 
       if [ "''${#AVAILABLE_PLAYERS[@]}" -eq 0 ]; then
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e -a playerctl "Playerctl" "No media players found" -i dialog-warning
         exit 0
       elif [ "''${#AVAILABLE_PLAYERS[@]}" -eq 1 ]; then

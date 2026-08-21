@@ -12,13 +12,13 @@
       mapfile -t SOURCES < <(pactl list short sources | awk '!/\.monitor/ {print $2}')
 
       if [[ ''${#SOURCES[@]} -eq 0 ]]; then
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e -u critical "Cycle Input" "No audio input found!" -i microphone-sensitivity-high
         exit 1
       fi
 
       if [[ ''${#SOURCES[@]} -eq 1 ]]; then
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e "Cycle Input" "Only 1 audio input found!" -i microphone-sensitivity-high
         exit 0
       fi
@@ -32,7 +32,7 @@
 
       NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ''${#SOURCES[@]} ))
       pactl set-default-source "''${SOURCES[$NEXT_INDEX]}"
-      dunstctl close-all
+      makoctl dismiss -a
       notify-send -e "Cycle Input" "''${SOURCES[$NEXT_INDEX]}" -i microphone-sensitivity-high
 
       sleep 0.1

@@ -13,11 +13,11 @@
 
       if [ "$SOURCE_STATUS" = "yes" ]; then
         pactl set-source-mute "$CURRENT_SOURCE" 0
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e "Input Unmuted" "$CURRENT_SOURCE" -i microphone-sensitivity-high
       else
         pactl set-source-mute "$CURRENT_SOURCE" 1
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e "Input Muted" "$CURRENT_SOURCE" -i microphone-sensitivity-high
       fi
 

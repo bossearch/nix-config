@@ -13,11 +13,11 @@
 
       if [ "$SINK_STATUS" = "yes" ]; then
         pactl set-sink-mute $CURRENT_SINK 0
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e "Output Unmuted" "$CURRENT_SINK" -i audio-volume-high
       else
         pactl set-sink-mute $CURRENT_SINK 1
-        dunstctl close-all
+        makoctl dismiss -a
         notify-send -e "Output Muted" "$CURRENT_SINK" -i audio-volume-high
       fi
     '';
