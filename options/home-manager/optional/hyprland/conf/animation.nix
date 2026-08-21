@@ -3,10 +3,6 @@
     "lua.animation" = {
       autoLoad = true;
       content = ''
-        --------------------
-        ---- ANIMATIONS ----
-        --------------------
-
         -- stylua: ignore start
         hl.config({ animations = { enabled = true } })
         hl.curve("md3_decel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })

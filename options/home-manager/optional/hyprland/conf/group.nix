@@ -6,10 +6,6 @@ in {
     "lua.group" = {
       autoLoad = true;
       content = ''
-        ---------------
-        ---- GROUP ----
-        ---------------
-
         hl.config({
             group = {
                 col = {

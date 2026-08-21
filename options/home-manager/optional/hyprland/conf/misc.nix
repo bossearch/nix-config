@@ -5,10 +5,6 @@ in {
     "lua.misc" = {
       autoLoad = true;
       content = ''
-        --------------
-        ---- MISC ----
-        --------------
-
         hl.config({
             ecosystem = {
                 no_update_news = true,

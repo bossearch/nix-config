@@ -3,10 +3,6 @@
     "lib.util" = {
       autoLoad = true;
       content = ''
-        --------------
-        ---- UTIL ----
-        --------------
-
         local M = {}
 
         -- cycle window with direction (only works for scrolling, master & monocle)

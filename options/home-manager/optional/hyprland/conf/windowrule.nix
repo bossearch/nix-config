@@ -50,10 +50,6 @@ in {
     "lua.windowrule" = {
       autoLoad = true;
       content = ''
-        --------------------
-        ---- WINDOWRULE ----
-        --------------------
-
         local rules_config = {
             blueman = {
                 match = {

@@ -3,10 +3,6 @@
     "lua.event" = {
       autoLoad = true;
       content = ''
-        ---------------
-        ---- EVENT ----
-        ---------------
-
         -- enable syshud on fullscreen window
         hl.on("window.fullscreen", function()
             hl.exec_cmd([[

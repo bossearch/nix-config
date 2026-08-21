@@ -3,10 +3,6 @@
     "lua.decoration" = {
       autoLoad = true;
       content = ''
-        --------------------
-        ---- DECORATION ----
-        --------------------
-
         hl.config({
             decoration = {
                 rounding = 8,

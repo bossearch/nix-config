@@ -3,10 +3,6 @@
     "lua.workspacerule" = {
       autoLoad = true;
       content = ''
-        -----------------------
-        ---- WORKSPACERULE ----
-        -----------------------
-
         hl.workspace_rule({
             workspace = "special:scratchpad",
             gaps_out = 200,

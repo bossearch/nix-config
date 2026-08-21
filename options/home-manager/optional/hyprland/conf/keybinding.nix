@@ -3,10 +3,6 @@
     "lua.keybinding" = {
       autoLoad = true;
       content = ''
-        ---------------------
-        ---- KEYBINDINGS ----
-        ---------------------
-
         local mainMod = "SUPER"
         local secMod = "CONTROL"
         local meh = "MOD5"

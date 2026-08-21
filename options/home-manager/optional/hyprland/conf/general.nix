@@ -6,10 +6,6 @@ in {
     "lua.general" = {
       autoLoad = true;
       content = ''
-        -----------------
-        ---- GENERAL ----
-        -----------------
-
         hl.config({
             general = {
                 gaps_in = 4,

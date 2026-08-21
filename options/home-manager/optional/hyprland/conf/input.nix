@@ -22,10 +22,6 @@ in {
     "lua.input" = {
       autoLoad = true;
       content = ''
-        ---------------
-        ---- INPUT ----
-        ---------------
-
         hl.config({
             input = {
                 kb_layout = "us",

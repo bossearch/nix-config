@@ -3,10 +3,6 @@
     "lua.layout" = {
       autoLoad = true;
       content = ''
-        ----------------
-        ---- LAYOUT ----
-        ----------------
-
         hl.config({
             dwindle = {
                 preserve_split = true,

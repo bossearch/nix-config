@@ -7,10 +7,6 @@
     "lua.permission" = {
       autoLoad = true;
       content = ''
-        --------------------
-        ---- PERMISSION ----
-        --------------------
-
         hl.config({
             ecosystem = {
                 enforce_permissions = true,
