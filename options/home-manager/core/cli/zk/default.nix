@@ -14,9 +14,9 @@
       note = {
         default-title = "Untitled";
         extension = "md";
-        filename = "{{format-date now '%Y/%m/%d/'}}{{id}}-{{slug title}}";
+        filename = "{{format-date now '%Y/%m/%d'}}{{id}}-{{slug title}}";
         id-case = "lower";
-        id-charset = "alphanum";
+        id-charset = "letters";
         id-length = 4;
         language = "en";
         template = "main.md";
