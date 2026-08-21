@@ -9,7 +9,7 @@
   programs.zk = {
     enable = true;
     settings = {
-      notebook.dir = "${config.home.homeDirectory}/Documents/zettelkasten";
+      notebook.dir = "${config.home.homeDirectory}/Documents/notes";
       extra.author = "${hosts.username}";
       note = {
         default-title = "Untitled";
