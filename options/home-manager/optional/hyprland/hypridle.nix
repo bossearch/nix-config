@@ -12,7 +12,7 @@ in {
       general = {
         lock_cmd = "pidof hyprlock || ~/.config/hypr/scripts/hyprlock.sh";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
       };
       listener = [
         # HYPRLOCK TIMEOUT
