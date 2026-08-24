@@ -20,6 +20,7 @@ in {
             hl.exec_cmd("hyprlock --immediate-render --no-fade-in")
             hl.exec_cmd("hyprpaper")
             hl.exec_cmd("blueman-applet")
+            hl.exec_cmd("sway-audio-idle-inhibit")
 
             hl.exec_cmd("cliphist wipe")
             hl.exec_cmd("wl-paste --watch cliphist store")

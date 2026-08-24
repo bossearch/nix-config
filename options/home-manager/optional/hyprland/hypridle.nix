@@ -5,6 +5,7 @@
 }: let
   enabled = hosts.gui.enable && hosts.hostname == "silvia";
 in {
+  home.packages = [pkgs.sway-audio-idle-inhibit];
   services.hypridle = {
     enable = enabled;
     settings = {
