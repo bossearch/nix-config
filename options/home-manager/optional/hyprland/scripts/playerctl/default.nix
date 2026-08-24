@@ -19,11 +19,10 @@ in {
       set_player() {
         echo -n "$NEXT_PLAYER" >"$PLAYER_FILE"
         STATUS=$(playerctl -p "$NEXT_PLAYER" status 2>/dev/null)
-        if [ "$STATUS" == "Playing" ]; then
-          ICON="media-playback-start"
-        else
-          ICON="media-playback-pause"
-        fi
+
+        ICON="''${NEXT_PLAYER%%.*}"
+        ICON="''${ICON,,}"
+
         makoctl dismiss -a
       }
 
