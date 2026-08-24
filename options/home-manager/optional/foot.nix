@@ -28,7 +28,7 @@ in {
     server.enable = true;
     settings = {
       "colors-dark" = {
-        alpha = 0.9;
+        alpha = 0.99;
         blur = true;
         background = base01;
         foreground = base07;
