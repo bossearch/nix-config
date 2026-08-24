@@ -15,33 +15,36 @@ in {
 
       toggle_player() {
         playerctl -p "$NEXT_PLAYER" play-pause
-        sleep 0.01
+        sleep 0.05
 
         STATUS=$(playerctl -p "$NEXT_PLAYER" status 2>/dev/null)
-        if [ "$STATUS" == "Playing" ]; then
-          ICON="media-playback-start"
-        else
-          ICON="media-playback-pause"
-        fi
+
+        ICON="''${NEXT_PLAYER%%.*}"
+        ICON="''${ICON,,}"
+
         makoctl dismiss -a
       }
+
+      CURRENT_PLAYER=""
+      if [ -f "$PLAYER_FILE" ]; then
+        CURRENT_PLAYER=$(tr -d '\n' <"$PLAYER_FILE" | xargs)
+      fi
 
       if [ "''${#AVAILABLE_PLAYERS[@]}" -eq 0 ]; then
         makoctl dismiss -a
         notify-send -e -a playerctl "Playerctl" "No media players found" -i dialog-warning
         exit 0
       elif [ "''${#AVAILABLE_PLAYERS[@]}" -eq 1 ]; then
-        if [ "''${AVAILABLE_PLAYERS[0]}" != "$(cat "$PLAYER_FILE")" ]; then
-          "$HOME/.config/hypr/scripts/playerctl/playerctl.sh silent"
-          toggle_player
-          notify-send -e -a playerctl "Playerctl" "''${AVAILABLE_PLAYERS[0]} - $STATUS" -i "$ICON"
-        else
-          NEXT_PLAYER="''${AVAILABLE_PLAYERS[0]}"
-          toggle_player
-          notify-send -e -a playerctl "Playerctl" "$NEXT_PLAYER - $STATUS" -i "$ICON"
+        NEXT_PLAYER="''${AVAILABLE_PLAYERS[0]}"
+        ICON="''${NEXT_PLAYER%%.*}"
+        ICON="''${ICON,,}"
+        if [ "$NEXT_PLAYER" != "$CURRENT_PLAYER" ]; then
+          "$HOME/.config/hypr/scripts/playerctl/playerctl.sh" silent
         fi
+        toggle_player
+        notify-send -e -a playerctl "Playerctl" "$NEXT_PLAYER - $STATUS" -i "$ICON"
       else
-        NEXT_PLAYER="$(cat "$PLAYER_FILE")"
+        NEXT_PLAYER="''${CURRENT_PLAYER:-''${AVAILABLE_PLAYERS[0]}}"
         toggle_player
         notify-send -e -a playerctl "Playerctl" "$NEXT_PLAYER - $STATUS" -i "$ICON"
       fi
