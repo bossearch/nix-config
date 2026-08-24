@@ -71,8 +71,12 @@ in {
       on-notify=exec ${playSound} Sonar
 
       [app-name=Firefox]
-      urgency=normal
-      on-notify=exec ${playSound} camera-shutter
+      border-color=${base00}
+      default-timeout=3000
+
+      [app-name=blueman]
+      border-color=${base00}
+      default-timeout=3000
 
       [app-name=screenshot]
       on-notify=exec ${playSound} camera-shutter
