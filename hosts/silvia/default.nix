@@ -50,7 +50,7 @@
     steam = true;
     usbguard = true;
     virtmanager = true;
-    waydroid = false;
+    waydroid = true;
   };
 
   # Do not change these future me !

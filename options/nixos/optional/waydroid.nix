@@ -5,6 +5,6 @@
 }: {
   virtualisation.waydroid = {
     enable = hosts.waydroid;
-    package = pkgs.waydroid;
+    package = pkgs.waydroid-nftables;
   };
 }

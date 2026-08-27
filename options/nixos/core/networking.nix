@@ -22,7 +22,10 @@
         allowedTCPPortRanges = hosts.networking.firewall.allTCPPortRanges;
         allowedUDPPortRanges = hosts.networking.firewall.allUDPPortRanges;
         extraCommands = lib.concatStringsSep "\n" hosts.networking.firewall.allExtraCmds;
-        trustedInterfaces = lib.mkIf hosts.virtmanager ["virbr0"];
+        trustedInterfaces = lib.mkMerge [
+          (lib.mkIf hosts.virtmanager ["virbr0"])
+          (lib.mkIf hosts.waydroid ["waydroid0"])
+        ];
       };
     }
     (lib.mkIf hosts.networking.bridge {
