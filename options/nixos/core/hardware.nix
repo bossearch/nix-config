@@ -4,7 +4,9 @@
   pkgs,
   ...
 }: {
-  services.xserver.videoDrivers = lib.mkIf (hosts.hostname == "silvia") ["amdgpu"];
+  services = lib.mkIf (hosts.hostname == "silvia") {
+    xserver.videoDrivers = ["amdgpu"];
+  };
 
   hardware = lib.mkMerge [
     {
@@ -22,6 +24,11 @@
       amdgpu = {
         initrd.enable = true;
         opencl.enable = true;
+        # enable oc or uv
+        overdrive = {
+          enable = true;
+          ppfeaturemask = "0xffffffff";
+        };
       };
       i2c.enable = true;
       keyboard.qmk.enable = true;
