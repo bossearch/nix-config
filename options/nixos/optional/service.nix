@@ -17,7 +17,7 @@
         for dev in /sys/class/backlight/ddcci*; do
           if [ -d "$dev" ]; then
             BUS_NUM=''${dev##*ddcci}
-            ${pkgs.ddcutil}/bin/ddcutil --bus="$BUS_NUM" setvcp D6 05 || true
+            ${pkgs.ddcutil}/bin/ddcutil --bus="$BUS_NUM" setvcp D6 04 || true
           fi
         done
       '';
