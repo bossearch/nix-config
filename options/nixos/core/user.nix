@@ -22,15 +22,16 @@ in {
         "wheel"
         (ifTheyExist [
           "audio"
-          "video"
-          "input"
           "docker"
+          "gamemode"
           "git"
-          "networkmanager"
-          "libvirtd"
-          "scanner" # for print/scan"
-          "lp" # for print/scan"
           "i2c"
+          "input"
+          "libvirtd"
+          "lp" # for print/scan"
+          "networkmanager"
+          "scanner" # for print/scan"
+          "video"
         ])
       ];
       openssh.authorizedKeys.keyFiles = [
