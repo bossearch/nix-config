@@ -41,5 +41,9 @@
   systemd.services.dnscrypt-proxy = {
     after = ["network-online.target"];
     wants = ["network-online.target"];
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "2s";
+    };
   };
 }
