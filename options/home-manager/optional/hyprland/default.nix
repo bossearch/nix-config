@@ -21,10 +21,14 @@ in {
             if m.vrr
             then 1
             else 0;
+          mode =
+            if m.modeline != null
+            then m.modeline
+            else "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
         in {
           output = "${m.name}";
-          mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-          position = "0x0";
+          mode = mode;
+          position = m.position;
           scale = 1;
           vrr = vrr;
         })

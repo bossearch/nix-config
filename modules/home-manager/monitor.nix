@@ -25,6 +25,10 @@ in {
             type = types.int;
             example = 1080;
           };
+          modeline = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+          };
           refreshRate = mkOption {
             type = types.int;
             default = 60;
@@ -40,10 +44,6 @@ in {
           vrr = mkOption {
             type = types.bool;
             default = true;
-          };
-          workspace = mkOption {
-            type = types.nullOr types.str;
-            default = null;
           };
         };
       }

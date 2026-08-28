@@ -16,6 +16,7 @@
         width = 2560;
         height = 1440;
         refreshRate = 165;
+        modeline = "modeline 679.10 2560 2568 2600 2640 1440 1545 1553 1559 +hsync -vsync";
         primary = true;
         vrr = false;
       }

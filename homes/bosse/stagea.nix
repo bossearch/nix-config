@@ -16,6 +16,7 @@
         width = 1920;
         height = 1080;
         refreshRate = 60;
+        modeline = null;
         primary = true;
         vrr = false;
       }
