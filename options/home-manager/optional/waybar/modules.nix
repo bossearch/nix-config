@@ -230,7 +230,7 @@ in {
         "on-click" = "pavucontrol";
         "on-click-right" = "~/.config/waybar/scripts/control/output/cycle-output.sh";
         "on-click-middle" = "~/.config/waybar/scripts/control/output/toggle-output.sh";
-        "scroll-step" = 5;
+        "scroll-step" = 10;
         "smooth-scrolling-threshold" = 2;
         "tooltip" = false;
         "signal" = 13;
@@ -242,8 +242,8 @@ in {
         "on-click" = "pavucontrol";
         "on-click-right" = "~/.config/waybar/scripts/control/input/cycle-input.sh";
         "on-click-middle" = "~/.config/waybar/scripts/control/input/toggle-input.sh";
-        "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +5% && pkill -RTMIN+14 waybar";
-        "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -5% && pkill -RTMIN+14 waybar";
+        "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +10% && pkill -RTMIN+14 waybar";
+        "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -10% && pkill -RTMIN+14 waybar";
         "return-type" = "json";
         "smooth-scrolling-threshold" = 2;
         "tooltip" = false;
