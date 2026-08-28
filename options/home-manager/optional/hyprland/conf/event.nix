@@ -37,12 +37,14 @@
                 if not gamemode_enabled then
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 1")
                     require("lib.util").gamemode("enable")
+                    hl.exec_cmd('pkill -SIGUSR1 waybar')
                     hl.exec_cmd('makoctl dismiss -a')
                     gamemode_enabled = true
                 end
             else
                 if gamemode_enabled then
                     hl.exec_cmd("~/.config/qmk/crkbd-toggle-game.py 0")
+                    hl.exec_cmd('pkill -SIGUSR1 waybar')
                     require("lib.util").gamemode("disable")
                     hl.exec_cmd('makoctl dismiss -a')
                     gamemode_enabled = false
