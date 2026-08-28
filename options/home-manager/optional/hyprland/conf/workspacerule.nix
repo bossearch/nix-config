@@ -25,6 +25,10 @@
         hl.workspace_rule({
             workspace = "7",
             layout = "monocle",
+            no_rounding = true,
+            no_border = true,
+            gaps_in = 0,
+            gaps_out = 0,
         })
       '';
     };

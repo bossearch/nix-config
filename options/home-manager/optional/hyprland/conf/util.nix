@@ -97,7 +97,6 @@
                 inactive_opacity = hl.get_config("decoration.inactive_opacity")
                 hl.config({
                     decoration = {
-                        rounding = 0,
                         active_opacity = 1,
                         inactive_opacity = 1,
                         blur = {
@@ -111,7 +110,6 @@
             elseif args == "disable" then
                 hl.config({
                     decoration = {
-                        rounding = 8,
                         active_opacity = active_opacity,
                         inactive_opacity = inactive_opacity,
                         blur = {
