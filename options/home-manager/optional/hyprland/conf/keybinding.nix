@@ -129,23 +129,61 @@
             },
 
             -- media key
-            { mod = "", key = "XF86AudioRaiseVolume", dispatch = "pactl set-sink-volume @DEFAULT_SINK@ +5%" },
-            { mod = "", key = "XF86AudioLowerVolume", dispatch = "pactl set-sink-volume @DEFAULT_SINK@ -5%" },
-            { mod = "", key = "XF86AudioPlay", dispatch = "~/.config/hypr/scripts/playerctl/player-toggle.sh" },
-            { mod = "", key = "XF86AudioMute", dispatch = "~/.config/hypr/scripts/playerctl/playerctl.sh" },
-            { mod = "", key = "XF86AudioPrev", dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh -5" },
-            { mod = "", key = "XF86AudioNext", dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh +5" },
+            {
+                mod = "",
+                key = "XF86AudioRaiseVolume",
+                dispatch = "pactl set-sink-volume @DEFAULT_SINK@ +10%",
+            },
+            {
+                mod = "",
+                key = "XF86AudioLowerVolume",
+                dispatch = "pactl set-sink-volume @DEFAULT_SINK@ -10%",
+            },
+            {
+                mod = secMod,
+                key = "XF86AudioRaiseVolume",
+                dispatch = "pactl set-source-volume @DEFAULT_SOURCE@ +10% && pkill -RTMIN+14 waybar",
+            },
+            {
+                mod = secMod,
+                key = "XF86AudioLowerVolume",
+                dispatch = "pactl set-source-volume @DEFAULT_SOURCE@ -10% && pkill -RTMIN+14 waybar",
+            },
+
+            {
+                mod = "",
+                key = "XF86AudioPlay",
+                dispatch = "~/.config/hypr/scripts/playerctl/player-toggle.sh",
+                opts = { locked = true }
+            },
+            {
+                mod = "",
+                key = "XF86AudioMute",
+                dispatch = "~/.config/hypr/scripts/playerctl/playerctl.sh",
+                opts = { locked = true }
+            },
+
+            {
+                mod = "",
+                key = "XF86AudioRewind",
+                dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh -10",
+                opts = { repeating = true }
+            },
+            {
+                mod = "",
+                key = "XF86AudioForward",
+                dispatch = "~/.config/hypr/scripts/playerctl/player-seek.sh +10",
+                opts = { repeating = true }
+            },
             {
                 mod = "",
                 key = "XF86AudioPrev",
                 dispatch = "~/.config/hypr/scripts/playerctl/player-skip.sh previous",
-                opts = { long_press = true },
             },
             {
                 mod = "",
                 key = "XF86AudioNext",
                 dispatch = "~/.config/hypr/scripts/playerctl/player-skip.sh next",
-                opts = { long_press = true },
             },
 
             -- backlight
