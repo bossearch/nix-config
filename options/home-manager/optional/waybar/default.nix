@@ -26,7 +26,7 @@
     settings = {
       mainBar = {
         "height" = 34;
-        "layer" = "top";
+        "layer" = "bottom";
         "margin-top" = 0;
         "margin-right" = 8;
         "margin-bottom" = 0;
