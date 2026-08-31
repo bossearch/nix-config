@@ -190,7 +190,7 @@ in
       "toggle-input:~/.config/waybar/scripts/control/input/toggle-input.sh"
       "cycle-output:~/.config/waybar/scripts/control/output/cycle-output.sh"
       "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
-      "lamp-control:~/.config/assets/scripts/lamp-control/lamp-gui.py"
+      "lamp-control:~/.config/assets/scripts/lamp-gui.py"
     )
 
     readarray -t applications < <(find \
