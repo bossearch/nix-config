@@ -104,7 +104,6 @@ in {
                     workspace = ${toString games},
                     float = true,
                     center = 1,
-                    immediate = true,
                     no_initial_focus = true,
                 },
             },
@@ -288,8 +287,6 @@ in {
                         class = "steam_app_default",
                         title = "Magic Chess: Go Go|MagicChessGoGo",
                     },
-                    pseudo = true,
-                    immediate = true,
                 },
             },
             mpv = {
@@ -354,7 +351,6 @@ in {
                 },
                 workspace = ${toString games},
                 fullscreen = true,
-                immediate = true,
             },
             prismlauncher = {
                 {
@@ -386,8 +382,6 @@ in {
                     name = "minecraft",
                     match = { title = "Minecraft.*" },
                     workspace = ${toString games},
-                    pseudo = true,
-                    immediate = true,
                 },
             },
             retroarch = {
@@ -396,7 +390,6 @@ in {
                 },
                 workspace = ${toString games},
                 fullscreen = true,
-                immediate = true,
             },
             rpcs3 = {
                 {
@@ -407,7 +400,6 @@ in {
                     },
                     workspace = ${toString games},
                     fullscreen = true,
-                    immediate = true,
                 },
                 {
                     name = "Settings",
@@ -453,8 +445,6 @@ in {
                         class = "dota2",
                     },
                     workspace = ${toString games},
-                    pseudo = true,
-                    immediate = true,
                 },
             },
             tor_browser = {
@@ -536,8 +526,6 @@ in {
                     class = "Waydroid",
                 },
                 workspace = ${toString games},
-                pseudo = true,
-                immediate = true,
             },
             zathura = {
                 match = {
@@ -583,6 +571,15 @@ in {
                         pin = false,
                     },
                     no_focus = true,
+                },
+                {
+                    name = "games-only",
+                    match = {
+                        workspace = ${toString games},
+                    },
+                    idle_inhibit = "fullscreen",
+                    pseudo = true,
+                    immediate = true,
                 },
             },
         }
