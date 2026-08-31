@@ -55,6 +55,26 @@
                 end
             end
         end)
+
+        -- auto switch to workspace 6 when the last window on workspace 7 closes
+        hl.on("window.destroy", function()
+            local ws = hl.get_active_workspace()
+            if not ws or ws.id ~= 7 then
+                return
+            end
+
+            local ws7_has_windows = false
+            for _, w in ipairs(hl.get_windows() or {}) do
+                if w.workspace and w.workspace.id == 7 then
+                    ws7_has_windows = true
+                    break
+                end
+            end
+
+            if not ws7_has_windows then
+                hl.dispatch(hl.dsp.focus({ workspace = "6" }))
+            end
+        end)
       '';
     };
   };
