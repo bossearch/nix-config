@@ -15,6 +15,9 @@
         email = "yudha.bosse@gmail.com";
       };
       credential.helper = "libsecret";
+      alias = {
+        copydiff = "!{ echo '```diff'; git --no-pager diff --staged; echo '```'; } | wl-copy";
+      };
     };
     hooks = {
       post-commit = pkgs.writeShellScript "post-commit" ''
