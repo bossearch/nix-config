@@ -382,6 +382,15 @@ in {
                     name = "minecraft",
                     match = { title = "Minecraft.*" },
                     workspace = ${toString games},
+                    opaque = true,
+                },
+                {
+                    name = "minecraft-afk",
+                    match = { title = "Minecraft-AFK.*" },
+                    workspace = ${toString utilities},
+                    opaque = true,
+                    fullscreen = false,
+                    fullscreen_state = "0 0",
                 },
             },
             retroarch = {
