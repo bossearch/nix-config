@@ -5,7 +5,7 @@
       content = ''
         local mainMod = "SUPER"
         local secMod = "CONTROL"
-        local meh = "MOD5"
+        local meh = "MOD5" -- or "ALT_GR"
         local hyper = "SUPER + MOD5"
 
         local terminal = "alacritty"
@@ -37,15 +37,14 @@
                 dispatch = function()
                     util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/drun.sh")
                 end,
-                opts = { release = true },
             },
+            -- TODO: remove run.sh since i never use it, and change drun to launcher
             {
                 mod = secMod,
                 key = "SPACE",
                 dispatch = function()
                     util.toggle_app("smallfzf", "footclient -T smallfzf ~/.config/fzf/extra/run.sh")
                 end,
-                opts = { release = true },
             },
             {
                 mod = mainMod,
@@ -53,7 +52,6 @@
                 dispatch = function()
                     util.toggle_app("bigfzf", "footclient -T bigfzf ~/.config/fzf/extra/clipboard.sh")
                 end,
-                opts = { release = true },
             },
 
             -- cycle focus
