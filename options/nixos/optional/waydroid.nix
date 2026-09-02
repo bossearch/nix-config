@@ -24,10 +24,10 @@ lib.mkIf hosts.waydroid {
         }
         trap cleanup EXIT INT TERM HUP
 
-        waydroid session stop 2>/dev/null || true
-
-        export mesa_glthread=true
-        export vblank_mode=0
+        waydroid session start &
+        until waydroid status 2>/dev/null | grep -q "RUNNING"; do
+          sleep 0.5
+        done
 
         get_resolution=$(hyprctl monitors -j 2>/dev/null | jq -r '.[] | select(.focused==true) | "\(.width) \(.height)"' 2>/dev/null)
         read -r MON_W MON_H <<< "$get_resolution"
@@ -39,14 +39,15 @@ lib.mkIf hosts.waydroid {
 
         waydroid prop set persist.waydroid.fps 60 2>/dev/null || true
 
-        if ! waydroid status | grep -q "RUNNING"; then
-          waydroid session start &
-          until waydroid status | grep -q "RUNNING"; do
-            sleep 1
-          done
-        fi
-
         waydroid show-full-ui
+
+        while ! hyprctl clients -j 2>/dev/null | jq -e '.[] | select(.class | test("waydroid"; "i"))' >/dev/null; do
+          sleep 0.5
+        done
+
+        while hyprctl clients -j 2>/dev/null | jq -e '.[] | select(.class | test("waydroid"; "i"))' >/dev/null; do
+          sleep 1
+        done
       '';
     })
   ];
