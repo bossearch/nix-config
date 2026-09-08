@@ -53,20 +53,21 @@ in {
       INPUT_WALL=$(find . -maxdepth 1 -type f -name "wall-''${DATE}.*" -print -quit)
 
       if [[ -z "$INPUT_WALL" ]]; then
-        echo "Fetching today's top wallpaper from Reddit via RSS..."
-        USER_AGENT="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0"
-        RSS_LINK="https://old.reddit.com/r/wallpaper/top/.rss?t=day"
-        RAW_FEED=$(curl -sL -A "$USER_AGENT" "$RSS_LINK")
-        IMG_URL=$(echo "$RAW_FEED" | grep -oE 'href=(&quot;|")https://i.redd.it/[^&" ]+\.(jpg|png|jpeg)' | head -n 1 | sed -E 's/href=(&quot;|")//' || true)
+        echo "Fetching today's top wallpaper via RSS proxy..."
 
-        if [[ -n "$IMG_URL" && "$IMG_URL" != "null" ]]; then
+        PROXY_URL="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fwallpaper%2Ftop%2F.rss%3Ft%3Dday"
+        RAW_FEED=$(curl -sL "$PROXY_URL")
+
+        IMG_URL=$(echo "$RAW_FEED" | grep -oE 'https://i\.redd\.it/[^"&< ]+\.(jpg|png|jpeg)' | head -n 1 || true)
+
+        if [[ -n "$IMG_URL" ]]; then
           EXT="''${IMG_URL##*.}"
           EXT=$(echo "$EXT" | cut -d'?' -f1 | tr -d '[:space:]')
           INPUT_WALL="wall-''${DATE}.''${EXT}"
-          curl -sL -A "$USER_AGENT" "$IMG_URL" -o "$INPUT_WALL"
+          curl -sL "$IMG_URL" -o "$INPUT_WALL"
           echo "Wallpaper downloaded: $IMG_URL"
         else
-          echo "Error: Could not extract a valid image URL from the Reddit RSS feed."
+          echo "Error: Could not extract wallpaper URL from proxy response."
           exit 1
         fi
       else
