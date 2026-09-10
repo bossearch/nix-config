@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   wayland.windowManager.hyprland.extraLuaFiles = {
     "lua.event" = {
       autoLoad = true;
@@ -38,7 +42,7 @@
                     hl.exec_cmd('pkill -SIGUSR1 waybar')
                     require("lib.util").gamemode("enable")
                     hl.exec_cmd('makoctl dismiss -a')
-                    hl.exec_cmd('notify-send -e -u low -a game_on -i state_running "Game Mode" "Activated"')
+                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-up.mp3"')
                     gamemode_enabled = true
                 end
             else
@@ -46,7 +50,7 @@
                     hl.exec_cmd('pkill -SIGUSR1 waybar')
                     require("lib.util").gamemode("disable")
                     hl.exec_cmd('makoctl dismiss -a')
-                    hl.exec_cmd('notify-send -e -u low -a game_off -i state_paused "Game Mode" "Deactivated"')
+                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-down.mp3"')
                     gamemode_enabled = false
 
                     hl.on("workspace.removed", function()

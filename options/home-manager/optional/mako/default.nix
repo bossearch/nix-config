@@ -84,12 +84,6 @@ in {
       [app-name=screenrecord]
       on-notify=exec sh -c "sleep 2 && ${playSound} clapper-board"
 
-      [app-name=game_on]
-      on-notify=exec ${playSound} Mario-power-up 32768
-
-      [app-name=game_off]
-      on-notify=exec ${playSound} Mario-power-down 32768
-
       [app-name=playerctl]
       on-notify=exec ${playSound} Hello
 
