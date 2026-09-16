@@ -1,4 +1,5 @@
 {pkgs ? import <nixpkgs> {}, ...}: {
+  fastclient = pkgs.callPackage ./fastclient {};
   seniorpw = pkgs.callPackage ./seniorpw {};
   sysboard = pkgs.callPackage ./sysboard {};
   # TODO: remove me after waybar 0.16.0

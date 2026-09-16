@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  home.packages = lib.mkIf homes.game.prismlauncher (with pkgs; [
+    fastclient
+  ]);
+
   programs.prismlauncher = lib.mkIf homes.game.prismlauncher {
     enable = true;
     package = pkgs.prismlauncher.override {
