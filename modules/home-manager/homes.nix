@@ -87,11 +87,11 @@ in {
                 default = false;
                 type = types.bool;
               };
-              playstation = mkOption {
+              minecraft = mkOption {
                 default = false;
                 type = types.bool;
               };
-              prismlauncher = mkOption {
+              playstation = mkOption {
                 default = false;
                 type = types.bool;
               };
@@ -209,8 +209,8 @@ in {
       game = {
         lsfg = lib.mkForce false; #*
         lutris = lib.mkForce false; #*
+        minecraft = lib.mkForce false;
         playstation = lib.mkForce false; #*
-        prismlauncher = lib.mkForce false;
         retroarch = lib.mkForce false;
       };
       ai = {

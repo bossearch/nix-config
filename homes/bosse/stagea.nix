@@ -31,8 +31,8 @@
     game = {
       lsfg = false;
       lutris = false;
+      minecraft = false;
       playstation = false;
-      prismlauncher = false;
       retroarch = false;
     };
     ai = {
