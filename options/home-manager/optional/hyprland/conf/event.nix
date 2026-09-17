@@ -42,7 +42,7 @@
                     hl.exec_cmd('pkill -SIGUSR1 waybar')
                     require("lib.util").gamemode("enable")
                     hl.exec_cmd('makoctl dismiss -a')
-                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-up.mp3"')
+                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-up.mp3" --volume="32768"')
                     gamemode_enabled = true
                 end
             else
@@ -50,7 +50,7 @@
                     hl.exec_cmd('pkill -SIGUSR1 waybar')
                     require("lib.util").gamemode("disable")
                     hl.exec_cmd('makoctl dismiss -a')
-                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-down.mp3"')
+                    hl.exec_cmd('paplay "${config.home.homeDirectory}/.config/assets/sounds/Mario-power-down.mp3" --volume="32768"')
                     gamemode_enabled = false
 
                     hl.on("workspace.removed", function()
