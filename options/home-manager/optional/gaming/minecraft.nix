@@ -8,6 +8,13 @@
     fastclient
   ]);
 
+  xdg.desktopEntries.fastclient = lib.mkIf homes.game.prismlauncher {
+    type = "Application";
+    name = "fastclient";
+    exec = "fastclient";
+    comment = "open fast client";
+  };
+
   programs.prismlauncher = lib.mkIf homes.game.prismlauncher {
     enable = true;
     package = pkgs.prismlauncher.override {
