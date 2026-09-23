@@ -173,10 +173,6 @@ in {
           default = false;
           type = types.bool;
         };
-        obsidian = mkOption {
-          default = false;
-          type = types.bool;
-        };
         spicetify = mkOption {
           default = false;
           type = types.bool;
@@ -226,7 +222,6 @@ in {
       nautilus = lib.mkForce false; #*
       nyaa = lib.mkForce false;
       obs = lib.mkForce false;
-      obsidian = lib.mkForce false;
       spicetify = lib.mkForce false;
       terminal = lib.mkForce "none";
       vaults = lib.mkForce false;
