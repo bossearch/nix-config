@@ -48,7 +48,6 @@
     mako = true;
     mpv = true;
     nautilus = true;
-    nchat = false;
     neomutt = false;
     newsboat = true;
     nyaa = true;

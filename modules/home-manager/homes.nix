@@ -117,10 +117,6 @@ in {
             };
           };
         };
-        nchat = mkOption {
-          default = false;
-          type = types.bool;
-        };
         neomutt = mkOption {
           default = false;
           type = types.bool;
