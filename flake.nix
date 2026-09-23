@@ -41,10 +41,6 @@
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     betterfox = {
       url = "github:yokoffing/Betterfox";
       flake = false;
