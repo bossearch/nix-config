@@ -75,7 +75,6 @@ in
       "org.pwmt.zathura-djvu"
       "org.pwmt.zathura-pdf-mupdf"
       "org.pwmt.zathura-ps"
-      "org.quickshell"
       "polkit-gnome-authentication-agent-1"
       "qt5ct"
       "qt6ct"
