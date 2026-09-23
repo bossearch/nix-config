@@ -1,10 +1,11 @@
 {
   config,
   hosts,
+  mylib,
   lib,
   ...
 }: {
-  imports = [./templates];
+  imports = mylib.autoimport ./.;
 
   programs.zk = {
     enable = true;
