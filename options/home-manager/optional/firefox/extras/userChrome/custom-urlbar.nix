@@ -27,7 +27,7 @@
       browser = {
         left = "8px";
         right = "8px";
-        top = "-67px";
+        top = "-64px";
       };
       navigator-toolbox = "";
       vertical-spacer = "";
@@ -56,18 +56,29 @@ in ''
   }
 
   /* Show navigator-toolbox */
-  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) {
+  #navigator-toolbox:is(
+    :hover,
+    :focus-within,
+    :has([open]),
+    :has(#toolbar-menubar:not([inactive]))
+  ) {
     opacity: 1 !important;
   }
 
   /* Hide urlbar */
-  #urlbar{
+  #urlbar {
     opacity: 0;
     pointer-events: none;
   }
 
   /* Show urlbar */
-  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) #urlbar {
+  #navigator-toolbox:is(
+      :hover,
+      :focus-within,
+      :has([open]),
+      :has(#toolbar-menubar:not([inactive]))
+    )
+    #urlbar {
     opacity: 1 !important;
     pointer-events: auto !important;
     transition: opacity 0.2s cubic-bezier(1, 0, 1, 0) !important;
@@ -84,20 +95,41 @@ in ''
     overflow: hidden;
   }
 
-  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) ~ #browser,
-  #navigator-toolbox:is(:hover, :focus-within, :has([open]), :has(#toolbar-menubar:not([inactive]))) #urlbar ~ #browser {
+  #navigator-toolbox:is(
+      :hover,
+      :focus-within,
+      :has([open]),
+      :has(#toolbar-menubar:not([inactive]))
+    )
+    ~ #browser,
+  #navigator-toolbox:is(
+      :hover,
+      :focus-within,
+      :has([open]),
+      :has(#toolbar-menubar:not([inactive]))
+    )
+    #urlbar
+    ~ #browser {
     margin-top: 0px !important;
     transition: margin-top 0.2s ease-in-out !important;
   }
 
   /* Prevent tab-bar hidden when moving tabs sadly not work on multiple windows */
-  #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) {
+  #navigator-toolbox:not(:hover):not(:focus-within):has(
+      #tabbrowser-tabs[movingtab]
+    ) {
     opacity: 1 !important;
   }
-  #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) #nav-bar {
+  #navigator-toolbox:not(:hover):not(:focus-within):has(
+      #tabbrowser-tabs[movingtab]
+    )
+    #nav-bar {
     margin-top: 32px !important;
   }
-  #navigator-toolbox:not(:hover):not(:focus-within):has(#tabbrowser-tabs[movingtab]) #urlbar {
+  #navigator-toolbox:not(:hover):not(:focus-within):has(
+      #tabbrowser-tabs[movingtab]
+    )
+    #urlbar {
     opacity: 0 !important;
   }
   ${css.vertical-spacer}

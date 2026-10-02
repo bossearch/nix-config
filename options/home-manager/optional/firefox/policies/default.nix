@@ -20,12 +20,15 @@
     Cryptomining = true;
     Fingerprinting = true;
     EmailTracking = true;
+    SuspectedFingerprinting = true;
+    BaselineExceptions = true;
+    ConvenienceExceptions = false;
   };
   ExtensionSettings = import ./extension.nix;
   ExtensionUpdate = true;
   HardwareAcceleration = true;
   Homepage = {
-    URL = "https://bossearch.github.io/tab/";
+    URL = "https://vimium.github.io/new-tab/";
     Locked = true;
     StartPage = "previous-session";
   };

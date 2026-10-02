@@ -12,23 +12,30 @@
   }
 
   /* Show X button on tab bar */
-  .tabbrowser-tab:not([pinned]) .tab-close-button { display: var(--show-tab-close-button) !important; }
-  .tabbrowser-tab:not([pinned]):hover .tab-close-button { display: var(--show-tab-close-button-hover) !important }
+  .tabbrowser-tab:not([pinned]) .tab-close-button {
+    display: var(--show-tab-close-button) !important;
+  }
+  .tabbrowser-tab:not([pinned]):hover .tab-close-button {
+    display: var(--show-tab-close-button-hover) !important;
+  }
 
   /* Container tabs indicator */
   .tabbrowser-tab[usercontextid]
     > .tab-stack
     > .tab-background
     > .tab-context-line {
-      margin: -1px var(--container-tabs-indicator-margin) 0 var(--container-tabs-indicator-margin) !important;
-      height: 1px !important;
-      box-shadow: var(--uc-identity-glow) var(--identity-tab-color) !important;
+    margin: -1px var(--container-tabs-indicator-margin) 0
+      var(--container-tabs-indicator-margin) !important;
+    height: 1px !important;
+    box-shadow: var(--uc-identity-glow) var(--identity-tab-color) !important;
   }
 
   /* Remove gap after pinned tabs */
   #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
     > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) { margin-inline-start: 0 !important; }
+    > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+    margin-inline-start: 0 !important;
+  }
 
   /* Remove outline and box-shadow on tab backgrounds */
   .tabbrowser-tab .tab-background {
@@ -38,9 +45,12 @@
   }
 
   /* multi tab selection */
-  #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([multiselected])
+  #tabbrowser-tabs:not([noshadowfortests])
+    .tabbrowser-tab:is([multiselected])
     > .tab-stack
-    > .tab-background:-moz-lwtheme { outline-color: var(--toolbarseparator-color) !important; }
+    > .tab-background:-moz-lwtheme {
+    outline-color: var(--toolbarseparator-color) !important;
+  }
 
   /* all tab menu */
   #allTabsMenu-searchTabs,
@@ -61,9 +71,9 @@
     }
   }
 
-  #tabbrowser-arrowscrollbox[orient="vertical"] >
-  #tabbrowser-arrowscrollbox-periphery >
-  #tabs-newtab-button {
+  #tabbrowser-arrowscrollbox[orient="vertical"]
+    > #tabbrowser-arrowscrollbox-periphery
+    > #tabs-newtab-button {
     display: none !important;
   }
 ''

@@ -37,6 +37,21 @@
             ./extras/userChrome/custom-urlbar.nix
           ]
         );
+        userContent = ''
+          @-moz-document url-prefix("about:") {
+            html,
+            body {
+              background-color: #${config.colorScheme.palette.base01} !important;
+              color: #${config.colorScheme.palette.base07} !important;
+            }
+          }
+          @-moz-document domain("vimium.github.io") {
+            html,
+            body {
+              background-color: #${config.colorScheme.palette.base01} !important;
+            }
+          }
+        '';
         extraConfig = import ./extras {
           inherit homes hosts inputs;
         };

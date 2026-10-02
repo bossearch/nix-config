@@ -45,6 +45,7 @@
       user_pref("sidebar.main.tools", "syncedtabs,history,bookmarks");
       user_pref("sidebar.position_start", false);
       user_pref("sidebar.visibility", "hide-sidebar");
+      user_pref("sidebar.revamp", false);
     '';
 in ''
   ${builtins.readFile "${inputs.betterfox}/user.js"}
