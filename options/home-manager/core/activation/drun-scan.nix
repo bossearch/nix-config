@@ -162,6 +162,7 @@ in
       "cycle-output:~/.config/waybar/scripts/control/output/cycle-output.sh"
       "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
       "lamp-control:~/.config/assets/scripts/lamp-gui.py"
+      "nmtui:footclient -T nmtui nmtui"
     )
 
     readarray -t applications < <(find \
