@@ -9,7 +9,7 @@
       #!/usr/bin/env bash
 
       ARGS="$1"
-      ADDRESS="192.168.18.14:38899"
+      ADDRESS="192.168.18.200:38899"
 
       get_lamp() {
         local t="$1"
