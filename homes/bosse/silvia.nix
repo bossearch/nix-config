@@ -45,6 +45,7 @@
     gowall = true;
     kdeconnect = false;
     kdenlive = true;
+    libreoffice = true;
     mako = true;
     mpv = true;
     nautilus = true;

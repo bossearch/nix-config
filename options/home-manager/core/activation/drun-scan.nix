@@ -163,6 +163,7 @@ in
       "toggle-output:~/.config/waybar/scripts/control/output/toggle-output.sh"
       "lamp-control:~/.config/assets/scripts/lamp-gui.py"
       "nmtui:footclient -T nmtui nmtui"
+      "libreoffice:libreoffice"
     )
 
     readarray -t applications < <(find \

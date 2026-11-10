@@ -153,6 +153,10 @@ in {
           default = false;
           type = types.bool;
         };
+        libreoffice = mkOption {
+          default = false;
+          type = types.bool;
+        };
         mako = mkOption {
           default = false;
           type = types.bool;
