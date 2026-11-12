@@ -3,6 +3,7 @@
   lib,
   mylib,
   outputs,
+  pkgs,
   ...
 }: let
   impermanence = lib.elem hosts.disko.type [
@@ -15,6 +16,8 @@
     else "/etc/ssh";
   hostList = lib.attrNames outputs.nixosConfigurations;
 in {
+  environment.systemPackages = [pkgs.sshfs];
+
   services.openssh = {
     enable = hosts.ssh;
     settings = {
